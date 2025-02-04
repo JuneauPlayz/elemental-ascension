@@ -27,22 +27,12 @@ func flash() -> void:
 	
 
 func _on_icon_mouse_entered() -> void:
-	var combat = get_tree().get_first_node_in_group("combat")
-	var shop = get_tree().get_first_node_in_group("shop")
-	if combat:
-		combat.relic_info.update_relic_info(relic)
-		combat.toggle_relic_tooltip()
-	elif shop:
-		shop.relic_info.update_relic_info(relic)
-		shop.toggle_relic_tooltip()
+	var run = get_tree().get_first_node_in_group("run")
+	run.relic_info.update_relic_info(relic)
+	run.toggle_relic_tooltip()
 
 
 func _on_icon_mouse_exited() -> void:
-	var shop = get_tree().get_first_node_in_group("shop")
-	var combat = get_tree().get_first_node_in_group("combat")
-	if combat:
-		combat.relic_info.update_relic_info(relic)
-		combat.toggle_relic_tooltip()
-	elif shop:
-		shop.relic_info.update_relic_info(relic)
-		shop.toggle_relic_tooltip()
+	var run = get_tree().get_first_node_in_group("run")
+	run.relic_info.update_relic_info(relic)
+	run.toggle_relic_tooltip()

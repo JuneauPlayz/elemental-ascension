@@ -96,8 +96,8 @@ func _on_begin_run_pressed() -> void:
 			ally4 = character_res_list[i]
 			empty_team = false
 	if empty_team == false:
-		GC.load_combat(ally1,ally2,ally3,ally4,GC.fight_1[0],GC.fight_1[1],GC.fight_1[2],GC.fight_1[3])
-		get_tree().change_scene_to_file("res://scenes/main scenes/combat.tscn")
+		GC.load_run(ally1,ally2,ally3,ally4)
+		get_tree().change_scene_to_file("res://scenes/main scenes/run.tscn")
 
 func check_spot(char, og_spot):
 	update_positions()

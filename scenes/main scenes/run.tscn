@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://o2oy1rvwobsh"]
+
+[ext_resource type="Script" uid="uid://drftmrt3lasq0" path="res://scenes/main scenes/run.gd" id="1_e7k3u"]
+[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="2_fgc7h"]
+[ext_resource type="PackedScene" uid="uid://cokl4xcoeufdp" path="res://scenes/reusables/reaction_panel.tscn" id="10_prr82"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dcmsy"]
+font_size = 291
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Run" type="Node" groups=["run"]]
+script = ExtResource("1_e7k3u")
+
+[node name="Ally 1 Spot" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = 3
+position = Vector2(95, 300)
+
+[node name="Ally 2 Spot" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = 3
+position = Vector2(330, 300)
+
+[node name="Ally 3 Spot" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = 3
+position = Vector2(565, 300)
+
+[node name="Ally 4 Spot" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = 3
+position = Vector2(800, 300)
+
+[node name="RelicHandlerSpot" type="Node2D" parent="."]
+z_index = 3
+position = Vector2(295, 28)
+
+[node name="RelicInfo" parent="RelicHandlerSpot" instance=ExtResource("2_fgc7h")]
+unique_name_in_owner = true
+visible = false
+z_index = 3
+custom_minimum_size = Vector2(50, 50)
+offset_left = 73.0
+offset_top = 59.0
+offset_right = 123.0
+offset_bottom = 109.0
+scale = Vector2(0.7, 0.7)
+mouse_filter = 2
+
+[node name="ReactionGuide" type="Button" parent="."]
+z_index = 3
+z_as_relative = false
+offset_left = 1470.0
+offset_top = 945.0
+offset_right = 1917.0
+offset_bottom = 1016.0
+theme_override_font_sizes/font_size = 48
+text = "Open Reaction Guide"
+
+[node name="ReactionPanel" parent="ReactionGuide" instance=ExtResource("10_prr82")]
+visible = false
+z_index = 3
+layout_mode = 1
+offset_left = -1260.0
+offset_top = -885.0
+offset_right = -1260.0
+offset_bottom = -885.0
+scale = Vector2(0.9, 0.9)
+
+[node name="Loading" type="Node2D" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="Loading"]
+z_index = 11
+offset_left = 11.0
+offset_top = 393.0
+offset_right = 1924.0
+offset_bottom = 649.0
+text = "Loading...
+"
+label_settings = SubResource("LabelSettings_dcmsy")
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Loading"]
+z_index = 10
+offset_left = -18.0
+offset_right = 1953.0
+offset_bottom = 1091.0
+mouse_filter = 2
+color = Color(0.18359, 0.18359, 0.18359, 1)
+
+[connection signal="pressed" from="ReactionGuide" to="." method="_on_reaction_guide_pressed"]

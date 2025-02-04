@@ -16,6 +16,8 @@ var connected = false
 var left : Unit
 var right : Unit
 
+var run
+
 @export var defense : float
 @export var status_resistance: float
 @export var title : String
@@ -33,7 +35,7 @@ const SOW = preload("res://resources/Status Effects/Sow.tres")
 var hp_bar
 var combat_manager
 var targeting_area
-
+var ReactionManager
 
 # Signals
 signal reaction_ended
@@ -73,8 +75,8 @@ func receive_skill(skill, unit, value_multiplier):
 			if (skill.element != "none"):
 				current_element = skill.element
 	if sow:
-		unit.receive_healing(roundi(GC.sow_healing * GC.sow_healing_mult), "grass", false)
-		unit.receive_shielding(roundi(GC.sow_shielding * GC.sow_shielding_mult), "earth", false)
+		unit.receive_healing(roundi(run.sow_healing * run.sow_healing_mult), "grass", false)
+		unit.receive_shielding(roundi(run.sow_shielding * run.sow_shielding_mult), "earth", false)
 		sow = false
 		for stati in status:
 			if stati.name == "Sow":
@@ -150,30 +152,30 @@ func take_damage(damage : int, element : String, change_element : bool):
 	hp_bar.update_element(current_element)
 	var damage_left = roundi(damage)
 	if self is Enemy:
-		damage_left += GC.all_damage_bonus
+		damage_left += run.all_damage_bonus
 		match element:
 			"fire":
-				damage_left += GC.fire_damage_bonus
-				damage_left *= GC.fire_damage_mult
+				damage_left += run.fire_damage_bonus
+				damage_left *= run.fire_damage_mult
 			"water":
-				damage_left += GC.water_damage_bonus
-				damage_left *= GC.water_damage_mult
+				damage_left += run.water_damage_bonus
+				damage_left *= run.water_damage_mult
 			"lightning":
-				damage_left += GC.lightning_damage_bonus
-				damage_left *= GC.lightning_damage_mult
+				damage_left += run.lightning_damage_bonus
+				damage_left *= run.lightning_damage_mult
 			"grass":
-				damage_left += GC.grass_damage_bonus
-				damage_left *= GC.grass_damage_mult
+				damage_left += run.grass_damage_bonus
+				damage_left *= run.grass_damage_mult
 			"earth":
-				damage_left += GC.earth_damage_bonus
-				damage_left *= GC.earth_damage_mult
+				damage_left += run.earth_damage_bonus
+				damage_left *= run.earth_damage_mult
 			"none":
-				damage_left += GC.physical_damage_bonus
-				damage_left += GC.physical_damage_mult
-		damage_left += GC.all_damage_mult
+				damage_left += run.physical_damage_bonus
+				damage_left += run.physical_damage_mult
+		damage_left *= run.all_damage_mult
 	var total_dmg = damage_left
 	if bubble:
-		damage_left = roundi(damage * GC.bubble_mult)
+		damage_left = roundi(damage * run.bubble_mult)
 		total_dmg = damage_left
 		bubble = false
 		DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Pop!", 32)
@@ -181,14 +183,14 @@ func take_damage(damage : int, element : String, change_element : bool):
 			if stati.name == "Bubble":
 				status.erase(stati)
 				hp_bar.update_statuses(status)
-				self.receive_healing(GC.ally_bloom_healing * GC.bloom_mult, "grass", false)
+				self.receive_healing(run.ally_bloom_healing * run.bloom_mult, "grass", false)
 	if nitro:
 		nitro = false
 		for stati in status:
 			if stati.name == "Nitro":
 				status.erase(stati)
 				hp_bar.update_statuses(status)
-				damage_left = roundi(damage_left * GC.nitro_mult)
+				damage_left = roundi(damage_left * run.nitro_mult)
 				DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Nitrate!", 32)
 	DamageNumbers.display_number(damage_left, damage_number_origin.global_position, element, "")
 	total_dmg = damage_left
@@ -210,7 +212,7 @@ func receive_healing(healing: int, element : String, change_element):
 	AudioPlayer.play_FX("healing",-21)
 	var new_healing = healing
 	if self is Ally:
-		new_healing = ((healing + GC.healing_bonus) * GC.healing_mult)
+		new_healing = ((healing + run.healing_bonus) * run.healing_mult)
 	DamageNumbers.display_number_plus(new_healing, damage_number_origin.global_position, element, "")
 	if change_element:
 		current_element = element
@@ -225,7 +227,7 @@ func receive_shielding(shielding: int, element : String, change_element : bool):
 	AudioPlayer.play_FX("earth_hit",-25)
 	var new_shielding =shielding
 	if self is Ally:
-		new_shielding = ((shielding + GC.shielding_bonus) * GC.shielding_mult)
+		new_shielding = ((shielding + run.shielding_bonus) * run.shielding_mult)
 	DamageNumbers.display_number_plus(new_shielding, damage_number_origin.global_position, element, "")
 	if change_element:
 		current_element = element

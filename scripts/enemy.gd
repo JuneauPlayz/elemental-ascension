@@ -8,6 +8,7 @@ class_name Enemy
 @export var skill4 : Skill
 var current_skill : Skill
 
+
 @export var reaction_primed = 0
 
 @onready var skill_info: Control = $ShowNextSkill/SkillInfo
@@ -15,11 +16,12 @@ var current_skill : Skill
 @onready var show_next_skill: Control = $ShowNextSkill
 
 var sow_just_applied = false
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	combat_manager = get_parent().get_parent().get_combat_manager()
+	run = get_tree().get_first_node_in_group("run")
+	ReactionManager = combat_manager.ReactionManager
 	hp_bar = $"HP Bar"
 	targeting_area = $TargetingArea
 	self.died.connect(combat_manager.reaction_signal)

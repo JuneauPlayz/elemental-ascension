@@ -19,22 +19,23 @@ var member_var = 0
 
 func initialize_relic(owner : RelicUI) -> void:
 	# Elemental Damage Bonuses and Multipliers
-	GC.fire_damage_bonus += self.fire_damage_bonus
-	GC.fire_damage_mult += self.fire_damage_mult
-	GC.water_damage_bonus += self.water_damage_bonus
-	GC.water_damage_mult += self.water_damage_mult
-	GC.lightning_damage_bonus += self.lightning_damage_bonus
-	GC.lightning_damage_mult += self.lightning_damage_mult
-	GC.earth_damage_bonus += self.earth_damage_bonus
-	GC.earth_damage_mult += self.earth_damage_mult
-	GC.grass_damage_bonus += self.grass_damage_bonus
-	GC.grass_damage_mult += self.grass_damage_mult
+	var run = owner.get_tree().get_first_node_in_group("run")
+	run.fire_damage_bonus += self.fire_damage_bonus
+	run.fire_damage_mult += self.fire_damage_mult
+	run.water_damage_bonus += self.water_damage_bonus
+	run.water_damage_mult += self.water_damage_mult
+	run.lightning_damage_bonus += self.lightning_damage_bonus
+	run.lightning_damage_mult += self.lightning_damage_mult
+	run.earth_damage_bonus += self.earth_damage_bonus
+	run.earth_damage_mult += self.earth_damage_mult
+	run.grass_damage_bonus += self.grass_damage_bonus
+	run.grass_damage_mult += self.grass_damage_mult
 
 	# Healing and Shielding Bonuses and Multipliers
-	GC.healing_bonus += self.healing_bonus
-	GC.healing_mult += self.healing_mult
-	GC.shielding_bonus += self.shielding_bonus
-	GC.shielding_mult += self.shielding_mult
+	run.healing_bonus += self.healing_bonus
+	run.healing_mult += self.healing_mult
+	run.shielding_bonus += self.shielding_bonus
+	run.shielding_mult += self.shielding_mult
 	
 func activate_relic(owner: RelicUI) -> void:
 	print("this happens at specific times based on the Relic.Type property")

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://2fhbkw2l8y0t"]
+[gd_scene load_steps=7 format=3 uid="uid://2fhbkw2l8y0t"]
 
 [ext_resource type="Script" uid="uid://b37yhcwrqieem" path="res://scripts/shop.gd" id="1_1no3t"]
 [ext_resource type="Texture2D" uid="uid://brhs8ke2bqbhj" path="res://assets/cafe shop background.png" id="2_cw3t7"]
 [ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="3_4vncm"]
-[ext_resource type="PackedScene" uid="uid://cokl4xcoeufdp" path="res://scenes/reusables/reaction_panel.tscn" id="7_l61bu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k3r7d"]
 resource_local_to_scene = true
@@ -146,25 +145,7 @@ current spell to replace"
 label_settings = SubResource("LabelSettings_03k4o")
 horizontal_alignment = 1
 
-[node name="ReactionGuide" type="Button" parent="."]
-offset_left = 1470.0
-offset_top = 969.0
-offset_right = 1917.0
-offset_bottom = 1040.0
-theme_override_font_sizes/font_size = 48
-text = "Open Reaction Guide"
-
-[node name="ReactionPanel" parent="ReactionGuide" instance=ExtResource("7_l61bu")]
-visible = false
-layout_mode = 1
-offset_left = -1218.0
-offset_top = -885.0
-offset_right = -1218.0
-offset_bottom = -885.0
-scale = Vector2(0.9, 0.9)
-
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="pressed" from="NextCombat" to="." method="_on_next_combat_pressed"]
 [connection signal="pressed" from="NextCombat/Refresh" to="." method="_on_refresh_pressed"]
 [connection signal="pressed" from="ConfirmSwap" to="." method="_on_confirm_swap_pressed"]
-[connection signal="pressed" from="ReactionGuide" to="." method="_on_reaction_guide_pressed"]

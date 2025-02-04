@@ -8,8 +8,9 @@ const RELIC_UI = preload("res://scenes/relic handler/relic_ui.tscn")
 
 @onready var relics_control : RelicsControl = $RelicsControl
 @onready var relics : HBoxContainer = %Relics
-
+var run
 func _ready() -> void:
+	run = get_tree().get_first_node_in_group("run")
 	relics.child_exiting_tree.connect(_on_relics_child_exiting_tree)
 
 func activate_relics_by_type(type : Relic.Type) -> void:
@@ -44,8 +45,8 @@ func purchase_relic(relic : Relic) -> void:
 	relics.add_child(new_relic_ui)
 	new_relic_ui.set_relic(relic)
 	new_relic_ui.relic.initialize_relic(new_relic_ui)
-	if relic in GC.obtainable_relics:
-		GC.obtainable_relics.erase(relic)
+	if relic in run.obtainable_relics:
+		run.obtainable_relics.erase(relic)
 
 func add_relic(relic : Relic):
 	var new_relic_ui = RELIC_UI.instantiate() as RelicUI

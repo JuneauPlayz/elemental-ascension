@@ -52,8 +52,15 @@ var ally2_pos : int
 var ally3_pos : int
 var ally4_pos : int
 
+var fire_tokens = 0
+var water_tokens = 0
+var lightning_tokens = 0
+var grass_tokens = 0
+var earth_tokens = 0
+
 const TARGET_CURSOR = preload("res://assets/target cursor.png")
 const DEFAULT_CURSOR = preload("res://assets/defaultcursor.png")
+
 
 
 signal ally_turn_done
@@ -67,13 +74,14 @@ var first_turn = true
 var victorious = false
 
 signal hit
-
-
 signal signal_received
 signal reaction_finished
 
+var run
+@onready var ReactionManager: Node = $"../ReactionManager"
+
 func combat_ready():
-	# waiting for everything to load in
+	run = get_tree().get_first_node_in_group("run")
 	
 	await get_tree().create_timer(0.1).timeout
 	reset_combat()
@@ -99,8 +107,8 @@ func combat_ready():
 	set_unit_pos()
 	ReactionManager.reaction_finished.connect(self.reaction_signal)
 	# relic stuff
-	relics.relics_activated.connect(_on_relics_activated)
-	relics.activate_relics_by_type(Relic.Type.START_OF_COMBAT)
+	run.relic_handler.relics_activated.connect(_on_relics_activated)
+	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_COMBAT)
 	combat_currency.update()
 
 
@@ -193,7 +201,7 @@ func enemy_turn():
 		enemy_turn_done.emit()
 
 func check_event_relics(skill,unit,value_multiplier,target):
-	if (GC.ghostfire and unit is Ally and skill.element == "fire"):
+	if (run.ghostfire and unit is Ally and skill.element == "fire"):
 		if (skill.target_type == "single_enemy" or skill.target_type == "back_enemy" or skill.target_type == "front_enemy"):
 			await get_tree().create_timer(0.1).timeout
 			var rng = RandomNumberGenerator.new()
@@ -207,7 +215,7 @@ func check_event_relics(skill,unit,value_multiplier,target):
 					enemies[2].receive_skill(skill,unit,value_multiplier)
 				4:
 					enemies[3].receive_skill(skill,unit,value_multiplier)
-	if (GC.flow and unit is Ally and skill.element == "water"):
+	if (run.flow and unit is Ally and skill.element == "water"):
 		await get_tree().create_timer(0.1).timeout
 		var new_target = target
 		if skill.target_type == "back_enemy":
@@ -220,25 +228,25 @@ func check_event_relics(skill,unit,value_multiplier,target):
 					new_target.left.receive_skill(skill,unit,value_multiplier*0.5)
 				if new_target.right != null:
 					new_target.right.receive_skill(skill,unit,value_multiplier*0.5)
-	if (GC.lightning_strikes_twice and unit is Ally and skill.element == "lightning"):
+	if (run.lightning_strikes_twice and unit is Ally and skill.element == "lightning"):
 		await get_tree().create_timer(0.25).timeout
 		use_skill(skill, target, unit, false)
 		
 func victory():
 	victorious = true
 	victory_screen.visible = true
-	victory_screen.update_text("Victory!", GC.current_reward)
+	victory_screen.update_text("Victory!", run.current_reward)
 	hide_skills()
 	hide_ui()
 	victory_screen.continue_pressed.connect(self.finish_battle)
 
 func defeat():
 	win.visible = false
-	GC.reset()
+	run.reset()
 	victorious = false
 	victory_screen.visible = true
 	victory_screen.update_text("Defeat!", 0)
-	GC.add_gold(0)
+	run.add_gold(0)
 	hide_skills()
 	hide_ui()
 	for enemy in enemies:
@@ -247,19 +255,19 @@ func defeat():
 	
 func finish_battle():
 	if victorious:
-		GC.add_gold(GC.current_reward)
-		if GC.end:
+		run.add_gold(run.current_reward)
+		if run.end:
 			get_tree().change_scene_to_file("res://scenes/main scenes/ending_screen.tscn")
 		else:
-			get_tree().change_scene_to_file("res://scenes/main scenes/shop.tscn")
+			run.combat_ended()
 	if not victorious:
-		GC.reset()
+		run.reset()
 		get_tree().change_scene_to_file("res://scenes/main scenes/main_scene.tscn")
 
 func reset_combat():
 	allies = []
 	enemies = []
-	GC.reset_tokens()
+	reset_tokens()
 	victory_screen.visible = false
 	
 func use_skill(skill,target,unit,event):
@@ -272,7 +280,7 @@ func use_skill(skill,target,unit,event):
 	# token spending
 	if unit.muck == true:
 		unit.muck = false
-		value_multiplier = GC.muck_mult
+		value_multiplier = run.muck_mult
 		for stati in unit.status:
 			if stati.name == "Muck":
 				unit.status.erase(stati)
@@ -356,27 +364,27 @@ func spend_skill_cost(skill):
 	if skill.cost > 0:
 		match skill.token_type:
 			"fire":
-				GC.fire_tokens -= skill.cost
+				fire_tokens -= skill.cost
 			"water":
-				GC.water_tokens -= skill.cost
+				water_tokens -= skill.cost
 			"lightning":
-				GC.lightning_tokens -= skill.cost
+				lightning_tokens -= skill.cost
 			"grass":
-				GC.grass_tokens -= skill.cost
+				grass_tokens -= skill.cost
 			"earth":
-				GC.earth_tokens -= skill.cost
+				earth_tokens -= skill.cost
 	if skill.cost2 > 0:
 		match skill.token_type2:
 			"fire":
-				GC.fire_tokens -= skill.cost2
+				fire_tokens -= skill.cost2
 			"water":
-				GC.water_tokens -= skill.cost2
+				water_tokens -= skill.cost2
 			"lightning":
-				GC.lightning_tokens -= skill.cost2
+				lightning_tokens -= skill.cost2
 			"grass":
-				GC.grass_tokens -= skill.cost2
+				grass_tokens -= skill.cost2
 			"earth":
-				GC.earth_tokens -= skill.cost2
+				earth_tokens -= skill.cost2
 	combat_currency.update()
 
 func _on_relics_activated(type : Relic.Type) -> void:
@@ -571,7 +579,7 @@ func _on_end_turn_pressed() -> void:
 		set_unit_pos()
 		hide_skills()
 		hide_ui()
-		relics.activate_relics_by_type(Relic.Type.END_OF_TURN)
+		run.relic_handler.activate_relics_by_type(Relic.Type.END_OF_TURN)
 
 func _on_reset_choices_pressed() -> void:
 	AudioPlayer.play_FX("click",0)
@@ -611,7 +619,7 @@ func hide_ui():
 	reset_choices.visible = false
 	
 func show_ui():
-	if (not GC.reaction_guide_open):
+	if (not run.reaction_guide_open):
 		end_turn.visible = true
 	reset_choices.visible = true
 	
@@ -782,27 +790,27 @@ func check_requirements():
 				if skill.cost != null:
 					match skill.token_type:
 						"fire":
-							tokens1 = GC.fire_tokens
+							tokens1 = fire_tokens
 						"water":
-							tokens1 = GC.water_tokens
+							tokens1 = water_tokens
 						"lightning":
-							tokens1 = GC.lightning_tokens
+							tokens1 = lightning_tokens
 						"grass":
-							tokens1 = GC.grass_tokens
+							tokens1 = grass_tokens
 						"earth":
-							tokens1 = GC.earth_tokens
+							tokens1 = earth_tokens
 				if skill.cost2 != null:
 					match skill.token_type2:
 						"fire":
-							tokens2 = GC.fire_tokens
+							tokens2 = fire_tokens
 						"water":
-							tokens2 = GC.water_tokens
+							tokens2 = water_tokens
 						"lightning":
-							tokens2 = GC.lightning_tokens
+							tokens2 = lightning_tokens
 						"grass":
-							tokens2 = GC.grass_tokens
+							tokens2 = grass_tokens
 						"earth":
-							tokens2 = GC.earth_tokens
+							tokens2 = earth_tokens
 				if skill.cost != null:
 					if skill.cost <= tokens1:
 						check = true
@@ -847,3 +855,63 @@ func set_unit_pos():
 	if allies.size() > 0:
 		front_ally = allies[allies.size()-1]
 		back_ally = allies[0]
+		
+func vaporize():
+	add_token("fire", (run.vaporize_fire_token_base + run.vaporize_fire_token_bonus) * run.vaporize_fire_token_mult)
+	add_token("water", (run.vaporize_water_token_base + run.vaporize_water_token_bonus) * run.vaporize_water_token_mult)
+
+func shock():
+	add_token("lightning", (run.shock_lightning_token_base + run.shock_lightning_token_bonus) * run.shock_lightning_token_mult)
+	add_token("water", (run.shock_water_token_base + run.shock_water_token_bonus) * run.shock_water_token_mult)
+
+func detonate():
+	add_token("fire", (run.detonate_fire_token_base + run.detonate_fire_token_bonus) * run.detonate_fire_token_mult)
+	add_token("lightning", (run.detonate_lightning_token_base + run.detonate_lightning_token_bonus) * run.detonate_lightning_token_mult)
+
+func erupt():
+	add_token("fire", (run.erupt_fire_token_base + run.erupt_fire_token_bonus) * run.erupt_fire_token_mult)
+	add_token("earth", (run.erupt_earth_token_base + run.erupt_earth_token_bonus) * run.erupt_earth_token_mult)
+
+func bloom():
+	add_token("water", (run.bloom_water_token_base + run.bloom_water_token_bonus) * run.bloom_water_token_mult)
+	add_token("grass", (run.bloom_grass_token_base + run.bloom_grass_token_bonus) * run.bloom_grass_token_mult)
+
+func burn():
+	add_token("fire", (run.burn_fire_token_base + run.burn_fire_token_bonus) * run.burn_fire_token_mult)
+	add_token("grass", (run.burn_grass_token_base + run.burn_grass_token_bonus) * run.burn_grass_token_mult)
+
+func nitro():
+	add_token("grass", (run.nitro_grass_token_base + run.nitro_grass_token_bonus) * run.nitro_grass_token_mult)
+	add_token("lightning", (run.nitro_lightning_token_base + run.nitro_lightning_token_bonus) * run.nitro_lightning_token_mult)
+	
+func muck():
+	add_token("water", (run.muck_water_token_base + run.muck_water_token_bonus) * run.muck_water_token_mult)
+	add_token("earth", (run.muck_earth_token_base + run.muck_earth_token_bonus) * run.muck_earth_token_mult)
+
+func discharge():
+	add_token("earth", (run.discharge_earth_token_base + run.discharge_earth_token_bonus) * run.discharge_earth_token_mult)
+	add_token("lightning", (run.discharge_lightning_token_base + run.discharge_lightning_token_bonus) * run.discharge_lightning_token_mult)
+
+func sow():
+	add_token("earth", (run.sow_earth_token_base + run.sow_earth_token_bonus) * run.sow_earth_token_mult)
+	add_token("grass", (run.sow_grass_token_base + run.sow_grass_token_bonus) * run.sow_grass_token_mult)
+	
+func add_token(element, count):
+	match element:
+		"fire":
+			fire_tokens += ((count + run.fire_token_bonus) * run.fire_token_multiplier)
+		"water":
+			water_tokens += ((count + run.water_token_bonus) * run.water_token_multiplier)
+		"lightning":
+			lightning_tokens += ((count + run.lightning_token_bonus) * run.lightning_token_multiplier)
+		"grass":
+			grass_tokens += ((count + run.grass_token_bonus) * run.grass_token_multiplier)
+		"earth":
+			earth_tokens += ((count + run.earth_token_bonus) * run.earth_token_multiplier)
+
+func reset_tokens():
+	fire_tokens = 0
+	water_tokens = 0
+	lightning_tokens = 0
+	earth_tokens = 0
+	grass_tokens = 0

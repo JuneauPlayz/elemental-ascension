@@ -8,8 +8,9 @@ extends Control
 
 
 func update():
-	fire_count.text = str(GC.fire_tokens)
-	water_count.text = str(GC.water_tokens)
-	lightning_count.text = str(GC.lightning_tokens)
-	grass_count.text = str(GC.grass_tokens)
-	earth_count.text = str(GC.earth_tokens)
+	var run = get_tree().get_first_node_in_group("run")
+	fire_count.text = str(run.fire_tokens)
+	water_count.text = str(run.water_tokens)
+	lightning_count.text = str(run.lightning_tokens)
+	grass_count.text = str(run.grass_tokens)
+	earth_count.text = str(run.earth_tokens)

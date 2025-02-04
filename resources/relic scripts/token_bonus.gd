@@ -11,11 +11,12 @@ func initialize_relic(owner : RelicUI) -> void:
 	print("this happens once we gain a new relic")
 	
 func activate_relic(owner: RelicUI) -> void:
-	GC.fire_tokens += fire_token_count
-	GC.water_tokens += water_token_count
-	GC.lightning_tokens += lightning_token_count
-	GC.earth_tokens += earth_token_count
-	GC.grass_tokens += grass_token_count
+	var run = owner.get_tree().get_first_node_in_group("run")
+	run.fire_tokens += fire_token_count
+	run.water_tokens += water_token_count
+	run.lightning_tokens += lightning_token_count
+	run.earth_tokens += earth_token_count
+	run.grass_tokens += grass_token_count
 	
 func deactivate_relic(owner: RelicUI) -> void:
 	print("this gets called when a RelicUI is exiting hte SceneTree")

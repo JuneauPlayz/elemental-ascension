@@ -9,10 +9,11 @@ const RELIC_UI = preload("res://scenes/relic handler/relic_ui.tscn")
 
 @export var item : Resource
 @export var price : int
-
+var run
 signal purchased
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	run = get_tree().get_first_node_in_group("run")
 	relic_info.visible = false
 	skill_info.visible = false
 	var shop = get_tree().get_first_node_in_group("shop")
@@ -37,9 +38,9 @@ func update_item():
 
 
 func _on_buy_pressed() -> void:
-	if GC.gold >= price:
+	if run.gold >= price:
 		AudioPlayer.play_FX("click",-10)
-		GC.gold -= price
+		run.gold -= price
 		purchased.emit(item, self)
 
 func hide_buy():
