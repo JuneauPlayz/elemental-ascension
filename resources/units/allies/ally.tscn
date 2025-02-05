@@ -135,9 +135,9 @@ visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 178.182
-offset_top = 210.0
+offset_top = 250.0
 offset_right = 178.182
-offset_bottom = 210.0
+offset_bottom = 250.0
 scale = Vector2(0.75, 0.75)
 script = ExtResource("8_4ut3l")
 
@@ -231,7 +231,6 @@ text = "Level Up Reward Avaliable!"
 label_settings = SubResource("LabelSettings_0maum")
 
 [node name="SwapTutorial" type="Label" parent="LevelUpReward"]
-visible = false
 layout_mode = 0
 offset_left = -410.909
 offset_top = 129.697

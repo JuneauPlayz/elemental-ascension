@@ -53,24 +53,40 @@ func _ready() -> void:
 	self.target_chosen.connect(combat_manager.target_signal)
 
 func change_skills():
+	var num_skills = 1
+	if skill2 != null:
+		num_skills = 2
+	if skill3 != null:
+		num_skills = 3
+	if skill4 != null:
+		num_skills = 4
+	
 	var rng = RandomNumberGenerator.new()
 	var random_num = 1
-	if skill2 != null:
-		random_num = rng.randi_range(1,2)
-	if skill3 != null:
-		random_num = rng.randi_range(1,3)
-	if skill4 != null:
-		random_num = rng.randi_range(1,4)
+	var new_skill
+	random_num = rng.randi_range(1,num_skills)
 	match random_num:
 		1:
-			current_skill = skill1
+			new_skill = skill1
 		2:
-			current_skill = skill2
+			new_skill = skill2
 		3:
-			current_skill = skill3
+			new_skill = skill3
 		4:
-			current_skill = skill4
-	skill_info.skill = current_skill
+			new_skill = skill4
+	while new_skill == current_skill:
+		random_num = rng.randi_range(1,num_skills)
+		match random_num:
+			1:
+				new_skill = skill1
+			2:
+				new_skill = skill2
+			3:
+				new_skill = skill3
+			4:
+				new_skill = skill4
+	current_skill = new_skill
+	skill_info.skill = new_skill
 	skill_info.update_skill_info()
 
 func hide_next_skill_info():

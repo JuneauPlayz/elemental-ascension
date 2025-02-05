@@ -72,7 +72,8 @@ signal target_chosen
 var combat_finished = false
 var first_turn = true
 var victorious = false
-
+var xp_reward
+signal combat_ended
 signal hit
 signal signal_received
 signal reaction_finished
@@ -82,7 +83,7 @@ var run
 
 func combat_ready():
 	run = get_tree().get_first_node_in_group("run")
-	
+	combat_ended.connect(run.scene_ended)
 	await get_tree().create_timer(0.1).timeout
 	reset_combat()
 	if (enemy1 != null):
@@ -105,7 +106,6 @@ func combat_ready():
 		allies[i].position = i+1
 	# setting left and right for units
 	set_unit_pos()
-	ReactionManager.reaction_finished.connect(self.reaction_signal)
 	# relic stuff
 	run.relic_handler.relics_activated.connect(_on_relics_activated)
 	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_COMBAT)
@@ -238,6 +238,7 @@ func victory():
 	victory_screen.update_text("Victory!", run.current_reward)
 	hide_skills()
 	hide_ui()
+	run.increase_xp(xp_reward)
 	victory_screen.continue_pressed.connect(self.finish_battle)
 
 func defeat():
@@ -257,9 +258,11 @@ func finish_battle():
 	if victorious:
 		run.add_gold(run.current_reward)
 		if run.end:
-			get_tree().change_scene_to_file("res://scenes/main scenes/ending_screen.tscn")
+			combat_ended.emit()
 		else:
-			run.combat_ended()
+			for ally in allies:
+				ally.spell_select_ui.new_select.disconnect(run.combat_manager._on_spell_select_ui_new_select)
+			combat_ended.emit()
 	if not victorious:
 		run.reset()
 		get_tree().change_scene_to_file("res://scenes/main scenes/main_scene.tscn")
@@ -398,6 +401,7 @@ func _on_relics_activated(type : Relic.Type) -> void:
 		
 			
 func reaction_signal():
+	print("reaction_signal")
 	await get_tree().create_timer(0.01).timeout
 	# update currency ui
 	combat_currency.update()

@@ -45,6 +45,7 @@ func purchase_relic(relic : Relic) -> void:
 	relics.add_child(new_relic_ui)
 	new_relic_ui.set_relic(relic)
 	new_relic_ui.relic.initialize_relic(new_relic_ui)
+	run.relics.append(relic)
 	if relic in run.obtainable_relics:
 		run.obtainable_relics.erase(relic)
 

@@ -37,6 +37,8 @@ var level
 var level_up
 
 var chosen_relic
+
+var run_starting
 signal loaded
 # special status checks
 var sow_just_applied = false
@@ -47,55 +49,47 @@ func _ready() -> void:
 	run = get_tree().get_first_node_in_group("run")
 	await get_tree().create_timer(0.1).timeout
 	# spell select ui first child, hp bar ui second child
-	if run.combat == true:
+	if run.combat == true and not run_starting:
 		combat_manager = run.combat_manager
 		ReactionManager = combat_manager.ReactionManager
+		spell_select_ui.new_select.connect(run.combat_manager._on_spell_select_ui_new_select)
+		self.target_chosen.connect(run.combat_manager.target_signal)
+		hp_bar.update_statuses(status)
+	current_element = "none"
 	hp_bar = $"HP Bar"
 	targeting_area = $TargetingArea
-
-	health = res.starting_health
-	max_health = res.starting_health
-	basic_atk = res.skill1
-	skill_1 = res.skill2
-	skill_2 = res.skill3
-	ult = res.skill4
-	ult_choice_1 = res.ult_1
-	ult_choice_2 = res.ult_2
-	relic_choice_1 = res.relic_1
-	relic_choice_2 = res.relic_2
-	relic_choice_3 = res.relic_3
-	relic_choice_4 = res.relic_4
-	level_up = res.level_up
-	level = res.level
-	sprite_spot.texture = load(res.sprite.resource_path)
-	sprite_spot.scale = Vector2(res.sprite_scale,res.sprite_scale)
+	if run_starting:
+		health = res.starting_health
+		max_health = res.starting_health
+		basic_atk = res.skill1
+		skill_1 = res.skill2
+		skill_2 = res.skill3
+		ult = res.skill4
+		ult_choice_1 = res.ult_1
+		ult_choice_2 = res.ult_2
+		relic_choice_1 = res.relic_1
+		relic_choice_2 = res.relic_2
+		relic_choice_3 = res.relic_3
+		relic_choice_4 = res.relic_4
+		level_up = res.level_up
+		level = res.level
+		sprite_spot.texture = load(res.sprite.resource_path)
+		sprite_spot.scale = Vector2(res.sprite_scale,res.sprite_scale)
+		run_starting = false
+	else:
+		health = max_health
+		max_health = max_health
 	spell_select_ui.skill1 = basic_atk
 	spell_select_ui.skill2 = skill_1
 	spell_select_ui.skill3 = skill_2
 	spell_select_ui.skill4 = ult
 	spell_select_ui.load_skills()
-	if run.combat:
-		spell_select_ui.new_select.connect(run.combat_manager._on_spell_select_ui_new_select)
 	hp_bar.set_hp(max_health)
 	hp_bar.set_maxhp(max_health)
-	if run.combat:
-		self.target_chosen.connect(run.combat_manager.target_signal)
-		hp_bar.update_statuses(status)
+
+		
 	
 func update_vars():
-	basic_atk = res.skill1
-	skill_1 = res.skill2
-	skill_2 = res.skill3
-	ult = res.skill4
-	ult_choice_1 = res.ult_1
-	ult_choice_2 = res.ult_2
-	relic_choice_1 = res.relic_1
-	relic_choice_2 = res.relic_2
-	relic_choice_3 = res.relic_3
-	relic_choice_4 = res.relic_4
-	title = res.name
-	#sprite_spot.texture = load(res.sprite.resource_path)
-	#sprite_spot.scale = Vector2(res.sprite_scale,res.sprite_scale)
 	spell_select_ui.skill1 = basic_atk
 	spell_select_ui.skill2 = skill_1
 	spell_select_ui.skill3 = skill_2
@@ -113,6 +107,7 @@ func update_skills():
 	
 func show_level_up(level):
 	level_up_reward.visible = true
+	level_up_reward.reset()
 	match level:
 		1:
 			level_up_reward.load_options(relic_choice_1, relic_choice_2)
@@ -121,6 +116,9 @@ func show_level_up(level):
 		3:
 			level_up_reward.load_options(relic_choice_3, relic_choice_4)
 
+func hide_level_up():
+	level_up_reward.visible = false
+	level_up_reward.reset()
 
 func _on_spell_select_ui_new_select(ally) -> void:
 	AudioPlayer.play_FX("click",-10)
@@ -188,15 +186,11 @@ func _on_confirm_swap_level_pressed() -> void:
 				skill_2 = skill_swap_2
 			4:
 				ult = skill_swap_2
-	if level_up_reward.choosing_options:
-		var relic_handler = get_tree().get_first_node_in_group("relic_handler")
-		run.relics.append(chosen_relic)
-		relic_handler.purchase_relic(chosen_relic)
+	elif level_up_reward.choosing_options:
+		run.relic_handler.purchase_relic(chosen_relic)
 	level_up_reward.visible = false
 	level_up_reward.choosing_skills = false
 	level_up_reward.choosing_options = false
-	level_up = false
-	res.level_up = false
 	match skill_swap_1_spot:
 		1:
 			basic_atk = skill_swap_2
@@ -208,7 +202,7 @@ func _on_confirm_swap_level_pressed() -> void:
 			ult = skill_swap_2
 	update_spell_select()
 	swap_tutorial.visible = false
-	level_up_complete = true
+	level_up = false
 	spell_select_ui.reset()
 
 func attack_animation():

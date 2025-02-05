@@ -42,11 +42,12 @@ var new_skill : Skill
 var new_skill_ally : Ally
 
 signal swap_done
-
+signal shop_ended
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	AudioPlayer.play_music("wii_shop", -30)
 	run = get_tree().get_first_node_in_group("run")
+	shop_ended.connect(run.scene_ended)
 	update_gold()
 	relic_list.append(relic_1_spot)
 	relic_list.append(relic_2_spot)
@@ -72,13 +73,6 @@ func _ready() -> void:
 		ally.spell_select_ui.hide_position()
 		ally.spell_select_ui.visible = true
 	await get_tree().create_timer(0.3).timeout
-	if run.current_fight == GC.fight_1:
-		run.level_up_allies()
-	for ally in allies:
-		ally.update_vars()
-		if ally.level_up == true:
-			ally.show_level_up(ally.level)
-			print("level" + str(ally.level))
 
 	for spot in relic_list:
 		if spot.get_child_count() == 1:
@@ -200,11 +194,8 @@ func update_gold():
 
 
 func _on_next_combat_pressed() -> void:
-	for ally in allies:
-		ally.level_up = false
-	run.disable_level_ups()
 	AudioPlayer.play_FX("click",-10)
-	run.shop_ended()
+	shop_ended.emit()
 	
 func _on_confirm_swap_pressed() -> void:
 	AudioPlayer.play_FX("click",-10)

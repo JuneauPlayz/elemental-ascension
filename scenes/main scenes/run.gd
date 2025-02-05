@@ -12,12 +12,27 @@ extends Node
 const RELIC_HANDLER = preload("res://scenes/relic handler/relic_handler.tscn")
 const COMBAT = preload("res://scenes/main scenes/combat.tscn")
 const SHOP = preload("res://scenes/main scenes/shop.tscn")
+const LEVEL_UP = preload("res://level_up_scene.tscn")
+const END = preload("res://scenes/main scenes/ending_screen.tscn")
+
+@onready var S: Node = $StateMachine
 
 var combat_manager
 var combat = false
 var combat_scene
 var shop = false
 var shop_scene
+var event = false
+var event_scene
+var level_up = false
+var level_up_scene
+
+signal scene_end
+
+var ally_1_spot_og_pos
+var ally_2_spot_og_pos
+var ally_3_spot_og_pos
+var ally_4_spot_og_pos
 
 var ally1 : Ally
 var ally2 : Ally
@@ -26,9 +41,19 @@ var ally4 : Ally
 
 var allies = []
 
+var front_ally
+var back_ally
+
 var gold = 0
 var bonus_gold = 0
 var gold_mult = 1
+
+var level = 0
+var xp = 0
+var xp_bonus = 0
+var xp_mult = 1
+var current_xp_goal = 100
+
 #combat
 var current_reward = 6
 #checks
@@ -187,7 +212,6 @@ var sow_earth_token_bonus = 0
 var sow_grass_token_bonus = 0
 
 var current_fight = GC.fight_1
-var disable_level_up = false
 var end = false
 
 # event based relics
@@ -195,6 +219,29 @@ var ghostfire = false
 var flow = false
 var lightning_strikes_twice = false
 var burn_stack = false
+
+func run_loop():
+	while not end:
+		if (level_up):
+			S.transition("levelup")
+			await scene_end
+		S.transition("combat")
+		await scene_end
+		if (level_up):
+			S.transition("levelup")
+			await scene_end
+		S.transition("shop")
+		await scene_end
+	shop_scene.queue_free()
+	var end_scene = END.instantiate()
+	self.add_child(end_scene)
+	
+	
+func scene_ended():
+	if (xp >= current_xp_goal):
+		level_up_allies()
+	scene_end.emit()
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if GC.ally1 != null:
@@ -208,6 +255,7 @@ func _ready() -> void:
 		skills.append(GC.ally1.skill3)
 		skills.append(GC.ally1.skill4)
 		allies.append(ally1)
+		ally_1_spot_og_pos = ally_1_spot.global_position
 	if GC.ally2 != null:
 		var ally2s = GC.ALLY.instantiate()
 		ally2 = ally2s
@@ -219,6 +267,7 @@ func _ready() -> void:
 		skills.append(GC.ally2.skill3)
 		skills.append(GC.ally2.skill4)
 		allies.append(ally2)
+		ally_2_spot_og_pos = ally_2_spot.global_position
 	if GC.ally3 != null:
 		var ally3s = GC.ALLY.instantiate()
 		ally3 = ally3s
@@ -230,6 +279,7 @@ func _ready() -> void:
 		skills.append(GC.ally3.skill3)
 		skills.append(GC.ally3.skill4)
 		allies.append(ally3)
+		ally_3_spot_og_pos = ally_3_spot.global_position
 	if GC.ally4 != null:
 		var ally4s = GC.ALLY.instantiate()
 		ally4 = ally4s
@@ -241,6 +291,13 @@ func _ready() -> void:
 		skills.append(GC.ally4.skill3)
 		skills.append(GC.ally4.skill4)
 		allies.append(ally4)
+		ally_4_spot_og_pos = ally_4_spot.global_position
+	front_ally = allies[allies.size()-1]
+	back_ally = allies[0]
+	
+	for ally in allies:
+		ally.run_starting = true
+	reaction_panel.visible = false
 	var dir = DirAccess.open("res://resources/relics")
 	var relics = []
 	get_all_files_from_directory("res://resources/relics", "", relics)
@@ -272,8 +329,7 @@ func _ready() -> void:
 				obtainable_skills.append(skill)
 	relic_handler = RELIC_HANDLER.instantiate()
 	relic_handler_spot.add_child(relic_handler)
-	combat = true
-	load_combat(current_fight[0],current_fight[1],current_fight[2],current_fight[3])
+	run_loop()
 		
 func get_all_files_from_directory(path : String, file_ext:= "", files := []):
 	var resources = ResourceLoader.list_directory(path)
@@ -285,12 +341,10 @@ func get_all_files_from_directory(path : String, file_ext:= "", files := []):
 	return files
 
 func load_combat(enemy1, enemy2, enemy3, enemy4):
-	loading_screen(0.5)
-	next_fight()
-	combat = true
 	combat_scene = COMBAT.instantiate()
 	self.add_child(combat_scene)
-	combat_manager = combat_scene.get_child(1)
+	combat_manager = combat_scene.get_child(0)
+	combat_manager.xp_reward = 50
 	combat_manager.ally1 = ally1
 	combat_manager.ally2 = ally2
 	combat_manager.ally3 = ally3
@@ -303,11 +357,14 @@ func load_combat(enemy1, enemy2, enemy3, enemy4):
 	combat_scene.enemy4res = enemy4
 	
 func load_shop():
-	shop = true
 	shop_scene = SHOP.instantiate()
 	for ally in allies:
 		ally._ready()
 	self.add_child(shop_scene) 
+	
+func load_level_up():
+	level_up_scene = LEVEL_UP.instantiate()
+	self.add_child(level_up_scene)
 			
 func add_gold(count):
 	gold += ((count + bonus_gold) * gold_mult)
@@ -320,15 +377,12 @@ func next_fight():
 		GC.fight_2:
 			current_fight = GC.fight_3
 			current_reward = GC.fight_3_reward
-			level_up_allies()
 		GC.fight_3:
 			current_fight = GC.fight_4
 			current_reward = GC.fight_4_reward
-			disable_level_ups()
 		GC.fight_4:
 			current_fight = GC.fight_5
 			current_reward = GC.fight_5_reward
-			level_up_allies()
 		GC.fight_5:
 			current_fight = GC.fight_6
 			current_reward = GC.fight_6_reward
@@ -337,8 +391,8 @@ func next_fight():
 			end_game()
 			
 func level_up_allies():
-	disable_level_up = false
-	print("hiaaaaaaaaaaaaaaaaaaaaaaa")
+	level += 1
+	level_up = true
 	if ally1 != null:
 		ally1.level += 1
 		ally1.level_up = true
@@ -351,17 +405,11 @@ func level_up_allies():
 	if ally4 != null:
 		ally4.level += 1
 		ally4.level_up = true
+	for ally in allies:
+		ally.max_health += 10
+	current_xp_goal += 100
 		
-func disable_level_ups():
-	if ally1 != null:
-		ally1.level_up = false
-	if ally2 != null:
-		ally2.level_up = false
-	if ally3 != null:
-		ally3.level_up = false
-	if ally4 != null:
-		ally4.level_up = false
-		
+
 func end_game():
 	get_tree().change_scene_to_file("res://scenes/main scenes/ending_screen.tscn")
 
@@ -387,6 +435,7 @@ func get_random_skill():
 
 
 func _on_reaction_guide_pressed() -> void:
+	reaction_panel.update_mult_labels()
 	if reaction_panel.visible:
 		reaction_panel.visible = false
 		reaction_guide_open = false
@@ -405,17 +454,255 @@ func _on_reaction_guide_pressed() -> void:
 func toggle_relic_tooltip():
 	relic_info.visible = !relic_info.visible
 	
-func combat_ended():
-	combat_scene.queue_free()
-	combat = false
-	load_shop()
-	
-func shop_ended():
-	shop_scene.queue_free()
-	shop = false
-	load_combat(current_fight[0],current_fight[1],current_fight[2],current_fight[3])
-	
 func loading_screen(time):
 	loading.visible = true
 	await get_tree().create_timer(time).timeout
 	loading.visible = false
+
+func increase_xp(count):
+	xp += ((count + xp_bonus) * xp_mult)
+
+func move_allies(x,y):
+	ally_1_spot.global_position += Vector2(x,y)
+	ally_2_spot.global_position += Vector2(x,y)
+	ally_3_spot.global_position += Vector2(x,y)
+	ally_4_spot.global_position += Vector2(x,y)
+	
+func reset_ally_positions():
+	ally_1_spot.global_position = ally_1_spot_og_pos
+	ally_2_spot.global_position = ally_2_spot_og_pos
+	ally_3_spot.global_position = ally_3_spot_og_pos
+	ally_4_spot.global_position = ally_4_spot_og_pos
+
+func split_allies():
+	ally_1_spot.global_position.x += -150
+	ally_2_spot.global_position.x += -75
+	ally_3_spot.global_position.x += 75
+	ally_4_spot.global_position.x += 150
+	
+
+func reset() -> void:
+		# Reset node references
+		loading = $Loading
+		ally_1_spot = %"Ally 1 Spot"
+		ally_2_spot = %"Ally 2 Spot"
+		ally_3_spot = %"Ally 3 Spot"
+		ally_4_spot = %"Ally 4 Spot"
+		relic_handler_spot = $RelicHandlerSpot
+		reaction_panel = $ReactionGuide/ReactionPanel
+		relic_info = %RelicInfo
+
+		# Reset scenes
+		combat_scene = null
+		shop_scene = null
+		event_scene = null
+		level_up_scene = null
+
+		# Reset state variables
+		combat = false
+		shop = false
+		event = false
+		level_up = false
+		end = false
+
+		# Reset ally positions
+		ally_1_spot_og_pos = ally_1_spot.global_position
+		ally_2_spot_og_pos = ally_2_spot.global_position
+		ally_3_spot_og_pos = ally_3_spot.global_position
+		ally_4_spot_og_pos = ally_4_spot.global_position
+
+		# Reset allies
+		ally1 = null
+		ally2 = null
+		ally3 = null
+		ally4 = null
+		allies = []
+		front_ally = null
+		back_ally = null
+
+		# Reset resources
+		gold = 0
+		bonus_gold = 0
+		gold_mult = 1
+
+		level = 0
+		xp = 0
+		xp_bonus = 0
+		xp_mult = 1
+		current_xp_goal = 100
+
+		# Reset combat rewards
+		current_reward = 6
+
+		# Reset checks
+		reaction_guide_open = false
+
+		# Reset relics and skills
+		relics = []
+		obtainable_relics = []
+		skills = []
+		obtainable_skills = []
+
+		# Reset damage bonuses and multipliers
+		fire_damage_bonus = 0
+		fire_damage_mult = 1
+		water_damage_bonus = 0
+		water_damage_mult = 1
+		lightning_damage_bonus = 0
+		lightning_damage_mult = 1
+		earth_damage_bonus = 0
+		earth_damage_mult = 1
+		grass_damage_bonus = 0
+		grass_damage_mult = 1
+		physical_damage_bonus = 0
+		physical_damage_mult = 1
+		all_damage_bonus = 0
+		all_damage_mult = 1
+
+		healing_bonus = 0
+		healing_mult = 1
+		shielding_bonus = 0
+		shielding_mult = 1
+
+		# Reset tokens
+		fire_tokens = 0
+		water_tokens = 0
+		lightning_tokens = 0
+		grass_tokens = 0
+		earth_tokens = 0
+
+		fire_token_multiplier = 1
+		water_token_multiplier = 1
+		lightning_token_multiplier = 1
+		grass_token_multiplier = 1
+		earth_token_multiplier = 1
+
+		fire_token_bonus = 0
+		water_token_bonus = 0
+		lightning_token_bonus = 0
+		grass_token_bonus = 0
+		earth_token_bonus = 0
+
+		# Reset reaction multipliers
+		vaporize_mult = 2
+		shock_mult = 0.25
+		erupt_mult = 3
+		detonate_main_mult = 1.5
+		detonate_side_mult = 0.5
+		nitro_mult = 1.5
+		bubble_mult = 0.5
+		burn_damage = 10
+		burn_length = 2
+		muck_mult = 0.75
+		discharge_mult = 1.5
+		sow_shielding = 5
+		sow_healing = 5
+		sow_healing_mult = 1
+		sow_shielding_mult = 1
+
+		bloom_mult = 1
+		ally_bloom_healing = 5
+		enemy_bloom_healing = 5
+
+		# Reset token bonuses and multipliers for reactions
+		vaporize_fire_token_base = 1
+		vaporize_water_token_base = 1
+		vaporize_fire_token_mult = 1
+		vaporize_water_token_mult = 1
+		vaporize_fire_token_bonus = 0
+		vaporize_water_token_bonus = 0
+
+		detonate_fire_token_base = 1
+		detonate_lightning_token_base = 1
+		detonate_fire_token_mult = 1
+		detonate_lightning_token_mult = 1
+		detonate_fire_token_bonus = 0
+		detonate_lightning_token_bonus = 0
+
+		erupt_fire_token_base = 1
+		erupt_earth_token_base = 1
+		erupt_fire_token_mult = 1
+		erupt_earth_token_mult = 1
+		erupt_fire_token_bonus = 0
+		erupt_earth_token_bonus = 0
+
+		burn_fire_token_base = 1
+		burn_grass_token_base = 1
+		burn_fire_token_mult = 1
+		burn_grass_token_mult = 1
+		burn_fire_token_bonus = 0
+		burn_grass_token_bonus = 0
+
+		shock_water_token_base = 1
+		shock_lightning_token_base = 1
+		shock_water_token_mult = 1
+		shock_lightning_token_mult = 1
+		shock_water_token_bonus = 0
+		shock_lightning_token_bonus = 0
+
+		bloom_water_token_base = 1
+		bloom_grass_token_base = 1
+		bloom_water_token_mult = 1
+		bloom_grass_token_mult = 1
+		bloom_water_token_bonus = 0
+		bloom_grass_token_bonus = 0
+
+		nitro_lightning_token_base = 1
+		nitro_grass_token_base = 1
+		nitro_lightning_token_mult = 1
+		nitro_grass_token_mult = 1
+		nitro_lightning_token_bonus = 0
+		nitro_grass_token_bonus = 0
+
+		muck_water_token_base = 1
+		muck_earth_token_base = 1
+		muck_water_token_mult = 1
+		muck_earth_token_mult = 1
+		muck_water_token_bonus = 0
+		muck_earth_token_bonus = 0
+
+		discharge_earth_token_base = 1
+		discharge_lightning_token_base = 1
+		discharge_earth_token_mult = 1
+		discharge_lightning_token_mult = 1
+		discharge_earth_token_bonus = 0
+		discharge_lightning_token_bonus = 0
+
+		sow_earth_token_base = 1
+		sow_grass_token_base = 1
+		sow_earth_token_mult = 1
+		sow_grass_token_mult = 1
+		sow_earth_token_bonus = 0
+		sow_grass_token_bonus = 0
+
+		# Reset current fight
+		current_fight = GC.fight_1
+
+		# Reset event-based relics
+		ghostfire = false
+		flow = false
+		lightning_strikes_twice = false
+		burn_stack = false
+
+		# Reset relic handler
+		if relic_handler:
+			relic_handler.queue_free()
+		relic_handler = RELIC_HANDLER.instantiate()
+		relic_handler_spot.add_child(relic_handler)
+
+		# Reset reaction panel visibility
+		reaction_panel.visible = false
+		reaction_guide_open = false
+
+		# Reset relic info visibility
+		relic_info.visible = false
+
+		# Reset loading screen visibility
+		loading.visible = false
+
+		# Reset ally positions
+		reset_ally_positions()
+
+		# Reset allies' run_starting state
+		for ally in allies:
+			ally.run_starting = true

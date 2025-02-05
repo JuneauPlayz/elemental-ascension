@@ -13,7 +13,9 @@ var run
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	await get_tree().create_timer(0.15).timeout
 	run = get_tree().get_first_node_in_group("run")
+	self.reaction_finished.connect(run.combat_manager.reaction_signal)
 
 func reaction(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> bool:
 	var res_value = value

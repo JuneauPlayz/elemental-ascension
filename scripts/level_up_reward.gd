@@ -7,6 +7,7 @@ signal new_select
 
 @onready var ba_1: Button = $PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1
 @onready var s_1: Button = $PanelContainer/MarginContainer/VBoxContainer/SP1Panel/option2
+@onready var confirm_swap: Button = $ConfirmSwap
 
 
 var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.PURPLE, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
@@ -30,6 +31,7 @@ var gray = Color("2e2e2e78")
 
 func load_skills(s1,s2):
 	choosing_skills = true
+	confirm_swap.text = "Confirm Swap"
 	skill1 = s1
 	skill2 = s2
 	skill1.update()
@@ -45,6 +47,7 @@ func load_skills(s1,s2):
 
 func load_options(o1,o2):
 	choosing_options = true
+	confirm_swap.text = "Add Relic"
 	if o1 is Relic:
 		relic1 = o1
 		relic_info_1.update_relic_info(relic1)

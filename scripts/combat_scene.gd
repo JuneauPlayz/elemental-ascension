@@ -47,7 +47,7 @@ func _ready() -> void:
 		4:
 			AudioPlayer.play_music("iris", -32)
 	
-	combat_manager = get_child(1)
+	combat_manager = get_child(0)
 	await get_tree().create_timer(0.15).timeout
 	load_units()
 	combat_manager.combat_ready()

@@ -1,8 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://do6gwn47eylu7"]
+[gd_scene load_steps=12 format=3 uid="uid://do6gwn47eylu7"]
 
 [ext_resource type="Script" uid="uid://sbmng0cirge2" path="res://scripts/combat_scene.gd" id="1_3ou8c"]
-[ext_resource type="Script" uid="uid://bgdii44dgiuee" path="res://scripts/Targeting.gd" id="2_0pyv8"]
-[ext_resource type="Script" uid="uid://b3eesmdjc4nfd" path="res://scripts/SpellSelect.gd" id="3_2dlvl"]
 [ext_resource type="Script" uid="uid://d0udq0kgc2102" path="res://scripts/combat_manager.gd" id="4_ucgqt"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="5_2x1un"]
 [ext_resource type="FontFile" uid="uid://ca0ii6rndnaqf" path="res://assets/pokemon_pixel_font.ttf" id="5_wtw4i"]
@@ -28,14 +26,6 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Combat" type="Node2D" groups=["combat"]]
 script = ExtResource("1_3ou8c")
-
-[node name="StateMachine" type="Node" parent="."]
-
-[node name="Targeting" type="Node" parent="StateMachine"]
-script = ExtResource("2_0pyv8")
-
-[node name="SpellSelect" type="Node" parent="StateMachine"]
-script = ExtResource("3_2dlvl")
 
 [node name="CombatManager" type="Node" parent="."]
 unique_name_in_owner = true
@@ -143,8 +133,6 @@ texture = ExtResource("7_qh8p2")
 [node name="ReactionManager" type="Node" parent="."]
 script = ExtResource("10_cmui4")
 
-[connection signal="new_spell_selected" from="CombatManager" to="StateMachine/SpellSelect" method="_on_combat_manager_new_spell_selected"]
-[connection signal="target_selected" from="CombatManager" to="StateMachine/Targeting" method="_on_combat_manager_target_selected"]
 [connection signal="pressed" from="EndTurn" to="CombatManager" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="ResetChoices" to="CombatManager" method="_on_reset_choices_pressed"]
