@@ -29,8 +29,6 @@ var ally_num : int
 
 var combat = true
 
-var shop = false
-
 var level_up_complete = false
 
 var position = 0
@@ -95,8 +93,6 @@ func update_vars():
 	relic_choice_2 = res.relic_2
 	relic_choice_3 = res.relic_3
 	relic_choice_4 = res.relic_4
-	level = res.level
-	level_up = res.level_up
 	title = res.name
 	#sprite_spot.texture = load(res.sprite.resource_path)
 	#sprite_spot.scale = Vector2(res.sprite_scale,res.sprite_scale)
@@ -131,7 +127,7 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	skill_swap_1_spot = spell_select_ui.selected
 	if skill_swap_2 != null:
 		confirm_swap.visible = true
-	if shop == true:
+	if run.shop == true:
 		var shop = get_tree().get_first_node_in_group("shop")
 		shop.new_skill_ally = self
 		

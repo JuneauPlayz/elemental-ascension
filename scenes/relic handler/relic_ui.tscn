@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dbmijg1lnjffl"]
 
-[ext_resource type="Script" path="res://scenes/relic handler/relic_ui.gd" id="1_ayvix"]
+[ext_resource type="Script" uid="uid://bfe6k3osicht7" path="res://scenes/relic handler/relic_ui.gd" id="1_ayvix"]
 
 [sub_resource type="Animation" id="Animation_55se6"]
 length = 0.001

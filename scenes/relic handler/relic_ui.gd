@@ -28,11 +28,13 @@ func flash() -> void:
 
 func _on_icon_mouse_entered() -> void:
 	var run = get_tree().get_first_node_in_group("run")
-	run.relic_info.update_relic_info(relic)
-	run.toggle_relic_tooltip()
+	if relic in run.relics:
+		run.relic_info.update_relic_info(relic)
+		run.toggle_relic_tooltip()
 
 
 func _on_icon_mouse_exited() -> void:
 	var run = get_tree().get_first_node_in_group("run")
-	run.relic_info.update_relic_info(relic)
-	run.toggle_relic_tooltip()
+	if relic in run.relics:
+		run.relic_info.update_relic_info(relic)
+		run.toggle_relic_tooltip()

@@ -285,7 +285,9 @@ func get_all_files_from_directory(path : String, file_ext:= "", files := []):
 	return files
 
 func load_combat(enemy1, enemy2, enemy3, enemy4):
-	loading.visible = true
+	loading_screen(0.5)
+	next_fight()
+	combat = true
 	combat_scene = COMBAT.instantiate()
 	self.add_child(combat_scene)
 	combat_manager = combat_scene.get_child(1)
@@ -293,13 +295,19 @@ func load_combat(enemy1, enemy2, enemy3, enemy4):
 	combat_manager.ally2 = ally2
 	combat_manager.ally3 = ally3
 	combat_manager.ally4 = ally4
+	for ally in allies:
+		ally._ready()
 	combat_scene.enemy1res = enemy1
 	combat_scene.enemy2res = enemy2
 	combat_scene.enemy3res = enemy3
 	combat_scene.enemy4res = enemy4
-	await get_tree().create_timer(0.35).timeout
-	loading.visible = false
 	
+func load_shop():
+	shop = true
+	shop_scene = SHOP.instantiate()
+	for ally in allies:
+		ally._ready()
+	self.add_child(shop_scene) 
 			
 func add_gold(count):
 	gold += ((count + bonus_gold) * gold_mult)
@@ -398,17 +406,16 @@ func toggle_relic_tooltip():
 	relic_info.visible = !relic_info.visible
 	
 func combat_ended():
-	for ally in allies:
-		combat = false
-		shop = true
 	combat_scene.queue_free()
-	shop_scene = SHOP.instantiate()
-	self.add_child(shop_scene)
+	combat = false
+	load_shop()
 	
 func shop_ended():
-	for ally in allies:
-		combat = true
-		shop = false
 	shop_scene.queue_free()
-	next_fight()
+	shop = false
 	load_combat(current_fight[0],current_fight[1],current_fight[2],current_fight[3])
+	
+func loading_screen(time):
+	loading.visible = true
+	await get_tree().create_timer(time).timeout
+	loading.visible = false

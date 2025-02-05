@@ -68,8 +68,6 @@ func _ready() -> void:
 	if (run.ally4 != null):
 		allies.append(run.ally4)
 	for ally in allies:
-		ally.combat = false
-		ally.shop = true
 		ally.spell_select_ui.enable_all()
 		ally.spell_select_ui.hide_position()
 		ally.spell_select_ui.visible = true

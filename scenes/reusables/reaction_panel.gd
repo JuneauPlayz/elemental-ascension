@@ -313,3 +313,7 @@ func _on_grass_page_button_pressed() -> void:
 
 func _on_earth_page_button_pressed() -> void:
 	change_page("earth")
+
+
+func _on_more_stats_button_pressed() -> void:
+	change_page("stats")

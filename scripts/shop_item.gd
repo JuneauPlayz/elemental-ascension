@@ -27,8 +27,8 @@ func update_item():
 	if item is Relic:
 		relic_info.visible = true
 		relic_info.update_relic_info(item)
-		var new_relic_ui = RELIC_UI.instantiate()
-		add_child(new_relic_ui)
+		#var new_relic_ui = RELIC_UI.instantiate()
+		#add_child(new_relic_ui)
 	elif item is Skill:
 		skill_info.visible = true
 		skill_info.skill = item
@@ -38,7 +38,7 @@ func update_item():
 
 
 func _on_buy_pressed() -> void:
-	if run.gold >= price:
+	if not run.reaction_guide_open and run.gold >= price:
 		AudioPlayer.play_FX("click",-10)
 		run.gold -= price
 		purchased.emit(item, self)

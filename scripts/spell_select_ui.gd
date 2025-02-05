@@ -17,6 +17,8 @@ signal new_select
 
 var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.PURPLE, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
 
+var run
+
 var skill1 : Skill
 var skill2 : Skill
 var skill3 : Skill
@@ -38,6 +40,7 @@ var blue = Color("3f61a1")
 var gray = Color("3f3f3f78")
 
 func load_skills():
+	run = get_tree().get_first_node_in_group("run")
 	if (skill1 != null):
 		skill1.update()
 		update_font_color(ba_1,element_dict.get(skill1.element))
@@ -70,9 +73,9 @@ func load_skills():
 		ult.text = skill4.name
 	else:
 		empty(4)
-	if (get_parent().shop):
+	if (run.shop):
 		enable_all()
-	if not initial_load and not get_parent().shop:
+	if not initial_load and not run.shop:
 		if skill1 and skill1.cost > 0:
 			ba_1.disabled = true
 		if skill2 and skill2.cost > 0:

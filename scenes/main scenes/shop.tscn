@@ -48,19 +48,19 @@ label_settings = SubResource("LabelSettings_1chno")
 horizontal_alignment = 1
 
 [node name="RelicsLabel" type="Label" parent="."]
-offset_left = 827.0
-offset_top = 173.0
-offset_right = 1393.0
-offset_bottom = 254.0
+offset_left = 993.0
+offset_top = 149.0
+offset_right = 1175.0
+offset_bottom = 225.0
 text = "Relics:"
 label_settings = SubResource("LabelSettings_1chno")
 horizontal_alignment = 1
 
 [node name="Gold3" type="Label" parent="."]
-offset_left = 977.0
-offset_top = 442.0
-offset_right = 1229.0
-offset_bottom = 515.0
+offset_left = 994.0
+offset_top = 440.0
+offset_right = 1155.0
+offset_bottom = 516.0
 text = "Skills:"
 label_settings = SubResource("LabelSettings_1chno")
 horizontal_alignment = 1
