@@ -154,3 +154,12 @@ func _on_s_1_mouse_exited() -> void:
 		skill_info_2.visible = false
 	if choosing_options:
 		relic_info_2.visible = false
+
+func reset_vars():
+	choosing_skills = false
+	choosing_options = false
+	confirm_swap.visible = false
+	skill_info_1.visible = false
+	skill_info_2.visible = false
+	relic_info_1.visible = false
+	relic_info_2.visible = false

@@ -24,8 +24,8 @@ func _on_next_combat_pressed() -> void:
 
 func _on_rest_pressed() -> void:
 	for ally in run.allies:
-		ally.increase_max_hp(25,true)
-	run.increase_xp(25)
+		ally.increase_max_hp(10,true)
+	run.increase_xp(50)
 	next_combat.visible = true
 	event_popup.visible = false
 

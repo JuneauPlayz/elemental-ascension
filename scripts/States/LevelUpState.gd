@@ -14,6 +14,7 @@ func Exit():
 	run.level_up = false
 	for ally in run.allies:
 		ally.hide_level_up()
+		ally.level_up_reward.reset_vars()
 	run.level_up_scene.queue_free()
 	run.reset_ally_positions()
 	

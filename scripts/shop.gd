@@ -80,6 +80,7 @@ func _ready() -> void:
 func load_items(type):
 	if type == "none":
 		for spot in relic_list:
+			var reroll_count = 0
 			if spot.get_child_count() == 1:
 				spot.get_child(0).queue_free()
 			var item = SHOP_ITEM.instantiate()
@@ -88,13 +89,17 @@ func load_items(type):
 			item.price = get_price(item.item)
 			if run.obtainable_relics.size() > 2 and run.gold >= 3:
 				if item.price > run.gold or item.item in shop_relics:
-					while item.item in shop_relics or item.price > run.gold:
+					while (item.item in shop_relics or item.price > run.gold or item.item in run.relics) and reroll_count < 100:
 						item.item = run.get_random_relic()
 						item.price = get_price(item.item)
+						reroll_count += 1
 				item.update_item()
 				shop_relics.append(item.item)
+			if reroll_count > 100:
+					shop_relics = []
 			
 		for spot in spell_list:
+			var reroll_count = 0
 			if spot.get_child_count() == 1:
 				spot.get_child(0).queue_free()
 			var item = SHOP_ITEM.instantiate()
@@ -103,15 +108,19 @@ func load_items(type):
 			item.price = get_price(item.item)
 			if run.obtainable_relics.size() > 2 and run.gold >= 3:
 				if item.price > run.gold or item.item in shop_skills:
-					while item.item in shop_skills or item.price > run.gold:
+					while (item.item in shop_skills or item.price > run.gold or item.item in run.skills) and reroll_count < 100:
 						item.item = run.get_random_skill()
 						item.price = get_price(item.item)
+						reroll_count += 1
 				item.update_item()
 				shop_skills.append(item.item)
 			item.skill_info.z_index -= 1
+			if reroll_count > 100:
+				shop_skills = []
 		refresh_button.visible = true
 	else:
 		for spot in relic_list:
+			var reroll_count = 0
 			if spot.get_child_count() == 1:
 				spot.get_child(0).queue_free()
 			var item = SHOP_ITEM.instantiate()
@@ -120,14 +129,18 @@ func load_items(type):
 			item.price = get_price(item.item)
 			if run.obtainable_relics.size() > 2 and run.gold >= 3:
 				if item.price > run.gold or item.item in shop_relics or type not in item.item.tags:
-					while item.item in shop_relics or item.price > run.gold or type not in item.item.tags:
+					while (item.item in shop_relics or item.price > run.gold or type not in item.item.tags or item.item in run.relics) and reroll_count < 100:
 						item.item = run.get_random_relic()
 						item.price = get_price(item.item)
 						item.item.update()
+						reroll_count += 1
 				item.update_item()
 				shop_relics.append(item.item)
+			if reroll_count > 100:
+				shop_relics = []
 			
 		for spot in spell_list:
+			var reroll_count = 0
 			if spot.get_child_count() == 1:
 				spot.get_child(0).queue_free()
 			var item = SHOP_ITEM.instantiate()
@@ -136,14 +149,17 @@ func load_items(type):
 			item.price = get_price(item.item)
 			if run.obtainable_relics.size() > 2 and run.gold >= 3:
 				if item.price > run.gold or item.item in shop_skills or type not in item.item.tags:
-					while item.item in shop_skills or item.price > run.gold or type not in item.item.tags:
+					while (item.item in shop_skills or item.price > run.gold or type not in item.item.tags or item.item in run.skills) and reroll_count < 100:
 						item.item = run.get_random_skill()
 						item.price = get_price(item.item)
 						item.item.update()
+						reroll_count += 1
 				item.update_item()
 				shop_skills.append(item.item)
 			item.skill_info.z_index -= 1
-			refresh_button.visible = false
+			if reroll_count > 100:
+				shop_skills	 = []
+		refresh_button.visible = false
 
 func get_price(resource):
 	match resource.tier:
