@@ -208,15 +208,6 @@ func _on_confirm_swap_level_pressed() -> void:
 	level_up_reward.visible = false
 	level_up_reward.choosing_skills = false
 	level_up_reward.choosing_options = false
-	match skill_swap_1_spot:
-		1:
-			basic_atk = skill_swap_2
-		2:
-			skill_1 = skill_swap_2
-		3:
-			skill_2 = skill_swap_2
-		4:
-			ult = skill_swap_2
 	update_spell_select()
 	swap_tutorial.visible = false
 	level_up = false

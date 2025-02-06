@@ -7,6 +7,7 @@ func Enter():
 	run.load_level_up()
 	for ally in run.allies:
 		ally.show_level_up(run.level)
+		ally.spell_select_ui.reset()
 	run.move_allies(425,-150)
 	run.split_allies()
 

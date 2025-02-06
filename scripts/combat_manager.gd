@@ -114,6 +114,7 @@ func combat_ready():
 
 func start_combat():
 	combat_currency.update()
+	check_requirements()
 	show_skills()
 	reset_skill_select()
 	while (!combat_finished):

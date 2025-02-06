@@ -7,6 +7,7 @@ func Enter():
 	for ally in run.allies:
 		ally.spell_select_ui.visible = true
 		ally.spell_select_ui.enable_all()
+		ally.spell_select_ui.reset()
 	run.event = true
 	run.load_event(GC.get_random_event())
 	
