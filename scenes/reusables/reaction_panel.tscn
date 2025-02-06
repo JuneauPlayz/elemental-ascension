@@ -621,7 +621,6 @@ text = " [color=dark_cyan]Water Damage Mult[/color] : 1x"
 horizontal_alignment = 1
 
 [node name="LightningPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/LightningPage"]
@@ -776,7 +775,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Nitro debuff to the unit, causing the next instance of damage taken
- by them to be multiplied by Nitro Multipler"
+ by them to be multiplied by Nitro Multipler (Applied the next turn)"
 label_settings = SubResource("LabelSettings_kgnrs")
 
 [node name="LightningNitroTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
@@ -1027,7 +1026,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Nitro debuff to the unit, causing the next instance of damage taken
- by them to be multiplied by Nitro Multipler"
+ by them to be multiplied by Nitro Multipler (Applied the next turn)"
 label_settings = SubResource("LabelSettings_kgnrs")
 
 [node name="GrassNitroTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage"]
@@ -1427,6 +1426,7 @@ text = " [color=saddle_brown]Shielding Mult[/color] : 1x"
 horizontal_alignment = 1
 
 [node name="StatsPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 5
 

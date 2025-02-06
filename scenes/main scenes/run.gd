@@ -227,7 +227,8 @@ var ghostfire = false
 var flow = false
 var lightning_strikes_twice = false
 var burn_stack = false
-
+var discharge_destruction = false
+var steamer = false
 func run_loop():
 	while not end:
 		# combat
@@ -780,6 +781,7 @@ func reset() -> void:
 		flow = false
 		lightning_strikes_twice = false
 		burn_stack = false
+		steamer = false
 
 		# Reset relic handler
 		if relic_handler:

@@ -861,43 +861,51 @@ func set_unit_pos():
 		front_ally = allies[allies.size()-1]
 		back_ally = allies[0]
 		
-func vaporize():
+func vaporize(unit, caster, element):
 	add_token("fire", (run.vaporize_fire_token_base + run.vaporize_fire_token_bonus) * run.vaporize_fire_token_mult)
 	add_token("water", (run.vaporize_water_token_base + run.vaporize_water_token_bonus) * run.vaporize_water_token_mult)
+	if run.steamer == true:
+		if element == "fire":
+			unit.current_element = "water"
+		elif element == "water":
+			unit.current_element = "fire"
 
-func shock():
+func shock(unit, caster):
 	add_token("lightning", (run.shock_lightning_token_base + run.shock_lightning_token_bonus) * run.shock_lightning_token_mult)
 	add_token("water", (run.shock_water_token_base + run.shock_water_token_bonus) * run.shock_water_token_mult)
 
-func detonate():
+func detonate(unit, caster):
 	add_token("fire", (run.detonate_fire_token_base + run.detonate_fire_token_bonus) * run.detonate_fire_token_mult)
 	add_token("lightning", (run.detonate_lightning_token_base + run.detonate_lightning_token_bonus) * run.detonate_lightning_token_mult)
 
-func erupt():
+func erupt(unit, caster):
 	add_token("fire", (run.erupt_fire_token_base + run.erupt_fire_token_bonus) * run.erupt_fire_token_mult)
 	add_token("earth", (run.erupt_earth_token_base + run.erupt_earth_token_bonus) * run.erupt_earth_token_mult)
 
-func bloom():
+func bloom(unit, caster):
 	add_token("water", (run.bloom_water_token_base + run.bloom_water_token_bonus) * run.bloom_water_token_mult)
 	add_token("grass", (run.bloom_grass_token_base + run.bloom_grass_token_bonus) * run.bloom_grass_token_mult)
 
-func burn():
+func burn(unit, caster):
 	add_token("fire", (run.burn_fire_token_base + run.burn_fire_token_bonus) * run.burn_fire_token_mult)
 	add_token("grass", (run.burn_grass_token_base + run.burn_grass_token_bonus) * run.burn_grass_token_mult)
 
-func nitro():
+func nitro(unit, caster):
 	add_token("grass", (run.nitro_grass_token_base + run.nitro_grass_token_bonus) * run.nitro_grass_token_mult)
 	add_token("lightning", (run.nitro_lightning_token_base + run.nitro_lightning_token_bonus) * run.nitro_lightning_token_mult)
 	
-func muck():
+func muck(unit, caster):
 	add_token("water", (run.muck_water_token_base + run.muck_water_token_bonus) * run.muck_water_token_mult)
 	add_token("earth", (run.muck_earth_token_base + run.muck_earth_token_bonus) * run.muck_earth_token_mult)
 
-func discharge():
+func discharge(unit):
 	add_token("earth", (run.discharge_earth_token_base + run.discharge_earth_token_bonus) * run.discharge_earth_token_mult)
 	add_token("lightning", (run.discharge_lightning_token_base + run.discharge_lightning_token_bonus) * run.discharge_lightning_token_mult)
+	if run.discharge_destruction == true:
+		for enemy in enemies:
+			enemy.take_damage(5*run.discharge_mult,"none","false")
 
-func sow():
+func sow(unit):
 	add_token("earth", (run.sow_earth_token_base + run.sow_earth_token_bonus) * run.sow_earth_token_mult)
 	add_token("grass", (run.sow_grass_token_base + run.sow_grass_token_bonus) * run.sow_grass_token_mult)
 	

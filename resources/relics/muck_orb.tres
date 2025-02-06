@@ -30,5 +30,6 @@ tag1 = "Water"
 tag2 = "Earth"
 tag3 = ""
 tags = []
-tooltip = "-0.25x to Muck Mult"
+tooltip = "Muck on enemies reduce
+damage by +25%"
 metadata/_custom_type_script = ExtResource("1_mx21r")

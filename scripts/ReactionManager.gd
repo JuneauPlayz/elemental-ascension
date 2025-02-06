@@ -38,91 +38,91 @@ func reaction(elem1: String, elem2: String, unit: Unit, value, friendly: bool, c
 				"water":
 					vaporize(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.vaporize()
+						combat.vaporize(unit, caster, elem2)
 				"lightning":
 					detonate(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.detonate()
+						combat.detonate(unit, caster)
 				"earth":
 					erupt(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.erupt()
+						combat.erupt(unit, caster)
 				"grass":
 					burn(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.burn()
+						combat.burn(unit, caster)
 		"water":
 			match elem2:
 				"fire":
 					vaporize(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.vaporize()
+						combat.vaporize(unit, caster, elem2)
 				"lightning":
 					shock(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.shock()
+						combat.shock(unit, caster)
 				"earth":
 					muck(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.muck()
+						combat.muck(unit, caster)
 				"grass":
 					bloom(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.bloom()
+						combat.bloom(unit, caster)
 		"lightning":
 			match elem2:
 				"fire":
 					detonate(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.detonate()
+						combat.detonate(unit, caster)
 				"water":
 					shock(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.shock()
+						combat.shock(unit, caster)
 				"earth":
 					discharge(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.discharge()
+						combat.discharge(unit, caster)
 				"grass":
 					nitro(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.nitro()
+						combat.nitro(unit, caster)
 		"earth":
 			match elem2:
 				"fire":
 					erupt(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.erupt()
+						combat.erupt(unit, caster)
 				"water":
 					muck(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.muck()
+						combat.muck(unit, caster)
 				"lightning":
 					discharge(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.discharge()
+						combat.discharge(unit, caster)
 				"grass":
 					sow(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.sow()
+						combat.sow(unit, caster)
 		"grass":
 			match elem2:
 				"earth":
 					sow(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.sow()
+						combat.sow(unit, caster)
 				"fire":
 					burn(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.burn()
+						combat.burn(unit, caster)
 				"water":
 					bloom(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.bloom()
+						combat.bloom(unit, caster)
 				"lightning":
 					nitro(elem1, elem2, unit, value, friendly)
 					if caster is Ally:
-						combat.nitro()
+						combat.nitro(unit, caster)
 	return true
 
 func vaporize(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
