@@ -48,7 +48,7 @@ var ally2 : UnitRes
 var ally3 : UnitRes
 var ally4 : UnitRes
 
-var events = [REST_EVENT, SPECIAL_SHOP_EVENT, SACRIFICE_EVENT]
+var events = [REST_EVENT, SPECIAL_SHOP_EVENT, SACRIFICE_EVENT, REST_EVENT, SPECIAL_SHOP_EVENT,]
 
 func load_run(ally1, ally2, ally3, ally4):
 	self.ally1 = ally1
