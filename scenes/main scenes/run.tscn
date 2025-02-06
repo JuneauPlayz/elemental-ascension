@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://o2oy1rvwobsh"]
+[gd_scene load_steps=13 format=3 uid="uid://o2oy1rvwobsh"]
 
 [ext_resource type="Script" uid="uid://drftmrt3lasq0" path="res://scenes/main scenes/run.gd" id="1_e7k3u"]
 [ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="2_fgc7h"]
@@ -7,10 +7,21 @@
 [ext_resource type="Script" uid="uid://cm6m2gxhv076j" path="res://scripts/States/ShopState.gd" id="5_kj6k4"]
 [ext_resource type="Script" uid="uid://bq1neyovm73vq" path="res://scripts/States/EventState.gd" id="6_vpwr2"]
 [ext_resource type="Script" uid="uid://c6pkihqpaueax" path="res://scripts/States/LevelUpState.gd" id="7_1crx1"]
+[ext_resource type="Script" uid="uid://b86ovwwhqlkcf" path="res://scripts/States/SpecialShopState.gd" id="9_vpwr2"]
 [ext_resource type="PackedScene" uid="uid://cokl4xcoeufdp" path="res://scenes/reusables/reaction_panel.tscn" id="10_prr82"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dcmsy"]
 font_size = 291
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vpwr2"]
+font_size = 46
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1crx1"]
+font_size = 36
 outline_size = 9
 outline_color = Color(0, 0, 0, 1)
 
@@ -53,7 +64,6 @@ offset_bottom = 109.0
 scale = Vector2(0.7, 0.7)
 
 [node name="ReactionGuide" type="Button" parent="."]
-visible = false
 z_index = 3
 z_as_relative = false
 offset_left = 1470.0
@@ -64,6 +74,7 @@ theme_override_font_sizes/font_size = 48
 text = "Open Reaction Guide"
 
 [node name="ReactionPanel" parent="ReactionGuide" instance=ExtResource("10_prr82")]
+visible = false
 z_index = 3
 layout_mode = 1
 offset_left = -1260.0
@@ -112,5 +123,61 @@ metadata/_custom_type_script = ExtResource("6_vpwr2")
 [node name="LevelUp" type="Node" parent="StateMachine"]
 script = ExtResource("7_1crx1")
 metadata/_custom_type_script = ExtResource("7_1crx1")
+
+[node name="SpecialShop" type="Node" parent="StateMachine"]
+script = ExtResource("9_vpwr2")
+metadata/_custom_type_script = ExtResource("9_vpwr2")
+
+[node name="GoldText" type="RichTextLabel" parent="."]
+z_index = 3
+offset_left = 1684.0
+offset_top = 94.0
+offset_right = 1884.0
+offset_bottom = 155.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 66
+bbcode_enabled = true
+text = "[color=yellow]Gold[/color] : 0"
+horizontal_alignment = 2
+
+[node name="XPBar" type="ProgressBar" parent="."]
+z_index = 3
+offset_left = 1575.0
+offset_top = 9.0
+offset_right = 1907.0
+offset_bottom = 42.0
+show_percentage = false
+
+[node name="CurrentLevel" type="Label" parent="XPBar"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 37.0
+offset_right = 20.0
+offset_bottom = 78.0
+text = "0"
+label_settings = SubResource("LabelSettings_vpwr2")
+
+[node name="NextLevel" type="Label" parent="XPBar"]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 37.0
+offset_right = 347.0
+offset_bottom = 78.0
+text = "1"
+label_settings = SubResource("LabelSettings_vpwr2")
+
+[node name="XPNumber" type="Label" parent="XPBar"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 37.0
+offset_right = 209.0
+offset_bottom = 78.0
+text = "0 / 100 XP"
+label_settings = SubResource("LabelSettings_1crx1")
+
+[node name="XPGainPosition" type="Node2D" parent="XPBar"]
+position = Vector2(-103, 25)
 
 [connection signal="pressed" from="ReactionGuide" to="." method="_on_reaction_guide_pressed"]

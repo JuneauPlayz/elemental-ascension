@@ -24,9 +24,11 @@ bubble_mult = 0.0
 ally_bloom_healing = 0.0
 enemy_bloom_healing = 0.0
 relic_name = "Burn Orb"
-tier = "2"
-id = ""
+tier = "Rare"
 type = 4
+tag1 = "Fire"
+tag2 = "Grass"
+tag3 = ""
 icon = ExtResource("1_hxwi3")
 tooltip = "Adds 10 to Burn Damage
 Adds 1 to Burn Length"

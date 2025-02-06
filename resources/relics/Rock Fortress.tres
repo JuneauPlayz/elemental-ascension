@@ -21,9 +21,11 @@ healing_mult = 0.0
 shielding_bonus = 0
 shielding_mult = 0.75
 relic_name = "Rock Fortress"
-tier = "2"
-id = ""
+tier = "Epic"
 type = 4
+tag1 = "Earth"
+tag2 = "Shielding"
+tag3 = ""
 icon = ExtResource("1_hdguv")
 tooltip = "Adds 0.75x to Ally Shield
 Mult

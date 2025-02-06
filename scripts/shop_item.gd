@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 	pass
 
 func update_item():
+	item.update()
 	if item is Relic:
 		relic_info.visible = true
 		relic_info.update_relic_info(item)
@@ -40,7 +41,7 @@ func update_item():
 func _on_buy_pressed() -> void:
 	if not run.reaction_guide_open and run.gold >= price:
 		AudioPlayer.play_FX("click",-10)
-		run.gold -= price
+		run.spend_gold(price)
 		purchased.emit(item, self)
 
 func hide_buy():

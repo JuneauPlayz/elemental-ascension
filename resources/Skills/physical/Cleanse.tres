@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dcor5mfcgewhh"]
 
-[ext_resource type="Script" path="res://scripts/skill.gd" id="1_sxqmh"]
+[ext_resource type="Script" uid="uid://b6jr4peo4gndo" path="res://scripts/skill.gd" id="1_sxqmh"]
 
 [resource]
 script = ExtResource("1_sxqmh")
@@ -12,7 +12,7 @@ healing = true
 shielding = false
 target_type = "all_allies"
 purchaseable = true
-tier = "1"
+tier = "Common"
 friendly = true
 lifesteal = false
 lifesteal_rate = 1.0
@@ -24,3 +24,6 @@ status_effects = []
 double_hit = false
 damage2 = 0
 element2 = ""
+tag1 = "Healing"
+tag2 = ""
+target_tag = "AOE"

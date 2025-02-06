@@ -21,9 +21,11 @@ healing_mult = 0.0
 shielding_bonus = 0
 shielding_mult = 0.0
 relic_name = "Lightning Boost"
-tier = "1"
-id = ""
+tier = "Rare"
 type = 4
+tag1 = "Lightning"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_u2jxh")
 tooltip = "Increases all lightning damage
 on enemies by 3"

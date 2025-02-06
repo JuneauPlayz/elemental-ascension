@@ -24,9 +24,12 @@ bubble_mult = 0.0
 ally_bloom_healing = 0.0
 enemy_bloom_healing = 0.0
 relic_name = "Detonate Orb"
-tier = "1"
-id = ""
+tier = "Common"
 type = 4
+tag1 = "Fire"
+tag2 = "Lightning"
+tag3 = ""
+tags = []
 icon = ExtResource("1_53s3o")
 tooltip = "Adds 0.5x to Detonate
 Main Mult and 0.25x to

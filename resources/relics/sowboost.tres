@@ -5,15 +5,17 @@
 
 [resource]
 script = ExtResource("1_w51im")
-fire_token_count = 0
-water_token_count = 0
-lightning_token_count = 0
+fire_token_count = null
+water_token_count = null
+lightning_token_count = null
 earth_token_count = 2
 grass_token_count = 2
 relic_name = "Sowboost"
-tier = "1"
-id = ""
+tier = "Common"
 type = 1
+tag1 = "Earth"
+tag2 = "Grass"
+tag3 = ""
 icon = ExtResource("1_e48f3")
 tooltip = "Start Combat with
 +2 Grass Tokens

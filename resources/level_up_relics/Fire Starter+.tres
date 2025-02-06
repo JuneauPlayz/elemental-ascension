@@ -13,8 +13,10 @@ earth_token_count = 0
 grass_token_count = 0
 relic_name = "Fire Starter+"
 tier = "1"
-id = ""
 type = 1
+tag1 = "Fire"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_cegyw")
 tooltip = "Start Combat with +3
 Fire Tokens"

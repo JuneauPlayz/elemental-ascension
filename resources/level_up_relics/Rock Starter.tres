@@ -12,9 +12,11 @@ lightning_token_count = 0
 earth_token_count = 1
 grass_token_count = 0
 relic_name = "Rock Starter"
-tier = "1"
-id = ""
+tier = "Common"
 type = 1
+tag1 = "Earth"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_sjm00")
 tooltip = "Start Combat with +1
 Earth Tokens"

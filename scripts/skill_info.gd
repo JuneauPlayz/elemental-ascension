@@ -4,6 +4,7 @@ extends Control
 @onready var skill_name: RichTextLabel = %SkillName
 @onready var element: RichTextLabel = %Element
 @onready var description: Label = %Description
+@onready var tags: RichTextLabel = $PanelContainer/PanelContainer/MarginContainer/VBoxContainer/Tags
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,6 +16,7 @@ func update_skill_info():
 	var target = ""
 	skill_name.text = "[center]" + skill.name + "[/center]"
 	var element_text = ""
+	tags.text = " Tags : "
 	match skill.element:
 		"fire":
 			element_text = " [color=coral]Fire[/color]"
@@ -64,6 +66,8 @@ func update_skill_info():
 		description.text = "Applies " + skill.element + " to " + target
 	if skill.double_hit == true:
 		description.text += "\nThen, deals " + str(skill.damage2) + " " + str(skill.element2) + " damage\nto the same target(s)"
+	if skill.lifesteal == true:
+		description.text += "The caster also heals for " + str(skill.damage)
 	if skill.status_effects != []:
 		for x in skill.status_effects:
 			if x.name == "Bleed":
@@ -85,3 +89,19 @@ func update_skill_info():
 		else:
 			description.text += " to use"
 	
+	for tag in skill.tags:
+		var added_text = tag
+		match tag:
+			"Fire":
+				added_text = " [color=coral]Fire[/color]"
+			"Water":
+				added_text = " [color=dark_cyan]Water[/color]"
+			"Lightning":
+				added_text = " [color=purple]Lightning[/color]"
+			"Grass":
+				added_text = " [color=web_green]Grass[/color]"
+			"Earth":
+				added_text = " [color=saddle_brown]Earth[/color]"
+		if tag != "" or null:
+			tags.text += added_text + ",  "
+	tags.text = tags.text.substr(0, tags.text.length()-3)

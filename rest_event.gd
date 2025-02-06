@@ -1,10 +1,16 @@
 extends Node2D
+@onready var next_combat: Button = $NextCombat
+@onready var rest: Button = $EventPopup/MarginContainer/HBoxContainer/VBoxContainer/Rest
+@onready var work: Button = $EventPopup/MarginContainer/HBoxContainer/VBoxContainer/Work
+@onready var continue_button: Button = $EventPopup/MarginContainer/HBoxContainer/VBoxContainer/Continue
+@onready var event_popup: PanelContainer = $EventPopup
 
 var run
+signal event_ended
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	run = owner.get_tree().get_first_node_in_group("run")
-
+	run = get_tree().get_first_node_in_group("run")
+	event_ended.connect(run.scene_ended)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -12,16 +18,28 @@ func _process(delta: float) -> void:
 
 
 func _on_next_combat_pressed() -> void:
-	run.event_ended()
+	event_ended.emit("")
+	
 
 
 func _on_rest_pressed() -> void:
-	pass # Replace with function body.
+	for ally in run.allies:
+		ally.increase_max_hp(25,true)
+	run.increase_xp(25)
+	next_combat.visible = true
+	event_popup.visible = false
 
 
 func _on_work_pressed() -> void:
-	pass # Replace with function body.
+	run.add_gold(6)
+	next_combat.visible = true
+	event_popup.visible = false
+	
 
 
 func _on_continue_pressed() -> void:
-	pass # Replace with function body.
+	for ally in run.allies:
+		ally.take_damage(30,"none",true)
+	run.all_damage_bonus += 3
+	next_combat.visible = true
+	event_popup.visible = false

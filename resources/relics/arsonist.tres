@@ -6,9 +6,11 @@
 [resource]
 script = ExtResource("2_t340d")
 relic_name = "Arsonist"
-tier = "3"
-id = ""
+tier = "Epic"
 type = 4
+tag1 = "Fire"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_phqmp")
 tooltip = "Burns can stack.
 + 1 Burn Length"

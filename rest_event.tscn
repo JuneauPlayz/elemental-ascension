@@ -58,7 +58,8 @@ theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "Rest till the next day
-+25 Max HP to all allies"
++25 Max HP to all allies
++25 XP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -68,7 +69,6 @@ layout_mode = 2
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 24
 text = "Work till the next day
-
 +6 Gold"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -79,8 +79,7 @@ layout_mode = 2
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 24
 text = "Continue on
-
--20 Max HP to all allies
+ All allies start the next fight with  -30 HP
 +3  to all damage bonus"
 horizontal_alignment = 1
 vertical_alignment = 1

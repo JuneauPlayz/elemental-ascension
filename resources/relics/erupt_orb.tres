@@ -24,9 +24,11 @@ bubble_mult = 0.0
 ally_bloom_healing = 0.0
 enemy_bloom_healing = 0.0
 relic_name = "Erupt Orb"
-tier = "1"
-id = ""
+tier = "Common"
 type = 4
+tag1 = "Fire"
+tag2 = "Earth"
+tag3 = ""
 icon = ExtResource("1_rtnbp")
 tooltip = "Adds 2x to Erupt
 Multiplier"

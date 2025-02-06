@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://cap1r3pplmwmf" path="res://resources/enemy_skills/Magma Strike.tres" id="5_pjva1"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_2elhq")
 starting_health = 250
 skill1 = ExtResource("2_m1i4n")

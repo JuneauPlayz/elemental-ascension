@@ -209,10 +209,14 @@ func take_damage(damage : int, element : String, change_element : bool):
 	return total_dmg
 
 func receive_healing(healing: int, element : String, change_element):
+	var healing_reduction = 1
+	for stati in status:
+		if stati.name == "Burn":
+			healing_reduction = 0.5
 	AudioPlayer.play_FX("healing",-21)
 	var new_healing = healing
 	if self is Ally:
-		new_healing = ((healing + run.healing_bonus) * run.healing_mult)
+		new_healing = ((healing + run.healing_bonus) * run.healing_mult * healing_reduction)
 	DamageNumbers.display_number_plus(new_healing, damage_number_origin.global_position, element, "")
 	if change_element:
 		current_element = element
@@ -284,3 +288,10 @@ func execute_status(status_effect):
 func set_shield(shield):
 	self.shield = shield
 	hp_bar.set_shield(shield)
+	
+func increase_max_hp(count, changehp):
+	max_health += count
+	hp_bar.set_maxhp(max_health)
+	if changehp:
+		health = max_health
+		hp_bar.set_hp(max_health)

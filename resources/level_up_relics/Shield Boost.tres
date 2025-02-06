@@ -21,9 +21,11 @@ healing_mult = 0.0
 shielding_bonus = 10
 shielding_mult = 0.0
 relic_name = "Shield Boost"
-tier = "1"
-id = ""
+tier = "Rare"
 type = 4
+tag1 = "Earth"
+tag2 = "Shielding"
+tag3 = ""
 icon = ExtResource("1_uxd8p")
 tooltip = "All sources of shielding
 increased by +10 

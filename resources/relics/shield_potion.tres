@@ -7,9 +7,12 @@
 script = ExtResource("2_l1c8m")
 shield_amount = 5
 relic_name = "Shield Potion"
-tier = "1"
-id = "1"
+tier = "Common"
 type = 2
+tag1 = "Shielding"
+tag2 = ""
+tag3 = ""
+tags = []
 icon = ExtResource("1_j6g0b")
 tooltip = "Shields allies for 5
 damage after ending turn"

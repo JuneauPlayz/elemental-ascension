@@ -1,11 +1,10 @@
 extends State
-class_name ShopState
+class_name SpecialShopState
 @onready var run: Node = $"../.."
 
 func Enter():
 	run.loading_screen(0.35)
 	run.shop = true
-	run.load_shop("none")
 	
 func Exit():
 	run.shop = false

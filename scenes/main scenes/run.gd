@@ -8,6 +8,12 @@ extends Node
 @onready var relic_handler_spot: Node2D = $RelicHandlerSpot
 @onready var reaction_panel: Control = $ReactionGuide/ReactionPanel
 @onready var relic_info: Control = %RelicInfo
+@onready var gold_text: RichTextLabel = $GoldText
+@onready var xp_bar: ProgressBar = $XPBar
+@onready var current_level: Label = $XPBar/CurrentLevel
+@onready var next_level: Label = $XPBar/NextLevel
+@onready var xp_number: Label = $XPBar/XPNumber
+@onready var xp_gain_position: Node2D = $XPBar/XPGainPosition
 
 const RELIC_HANDLER = preload("res://scenes/relic handler/relic_handler.tscn")
 const COMBAT = preload("res://scenes/main scenes/combat.tscn")
@@ -28,6 +34,7 @@ var level_up = false
 var level_up_scene
 
 signal scene_end
+signal special_scene_end
 
 var ally_1_spot_og_pos
 var ally_2_spot_og_pos
@@ -54,6 +61,7 @@ var xp_bonus = 0
 var xp_mult = 1
 var current_xp_goal = 100
 
+var hard = false
 #combat
 var current_reward = 6
 #checks
@@ -222,11 +230,41 @@ var burn_stack = false
 
 func run_loop():
 	while not end:
+		# combat
 		if (level_up):
 			S.transition("levelup")
 			await scene_end
 		S.transition("combat")
 		await scene_end
+		if (end):
+			break
+		# event
+		if (level_up):
+			S.transition("levelup")
+			await scene_end
+		S.transition("event")
+		await scene_end
+		# combat
+		if (level_up):
+			S.transition("levelup")
+			await scene_end
+		S.transition("combat")
+		await scene_end
+		if (end):
+			break
+		# event
+		if (level_up):
+			S.transition("levelup")
+			await scene_end
+		S.transition("event")
+		await scene_end
+		# combat
+		if (level_up):
+			S.transition("levelup")
+			await scene_end
+		S.transition("combat")
+		await scene_end
+		# shop
 		if (level_up):
 			S.transition("levelup")
 			await scene_end
@@ -237,11 +275,30 @@ func run_loop():
 	self.add_child(end_scene)
 	
 	
-func scene_ended():
+func scene_ended(next_scene):
 	if (xp >= current_xp_goal):
 		level_up_allies()
-	scene_end.emit()
-	
+	if next_scene != "":
+		match next_scene:
+			"fire_shop":
+				load_shop("fire")
+			"water_shop":
+				load_shop("water")
+			"lightning_shop":
+				load_shop("lightning")
+			"grass_shop":
+				load_shop("grass")
+			"earth_shop":
+				load_shop("earth")
+		S.transition("specialshop")
+		await special_scene_end
+		scene_end.emit()
+	else:
+		scene_end.emit()
+
+func special_scene_ended():
+	special_scene_end.emit()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if GC.ally1 != null:
@@ -356,8 +413,21 @@ func load_combat(enemy1, enemy2, enemy3, enemy4):
 	combat_scene.enemy3res = enemy3
 	combat_scene.enemy4res = enemy4
 	
-func load_shop():
+func load_shop(type):
 	shop_scene = SHOP.instantiate()
+	if type != "none":
+		match type:
+			"fire":
+				shop_scene.type = "Fire"
+			"water":
+				shop_scene.type = "Water"
+			"lightning":
+				shop_scene.type = "Lightning"
+			"grass":
+				shop_scene.type = "Grass"
+			"earth":
+				shop_scene.type = "Earth"
+				
 	for ally in allies:
 		ally._ready()
 	self.add_child(shop_scene) 
@@ -365,10 +435,19 @@ func load_shop():
 func load_level_up():
 	level_up_scene = LEVEL_UP.instantiate()
 	self.add_child(level_up_scene)
-			
+
+func load_event(event):
+	event_scene = event.instantiate()
+	self.add_child(event_scene)
+	
 func add_gold(count):
 	gold += ((count + bonus_gold) * gold_mult)
-	
+	gold_text.text = "[color=yellow]Gold[/color] : " + str(gold)
+
+func spend_gold(count):
+	gold -= count
+	gold_text.text = "[color=yellow]Gold[/color] : " + str(gold)
+
 func next_fight():
 	match current_fight:
 		GC.fight_1:
@@ -386,9 +465,13 @@ func next_fight():
 		GC.fight_5:
 			current_fight = GC.fight_6
 			current_reward = GC.fight_6_reward
-			end = true
 		GC.fight_6:
-			end_game()
+			if (hard == true):
+				end = true
+			else:
+				hard = true
+				current_fight = GC.fight_1
+				current_reward = GC.fight_1_reward
 			
 func level_up_allies():
 	level += 1
@@ -406,13 +489,12 @@ func level_up_allies():
 		ally4.level += 1
 		ally4.level_up = true
 	for ally in allies:
-		ally.max_health += 10
+		ally.increase_max_hp(10,true)
 	current_xp_goal += 100
+	current_level.text = str(level)
+	next_level.text = str(level+1)
+	xp_number.text = str(xp) + " / " + str(current_xp_goal) + " XP"
 		
-
-func end_game():
-	get_tree().change_scene_to_file("res://scenes/main scenes/ending_screen.tscn")
-
 func get_random_relic():
 	if obtainable_relics == []:
 		return null
@@ -461,24 +543,39 @@ func loading_screen(time):
 
 func increase_xp(count):
 	xp += ((count + xp_bonus) * xp_mult)
+	xp_bar.value = xp
+	xp_number.text = str(xp) + " / " + str(current_xp_goal) + " XP"
+	DamageNumbers.display_number_plus(count, xp_gain_position.global_position, "none", " XP!")
 
 func move_allies(x,y):
-	ally_1_spot.global_position += Vector2(x,y)
-	ally_2_spot.global_position += Vector2(x,y)
-	ally_3_spot.global_position += Vector2(x,y)
-	ally_4_spot.global_position += Vector2(x,y)
+	if ally1 != null:
+		ally_1_spot.global_position += Vector2(x,y)
+	if ally2 != null:
+		ally_2_spot.global_position += Vector2(x,y)
+	if ally3 != null:
+		ally_3_spot.global_position += Vector2(x,y)
+	if ally4 != null:
+		ally_4_spot.global_position += Vector2(x,y)
 	
 func reset_ally_positions():
-	ally_1_spot.global_position = ally_1_spot_og_pos
-	ally_2_spot.global_position = ally_2_spot_og_pos
-	ally_3_spot.global_position = ally_3_spot_og_pos
-	ally_4_spot.global_position = ally_4_spot_og_pos
+	if ally1 != null:
+		ally_1_spot.global_position = ally_1_spot_og_pos
+	if ally2 != null:
+		ally_2_spot.global_position = ally_2_spot_og_pos
+	if ally3 != null:
+		ally_3_spot.global_position = ally_3_spot_og_pos
+	if ally4 != null:
+		ally_4_spot.global_position = ally_4_spot_og_pos
 
 func split_allies():
-	ally_1_spot.global_position.x += -150
-	ally_2_spot.global_position.x += -75
-	ally_3_spot.global_position.x += 75
-	ally_4_spot.global_position.x += 150
+	if ally1 != null:
+		ally_1_spot.global_position.x += -150
+	if ally2 != null:
+		ally_2_spot.global_position.x += -75
+	if ally3 != null:
+		ally_3_spot.global_position.x += 75
+	if ally4 != null:
+		ally_4_spot.global_position.x += 150
 	
 
 func reset() -> void:

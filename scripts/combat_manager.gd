@@ -258,11 +258,11 @@ func finish_battle():
 	if victorious:
 		run.add_gold(run.current_reward)
 		if run.end:
-			combat_ended.emit()
+			combat_ended.emit("")
 		else:
 			for ally in allies:
 				ally.spell_select_ui.new_select.disconnect(run.combat_manager._on_spell_select_ui_new_select)
-			combat_ended.emit()
+			combat_ended.emit("")
 	if not victorious:
 		run.reset()
 		get_tree().change_scene_to_file("res://scenes/main scenes/main_scene.tscn")

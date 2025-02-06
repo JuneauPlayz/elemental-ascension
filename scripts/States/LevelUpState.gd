@@ -3,6 +3,7 @@ class_name LevelUpState
 @onready var run: Node = $"../.."
 
 func Enter():
+	run.loading_screen(0.35)
 	run.load_level_up()
 	for ally in run.allies:
 		ally.show_level_up(run.level)

@@ -24,9 +24,11 @@ bubble_mult = 0.0
 ally_bloom_healing = 0.0
 enemy_bloom_healing = 0.0
 relic_name = "Sow Specialist"
-tier = "1"
-id = ""
+tier = "Common"
 type = 4
+tag1 = "Grass"
+tag2 = "Earth"
+tag3 = ""
 icon = ExtResource("1_yp5c5")
 tooltip = "Adds 10 to Sow Shielding
 Adds 10 to Sow Healing"

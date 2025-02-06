@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="UnitRes" load_steps=6 format=3 uid="uid://cxfm3xw7nk1gu"]
 
-[ext_resource type="Script" path="res://scripts/UnitRes.gd" id="1_uhb1h"]
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_uhb1h"]
 [ext_resource type="Resource" uid="uid://bajou4oeggcpy" path="res://resources/enemy_skills/Punch.tres" id="2_kuxiv"]
 [ext_resource type="Resource" uid="uid://cr3bbtfskjida" path="res://resources/enemy_skills/EnemyAOEFire.tres" id="3_7wwsn"]
 [ext_resource type="Resource" uid="uid://d0sxdut8uscys" path="res://resources/enemy_skills/EnemyAOEEarth.tres" id="4_apcrc"]
 [ext_resource type="Texture2D" uid="uid://djyorqs13oxgy" path="res://assets/burger.jpg" id="5_tfl7s"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_uhb1h")
 starting_health = 100
 skill1 = ExtResource("2_kuxiv")

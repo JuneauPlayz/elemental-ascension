@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://cp50svdfs8qpy" path="res://resources/enemy_skills/yeet.tres" id="4_tk1tv"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_ro0vw")
 starting_health = 150
 skill1 = ExtResource("2_0wqnq")

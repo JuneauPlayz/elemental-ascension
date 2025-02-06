@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="UnitRes" load_steps=6 format=3 uid="uid://5shsgidg58wn"]
 
-[ext_resource type="Script" path="res://scripts/UnitRes.gd" id="1_5sxkx"]
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_5sxkx"]
 [ext_resource type="Resource" uid="uid://cp50svdfs8qpy" path="res://resources/enemy_skills/yeet.tres" id="2_tx7q3"]
 [ext_resource type="Texture2D" uid="uid://bljf8dm0b4fdy" path="res://assets/baguette.png" id="3_p0ip3"]
 [ext_resource type="Resource" uid="uid://dy48dueo5v5f" path="res://resources/enemy_skills/Baguette Slap.tres" id="3_tevog"]
 [ext_resource type="Resource" uid="uid://bajou4oeggcpy" path="res://resources/enemy_skills/Punch.tres" id="4_jvuqw"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_5sxkx")
 starting_health = 100
 skill1 = ExtResource("2_tx7q3")

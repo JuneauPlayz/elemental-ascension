@@ -21,9 +21,11 @@ healing_mult = 0.0
 shielding_bonus = 0
 shielding_mult = 0.0
 relic_name = "Flame Boost"
-tier = "1"
-id = ""
+tier = "Rare"
 type = 0
+tag1 = "Fire"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_hen2u")
 tooltip = "Increases all fire damage
 on enemies by 10

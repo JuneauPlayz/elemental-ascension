@@ -38,15 +38,6 @@ text = "The Shop"
 label_settings = SubResource("LabelSettings_k3r7d")
 horizontal_alignment = 1
 
-[node name="Gold" type="Label" parent="."]
-offset_left = 680.0
-offset_top = 12.0
-offset_right = 2599.0
-offset_bottom = 114.0
-text = "Gold: "
-label_settings = SubResource("LabelSettings_1chno")
-horizontal_alignment = 1
-
 [node name="RelicsLabel" type="Label" parent="."]
 offset_left = 993.0
 offset_top = 149.0
@@ -56,7 +47,7 @@ text = "Relics:"
 label_settings = SubResource("LabelSettings_1chno")
 horizontal_alignment = 1
 
-[node name="Gold3" type="Label" parent="."]
+[node name="SkillsLabel" type="Label" parent="."]
 offset_left = 994.0
 offset_top = 440.0
 offset_right = 1155.0

@@ -5,6 +5,7 @@ var is_dragging = false
 const GLOBAL_INTERVAL = 0.15
 # global currencies
 
+#enemies
 const ALLY = preload("res://resources/units/allies/ally.tscn")
 const CHILL_GUY = preload("res://resources/units/enemies/ChillGuy.tres")
 const PYROMANCER = preload("res://resources/units/enemies/pyromancer.tres")
@@ -15,6 +16,9 @@ const ORB_WIZARD = preload("res://resources/units/enemies/OrbWizard.tres")
 const LIGHTNING_MASTER = preload("res://resources/units/enemies/LightningMaster.tres")
 const THEFINALBOSS = preload("res://resources/units/enemies/THEFINALBOSS.tres")
 
+# events
+const REST_EVENT = preload("res://rest_event.tscn")
+const SPECIAL_SHOP_EVENT = preload("res://SpecialShopEvent.tscn")
 # predetermined fights
 
 var fight_1 = [TEAM_MAGMA_GRUNT, CHILL_GUY, null, null]
@@ -42,9 +46,19 @@ var ally2 : UnitRes
 var ally3 : UnitRes
 var ally4 : UnitRes
 
+var events = [REST_EVENT, SPECIAL_SHOP_EVENT]
 
 func load_run(ally1, ally2, ally3, ally4):
 	self.ally1 = ally1
 	self.ally2 = ally2
 	self.ally3 = ally3
 	self.ally4 = ally4
+	
+func get_random_event():
+	if events == []:
+		return null
+	var rng = RandomNumberGenerator.new()
+	var random_num = rng.randi_range(0,events.size()-1)
+	var event = events[random_num]
+	
+	return event

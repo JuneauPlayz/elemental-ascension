@@ -11,10 +11,12 @@ water_token_count = 0
 lightning_token_count = 0
 earth_token_count = 0
 grass_token_count = 3
-relic_name = "Garden Starte+"
-tier = "1"
-id = ""
+relic_name = "Garden Starter+"
+tier = "Rare"
 type = 1
+tag1 = "Grass"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_vmomh")
 tooltip = "Start Combat with +3
 Grass Tokens"

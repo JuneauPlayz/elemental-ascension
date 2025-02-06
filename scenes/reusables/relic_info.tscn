@@ -80,3 +80,11 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_pmpuw")
 layout_mode = 2
 text = "Description"
 label_settings = SubResource("LabelSettings_si34o")
+
+[node name="Tags" type="RichTextLabel" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 39)
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Tags : "

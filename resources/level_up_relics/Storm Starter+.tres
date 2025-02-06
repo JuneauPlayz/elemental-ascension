@@ -12,9 +12,11 @@ lightning_token_count = 3
 earth_token_count = 0
 grass_token_count = 0
 relic_name = "Storm Starter+"
-tier = "1"
-id = ""
+tier = "Rare"
 type = 1
+tag1 = "Lightning"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_7jh5l")
 tooltip = "Start Combat with +3
 Lightning Tokens"

@@ -25,4 +25,4 @@ func _process(delta: float) -> void:
 
 
 func _on_continue_pressed() -> void:
-	level_up_ended.emit()
+	level_up_ended.emit("")

@@ -6,9 +6,11 @@
 [resource]
 script = ExtResource("1_gg5rb")
 relic_name = "Lightning Strikes Twice"
-tier = "3"
-id = ""
+tier = "Epic"
 type = 4
+tag1 = "Lightning"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_qm23f")
 tooltip = "When you cast a 
 lightning skill, cast it 

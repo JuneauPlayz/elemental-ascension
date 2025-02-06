@@ -12,9 +12,11 @@ lightning_token_count = 0
 earth_token_count = 0
 grass_token_count = 0
 relic_name = "Fire Starter"
-tier = "1"
-id = ""
+tier = "Common"
 type = 1
+tag1 = "Fire"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_j6w0u")
 tooltip = "Start Combat with +1
 Fire Tokens"

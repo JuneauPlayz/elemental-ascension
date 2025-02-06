@@ -7,13 +7,15 @@
 script = ExtResource("1_i7sg1")
 fire_token_count = 2
 water_token_count = 2
-lightning_token_count = 0
-earth_token_count = 0
-grass_token_count = 0
+lightning_token_count = null
+earth_token_count = null
+grass_token_count = null
 relic_name = "Vaporboost"
-tier = "1"
-id = ""
+tier = "Common"
 type = 1
+tag1 = "Fire"
+tag2 = "Water"
+tag3 = ""
 icon = ExtResource("1_jhi6i")
 tooltip = "Start combat with +2
 Fire Tokens and +2

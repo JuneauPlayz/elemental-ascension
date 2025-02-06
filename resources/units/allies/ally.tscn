@@ -33,6 +33,10 @@ status_effects = []
 double_hit = false
 damage2 = 0
 element2 = ""
+tag1 = ""
+tag2 = ""
+target_tag = ""
+tags = []
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvmj8"]
 content_margin_left = 10.0
@@ -284,8 +288,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ipxiy")
 [connection signal="new_select" from="LevelUpReward" to="." method="_on_level_up_reward_new_select"]
 [connection signal="mouse_entered" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_ba_1_mouse_entered"]
 [connection signal="mouse_exited" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_ba_1_mouse_exited"]
-[connection signal="pressed" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_ba_1_pressed"]
 [connection signal="pressed" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_button_pressed"]
+[connection signal="pressed" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_ba_1_pressed"]
 [connection signal="mouse_entered" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/SP1Panel/option2" to="LevelUpReward" method="_on_s_1_mouse_entered"]
 [connection signal="mouse_exited" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/SP1Panel/option2" to="LevelUpReward" method="_on_s_1_mouse_exited"]
 [connection signal="pressed" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/SP1Panel/option2" to="LevelUpReward" method="_on_s_1_pressed"]

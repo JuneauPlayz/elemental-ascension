@@ -66,25 +66,32 @@ func _ready() -> void:
 		skill_2 = res.skill3
 		ult = res.skill4
 		ult_choice_1 = res.ult_1
+		ult_choice_1.update()
 		ult_choice_2 = res.ult_2
+		ult_choice_2.update()
 		relic_choice_1 = res.relic_1
+		relic_choice_1.update()
 		relic_choice_2 = res.relic_2
+		relic_choice_2.update()
 		relic_choice_3 = res.relic_3
+		relic_choice_3.update()
 		relic_choice_4 = res.relic_4
+		relic_choice_4.update()
 		level_up = res.level_up
 		level = res.level
 		sprite_spot.texture = load(res.sprite.resource_path)
 		sprite_spot.scale = Vector2(res.sprite_scale,res.sprite_scale)
 		run_starting = false
+		update_skills()
 	else:
-		health = max_health
+		health = health
 		max_health = max_health
 	spell_select_ui.skill1 = basic_atk
 	spell_select_ui.skill2 = skill_1
 	spell_select_ui.skill3 = skill_2
 	spell_select_ui.skill4 = ult
 	spell_select_ui.load_skills()
-	hp_bar.set_hp(max_health)
+	hp_bar.set_hp(health)
 	hp_bar.set_maxhp(max_health)
 
 		
@@ -103,6 +110,14 @@ func hide_skills():
 	
 	
 func update_skills():
+	if basic_atk != null:
+		basic_atk.update()
+	if skill_1 != null:
+		skill_1.update()
+	if skill_2 != null:
+		skill_2.update()
+	if ult != null:
+		ult.update()
 	spell_select_ui.load_skills()
 	
 func show_level_up(level):
@@ -114,6 +129,8 @@ func show_level_up(level):
 		2:
 			level_up_reward.load_skills(ult_choice_1, ult_choice_2)
 		3:
+			level_up_reward.load_options(relic_choice_3, relic_choice_4)
+		_:
 			level_up_reward.load_options(relic_choice_3, relic_choice_4)
 
 func hide_level_up():
@@ -162,6 +179,7 @@ func _on_confirm_swap_pressed() -> void:
 		4:
 			ult = skill_swap_2
 	update_spell_select()
+	update_skills()
 	swap_tutorial.visible = false
 	spell_select_ui.reset()
 
@@ -172,7 +190,6 @@ func update_spell_select():
 	spell_select_ui.skill4 = ult
 	spell_select_ui.load_skills()
 	
-
 
 func _on_confirm_swap_level_pressed() -> void:
 	AudioPlayer.play_FX("click",-10)

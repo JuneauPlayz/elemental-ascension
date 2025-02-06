@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="UnitRes" load_steps=6 format=3 uid="uid://2evgr167shxj"]
 
-[ext_resource type="Script" path="res://scripts/UnitRes.gd" id="1_t8ohi"]
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_t8ohi"]
 [ext_resource type="Resource" uid="uid://bajou4oeggcpy" path="res://resources/enemy_skills/Punch.tres" id="2_vjpgg"]
 [ext_resource type="Resource" uid="uid://cp50svdfs8qpy" path="res://resources/enemy_skills/yeet.tres" id="3_ddoqd"]
 [ext_resource type="Texture2D" uid="uid://133h4yyl8s4l" path="res://assets/chillpyro.png" id="3_i7tmh"]
 [ext_resource type="Resource" uid="uid://hhkkwbc0nrmk" path="res://resources/enemy_skills/Chill Aura.tres" id="4_prss2"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_t8ohi")
 starting_health = 100
 skill1 = ExtResource("2_vjpgg")

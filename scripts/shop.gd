@@ -30,10 +30,10 @@ var spell_list = []
 var shop_relics = []
 var shop_skills = []
 
-
+var type = "none"
 var refresh_price = 1
 
-@onready var gold_label: Label = $Gold
+
 @onready var confirm_swap: Button = $ConfirmSwap
 @onready var next_combat: Button = $NextCombat
 
@@ -43,12 +43,14 @@ var new_skill_ally : Ally
 
 signal swap_done
 signal shop_ended
+signal special_shop_ended
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	AudioPlayer.play_music("wii_shop", -30)
 	run = get_tree().get_first_node_in_group("run")
 	shop_ended.connect(run.scene_ended)
-	update_gold()
+	special_shop_ended.connect(run.special_scene_ended)
 	relic_list.append(relic_1_spot)
 	relic_list.append(relic_2_spot)
 	relic_list.append(relic_3_spot)
@@ -73,79 +75,84 @@ func _ready() -> void:
 		ally.spell_select_ui.hide_position()
 		ally.spell_select_ui.visible = true
 	await get_tree().create_timer(0.3).timeout
-
-	for spot in relic_list:
-		if spot.get_child_count() == 1:
-			spot.get_child(0).queue_free()
-		var item = SHOP_ITEM.instantiate()
-		spot.add_child(item)
-		item.item = run.get_random_relic()
-		item.price = get_price(item.item)
-		if run.obtainable_relics.size() > 2 and run.gold >= 3:
-			if item.price > run.gold or item.item in shop_relics:
-				while item.item in shop_relics or item.price > run.gold:
-					item.item = run.get_random_relic()
-					item.price = get_price(item.item)
-			item.update_item()
-			shop_relics.append(item.item)
+	load_items(type)
 		
-	for spot in spell_list:
-		if spot.get_child_count() == 1:
-			spot.get_child(0).queue_free()
-		var item = SHOP_ITEM.instantiate()
-		spot.add_child(item)
-		item.item = run.get_random_skill()
-		item.price = get_price(item.item)
-		if run.obtainable_relics.size() > 2 and run.gold >= 3:
-			if item.price > run.gold or item.item in shop_skills:
-				while item.item in shop_skills or item.price > run.gold:
-					item.item = run.get_random_skill()
-					item.price = get_price(item.item)
-			item.update_item()
-			shop_skills.append(item.item)
-		item.skill_info.z_index -= 1
-		
+func load_items(type):
+	if type == "none":
+		for spot in relic_list:
+			if spot.get_child_count() == 1:
+				spot.get_child(0).queue_free()
+			var item = SHOP_ITEM.instantiate()
+			spot.add_child(item)
+			item.item = run.get_random_relic()
+			item.price = get_price(item.item)
+			if run.obtainable_relics.size() > 2 and run.gold >= 3:
+				if item.price > run.gold or item.item in shop_relics:
+					while item.item in shop_relics or item.price > run.gold:
+						item.item = run.get_random_relic()
+						item.price = get_price(item.item)
+				item.update_item()
+				shop_relics.append(item.item)
+			
+		for spot in spell_list:
+			if spot.get_child_count() == 1:
+				spot.get_child(0).queue_free()
+			var item = SHOP_ITEM.instantiate()
+			spot.add_child(item)
+			item.item = run.get_random_skill()
+			item.price = get_price(item.item)
+			if run.obtainable_relics.size() > 2 and run.gold >= 3:
+				if item.price > run.gold or item.item in shop_skills:
+					while item.item in shop_skills or item.price > run.gold:
+						item.item = run.get_random_skill()
+						item.price = get_price(item.item)
+				item.update_item()
+				shop_skills.append(item.item)
+			item.skill_info.z_index -= 1
+		refresh_button.visible = true
+	else:
+		for spot in relic_list:
+			if spot.get_child_count() == 1:
+				spot.get_child(0).queue_free()
+			var item = SHOP_ITEM.instantiate()
+			spot.add_child(item)
+			item.item = run.get_random_relic()
+			item.price = get_price(item.item)
+			if run.obtainable_relics.size() > 2 and run.gold >= 3:
+				if item.price > run.gold or item.item in shop_relics or type not in item.item.tags:
+					while item.item in shop_relics or item.price > run.gold or type not in item.item.tags:
+						item.item = run.get_random_relic()
+						item.price = get_price(item.item)
+						item.item.update()
+				item.update_item()
+				shop_relics.append(item.item)
+			
+		for spot in spell_list:
+			if spot.get_child_count() == 1:
+				spot.get_child(0).queue_free()
+			var item = SHOP_ITEM.instantiate()
+			spot.add_child(item)
+			item.item = run.get_random_skill()
+			item.price = get_price(item.item)
+			if run.obtainable_relics.size() > 2 and run.gold >= 3:
+				if item.price > run.gold or item.item in shop_skills or type not in item.item.tags:
+					while item.item in shop_skills or item.price > run.gold or type not in item.item.tags:
+						item.item = run.get_random_skill()
+						item.price = get_price(item.item)
+						item.item.update()
+				item.update_item()
+				shop_skills.append(item.item)
+			item.skill_info.z_index -= 1
+			refresh_button.visible = false
 
 func get_price(resource):
 	match resource.tier:
-		"1":
+		"Common":
 			return 3
-		"2":
+		"Rare":
 			return 6
-		"3":
+		"Epic":
 			return 9
-
-func refresh():
-	for spot in relic_list:
-		if spot.get_child_count() == 1:
-			spot.get_child(0).queue_free()
-		var item = SHOP_ITEM.instantiate()
-		spot.add_child(item)
-		item.item = run.get_random_relic()
-		item.price = get_price(item.item)
-		if run.obtainable_relics.size() > 2 and run.gold >= 3:
-			if item.price > run.gold or item.item in shop_relics:
-				while item.item in shop_relics or item.price > run.gold:
-					item.item = run.get_random_relic()
-					item.price = get_price(item.item)
-			item.update_item()
-			shop_relics.append(item.item)
-		
-	for spot in spell_list:
-		if spot.get_child_count() == 1:
-			spot.get_child(0).queue_free()
-		var item = SHOP_ITEM.instantiate()
-		spot.add_child(item)
-		item.item = run.get_random_skill()
-		item.price = get_price(item.item)
-		if run.obtainable_relics.size() > 2 and run.gold >= 3:
-			if item.price > run.gold or item.item in shop_skills:
-				while item.item in shop_skills or item.price > run.gold:
-					item.item = run.get_random_skill()
-					item.price = get_price(item.item)
-			item.update_item()
-			shop_skills.append(item.item)
-		item.skill_info.z_index -= 1
 
 func item_bought(item, shop_item) -> void:
 	if item is Relic:
@@ -156,13 +163,11 @@ func item_bought(item, shop_item) -> void:
 		new_skill = item
 		buying_new_skill(shop_item)
 		shop_item.queue_free()
-			
-	update_gold()
+
 	
 func buying_new_skill(shop_item):
 	new_skill_ally = null
 	for ally in allies:
-		ally.level_up_reward.visible = false
 		ally.spell_select_ui.reset()
 	for spot in relic_list:
 		if (not spot.get_child(0) == shop_item):
@@ -176,11 +181,6 @@ func buying_new_skill(shop_item):
 	shop_item.hide_buy()
 	next_combat.visible = false
 	await swap_done
-	for ally in allies:
-		if ally.level_up and not ally.level_up_complete:
-			ally.level_up_reward.visible = true
-		else:
-			ally.level_up_reward.visible = false
 	for spot in relic_list:
 		spot.visible = true
 	for spot in spell_list:
@@ -189,13 +189,14 @@ func buying_new_skill(shop_item):
 	if (not run.reaction_guide_open):
 		next_combat.visible = true
 
-func update_gold():
-	gold_label.text = "Gold: " + str(run.gold)
 
 
 func _on_next_combat_pressed() -> void:
 	AudioPlayer.play_FX("click",-10)
-	shop_ended.emit()
+	if type == "none":
+		shop_ended.emit("")
+	else:
+		special_shop_ended.emit()
 	
 func _on_confirm_swap_pressed() -> void:
 	AudioPlayer.play_FX("click",-10)
@@ -207,8 +208,7 @@ func _on_confirm_swap_pressed() -> void:
 
 func _on_refresh_pressed() -> void:
 	if (run.gold >= refresh_price):
-		run.gold -= refresh_price
-		update_gold()
-		refresh()
+		run.spend_gold(refresh_price)
+		load_items(type)
 		refresh_price += 1
 		refresh_button.text = "Refresh Options (" + str(refresh_price) + " Gold)"

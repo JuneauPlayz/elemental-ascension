@@ -29,19 +29,30 @@ func _ready() -> void:
 	max_health = res.starting_health
 	shield = 0
 	if res.skill1 != null:
-		skill1 = res.skill1
+		skill1 = res.skill1.duplicate()
 		current_skill = skill1
 	if res.skill2 != null:
-		skill2 = res.skill2
+		skill2 = res.skill2.duplicate()
 	if res.skill3 != null:
-		skill3 = res.skill3
+		skill3 = res.skill3.duplicate()
 	if res.skill4 != null:
-		skill4 = res.skill4
+		skill4 = res.skill4.duplicate()
 	if res.name != null:
 		title = res.name
 	print("title:" + title)
 	sprite_spot.texture = load(res.sprite.resource_path)
 	sprite_spot.scale = Vector2(res.sprite_scale,res.sprite_scale)
+	if (run.hard == true):
+		if skill1 != null:
+			skill1.damage *= 2
+		if skill2 != null:
+			skill2.damage *= 2
+		if skill3 != null:
+			skill3.damage *= 2
+		if skill4 != null:
+			skill4.damage *= 2
+		max_health = roundi(max_health * 2.5)
+		health = max_health
 	skill_info.skill = current_skill
 	skill_info.update_skill_info()
 	
@@ -123,3 +134,4 @@ func attack_animation():
 	
 func _on_targeting_area_pressed() -> void:
 	target_chosen.emit(self)
+	

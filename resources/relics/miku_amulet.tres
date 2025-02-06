@@ -21,9 +21,11 @@ healing_mult = 0.0
 shielding_bonus = 0
 shielding_mult = 0.0
 relic_name = "Miku's Amulet"
-tier = "3"
-id = ""
+tier = "Epic"
 type = 0
+tag1 = "All"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_l8g3j")
 tooltip = "Against enemies:
 Fire Damage +5

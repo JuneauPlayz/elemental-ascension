@@ -6,15 +6,18 @@
 
 [resource]
 script = ExtResource("2_5hltu")
-fire_token_count = 0
-water_token_count = 0
-lightning_token_count = 0
-earth_token_count = 0
+fire_token_count = null
+water_token_count = null
+lightning_token_count = null
+earth_token_count = null
 grass_token_count = 1
 relic_name = "Garden Starter"
-tier = "1"
-id = ""
+tier = "Common"
 type = 1
+tag1 = "Grass"
+tag2 = ""
+tag3 = ""
+tags = []
 icon = ExtResource("1_yqma6")
 tooltip = "Start Combat with +1
 Grass Tokens"

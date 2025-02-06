@@ -74,19 +74,19 @@ mouse_filter = 2
 
 [node name="Enemy 1 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1020, 150)
+position = Vector2(1020, 244)
 
 [node name="Enemy 2 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1243, 150)
+position = Vector2(1243, 244)
 
 [node name="Enemy 3 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1468, 150)
+position = Vector2(1468, 244)
 
 [node name="Enemy 4 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1691, 150)
+position = Vector2(1691, 244)
 
 [node name="EndTurn" type="Button" parent="."]
 offset_left = 1521.0

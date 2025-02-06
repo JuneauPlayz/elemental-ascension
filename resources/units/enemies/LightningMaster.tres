@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dqmohettbpuc1" path="res://assets/electro wizard.jpg" id="5_bqxr6"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_8mrmj")
 starting_health = 250
 skill1 = ExtResource("2_bydnc")

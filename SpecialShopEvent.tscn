@@ -1,0 +1,149 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpx4otwjeyy25"]
+
+[ext_resource type="Script" uid="uid://cva5qo7vc8lst" path="res://special_shop_event.gd" id="1_yplcx"]
+[ext_resource type="Texture2D" uid="uid://bl1jx1xu8f8by" path="res://assets/restarea.png" id="2_r0sq4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idc2v"]
+bg_color = Color(0.602628, 0.591661, 0.647937, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+
+[node name="SpecialShopEvent" type="Node2D"]
+script = ExtResource("1_yplcx")
+
+[node name="Restarea" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.580392)
+position = Vector2(1373, 441)
+scale = Vector2(4.44, 4.44)
+texture = ExtResource("2_r0sq4")
+
+[node name="NextShop" type="Button" parent="."]
+visible = false
+offset_left = 1339.0
+offset_top = 537.0
+offset_right = 1617.0
+offset_bottom = 609.0
+theme_override_font_sizes/font_size = 72
+text = "Go to Shop"
+
+[node name="EventPopup" type="PanelContainer" parent="."]
+offset_left = 1127.0
+offset_top = 145.0
+offset_right = 1823.0
+offset_bottom = 909.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_idc2v")
+
+[node name="MarginContainer" type="MarginContainer" parent="EventPopup"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EventPopup/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="EventPopup/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="EventPopup/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Go to a shop with items
+with the   [color=coral]Fire[/color]  tag"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="EventPopup/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Go to a shop with items
+with the  [color=dark_cyan]Water[/color]  tag"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="EventPopup/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Go to a shop with items
+with the  [color=purple]Lightning[/color]  tag"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="EventPopup/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Go to a shop with items
+with the  [color=web_green]Grass[/color]  tag"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="EventPopup/MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Go to a shop with items
+with the  [color=saddle_brown]Earth[/color]  tag"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EventPopup/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 71
+
+[node name="Fire" type="Button" parent="EventPopup/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Fire"
+
+[node name="Water" type="Button" parent="EventPopup/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Water"
+
+[node name="Lightning" type="Button" parent="EventPopup/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Lightning"
+
+[node name="Grass" type="Button" parent="EventPopup/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Grass"
+
+[node name="Earth" type="Button" parent="EventPopup/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Earth"
+
+[connection signal="pressed" from="NextShop" to="." method="_on_next_combat_pressed"]
+[connection signal="pressed" from="EventPopup/MarginContainer/HBoxContainer/VBoxContainer/Fire" to="." method="_on_fire_pressed"]
+[connection signal="pressed" from="EventPopup/MarginContainer/HBoxContainer/VBoxContainer/Water" to="." method="_on_water_pressed"]
+[connection signal="pressed" from="EventPopup/MarginContainer/HBoxContainer/VBoxContainer/Lightning" to="." method="_on_lightning_pressed"]
+[connection signal="pressed" from="EventPopup/MarginContainer/HBoxContainer/VBoxContainer/Grass" to="." method="_on_grass_pressed"]
+[connection signal="pressed" from="EventPopup/MarginContainer/HBoxContainer/VBoxContainer/Earth" to="." method="_on_earth_pressed"]

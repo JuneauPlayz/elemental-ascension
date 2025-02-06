@@ -12,9 +12,11 @@ lightning_token_count = 0
 earth_token_count = 0
 grass_token_count = 0
 relic_name = "Flood Starter+"
-tier = "1"
-id = ""
+tier = "Rare"
 type = 1
+tag1 = "Water"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_pkilv")
 tooltip = "Start Combat with +3
 Water Tokens"

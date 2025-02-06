@@ -1,14 +1,16 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://b452w11vn6g6k"]
 
 [ext_resource type="Texture2D" uid="uid://lusgwdgw1no1" path="res://assets/Blastoise.png" id="1_m68hp"]
-[ext_resource type="Script" path="res://resources/relic scripts/flow.gd" id="2_m3mu7"]
+[ext_resource type="Script" uid="uid://egofgujd26ud" path="res://resources/relic scripts/flow.gd" id="2_m3mu7"]
 
 [resource]
 script = ExtResource("2_m3mu7")
 relic_name = "Flow"
-tier = "2"
-id = ""
+tier = "Epic"
 type = 4
+tag1 = "Water"
+tag2 = ""
+tag3 = ""
 icon = ExtResource("1_m68hp")
 tooltip = "When you use a single
 enemy water skill, the
