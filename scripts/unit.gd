@@ -94,6 +94,8 @@ func receive_skill(skill, unit, value_multiplier):
 						status.erase(stati)
 				hp_bar.update_statuses(status)
 				var new_burn = BURN.duplicate()
+				new_burn.damage = run.burn_damage
+				new_burn.turns_remaining = run.burn_length
 				status.append(new_burn)
 			if x.name == "Bubble":
 				var new_bubble = BUBBLE.duplicate()

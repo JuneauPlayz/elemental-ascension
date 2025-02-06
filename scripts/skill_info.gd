@@ -67,7 +67,7 @@ func update_skill_info():
 	if skill.double_hit == true:
 		description.text += "\nThen, deals " + str(skill.damage2) + " " + str(skill.element2) + " damage\nto the same target(s)"
 	if skill.lifesteal == true:
-		description.text += "The caster also heals for " + str(skill.damage)
+		description.text += "\nThe caster also heals for the skill's damage"
 	if skill.status_effects != []:
 		for x in skill.status_effects:
 			if x.name == "Bleed":

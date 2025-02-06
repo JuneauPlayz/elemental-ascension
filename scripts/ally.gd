@@ -209,6 +209,7 @@ func _on_confirm_swap_level_pressed() -> void:
 	level_up_reward.choosing_skills = false
 	level_up_reward.choosing_options = false
 	update_spell_select()
+	skill_swap_1_spot = 0
 	swap_tutorial.visible = false
 	level_up = false
 	spell_select_ui.reset()

@@ -14,6 +14,7 @@ func Exit():
 		ally.spell_select_ui.hide_position()
 		ally.receive_healing(1000,"none",true)
 		ally.visible = true
+		ally.current_element = "none"
 	run.combat = false
 	run.combat_scene.queue_free()
 	run.next_fight()

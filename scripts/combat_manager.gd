@@ -359,7 +359,7 @@ func use_skill(skill,target,unit,event,spend_tokens):
 					for ally in allies:
 						ally.receive_skill(skill,unit,value_multiplier)
 	if (skill.lifesteal):
-		unit.receive_healing(roundi(skill.damage * skill.lifesteal_rate))
+		unit.receive_healing(roundi(skill.damage * skill.lifesteal_rate), "grass", false)
 
 func spend_skill_cost(skill):
 	var tokens1 = 0
