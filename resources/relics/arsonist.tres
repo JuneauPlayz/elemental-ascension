@@ -9,8 +9,9 @@ relic_name = "Arsonist"
 tier = "Epic"
 type = 4
 tag1 = "Fire"
-tag2 = ""
+tag2 = "Grass"
 tag3 = ""
+tags = []
 icon = ExtResource("1_phqmp")
 tooltip = "Burns can stack.
 + 1 Burn Length"

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://njjrwyud27wr"]
+
+[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/relic handler/relic.gd" id="1_mx21r"]
+[ext_resource type="Script" uid="uid://c88tg8gm1lg3r" path="res://resources/relic scripts/reaction_mults.gd" id="2_ux137"]
+
+[resource]
+script = ExtResource("2_ux137")
+vaporize_mult = 0.0
+shock_mult = 0.0
+erupt_mult = 0.0
+detonate_main_mult = 0.0
+detonate_side_mult = 0.0
+nitro_mult = 0.0
+burn_damage = 0.0
+burn_length = 0.0
+muck_mult = -0.25
+discharge_mult = 0.0
+sow_shielding = 0.0
+sow_healing = 0.0
+sow_healing_mult = 0.0
+sow_shielding_mult = 0.0
+bloom_mult = 0.0
+bubble_mult = 0.0
+ally_bloom_healing = 0.0
+enemy_bloom_healing = 0.0
+relic_name = "Muck Orb"
+tier = "Rare"
+type = 0
+tag1 = "Water"
+tag2 = "Earth"
+tag3 = ""
+tags = []
+tooltip = "-0.25x to Muck Mult"
+metadata/_custom_type_script = ExtResource("1_mx21r")

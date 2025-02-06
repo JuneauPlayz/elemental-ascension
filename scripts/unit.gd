@@ -217,6 +217,8 @@ func receive_healing(healing: int, element : String, change_element):
 	var new_healing = healing
 	if self is Ally:
 		new_healing = ((healing + run.healing_bonus) * run.healing_mult * healing_reduction)
+	if self is Enemy:
+		new_healing = healing * healing_reduction
 	DamageNumbers.display_number_plus(new_healing, damage_number_origin.global_position, element, "")
 	if change_element:
 		current_element = element
@@ -291,6 +293,8 @@ func set_shield(shield):
 	
 func increase_max_hp(count, changehp):
 	max_health += count
+	if max_health < 1:
+		max_health = 1
 	hp_bar.set_maxhp(max_health)
 	if changehp:
 		health = max_health

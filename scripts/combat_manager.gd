@@ -149,7 +149,7 @@ func execute_ally_turn():
 		var skill = action_queue[n]
 		var target = target_queue[n]
 		var ally = ally_queue[n]
-		use_skill(skill,target,ally,true)
+		use_skill(skill,target,ally,true,true)
 		# checks if target is dead, currently skips the rest of the loop (wont print landed)
 		if (target == null or target.visible == false):
 			await get_tree().create_timer(0.1).timeout
@@ -184,7 +184,7 @@ func enemy_turn():
 		var enemy = enemies[i]
 		print("using enemy skill")
 		set_unit_pos()
-		use_skill(enemy.current_skill,null,enemy,true)
+		use_skill(enemy.current_skill,null,enemy,true,false)
 		hit.emit()
 		enemy.change_skills()
 		if enemies.size() > i+1:
@@ -230,7 +230,7 @@ func check_event_relics(skill,unit,value_multiplier,target):
 					new_target.right.receive_skill(skill,unit,value_multiplier*0.5)
 	if (run.lightning_strikes_twice and unit is Ally and skill.element == "lightning"):
 		await get_tree().create_timer(0.25).timeout
-		use_skill(skill, target, unit, false)
+		use_skill(skill, target, unit, false, false)
 		
 func victory():
 	victorious = true
@@ -273,7 +273,7 @@ func reset_combat():
 	reset_tokens()
 	victory_screen.visible = false
 	
-func use_skill(skill,target,unit,event):
+func use_skill(skill,target,unit,event,spend_tokens):
 	if allies == []:
 		defeat()
 	if enemies == []:
@@ -291,7 +291,7 @@ func use_skill(skill,target,unit,event):
 				DamageNumbers.display_text(unit.damage_number_origin.global_position, "none", "wash", 32)
 	if event:
 		check_event_relics(skill,unit,value_multiplier,target)
-	if skill.cost > 0 or skill.cost2 > 0:
+	if (skill.cost > 0 or skill.cost2 > 0) and spend_tokens == true:
 			spend_skill_cost(skill)
 	if target != null and not skill.friendly:
 		target.receive_skill(skill,unit,value_multiplier)

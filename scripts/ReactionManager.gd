@@ -183,7 +183,8 @@ func burn(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> vo
 					unit.status.erase(stati)
 	var new_burn = BURN.duplicate()
 	new_burn.turns_remaining = run.burn_length
-	new_burn.damage = run.burn_damage
+	if unit is Enemy:
+		new_burn.damage = run.burn_damage
 	unit.current_element = "none"
 	unit.status.append(new_burn)
 	unit.hp_bar.update_statuses(unit.status)
