@@ -186,10 +186,10 @@ func buying_new_skill(shop_item):
 	for ally in allies:
 		ally.spell_select_ui.reset()
 	for spot in relic_list:
-		if (not spot.get_child(0) == shop_item):
+		if (spot.get_child_count() > 0 and not spot.get_child(0) == shop_item):
 			spot.visible = false
 	for spot in spell_list:
-		if (not spot.get_child(0) == shop_item):
+		if (spot.get_child_count() > 0 and not spot.get_child(0) == shop_item):
 			spot.visible = false
 	shop_item.get_parent().visible = true
 	shop_item.visible = true

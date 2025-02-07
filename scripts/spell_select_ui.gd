@@ -147,7 +147,7 @@ func update_color(button, color):
 	var new_stylebox_normal = button.get_theme_stylebox("normal").duplicate()
 	new_stylebox_normal.bg_color = color
 	button.add_theme_stylebox_override("normal", new_stylebox_normal)
-
+	
 func update_color_disabled(button, color):
 	var new_stylebox_disabled = button.get_theme_stylebox("disabled").duplicate()
 	new_stylebox_disabled.bg_color = color
@@ -156,6 +156,7 @@ func update_color_disabled(button, color):
 	
 func update_font_color(button, color):
 	button.add_theme_color_override("font_color", color)
+	button.add_theme_color_override("font_hover_color", color)
 
 	
 func update_pos(pos):
@@ -191,7 +192,6 @@ func enable(num):
 		4:
 			ult.disabled = false
 			empty4 = false
-			update_font_color(ult, Color.INDIAN_RED)
 
 func enable_all():
 	ba_1.disabled = false

@@ -58,6 +58,12 @@ var lightning_tokens = 0
 var grass_tokens = 0
 var earth_tokens = 0
 
+var p_fire_tokens = 0
+var p_water_tokens =0
+var p_lightning_tokens = 0
+var p_grass_tokens = 0
+var p_earth_tokens = 0
+
 const TARGET_CURSOR = preload("res://assets/target cursor.png")
 const DEFAULT_CURSOR = preload("res://assets/defaultcursor.png")
 
@@ -114,9 +120,9 @@ func combat_ready():
 
 func start_combat():
 	combat_currency.update()
+	reset_skill_select()
 	check_requirements()
 	show_skills()
-	reset_skill_select()
 	while (!combat_finished):
 		start_ally_turn()
 		await ally_turn_done
@@ -129,12 +135,13 @@ func end_battle():
 func start_ally_turn():
 	set_unit_pos()
 	show_ui()
-	check_requirements()
+	update_tokens()
 	turn_text.text = "Ally Turn"
 	ally_pre_status()
 	lose_shields()
 	show_skills()
 	reset_skill_select()
+	check_requirements()
 	update_skill_positions()
 	choosing_skills = true
 
@@ -151,6 +158,8 @@ func execute_ally_turn():
 		var target = target_queue[n]
 		var ally = ally_queue[n]
 		use_skill(skill,target,ally,true,true)
+		update_tokens()
+		combat_currency.update()
 		# checks if target is dead, currently skips the rest of the loop (wont print landed)
 		if (target == null or target.visible == false):
 			await get_tree().create_timer(0.1).timeout
@@ -391,6 +400,64 @@ func spend_skill_cost(skill):
 				earth_tokens -= skill.cost2
 	combat_currency.update()
 
+func p_spend_skill_cost(skill, ally):
+	var tokens1 = 0
+	var tokens2 = 0
+	print("spending tokens")
+	if skill.cost > 0:
+		match skill.token_type:
+			"fire":
+				p_fire_tokens -= skill.cost
+				ally.spent_tokens_type = "fire"
+				ally.spent_tokens = skill.cost
+			"water":
+				p_water_tokens -= skill.cost
+				ally.spent_tokens_type = "water"
+				ally.spent_tokens = skill.cost
+			"lightning":
+				p_lightning_tokens -= skill.cost
+				ally.spent_tokens_type = "lightning"
+				ally.spent_tokens = skill.cost
+			"grass":
+				p_grass_tokens -= skill.cost
+				ally.spent_tokens_type = "grass"
+				ally.spent_tokens = skill.cost
+			"earth":
+				p_earth_tokens -= skill.cost
+				ally.spent_tokens_type = "earth"
+				ally.spent_tokens = skill.cost
+	if skill.cost2 > 0:
+		match skill.token_type2:
+			"fire":
+				p_fire_tokens -= skill.cost2
+				ally.spent_tokens_type_2 = "fire"
+				ally.spent_tokens_2 = skill.cost2
+			"water":
+				p_water_tokens -= skill.cost2
+				ally.spent_tokens_type_2 = "water"
+				ally.spent_tokens_2 = skill.cost2
+			"lightning":
+				p_lightning_tokens -= skill.cost2
+				ally.spent_tokens_type_2 = "lightning"
+				ally.spent_tokens_2 = skill.cost2
+			"grass":
+				p_grass_tokens -= skill.cost2
+				ally.spent_tokens_type_2 = "grass"
+				ally.spent_tokens_2 = skill.cost2
+			"earth":
+				p_earth_tokens -= skill.cost2
+				ally.spent_tokens_type_2 = "earth"
+				ally.spent_tokens_2 = skill.cost2
+	combat_currency.update()
+
+func update_tokens():
+	p_fire_tokens = fire_tokens
+	p_water_tokens = water_tokens
+	p_lightning_tokens = lightning_tokens
+	p_earth_tokens = earth_tokens
+	p_grass_tokens = grass_tokens
+	combat_currency.update()
+
 func _on_relics_activated(type : Relic.Type) -> void:
 	match type:
 		Relic.Type.START_OF_COMBAT:
@@ -449,6 +516,7 @@ func _on_spell_select_ui_new_select(ally) -> void:
 		spell_select_ui.update_pos(0)
 		change = true
 	allyskill = spell_select_ui.selected
+	ally.unspend_tokens()
 	match spell_select_ui.selected:
 		# if unselecting
 		0:
@@ -461,6 +529,8 @@ func _on_spell_select_ui_new_select(ally) -> void:
 			update_skill_positions()
 			spell_select_ui.update_pos(0)
 			allyskill = -1
+			ally.using_skill = false
+			combat_currency.update()
 		1:
 			if change:
 				action_queue.insert(ally_pos,ally.basic_atk)
@@ -470,6 +540,8 @@ func _on_spell_select_ui_new_select(ally) -> void:
 				action_queue.append(ally.basic_atk)
 				target_queue.append(await choose_target(ally.basic_atk))
 				ally_queue.append(ally)
+			p_spend_skill_cost(ally.basic_atk, ally)
+			ally.using_skill = true
 		2:
 			if change:
 				action_queue.insert(ally_pos,ally.skill_1)
@@ -479,6 +551,8 @@ func _on_spell_select_ui_new_select(ally) -> void:
 				action_queue.append(ally.skill_1)
 				target_queue.append(await choose_target(ally.skill_1))
 				ally_queue.append(ally)
+			p_spend_skill_cost(ally.skill_1, ally)
+			ally.using_skill = true
 		3:
 			if change:
 				action_queue.insert(ally_pos,ally.skill_2)
@@ -488,6 +562,8 @@ func _on_spell_select_ui_new_select(ally) -> void:
 				action_queue.append(ally.skill_2)
 				target_queue.append(await choose_target(ally.skill_2))
 				ally_queue.append(ally)
+			p_spend_skill_cost(ally.skill_2, ally)
+			ally.using_skill = true
 		4:
 			if change:
 				action_queue.insert(ally_pos,ally.ult)
@@ -497,7 +573,9 @@ func _on_spell_select_ui_new_select(ally) -> void:
 				action_queue.append(ally.ult)
 				target_queue.append(await choose_target(ally.ult))
 				ally_queue.append(ally)
-	
+			p_spend_skill_cost(ally.ult, ally)
+			ally.using_skill = true
+	check_requirements()
 	match ally.position:
 		1:
 			ally1skill = allyskill
@@ -543,22 +621,27 @@ func update_skill_positions():
 		spell_select_ui4.update_pos(ally4_pos + 1)
 
 func reset_skill_select():
+	set_unit_pos()
 	if ally1 != null:
 		var spell_select_ui1 = ally1.get_spell_select()
 		spell_select_ui1.reset()
 		spell_select_ui1.update_pos(ally1_pos + 1)
+		ally1.using_skill = false
 	if ally2 != null:
 		var spell_select_ui2 = ally2.get_spell_select()
 		spell_select_ui2.reset()
 		spell_select_ui2.update_pos(ally2_pos + 1)
+		ally2.using_skill = false
 	if ally3 != null:
 		var spell_select_ui3 = ally3.get_spell_select()
 		spell_select_ui3.reset()
 		spell_select_ui3.update_pos(ally3_pos + 1)
+		ally3.using_skill = false
 	if ally4 != null:
 		var spell_select_ui4 = ally4.get_spell_select()
 		spell_select_ui4.reset()
 		spell_select_ui4.update_pos(ally4_pos + 1)
+		ally4.using_skill = false
 	action_queue = []
 	target_queue = []
 	ally_queue = []
@@ -598,6 +681,11 @@ func _on_reset_choices_pressed() -> void:
 	ally4_pos = -1
 	reset_skill_select()
 	update_skill_positions()
+	for ally in allies:
+		ally.unspend_tokens()
+	update_tokens()
+	combat_currency.update()
+	check_requirements()
 
 func show_skills():
 	if ally1 != null:
@@ -777,63 +865,64 @@ func ally_post_status():
 					
 func check_requirements():
 	for ally in allies:
-		var skill : Skill
-		for i in range(1, 5):
-			match i:
-				1:
-					skill = ally.basic_atk
-				2:
-					skill = ally.skill_1
-				3:
-					skill = ally.skill_2
-				4:
-					skill = ally.ult
-			if (skill):
-				var check = false
-				var tokens1 = 0
-				var tokens2 = 0
-				if skill.cost != null:
-					match skill.token_type:
-						"fire":
-							tokens1 = fire_tokens
-						"water":
-							tokens1 = water_tokens
-						"lightning":
-							tokens1 = lightning_tokens
-						"grass":
-							tokens1 = grass_tokens
-						"earth":
-							tokens1 = earth_tokens
-				if skill.cost2 != null:
-					match skill.token_type2:
-						"fire":
-							tokens2 = fire_tokens
-						"water":
-							tokens2 = water_tokens
-						"lightning":
-							tokens2 = lightning_tokens
-						"grass":
-							tokens2 = grass_tokens
-						"earth":
-							tokens2 = earth_tokens
-				if skill.cost != null:
-					if skill.cost <= tokens1:
-						check = true
+		if not ally.using_skill:
+			var skill : Skill
+			for i in range(1, 5):
+				match i:
+					1:
+						skill = ally.basic_atk
+					2:
+						skill = ally.skill_1
+					3:
+						skill = ally.skill_2
+					4:
+						skill = ally.ult
+				if (skill):
+					var check = false
+					var tokens1 = 0
+					var tokens2 = 0
+					if skill.cost != null:
+						match skill.token_type:
+							"fire":
+								tokens1 = p_fire_tokens
+							"water":
+								tokens1 = p_water_tokens
+							"lightning":
+								tokens1 = p_lightning_tokens
+							"grass":
+								tokens1 = p_grass_tokens
+							"earth":
+								tokens1 = p_earth_tokens
+					if skill.cost2 != null:
+						match skill.token_type2:
+							"fire":
+								tokens2 = p_fire_tokens
+							"water":
+								tokens2 = p_water_tokens
+							"lightning":
+								tokens2 = p_lightning_tokens
+							"grass":
+								tokens2 = p_grass_tokens
+							"earth":
+								tokens2 = p_earth_tokens
+					if skill.cost != null:
+						if skill.cost <= tokens1:
+							check = true
+						else:
+							check = false
+							
+					if skill.cost2 != null:
+						if skill.cost <= tokens1 and skill.cost2 <= tokens2:
+							check = true
+						else:
+							check = false
+					if skill.cost > 0 or skill.cost2 > 0:
+						if check:
+							ally.spell_select_ui.enable(i)
+						else:
+							ally.spell_select_ui.disable(i)
 					else:
-						check = false
-						
-				if skill.cost2 != null:
-					if skill.cost <= tokens1 and skill.cost2 <= tokens2:
-						check = true
-					else:
-						check = false
-				if skill.cost > 0 or skill.cost2 > 0:
-					if check:
 						ally.spell_select_ui.enable(i)
-					else:
-						ally.spell_select_ui.disable(i)
-				else:
-					ally.spell_select_ui.enable(i)
 		
 func set_unit_pos():
 	for n in range(enemies.size()):

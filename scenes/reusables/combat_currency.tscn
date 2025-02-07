@@ -81,6 +81,13 @@ text = "0"
 label_settings = SubResource("LabelSettings_pyo7b")
 horizontal_alignment = 2
 
+[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = " (0)"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
 [node name="Control2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -97,6 +104,13 @@ text = " [color=dark_cyan]Water[/color] Tokens:"
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "0"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="WaterCount2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control2"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = " (0)"
 label_settings = SubResource("LabelSettings_pyo7b")
 horizontal_alignment = 2
 
@@ -119,6 +133,13 @@ text = "0"
 label_settings = SubResource("LabelSettings_pyo7b")
 horizontal_alignment = 2
 
+[node name="LightningCount2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control3"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = " (0)"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
 [node name="Control5" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -135,6 +156,13 @@ text = " [color=saddle_brown]Earth[/color] Tokens:"
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "0"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="EarthCount2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control5"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = " (0)"
 label_settings = SubResource("LabelSettings_pyo7b")
 horizontal_alignment = 2
 
@@ -155,5 +183,12 @@ text = " [color=web_green]Grass[/color] Tokens:
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "0"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="GrassCount2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control4"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = " (0)"
 label_settings = SubResource("LabelSettings_pyo7b")
 horizontal_alignment = 2

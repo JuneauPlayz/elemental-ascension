@@ -40,6 +40,12 @@ var chosen_relic
 
 var run_starting
 signal loaded
+
+var using_skill = false
+var spent_tokens = 0
+var spent_tokens_type = ""
+var spent_tokens_2 = 0
+var spent_tokens_type_2 = ""
 # special status checks
 var sow_just_applied = false
 
@@ -238,3 +244,35 @@ func attack_animation():
 	tween.tween_property(
 		sprite_spot, "position:x", sprite_spot.position.x, 0.05
 	).set_ease(Tween.EASE_OUT).set_delay(0.25)
+
+func unspend_tokens():
+	match spent_tokens_type:
+		"fire":
+			combat_manager.p_fire_tokens += spent_tokens
+		"water":
+			combat_manager.p_water_tokens += spent_tokens
+		"lightning":
+			combat_manager.p_lightning_tokens += spent_tokens
+		"earth":
+			combat_manager.p_earth_tokens += spent_tokens
+		"grass":
+			combat_manager.p_grass_tokens += spent_tokens
+		_:
+			pass
+	match spent_tokens_type_2:
+		"fire":
+			combat_manager.p_fire_tokens += spent_tokens_2
+		"water":
+			combat_manager.p_water_tokens += spent_tokens_2
+		"lightning":
+			combat_manager.p_lightning_tokens += spent_tokens_2
+		"earth":
+			combat_manager.p_earth_tokens += spent_tokens_2
+		"grass":
+			combat_manager.p_grass_tokens += spent_tokens_2
+		_:
+			pass
+	spent_tokens = 0
+	spent_tokens_type = ""
+	spent_tokens_2 = 0
+	spent_tokens_type = ""
