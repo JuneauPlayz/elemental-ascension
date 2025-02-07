@@ -53,6 +53,7 @@ enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/
 droppable=""
 shopitem=""
 run=""
+combat_sim=""
 
 [gui]
 

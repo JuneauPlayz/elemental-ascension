@@ -414,6 +414,9 @@ func load_combat(enemy1, enemy2, enemy3, enemy4):
 	combat_scene.enemy3res = enemy3
 	combat_scene.enemy4res = enemy4
 	
+func get_combat_manager():
+	if combat:
+		return combat_manager
 func load_shop(type):
 	shop_scene = SHOP.instantiate()
 	if type != "none":

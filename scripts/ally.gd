@@ -56,8 +56,12 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	# spell select ui first child, hp bar ui second child
 	if run.combat == true and not run_starting:
-		combat_manager = run.combat_manager
-		ReactionManager = combat_manager.ReactionManager
+		if not copy:
+			combat_manager = get_parent().get_parent().get_combat_manager()
+			ReactionManager = combat_manager.ReactionManager
+		elif copy:
+			combat_manager = get_tree().get_first_node_in_group("combat_sim")
+			ReactionManager = combat_manager.reaction_manager
 		spell_select_ui.new_select.connect(run.combat_manager._on_spell_select_ui_new_select)
 		self.target_chosen.connect(run.combat_manager.target_signal)
 		hp_bar.update_statuses(status)
@@ -71,6 +75,7 @@ func _ready() -> void:
 		skill_1 = res.skill2
 		skill_2 = res.skill3
 		ult = res.skill4
+		title = res.name
 		ult_choice_1 = res.ult_1
 		ult_choice_1.update()
 		ult_choice_2 = res.ult_2

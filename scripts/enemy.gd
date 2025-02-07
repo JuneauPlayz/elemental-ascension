@@ -19,15 +19,20 @@ var sow_just_applied = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
-	combat_manager = get_parent().get_parent().get_combat_manager()
+	if not copy:
+		combat_manager = get_parent().get_parent().get_combat_manager()
+		ReactionManager = combat_manager.ReactionManager
+	elif copy:
+		combat_manager = get_tree().get_first_node_in_group("combat_sim")
+		ReactionManager = combat_manager.reaction_manager
 	run = get_tree().get_first_node_in_group("run")
-	ReactionManager = combat_manager.ReactionManager
 	hp_bar = $"HP Bar"
 	targeting_area = $TargetingArea
 	self.died.connect(combat_manager.reaction_signal)
 	health = res.starting_health
 	max_health = res.starting_health
 	shield = 0
+	title = res.name
 	if res.skill1 != null:
 		skill1 = res.skill1.duplicate()
 		current_skill = skill1

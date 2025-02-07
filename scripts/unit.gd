@@ -36,6 +36,7 @@ var hp_bar
 var combat_manager
 var targeting_area
 var ReactionManager
+var copy = false
 
 # Signals
 signal reaction_ended
@@ -82,7 +83,8 @@ func receive_skill(skill, unit, value_multiplier):
 			if stati.name == "Sow":
 				status.erase(stati)
 				hp_bar.update_statuses(status)
-				DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Harvest!", 32)
+				if not copy:
+					DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Harvest!", 32)
 	if skill.status_effects != []:
 		for x in skill.status_effects:
 			if x.name == "Bleed":
@@ -110,8 +112,10 @@ func receive_skill(skill, unit, value_multiplier):
 				var new_sow = SOW.duplicate()
 				status.append(new_sow)
 				sow = true
-		hp_bar.update_statuses(status)
-	hp_bar.update_element(current_element)
+		if not copy:
+			hp_bar.update_statuses(status)
+	if not copy:
+		hp_bar.update_element(current_element)
 
 func receive_skill_friendly(skill, unit, value_multiplier):
 	var rounded : int
@@ -131,27 +135,30 @@ func receive_skill_friendly(skill, unit, value_multiplier):
 	if skill.status_effects != []:
 		for x in skill.status_effects:
 			status.append(x)
-	hp_bar.update_element(current_element)
-	hp_bar.update_statuses(status)
+	if not copy:
+		hp_bar.update_element(current_element)
+		hp_bar.update_statuses(status)
 
 func take_damage(damage : int, element : String, change_element : bool):
-	match element:
-		"fire":
-			AudioPlayer.play_FX("fire_hit", -18)
-		"water":
-			AudioPlayer.play_FX("water_hit", -18)
-		"lightning":
-			AudioPlayer.play_FX("lightning_hit", -27)
-		"earth":
-			AudioPlayer.play_FX("earth_hit", -25)
-		"grass":
-			AudioPlayer.play_FX("grass_hit", -18)
-		_:
-			AudioPlayer.play_FX("fire_hit", -18)
+	if not copy:
+		match element:
+			"fire":
+				AudioPlayer.play_FX("fire_hit", -18)
+			"water":
+				AudioPlayer.play_FX("water_hit", -18)
+			"lightning":
+				AudioPlayer.play_FX("lightning_hit", -27)
+			"earth":
+				AudioPlayer.play_FX("earth_hit", -25)
+			"grass":
+				AudioPlayer.play_FX("grass_hit", -18)
+			_:
+				AudioPlayer.play_FX("fire_hit", -18)
 
 	if change_element:
 		current_element = element
-	hp_bar.update_element(current_element)
+	if not copy:
+		hp_bar.update_element(current_element)
 	var damage_left = roundi(damage)
 	if self is Enemy:
 		damage_left += run.all_damage_bonus
@@ -180,21 +187,26 @@ func take_damage(damage : int, element : String, change_element : bool):
 		damage_left = roundi(damage * run.bubble_mult)
 		total_dmg = damage_left
 		bubble = false
-		DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Pop!", 32)
+		if not copy:
+			DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Pop!", 32)
 		for stati in status:
 			if stati.name == "Bubble":
 				status.erase(stati)
-				hp_bar.update_statuses(status)
+				if not copy:
+					hp_bar.update_statuses(status)
 				self.receive_healing(run.ally_bloom_healing * run.bloom_mult, "grass", false)
 	if nitro:
 		nitro = false
 		for stati in status:
 			if stati.name == "Nitro":
 				status.erase(stati)
-				hp_bar.update_statuses(status)
+				if not copy:
+					hp_bar.update_statuses(status)
 				damage_left = roundi(damage_left * run.nitro_mult)
-				DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Nitrate!", 32)
-	DamageNumbers.display_number(damage_left, damage_number_origin.global_position, element, "")
+				if not copy:
+					DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Nitrate!", 32)
+	if not copy:
+		DamageNumbers.display_number(damage_left, damage_number_origin.global_position, element, "")
 	total_dmg = damage_left
 	if (shield > 0):
 		if (shield <= damage_left):
@@ -203,11 +215,13 @@ func take_damage(damage : int, element : String, change_element : bool):
 		elif (shield > damage_left):
 			shield -= damage_left
 			damage_left = 0
-		hp_bar.set_shield(shield)
+		if not copy:
+			hp_bar.set_shield(shield)
 	health -= damage_left
 	health = roundi(health)
 	check_if_dead()
-	hp_bar.set_hp(roundi(health))
+	if not copy:
+		hp_bar.set_hp(roundi(health))
 	return total_dmg
 
 func receive_healing(healing: int, element : String, change_element):
@@ -215,33 +229,39 @@ func receive_healing(healing: int, element : String, change_element):
 	for stati in status:
 		if stati.name == "Burn":
 			healing_reduction = 0.5
-	AudioPlayer.play_FX("healing",-21)
+	if not copy:
+		AudioPlayer.play_FX("healing",-21)
 	var new_healing = healing
 	if self is Ally:
 		new_healing = ((healing + run.healing_bonus) * run.healing_mult * healing_reduction)
 	if self is Enemy:
 		new_healing = healing * healing_reduction
-	DamageNumbers.display_number_plus(new_healing, damage_number_origin.global_position, element, "")
+	if not copy:
+		DamageNumbers.display_number_plus(new_healing, damage_number_origin.global_position, element, "")
 	if change_element:
 		current_element = element
 	health += new_healing
 	if health >= max_health:
 		health = max_health
 	health = roundi(health)
-	hp_bar.set_hp(roundi(health))
+	if not copy:
+		hp_bar.set_hp(roundi(health))
 	return new_healing
 
 func receive_shielding(shielding: int, element : String, change_element : bool):
-	AudioPlayer.play_FX("earth_hit",-25)
+	if not copy:
+		AudioPlayer.play_FX("earth_hit",-25)
 	var new_shielding =shielding
 	if self is Ally:
 		new_shielding = ((shielding + run.shielding_bonus) * run.shielding_mult)
-	DamageNumbers.display_number_plus(new_shielding, damage_number_origin.global_position, element, "")
+	if not copy:
+		DamageNumbers.display_number_plus(new_shielding, damage_number_origin.global_position, element, "")
 	if change_element:
 		current_element = element
 	shield += new_shielding
 	shield = roundi(shield)
-	hp_bar.set_shield(roundi(shield))
+	if not copy:
+		hp_bar.set_shield(roundi(shield))
 	return new_shielding
 
 func check_if_dead():

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://2gwcveewecat"]
+
+[ext_resource type="Script" uid="uid://cdkt1xuuft6iq" path="res://scripts/combat_sim_manager.gd" id="1_k4p0j"]
+[ext_resource type="Script" uid="uid://4b1laqus7fcv" path="res://scripts/ReactionManagerSim.gd" id="2_k4p0j"]
+
+[node name="CombatSim" type="Node" groups=["combat_sim"]]
+script = ExtResource("1_k4p0j")
+
+[node name="ReactionManager" type="Node" parent="."]
+script = ExtResource("2_k4p0j")
