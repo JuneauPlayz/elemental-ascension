@@ -133,7 +133,7 @@ func vaporize(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -
 	unit.current_element = "none"
 	if not friendly:
 		unit.take_damage(res_value, elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
 func detonate(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
@@ -148,7 +148,7 @@ func detonate(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -
 		unit.right.take_damage(res_value * run.detonate_side_mult, elem2, true)
 	if not friendly:
 		unit.take_damage(res_value * run.detonate_main_mult, elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
 func erupt(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
@@ -171,7 +171,7 @@ func erupt(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> v
 			unit.take_damage(res_value, elem2, false)
 	elif friendly:
 		unit.receive_shielding(value, elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
 func burn(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
@@ -190,7 +190,7 @@ func burn(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> vo
 		unit.take_damage(roundi(value), elem2, false)
 	elif friendly:
 		unit.receive_healing(roundi(value), elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
 func shock(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
@@ -199,16 +199,13 @@ func shock(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> v
 	unit.current_element = "none"
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)
-		await get_tree().create_timer(0.02).timeout
 		if unit != null:
 			unit.take_damage(res_value, "lightning", true)
-		await get_tree().create_timer(0.02).timeout
 		if unit != null:
 			unit.take_damage(res_value, "lightning", true)
-			await get_tree().create_timer(0.02).timeout
 		if unit != null:
 			unit.take_damage(res_value, "lightning", true)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
 func bloom(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
@@ -220,7 +217,7 @@ func bloom(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> v
 		unit.take_damage(roundi(value), elem2, false)
 	elif friendly:
 		unit.receive_healing(roundi(value), elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
 func nitro(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
@@ -232,7 +229,7 @@ func nitro(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> v
 		unit.take_damage(roundi(value), elem2, false)
 	elif friendly:
 		unit.receive_healing(roundi(value), elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
 func discharge(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
@@ -261,7 +258,7 @@ func sow(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> voi
 		unit.receive_healing(roundi(value), elem2, false)
 	elif friendly and elem2 == "earth":
 		unit.receive_shielding(roundi(value), elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
 func muck(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
@@ -273,5 +270,5 @@ func muck(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> vo
 		unit.take_damage(roundi(value), elem2, false)
 	elif friendly and elem2 == "earth":
 		unit.receive_shielding(roundi(value), elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()

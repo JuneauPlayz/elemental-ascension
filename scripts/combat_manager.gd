@@ -186,6 +186,7 @@ func execute_ally_turn():
 			if stati.unique_type == "sow":
 				target.sow = true
 	await get_tree().create_timer(1).timeout
+	reset_sim()
 	ally_post_status()
 	if enemies.is_empty():
 		victory()
@@ -250,7 +251,7 @@ func check_event_relics(skill,unit,value_multiplier,target):
 				if new_target.right != null:
 					new_target.right.receive_skill(skill,unit,value_multiplier*0.5)
 	if (run.lightning_strikes_twice and unit is Ally and skill.element == "lightning"):
-		await get_tree().create_timer(0.25).timeout
+		await get_tree().create_timer(0.10).timeout
 		use_skill(skill, target, unit, false, false)
 		
 func victory():
@@ -691,6 +692,7 @@ func _on_reset_choices_pressed() -> void:
 	ally2_pos = -1
 	ally3_pos = -1
 	ally4_pos = -1
+	reset_sim()
 	reset_skill_select()
 	update_skill_positions()
 	for ally in allies:
@@ -1052,13 +1054,13 @@ func run_sim():
 		sim_enemy3 = enemy3.duplicate()
 	if (enemy4 != null):
 		sim_enemy4 = enemy4.duplicate()
-	if (ally1 != null):
+	if (ally1 != null and ally1.visible == true):
 		sim_ally1 = ally1.duplicate()
-	if (ally2 != null):
+	if (ally2 != null and ally2.visible == true):
 		sim_ally2 = ally2.duplicate()
-	if (ally3 != null):
+	if (ally3 != null and ally3.visible == true):
 		sim_ally3 = ally3.duplicate()
-	if (ally4 != null):
+	if (ally4 != null and ally4.visible == true):
 		sim_ally4 = ally4.duplicate()
 		
 	var sim_action_queue = []
@@ -1083,7 +1085,7 @@ func run_sim():
 				sim_target_queue[i] = new_target
 			if (ally1 != null and ally1.visible == true and target_queue[i] == ally1):
 				sim_ally1 = sim_target_queue[i]
-			elif (ally1 != null and ally1.visible == true and target_queue[i] == ally2):
+			elif (ally2 != null and ally1.visible == true and target_queue[i] == ally2):
 				sim_ally2 = sim_target_queue[i]
 			elif (ally3 != null and ally3.visible == true and target_queue[i] == ally3):
 				sim_ally3 = sim_target_queue[i]
@@ -1111,17 +1113,22 @@ func run_sim():
 					if ally.title == ally_queue[i].title:
 						make_duplicate = false
 						new_ally = ally
+			for ally in sim_target_queue:
+				if ally != null and ally_queue[i] != null:
+					if ally.title == ally_queue[i].title:
+						make_duplicate = false
+						new_ally = ally
 			if make_duplicate and ally_queue[i] != null:
 				sim_ally_queue[i] = ally_queue[i].duplicate()
 			else:
 				sim_ally_queue[i] = new_ally
-			if (ally1 != null and ally1.visible == true and target_queue[i] == ally1):
+			if (ally1 != null and ally1.visible == true and ally_queue[i] == ally1):
 				sim_ally1 = sim_ally_queue[i]
-			elif (ally1 != null and ally1.visible == true and target_queue[i] == ally2):
+			elif (ally1 != null and ally1.visible == true and ally_queue[i] == ally2):
 				sim_ally2 = sim_ally_queue[i]
-			elif (ally3 != null and ally3.visible == true and target_queue[i] == ally3):
+			elif (ally3 != null and ally3.visible == true and ally_queue[i] == ally3):
 				sim_ally3 = sim_ally_queue[i]
-			elif (ally4 != null and ally4.visible == true and target_queue[i] == ally4):
+			elif (ally4 != null and ally4.visible == true and ally_queue[i] == ally4):
 				sim_ally4 = sim_ally_queue[i]
 		else:
 			sim_ally_queue[i] = null
@@ -1154,3 +1161,10 @@ func run_sim():
 	p_grass_tokens += sim_grass_tokens
 	p_earth_tokens += sim_earth_tokens
 	combat_currency.update()
+	
+func reset_sim():
+	sim_fire_tokens = 0
+	sim_water_tokens = 0
+	sim_lightning_tokens = 0
+	sim_grass_tokens = 0
+	sim_earth_tokens = 0

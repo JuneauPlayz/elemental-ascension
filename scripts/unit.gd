@@ -6,15 +6,15 @@ class_name Unit
 @export var max_health = 0
 @export var shield = 0
 @export var status : Array = []
-var current_element : String = "none"
-var bubble : bool = false
-var muck : bool = false
-var nitro : bool = false
-var sow : bool = false
-var res : UnitRes
-var connected = false
-var left : Unit
-var right : Unit
+@export var current_element : String = "none"
+@export var bubble : bool = false
+@export var muck : bool = false
+@export var nitro : bool = false
+@export var sow : bool = false
+@export var res : UnitRes
+@export var connected = false
+@export var left : Unit
+@export var right : Unit
 
 var run
 

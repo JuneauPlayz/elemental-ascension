@@ -117,9 +117,11 @@ func run_simulation(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, 
 		allies[i].position = i+1
 	for ally in allies:
 		ally.ReactionManager = reaction_manager
+		ally.combat_manager = self
 		ally.run = self.run
 	for enemy in enemies:
 		enemy.ReactionManager = reaction_manager
+		enemy.combat_manager = self
 		enemy.run = self.run
 	set_unit_pos()
 	execute_ally_turn(action_queue, target_queue, ally_queue)
@@ -145,23 +147,23 @@ func execute_ally_turn(action_queue, target_queue, ally_queue):
 		use_skill(skill,target,ally,true,true)
 		# checks if target is dead, currently skips the rest of the loop (wont print landed)
 		if (target == null or target.visible == false):
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.01).timeout
 			continue
 		await reaction_finished
 		# can be source of bugs
-		await get_tree().create_timer(GC.GLOBAL_INTERVAL).timeout
+		await get_tree().create_timer(0.005).timeout
 		# for sow only
 		for stati in target.status:
 			if stati.unique_type == "sow":
 				target.sow = true
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	ally_turn_done.emit()
 
 
 func check_event_relics(skill,unit,value_multiplier,target):
 	if (run.ghostfire and unit is Ally and skill.element == "fire"):
 		if (skill.target_type == "single_enemy" or skill.target_type == "back_enemy" or skill.target_type == "front_enemy"):
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.002).timeout
 			var rng = RandomNumberGenerator.new()
 			var random_num = rng.randi_range(1,enemies.size())
 			match random_num:
@@ -174,7 +176,7 @@ func check_event_relics(skill,unit,value_multiplier,target):
 				4:
 					enemies[3].receive_skill(skill,unit,value_multiplier)
 	if (run.flow and unit is Ally and skill.element == "water"):
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.002).timeout
 		var new_target = target
 		if skill.target_type == "back_enemy":
 			new_target = back_enemy
@@ -187,7 +189,7 @@ func check_event_relics(skill,unit,value_multiplier,target):
 				if new_target.right != null:
 					new_target.right.receive_skill(skill,unit,value_multiplier*0.5)
 	if (run.lightning_strikes_twice and unit is Ally and skill.element == "lightning"):
-		await get_tree().create_timer(0.25).timeout
+		await get_tree().create_timer(0.002).timeout
 		use_skill(skill, target, unit, false, false)
 		
 	
