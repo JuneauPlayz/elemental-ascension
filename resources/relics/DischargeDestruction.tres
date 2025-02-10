@@ -12,6 +12,7 @@ tag1 = "Lightning"
 tag2 = "Earth"
 tag3 = ""
 tags = []
-tooltip = "On discharge, deal an extra (5 x Discharge Mult)
+tooltip = "On discharge, deal an extra
+ (5 x Discharge Mult)
 damage to all enemies"
 metadata/_custom_type_script = ExtResource("1_a5bqe")

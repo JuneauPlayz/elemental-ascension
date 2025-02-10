@@ -85,37 +85,47 @@ func run_simulation(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, 
 	if (enemy1 != null):
 		self.enemy1 = enemy1
 		enemies.append(self.enemy1)
+		self.add_child(enemy1)
 	if (enemy2 != null):
 		self.enemy2 = enemy2
 		enemies.append(self.enemy2)
+		self.add_child(enemy2)
 	if (enemy3 != null):
 		self.enemy3 = enemy3
 		enemies.append(self.enemy3)
+		self.add_child(enemy3)
 	if (enemy4 != null):
 		self.enemy4 = enemy4
 		enemies.append(self.enemy4)
+		self.add_child(enemy4)
 	if (ally1 != null):
 		self.ally1 = ally1
 		allies.append(self.ally1)
+		self.add_child(ally1)
 	if (ally2 != null):
 		self.ally2 = ally2
 		allies.append(self.ally2)
+		self.add_child(ally2)
 	if (ally3 != null):
 		self.ally3 = ally3
 		allies.append(self.ally3)
+		self.add_child(ally3)
 	if (ally4 != null):
 		self.ally4 = ally4
 		allies.append(self.ally4)
+		self.add_child(ally4)
 	for i in range(len(allies)):
 		allies[i].position = i+1
 	for ally in allies:
 		ally.ReactionManager = reaction_manager
 		ally.combat_manager = self
 		ally.run = self.run
+		ally.visible = false
 	for enemy in enemies:
 		enemy.ReactionManager = reaction_manager
 		enemy.combat_manager = self
 		enemy.run = self.run
+		enemy.visible = false
 	set_unit_pos()
 	execute_ally_turn(action_queue, target_queue, ally_queue)
 	await ally_turn_done
@@ -418,12 +428,12 @@ func muck(unit, caster):
 	add_token("water", (run.muck_water_token_base + run.muck_water_token_bonus) * run.muck_water_token_mult)
 	add_token("earth", (run.muck_earth_token_base + run.muck_earth_token_bonus) * run.muck_earth_token_mult)
 
-func discharge(unit):
+func discharge(unit, caster):
 	add_token("earth", (run.discharge_earth_token_base + run.discharge_earth_token_bonus) * run.discharge_earth_token_mult)
 	add_token("lightning", (run.discharge_lightning_token_base + run.discharge_lightning_token_bonus) * run.discharge_lightning_token_mult)
 	if run.discharge_destruction == true:
 		for enemy in enemies:
-			enemy.take_damage(5*run.discharge_mult,"none","false")
+			enemy.take_damage(5*run.discharge_mult,"none",false)
 
 func sow(unit):
 	add_token("earth", (run.sow_earth_token_base + run.sow_earth_token_bonus) * run.sow_earth_token_mult)

@@ -61,12 +61,12 @@ func _ready() -> void:
 	skill_info.skill = current_skill
 	skill_info.update_skill_info()
 	
-	print(health)
-	hp_bar = get_child(1)
-	hp_bar.set_hp(health)
-	hp_bar.set_maxhp(health)
-	hp_bar.update_statuses(status)
-	self.target_chosen.connect(combat_manager.target_signal)
+	if not copy:
+		hp_bar = get_child(1)
+		hp_bar.set_hp(health)
+		hp_bar.set_maxhp(health)
+		hp_bar.update_statuses(status)
+		self.target_chosen.connect(combat_manager.target_signal)
 
 func change_skills():
 	var num_skills = 1

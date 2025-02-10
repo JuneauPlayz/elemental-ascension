@@ -146,6 +146,7 @@ func start_ally_turn():
 	set_unit_pos()
 	show_ui()
 	update_tokens()
+	reset_sim()
 	turn_text.text = "Ally Turn"
 	ally_pre_status()
 	lose_shields()
@@ -1009,14 +1010,14 @@ func muck(unit, caster):
 	add_token("water", (run.muck_water_token_base + run.muck_water_token_bonus) * run.muck_water_token_mult)
 	add_token("earth", (run.muck_earth_token_base + run.muck_earth_token_bonus) * run.muck_earth_token_mult)
 
-func discharge(unit):
+func discharge(unit, caster):
 	add_token("earth", (run.discharge_earth_token_base + run.discharge_earth_token_bonus) * run.discharge_earth_token_mult)
 	add_token("lightning", (run.discharge_lightning_token_base + run.discharge_lightning_token_bonus) * run.discharge_lightning_token_mult)
 	if run.discharge_destruction == true:
 		for enemy in enemies:
-			enemy.take_damage(5*run.discharge_mult,"none","false")
+			enemy.take_damage(5*run.discharge_mult,"none",false)
 
-func sow(unit):
+func sow(unit, caster):
 	add_token("earth", (run.sow_earth_token_base + run.sow_earth_token_bonus) * run.sow_earth_token_mult)
 	add_token("grass", (run.sow_grass_token_base + run.sow_grass_token_bonus) * run.sow_grass_token_mult)
 	

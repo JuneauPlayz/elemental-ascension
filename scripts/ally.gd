@@ -62,9 +62,10 @@ func _ready() -> void:
 		elif copy:
 			combat_manager = get_tree().get_first_node_in_group("combat_sim")
 			ReactionManager = combat_manager.reaction_manager
-		spell_select_ui.new_select.connect(run.combat_manager._on_spell_select_ui_new_select)
-		self.target_chosen.connect(run.combat_manager.target_signal)
-		hp_bar.update_statuses(status)
+		if not copy:
+			spell_select_ui.new_select.connect(run.combat_manager._on_spell_select_ui_new_select)
+			self.target_chosen.connect(run.combat_manager.target_signal)
+			hp_bar.update_statuses(status)
 	current_element = "none"
 	hp_bar = $"HP Bar"
 	targeting_area = $TargetingArea

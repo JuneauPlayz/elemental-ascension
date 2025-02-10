@@ -1,0 +1,37 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://be6lcrjbxyg57"]
+
+[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/relic handler/relic.gd" id="1_rs4yq"]
+[ext_resource type="Script" uid="uid://c88tg8gm1lg3r" path="res://resources/relic scripts/reaction_mults.gd" id="2_dq2db"]
+
+[resource]
+script = ExtResource("2_dq2db")
+vaporize_mult = 0.0
+shock_mult = 0.0
+erupt_mult = 0.0
+detonate_main_mult = 0.0
+detonate_side_mult = 0.0
+nitro_mult = 0.0
+burn_damage = 0.0
+burn_length = 0.0
+muck_mult = 0.0
+discharge_mult = 0.0
+sow_shielding = 0.0
+sow_healing = 0.0
+sow_healing_mult = 0.0
+sow_shielding_mult = 0.0
+bloom_mult = 0.0
+bubble_mult = -0.15
+ally_bloom_healing = 10.0
+enemy_bloom_healing = 0.0
+relic_name = "Bubble Orb"
+tier = "Common"
+type = 4
+tag1 = "Grass"
+tag2 = "Water"
+tag3 = ""
+tags = []
+tooltip = "Bubbles on allies
+reduce the next instance
+of damage by +15%
+Bloom Healing +10"
+metadata/_custom_type_script = ExtResource("1_rs4yq")
