@@ -56,7 +56,7 @@ func receive_skill(skill, unit, value_multiplier):
 	if (r): 
 		await reaction_ended 
 		if skill.double_hit == true:
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.1).timeout
 			var r2 = await ReactionManager.reaction(current_element, skill.element2, self, value2, skill.friendly, unit)
 			if (r2):
 				await reaction_ended 
@@ -67,7 +67,7 @@ func receive_skill(skill, unit, value_multiplier):
 		if (skill.element != "none"):
 			current_element = skill.element
 		if skill.double_hit == true:
-			await get_tree().create_timer(0.3).timeout
+			await get_tree().create_timer(0.1).timeout
 			var r2 = await ReactionManager.reaction(current_element, skill.element2, self, value2, skill.friendly, unit)
 			if (r2):
 				await reaction_ended 

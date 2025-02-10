@@ -36,106 +36,106 @@ func reaction(elem1: String, elem2: String, unit: Unit, value, friendly: bool, c
 		"fire":
 			match elem2:
 				"water":
-					vaporize(elem1, elem2, unit, value, friendly)
+					vaporize(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.vaporize(unit, caster, elem2)
 				"lightning":
-					detonate(elem1, elem2, unit, value, friendly)
+					detonate(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.detonate(unit, caster)
 				"earth":
-					erupt(elem1, elem2, unit, value, friendly)
+					erupt(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.erupt(unit, caster)
 				"grass":
-					burn(elem1, elem2, unit, value, friendly)
+					burn(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.burn(unit, caster)
 		"water":
 			match elem2:
 				"fire":
-					vaporize(elem1, elem2, unit, value, friendly)
+					vaporize(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.vaporize(unit, caster, elem2)
 				"lightning":
-					shock(elem1, elem2, unit, value, friendly)
+					shock(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.shock(unit, caster)
 				"earth":
-					muck(elem1, elem2, unit, value, friendly)
+					muck(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.muck(unit, caster)
 				"grass":
-					bloom(elem1, elem2, unit, value, friendly)
+					bloom(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.bloom(unit, caster)
 		"lightning":
 			match elem2:
 				"fire":
-					detonate(elem1, elem2, unit, value, friendly)
+					detonate(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.detonate(unit, caster)
 				"water":
-					shock(elem1, elem2, unit, value, friendly)
+					shock(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.shock(unit, caster)
 				"earth":
-					discharge(elem1, elem2, unit, value, friendly)
+					discharge(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.discharge(unit, caster)
 				"grass":
-					nitro(elem1, elem2, unit, value, friendly)
+					nitro(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.nitro(unit, caster)
 		"earth":
 			match elem2:
 				"fire":
-					erupt(elem1, elem2, unit, value, friendly)
+					erupt(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.erupt(unit, caster)
 				"water":
-					muck(elem1, elem2, unit, value, friendly)
+					muck(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.muck(unit, caster)
 				"lightning":
-					discharge(elem1, elem2, unit, value, friendly)
+					discharge(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.discharge(unit, caster)
 				"grass":
-					sow(elem1, elem2, unit, value, friendly)
+					sow(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.sow(unit, caster)
 		"grass":
 			match elem2:
 				"earth":
-					sow(elem1, elem2, unit, value, friendly)
+					sow(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.sow(unit, caster)
 				"fire":
-					burn(elem1, elem2, unit, value, friendly)
+					burn(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.burn(unit, caster)
 				"water":
-					bloom(elem1, elem2, unit, value, friendly)
+					bloom(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.bloom(unit, caster)
 				"lightning":
-					nitro(elem1, elem2, unit, value, friendly)
+					nitro(elem1, elem2, unit, value, friendly, caster)
 					if caster is Ally:
 						combat.nitro(unit, caster)
 	return true
 
-func vaporize(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
+func vaporize(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
 	var reaction_name = " Vaporize!"
 	var res_value = roundi(value * run.vaporize_mult)
 	unit.current_element = "none"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, reaction_name, 38)
 	if not friendly:
 		unit.take_damage(res_value, elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func detonate(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
+func detonate(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
 	var reaction_name = " Detonate!"
 	var res_value = roundi(value)
 	unit.current_element = "none"
@@ -143,15 +143,22 @@ func detonate(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -
 		return
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, reaction_name, 38)
 	if unit.hasLeft():
-		unit.left.take_damage(res_value * run.detonate_side_mult, elem2, true)
+		if unit.left.current_element == "none":
+			unit.left.take_damage(res_value * run.detonate_side_mult, elem2, true)
+		else:
+			print("Left detonate")
+			await reaction(unit.left.current_element, elem2, unit.left, res_value * run.detonate_side_mult, false, caster)
 	if unit.hasRight():
-		unit.right.take_damage(res_value * run.detonate_side_mult, elem2, true)
+		if unit.right.current_element == "none":
+			unit.right.take_damage(res_value * run.detonate_side_mult, elem2, true)
+		else:
+			await reaction(unit.right.current_element, elem2, unit.right, res_value * run.detonate_side_mult, false, unit)
 	if not friendly:
 		unit.take_damage(res_value * run.detonate_main_mult, elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func erupt(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
+func erupt(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
 	var reaction_name = " Erupted!"
 	var res_value = roundi(value)
 	unit.current_element = "none"
@@ -172,10 +179,10 @@ func erupt(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> v
 			unit.take_damage(res_value, elem2, false)
 	elif friendly:
 		unit.receive_shielding(value, elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func burn(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
+func burn(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
 	var reaction_name = " Burn!"
 	if not run.burn_stack:
 		for stati in unit.status:
@@ -193,10 +200,10 @@ func burn(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> vo
 		unit.take_damage(roundi(value), elem2, false)
 	elif friendly:
 		unit.receive_healing(roundi(value), elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func shock(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
+func shock(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
 	var reaction_name = " Shock!"
 	var res_value = roundi(value * run.shock_mult)
 	unit.current_element = "none"
@@ -215,10 +222,10 @@ func shock(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> v
 		if unit != null:
 			unit.take_damage(res_value, "lightning", true)
 		DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, reaction_name, 38)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func bloom(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
+func bloom(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
 	var reaction_name = " Bloom!"
 	var bubble_effect = BUBBLE.duplicate()
 	unit.status.append(bubble_effect)
@@ -229,10 +236,10 @@ func bloom(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> v
 		unit.take_damage(roundi(value), elem2, false)
 	elif friendly:
 		unit.receive_healing(roundi(value), elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func nitro(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
+func nitro(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
 	var reaction_name = " Nitro!"
 	var nitro_effect = NITRO.duplicate()
 	unit.status.append(nitro_effect)
@@ -243,10 +250,10 @@ func nitro(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> v
 		unit.take_damage(roundi(value), elem2, false)
 	elif friendly:
 		unit.receive_healing(roundi(value), elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func discharge(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
+func discharge(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
 	var reaction_name = " Discharge!"
 	var split_damage = value
 	if combat.enemies.size() > 0:
@@ -262,7 +269,7 @@ func discharge(elem1: String, elem2: String, unit: Unit, value, friendly: bool) 
 			enemy.take_damage(roundi(split_damage), "none", true)
 	reaction_finished.emit()
 
-func sow(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
+func sow(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
 	var reaction_name = " Sow!"
 	var sow_effect = SOW.duplicate()
 	unit.status.append(sow_effect)
@@ -275,10 +282,10 @@ func sow(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> voi
 		unit.receive_healing(roundi(value), elem2, false)
 	elif friendly and elem2 == "earth":
 		unit.receive_shielding(roundi(value), elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func muck(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> void:
+func muck(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
 	var reaction_name = " Muck!"
 	var muck_effect = MUCK.duplicate()
 	unit.status.append(muck_effect)
@@ -289,5 +296,5 @@ func muck(elem1: String, elem2: String, unit: Unit, value, friendly: bool) -> vo
 		unit.take_damage(roundi(value), elem2, false)
 	elif friendly and elem2 == "earth":
 		unit.receive_shielding(roundi(value), elem2, false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
