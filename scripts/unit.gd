@@ -277,7 +277,6 @@ func die():
 	elif self is Enemy:
 		combat_manager.enemies.erase(self)
 	combat_manager.set_unit_pos()
-	await get_tree().create_timer(GC.GLOBAL_INTERVAL).timeout
 
 func hasLeft():
 	return left != null

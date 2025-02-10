@@ -94,6 +94,7 @@ signal reaction_finished
 
 var run
 var sim
+var prev_sim
 @onready var ReactionManager: Node = $"../ReactionManager"
 
 func combat_ready():
@@ -125,8 +126,6 @@ func combat_ready():
 	run.relic_handler.relics_activated.connect(_on_relics_activated)
 	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_COMBAT)
 	combat_currency.update()
-	sim = COMBAT_SIM.instantiate()
-	self.add_child(sim)
 
 
 func start_combat():
@@ -260,7 +259,6 @@ func victory():
 	victory_screen.update_text("Victory!", run.current_reward)
 	hide_skills()
 	hide_ui()
-	run.increase_xp(xp_reward)
 	victory_screen.continue_pressed.connect(self.finish_battle)
 
 func defeat():
@@ -280,10 +278,12 @@ func finish_battle():
 	if victorious:
 		run.add_gold(run.current_reward)
 		if run.end:
+			run.increase_xp(xp_reward)
 			combat_ended.emit("")
 		else:
 			for ally in allies:
 				ally.spell_select_ui.new_select.disconnect(run.combat_manager._on_spell_select_ui_new_select)
+			run.increase_xp(xp_reward)
 			combat_ended.emit("")
 	if not victorious:
 		run.reset()
@@ -1033,11 +1033,11 @@ func reset_tokens():
 	grass_tokens = 0
 
 func run_sim():
-	p_fire_tokens -= sim_fire_tokens
-	p_water_tokens -= sim_water_tokens
-	p_lightning_tokens -= sim_lightning_tokens
-	p_grass_tokens -= sim_grass_tokens
-	p_earth_tokens -= sim_earth_tokens
+	if (prev_sim != null):
+		prev_sim.queue_free()
+	sim = COMBAT_SIM.instantiate()
+	self.add_child(sim)
+	prev_sim = sim
 	var sim_enemy1
 	var sim_enemy2
 	var sim_enemy3
@@ -1148,19 +1148,14 @@ func run_sim():
 		sim_ally3.copy = true
 	if (sim_ally4 != null):
 		sim_ally4.copy = true	
-	var tokens_change = await sim.run_simulation(sim_ally1, sim_ally2, sim_ally3, sim_ally4, sim_enemy1, sim_enemy2, sim_enemy3, sim_enemy4, sim_action_queue, sim_target_queue, sim_ally_queue)
-	sim_fire_tokens = tokens_change[0]
-	sim_water_tokens = tokens_change[1]
-	sim_lightning_tokens = tokens_change[2]
-	sim_grass_tokens = tokens_change[3]
-	sim_earth_tokens = tokens_change[4]
-	
-	p_fire_tokens += sim_fire_tokens
-	p_water_tokens += sim_water_tokens
-	p_lightning_tokens += sim_lightning_tokens
-	p_grass_tokens += sim_grass_tokens
-	p_earth_tokens += sim_earth_tokens
-	combat_currency.update()
+	var sim_finished = await sim.run_simulation(sim_ally1, sim_ally2, sim_ally3, sim_ally4, sim_enemy1, sim_enemy2, sim_enemy3, sim_enemy4, sim_action_queue, sim_target_queue, sim_ally_queue)
+	if sim_finished:
+		p_fire_tokens += sim_fire_tokens
+		p_water_tokens += sim_water_tokens
+		p_lightning_tokens += sim_lightning_tokens
+		p_grass_tokens += sim_grass_tokens
+		p_earth_tokens += sim_earth_tokens
+		combat_currency.update()
 	
 func reset_sim():
 	sim_fire_tokens = 0
@@ -1168,3 +1163,9 @@ func reset_sim():
 	sim_lightning_tokens = 0
 	sim_grass_tokens = 0
 	sim_earth_tokens = 0
+	if (sim != null):
+		sim.queue_free()
+	if (prev_sim != null):
+		sim.queue_free()
+	sim = null
+	prev_sim = null

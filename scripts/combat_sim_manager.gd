@@ -1,8 +1,5 @@
 extends Node
 
-@onready var turn_text: Label = $TurnText
-@onready var combat_currency: Control = $CombatCurrency
-
 @export var ally1 : Ally
 @export var ally2 : Ally
 @export var ally3 : Ally
@@ -23,13 +20,8 @@ var ally_list = [ally1, ally2, ally3, ally4]
 var enemy_list = [enemy1, enemy2]
 
 
-@onready var end_turn: Button = $"../EndTurn"
-@onready var reset_choices: Button = $"../ResetChoices"
-@onready var targeting_label: Label = $TargetingLabel
-@onready var targeting_skill_info: Control = $TargetingSkillInfo
 @onready var relics : RelicHandler
-@onready var victory_screen: Control = $"../VictoryScreen"
-@onready var win: Button = $"../Win"
+
 
 var ally1skill : int
 var ally2skill : int
@@ -126,9 +118,17 @@ func run_simulation(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, 
 	set_unit_pos()
 	execute_ally_turn(action_queue, target_queue, ally_queue)
 	await ally_turn_done
-	var tokens_change = [fire_tokens_change,water_tokens_change,lightning_tokens_change,grass_tokens_change,earth_tokens_change]
-	return tokens_change
-
+	run.combat_manager.p_fire_tokens -= run.combat_manager.sim_fire_tokens
+	run.combat_manager.p_water_tokens -= run.combat_manager.sim_water_tokens
+	run.combat_manager.p_lightning_tokens -= run.combat_manager.sim_lightning_tokens
+	run.combat_manager.p_grass_tokens -= run.combat_manager.sim_grass_tokens
+	run.combat_manager.p_earth_tokens -= run.combat_manager.sim_earth_tokens
+	run.combat_manager.sim_fire_tokens = fire_tokens_change
+	run.combat_manager.sim_water_tokens = water_tokens_change
+	run.combat_manager.sim_lightning_tokens = lightning_tokens_change
+	run.combat_manager.sim_grass_tokens = grass_tokens_change
+	run.combat_manager.sim_earth_tokens = earth_tokens_change
+	return true
 func _ready():
 	run = get_tree().get_first_node_in_group("run")
 
