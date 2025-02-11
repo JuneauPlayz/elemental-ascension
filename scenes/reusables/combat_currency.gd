@@ -52,7 +52,7 @@ func update():
 		grass_count_2.visible = false
 	elif run.combat_manager.p_grass_tokens > run.combat_manager.grass_tokens:
 		grass_count_2.text = " (+" + str(run.combat_manager.p_grass_tokens-run.combat_manager.grass_tokens) + ")"
-	elif run.combat_manager.p_fire_tokens < run.combat_manager.fire_tokens:
+	elif run.combat_manager.p_grass_tokens < run.combat_manager.grass_tokens:
 		grass_count_2.text = " (" + str(run.combat_manager.p_grass_tokens-run.combat_manager.grass_tokens) + ")"
 		
 	if run.combat_manager.p_earth_tokens == run.combat_manager.earth_tokens:

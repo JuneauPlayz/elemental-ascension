@@ -129,11 +129,6 @@ func run_simulation(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, 
 	set_unit_pos()
 	execute_ally_turn(action_queue, target_queue, ally_queue)
 	await ally_turn_done
-	run.combat_manager.p_fire_tokens -= run.combat_manager.sim_fire_tokens
-	run.combat_manager.p_water_tokens -= run.combat_manager.sim_water_tokens
-	run.combat_manager.p_lightning_tokens -= run.combat_manager.sim_lightning_tokens
-	run.combat_manager.p_grass_tokens -= run.combat_manager.sim_grass_tokens
-	run.combat_manager.p_earth_tokens -= run.combat_manager.sim_earth_tokens
 	run.combat_manager.sim_fire_tokens = fire_tokens_change
 	run.combat_manager.sim_water_tokens = water_tokens_change
 	run.combat_manager.sim_lightning_tokens = lightning_tokens_change
@@ -435,7 +430,7 @@ func discharge(unit, caster):
 		for enemy in enemies:
 			enemy.take_damage(5*run.discharge_mult,"none",false)
 
-func sow(unit):
+func sow(unit, caster):
 	add_token("earth", (run.sow_earth_token_base + run.sow_earth_token_bonus) * run.sow_earth_token_mult)
 	add_token("grass", (run.sow_grass_token_base + run.sow_grass_token_bonus) * run.sow_grass_token_mult)
 	

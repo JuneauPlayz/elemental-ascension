@@ -66,6 +66,12 @@ var p_lightning_tokens = 0
 var p_grass_tokens = 0
 var p_earth_tokens = 0
 
+var p_spent_fire_tokens = 0
+var p_spent_water_tokens = 0
+var p_spent_lightning_tokens = 0
+var p_spent_grass_tokens = 0
+var p_spent_earth_tokens = 0
+
 var sim_fire_tokens = 0
 var sim_water_tokens = 0
 var sim_lightning_tokens = 0
@@ -421,56 +427,6 @@ func spend_skill_cost(skill):
 				earth_tokens -= skill.cost2
 	combat_currency.update()
 
-func p_spend_skill_cost(skill, ally):
-	var tokens1 = 0
-	var tokens2 = 0
-	print("spending tokens")
-	if skill.cost > 0:
-		match skill.token_type:
-			"fire":
-				p_fire_tokens -= skill.cost
-				ally.spent_tokens_type = "fire"
-				ally.spent_tokens = skill.cost
-			"water":
-				p_water_tokens -= skill.cost
-				ally.spent_tokens_type = "water"
-				ally.spent_tokens = skill.cost
-			"lightning":
-				p_lightning_tokens -= skill.cost
-				ally.spent_tokens_type = "lightning"
-				ally.spent_tokens = skill.cost
-			"grass":
-				p_grass_tokens -= skill.cost
-				ally.spent_tokens_type = "grass"
-				ally.spent_tokens = skill.cost
-			"earth":
-				p_earth_tokens -= skill.cost
-				ally.spent_tokens_type = "earth"
-				ally.spent_tokens = skill.cost
-	if skill.cost2 > 0:
-		match skill.token_type2:
-			"fire":
-				p_fire_tokens -= skill.cost2
-				ally.spent_tokens_type_2 = "fire"
-				ally.spent_tokens_2 = skill.cost2
-			"water":
-				p_water_tokens -= skill.cost2
-				ally.spent_tokens_type_2 = "water"
-				ally.spent_tokens_2 = skill.cost2
-			"lightning":
-				p_lightning_tokens -= skill.cost2
-				ally.spent_tokens_type_2 = "lightning"
-				ally.spent_tokens_2 = skill.cost2
-			"grass":
-				p_grass_tokens -= skill.cost2
-				ally.spent_tokens_type_2 = "grass"
-				ally.spent_tokens_2 = skill.cost2
-			"earth":
-				p_earth_tokens -= skill.cost2
-				ally.spent_tokens_type_2 = "earth"
-				ally.spent_tokens_2 = skill.cost2
-	combat_currency.update()
-
 func update_tokens():
 	p_fire_tokens = fire_tokens
 	p_water_tokens = water_tokens
@@ -537,7 +493,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 		spell_select_ui.update_pos(0)
 		change = true
 	allyskill = spell_select_ui.selected
-	ally.unspend_tokens()
 	match spell_select_ui.selected:
 		# if unselecting
 		0:
@@ -561,7 +516,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 				action_queue.append(ally.basic_atk)
 				target_queue.append(await choose_target(ally.basic_atk))
 				ally_queue.append(ally)
-			p_spend_skill_cost(ally.basic_atk, ally)
 			ally.using_skill = true
 		2:
 			if change:
@@ -572,7 +526,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 				action_queue.append(ally.skill_1)
 				target_queue.append(await choose_target(ally.skill_1))
 				ally_queue.append(ally)
-			p_spend_skill_cost(ally.skill_1, ally)
 			ally.using_skill = true
 		3:
 			if change:
@@ -583,7 +536,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 				action_queue.append(ally.skill_2)
 				target_queue.append(await choose_target(ally.skill_2))
 				ally_queue.append(ally)
-			p_spend_skill_cost(ally.skill_2, ally)
 			ally.using_skill = true
 		4:
 			if change:
@@ -594,7 +546,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 				action_queue.append(ally.ult)
 				target_queue.append(await choose_target(ally.ult))
 				ally_queue.append(ally)
-			p_spend_skill_cost(ally.ult, ally)
 			ally.using_skill = true
 	match ally.position:
 		1:
@@ -614,10 +565,42 @@ func _on_spell_select_ui_new_select(ally) -> void:
 			ally4_pos = ally_pos
 			spell_select_ui.update_pos(ally4_pos+1)
 	await run_sim()
+	update_spend_skill_cost(action_queue)
+	combat_currency.update()
 	check_requirements()
 		
 
-	
+
+func update_spend_skill_cost(skills):
+	p_spent_fire_tokens = 0
+	p_spent_water_tokens = 0
+	p_spent_lightning_tokens = 0
+	p_spent_grass_tokens = 0
+	p_spent_earth_tokens = 0
+	for skill in skills:
+		match skill.token_type:
+			"fire":
+				p_spent_fire_tokens += skill.cost
+			"water":
+				p_spent_water_tokens += skill.cost
+			"lightning":
+				p_spent_lightning_tokens += skill.cost
+			"grass":
+				p_spent_grass_tokens += skill.cost
+			"earth":
+				p_spent_earth_tokens += skill.cost
+		match skill.token_type2:
+			"fire":
+				p_spent_fire_tokens += skill.cost2
+			"water":
+				p_spent_water_tokens += skill.cost2
+			"lightning":
+				p_spent_lightning_tokens += skill.cost2
+			"grass":
+				p_spent_grass_tokens += skill.cost2
+			"earth":
+				p_spent_earth_tokens += skill.cost2
+			
 func update_positions(cpos):
 	if ally1_pos > cpos:
 		ally1_pos -= 1
@@ -704,8 +687,6 @@ func _on_reset_choices_pressed() -> void:
 	reset_sim()
 	reset_skill_select()
 	update_skill_positions()
-	for ally in allies:
-		ally.unspend_tokens()
 	update_tokens()
 	combat_currency.update()
 	check_requirements()
@@ -772,7 +753,13 @@ func choose_target(skill : Skill):
 		Input.set_custom_mouse_cursor(DEFAULT_CURSOR, 0)
 		targeting = false
 		return target
+		update_spend_skill_cost(action_queue)
+		combat_currency.update()
+		check_requirements()
 	else:
+		update_spend_skill_cost(action_queue)
+		combat_currency.update()
+		check_requirements()
 		return null
 	
 func target_signal(unit):
@@ -1158,12 +1145,14 @@ func run_sim():
 	if (sim_ally4 != null):
 		sim_ally4.copy = true	
 	var sim_finished = await sim.run_simulation(sim_ally1, sim_ally2, sim_ally3, sim_ally4, sim_enemy1, sim_enemy2, sim_enemy3, sim_enemy4, sim_action_queue, sim_target_queue, sim_ally_queue)
+	update_spend_skill_cost(action_queue)
 	if sim_finished:
-		p_fire_tokens += sim_fire_tokens
-		p_water_tokens += sim_water_tokens
-		p_lightning_tokens += sim_lightning_tokens
-		p_grass_tokens += sim_grass_tokens
-		p_earth_tokens += sim_earth_tokens
+		p_fire_tokens = fire_tokens + sim_fire_tokens - p_spent_fire_tokens
+		p_water_tokens = water_tokens + sim_water_tokens - p_spent_water_tokens
+		p_lightning_tokens = lightning_tokens + sim_lightning_tokens - p_spent_lightning_tokens
+		p_grass_tokens = grass_tokens + sim_grass_tokens - p_spent_grass_tokens
+		p_earth_tokens = earth_tokens + sim_earth_tokens - p_spent_earth_tokens
+	
 		combat_currency.update()
 	
 func reset_sim():

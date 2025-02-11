@@ -65,7 +65,7 @@ func receive_skill(skill, unit, value_multiplier):
 	if (!r):
 		self.take_damage(value, skill.element, true)
 		if (skill.element != "none"):
-			current_element = skill.element
+			self.current_element = skill.element
 		if skill.double_hit == true:
 			await get_tree().create_timer(0.1).timeout
 			var r2 = await ReactionManager.reaction(current_element, skill.element2, self, value2, skill.friendly, unit)
@@ -73,8 +73,6 @@ func receive_skill(skill, unit, value_multiplier):
 				await reaction_ended 
 			if (!r2):
 				self.take_damage(value2, skill.element2, true)
-			if (skill.element != "none"):
-				current_element = skill.element
 	if sow:
 		unit.receive_healing(roundi(run.sow_healing * run.sow_healing_mult), "grass", false)
 		unit.receive_shielding(roundi(run.sow_shielding * run.sow_shielding_mult), "earth", false)
@@ -82,7 +80,8 @@ func receive_skill(skill, unit, value_multiplier):
 		for stati in status:
 			if stati.name == "Sow":
 				status.erase(stati)
-				hp_bar.update_statuses(status)
+				if not copy:
+					hp_bar.update_statuses(status)
 				if not copy:
 					DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Harvest!", 32)
 	if skill.status_effects != []:
@@ -94,7 +93,8 @@ func receive_skill(skill, unit, value_multiplier):
 				for stati in status:
 					if stati.name == "Burn":
 						status.erase(stati)
-				hp_bar.update_statuses(status)
+				if not copy:
+					hp_bar.update_statuses(status)
 				var new_burn = BURN.duplicate()
 				new_burn.damage = run.burn_damage
 				new_burn.turns_remaining = run.burn_length
@@ -125,13 +125,11 @@ func receive_skill_friendly(skill, unit, value_multiplier):
 	var r = await ReactionManager.reaction(current_element, skill.element, self, value, skill.friendly, unit)
 	if (!r):
 		if skill.shielding == true:
-			self.receive_shielding(value, skill.element, false)
+			self.receive_shielding(value, skill.element, true)
 		if skill.healing == true:
 			if (health + number >= max_health):
 				number = max_health - health
-			self.receive_healing(value, skill.element, false)
-	if (skill.element == "none"):
-		current_element = skill.element
+			self.receive_healing(value, skill.element, true)
 	if skill.status_effects != []:
 		for x in skill.status_effects:
 			status.append(x)
@@ -156,7 +154,7 @@ func take_damage(damage : int, element : String, change_element : bool):
 				AudioPlayer.play_FX("fire_hit", -18)
 
 	if change_element:
-		current_element = element
+		self.current_element = element
 	if not copy:
 		hp_bar.update_element(current_element)
 	var damage_left = roundi(damage)
@@ -239,7 +237,7 @@ func receive_healing(healing: int, element : String, change_element):
 	if not copy:
 		DamageNumbers.display_number_plus(new_healing, damage_number_origin.global_position, element, "")
 	if change_element:
-		current_element = element
+		self.current_element = element
 	health += new_healing
 	if health >= max_health:
 		health = max_health
@@ -257,7 +255,7 @@ func receive_shielding(shielding: int, element : String, change_element : bool):
 	if not copy:
 		DamageNumbers.display_number_plus(new_shielding, damage_number_origin.global_position, element, "")
 	if change_element:
-		current_element = element
+		self.current_element = element
 	shield += new_shielding
 	shield = roundi(shield)
 	if not copy:
