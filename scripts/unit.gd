@@ -44,6 +44,7 @@ signal target_chosen
 signal died
 # Common Methods
 
+
 func receive_skill(skill, unit, value_multiplier):
 	var rounded : int
 	var reaction = ""

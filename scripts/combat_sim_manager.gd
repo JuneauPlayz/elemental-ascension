@@ -127,6 +127,7 @@ func run_simulation(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, 
 		enemy.run = self.run
 		enemy.visible = false
 	set_unit_pos()
+	await get_tree().create_timer(0.0001).timeout
 	execute_ally_turn(action_queue, target_queue, ally_queue)
 	await ally_turn_done
 	run.combat_manager.sim_fire_tokens = fire_tokens_change
@@ -153,7 +154,7 @@ func execute_ally_turn(action_queue, target_queue, ally_queue):
 		use_skill(skill,target,ally,true,true)
 		# checks if target is dead, currently skips the rest of the loop (wont print landed)
 		if (target == null or target.visible == false):
-			await get_tree().create_timer(0.01).timeout
+			await get_tree().create_timer(0.001).timeout
 			continue
 		await reaction_finished
 		# can be source of bugs
@@ -162,7 +163,7 @@ func execute_ally_turn(action_queue, target_queue, ally_queue):
 		for stati in target.status:
 			if stati.unique_type == "sow":
 				target.sow = true
-	await get_tree().create_timer(0.001).timeout
+	await get_tree().create_timer(0.0001).timeout
 	ally_turn_done.emit()
 
 
