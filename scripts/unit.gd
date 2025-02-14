@@ -48,7 +48,7 @@ signal died
 func receive_skill(skill, unit, value_multiplier):
 	var rounded : int
 	var reaction = ""
-	var value = skill.final_damage * value_multiplier
+	var value = skill.damage * value_multiplier
 	var value2 = skill.damage2 * value_multiplier
 	if (!connected):
 		ReactionManager.reaction_finished.connect(self.reaction_signal)

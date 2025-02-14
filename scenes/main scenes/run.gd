@@ -75,6 +75,31 @@ var relic_handler
 var skills = []
 var obtainable_skills = []
 
+var fire_skills = []
+var water_skills = []
+var lightning_skills = []
+var grass_skills = []
+var earth_skills = []
+
+var fire_skill_damage_bonus = 0
+var fire_skill_damage_mult = 1
+var water_skill_damage_bonus = 0
+var water_skill_damage_mult = 1
+var lightning_skill_damage_bonus = 0
+var lightning_skill_damage_mult = 1
+var grass_skill_damage_bonus = 0
+var grass_skill_damage_mult = 1
+var earth_skill_damage_bonus = 0
+var earth_skill_damage_mult = 1
+var physical_skill_damage_bonus = 0
+var physical_skill_damage_mult = 1
+var healing_skill_bonus = 0
+var healing_skill_mult = 1
+var shielding_skill_bonus = 0
+var shielding_skill_mult = 1
+var all_skill_damage_bonus = 0
+var all_skill_damage_mult = 1
+
 var fire_damage_bonus = 0
 var fire_damage_mult = 1
 var water_damage_bonus = 0
@@ -89,7 +114,6 @@ var physical_damage_bonus = 0
 var physical_damage_mult = 1
 var all_damage_bonus = 0
 var all_damage_mult = 1
-
 
 var healing_bonus = 0
 var healing_mult = 1
@@ -417,6 +441,7 @@ func load_combat(enemy1, enemy2, enemy3, enemy4):
 func get_combat_manager():
 	if combat:
 		return combat_manager
+
 func load_shop(type):
 	shop_scene = SHOP.instantiate()
 	if type != "none":
@@ -808,3 +833,42 @@ func reset() -> void:
 		# Reset allies' run_starting state
 		for ally in allies:
 			ally.run_starting = true
+
+func update_damage(skill):
+	if skill != null:
+		if skill.damaging:
+			match skill.element:
+				"fire":
+					skill.damage = (skill.starting_damage + fire_skill_damage_bonus + all_skill_damage_bonus) * fire_skill_damage_mult * all_skill_damage_mult
+				"water":
+					skill.damage = (skill.starting_damage + water_skill_damage_bonus + all_skill_damage_bonus) * water_skill_damage_mult * all_skill_damage_mult
+				"lightning":
+					skill.damage = (skill.starting_damage + lightning_skill_damage_bonus + all_skill_damage_bonus) * lightning_skill_damage_mult  * all_skill_damage_mult
+				"grass":
+					skill.damage = (skill.starting_damage + grass_skill_damage_bonus + all_skill_damage_bonus) * grass_skill_damage_mult * all_skill_damage_mult
+				"earth":
+					skill.damage = (skill.starting_damage + earth_skill_damage_bonus + all_skill_damage_bonus) * earth_skill_damage_mult * all_skill_damage_mult
+				"none":
+					skill.damage = (skill.starting_damage + physical_skill_damage_bonus + all_skill_damage_bonus) * physical_skill_damage_mult * all_skill_damage_mult
+		elif skill.healing:
+			skill.damage = (skill.starting_damage + healing_skill_bonus) * healing_skill_mult
+		elif skill.shielding:
+			skill.damage = (skill.starting_damage + shielding_skill_bonus) * shielding_skill_mult
+
+func add_skill(skill):
+	skills.append(skill)
+	match skill.element:
+		"fire":
+			fire_skills.append(skill)
+		"water":
+			water_skills.append(skill)
+		"lightning":
+			lightning_skills.append(skill)
+		"grass":
+			grass_skills.append(skill)
+		"earth":
+			earth_skills.append(skill)
+
+func update_skills():
+	for skill in skills:
+		update_damage(skill)

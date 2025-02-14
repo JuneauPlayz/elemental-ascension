@@ -36,13 +36,13 @@ class_name Skill
 @export_enum("Single Target","AOE","Blast") var target_tag : String
 @export var tags = []
 
-var final_damage : int
+var starting_damage : int = -1
+var run
 
-func _ready():
-	final_damage = damage
 
 func update():
-	final_damage = damage
+	if starting_damage == -1:
+		starting_damage = damage
 	if tags == []:
 		if tag1 != null:
 			tags.append(tag1)

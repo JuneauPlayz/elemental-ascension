@@ -81,8 +81,6 @@ var sim_earth_tokens = 0
 const TARGET_CURSOR = preload("res://assets/target cursor.png")
 const DEFAULT_CURSOR = preload("res://assets/defaultcursor.png")
 
-
-
 signal ally_turn_done
 signal enemy_turn_done
 signal new_spell_selected
@@ -129,6 +127,7 @@ func combat_ready():
 	# setting left and right for units
 	set_unit_pos()
 	# relic stuff
+	run.update_skills()
 	run.relic_handler.relics_activated.connect(_on_relics_activated)
 	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_COMBAT)
 	combat_currency.update()
@@ -509,16 +508,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 			combat_currency.update()
 		1:
 			if change:
-				action_queue.insert(ally_pos,ally.basic_atk)
-				target_queue.insert(ally_pos,await choose_target(ally.basic_atk))
-				ally_queue.insert(ally_pos,ally)
-			else:
-				action_queue.append(ally.basic_atk)
-				target_queue.append(await choose_target(ally.basic_atk))
-				ally_queue.append(ally)
-			ally.using_skill = true
-		2:
-			if change:
 				action_queue.insert(ally_pos,ally.skill_1)
 				target_queue.insert(ally_pos,await choose_target(ally.skill_1))
 				ally_queue.insert(ally_pos,ally)
@@ -527,7 +516,7 @@ func _on_spell_select_ui_new_select(ally) -> void:
 				target_queue.append(await choose_target(ally.skill_1))
 				ally_queue.append(ally)
 			ally.using_skill = true
-		3:
+		2:
 			if change:
 				action_queue.insert(ally_pos,ally.skill_2)
 				target_queue.insert(ally_pos,await choose_target(ally.skill_2))
@@ -537,14 +526,24 @@ func _on_spell_select_ui_new_select(ally) -> void:
 				target_queue.append(await choose_target(ally.skill_2))
 				ally_queue.append(ally)
 			ally.using_skill = true
-		4:
+		3:
 			if change:
-				action_queue.insert(ally_pos,ally.ult)
-				target_queue.insert(ally_pos,await choose_target(ally.ult))
+				action_queue.insert(ally_pos,ally.skill_3)
+				target_queue.insert(ally_pos,await choose_target(ally.skill_3))
 				ally_queue.insert(ally_pos,ally)
 			else:
-				action_queue.append(ally.ult)
-				target_queue.append(await choose_target(ally.ult))
+				action_queue.append(ally.skill_3)
+				target_queue.append(await choose_target(ally.skill_3))
+				ally_queue.append(ally)
+			ally.using_skill = true
+		4:
+			if change:
+				action_queue.insert(ally_pos,ally.skill_4)
+				target_queue.insert(ally_pos,await choose_target(ally.skill_4))
+				ally_queue.insert(ally_pos,ally)
+			else:
+				action_queue.append(ally.skill_4)
+				target_queue.append(await choose_target(ally.skill_4))
 				ally_queue.append(ally)
 			ally.using_skill = true
 	match ally.position:
@@ -880,13 +879,13 @@ func check_requirements():
 			for i in range(1, 5):
 				match i:
 					1:
-						skill = ally.basic_atk
-					2:
 						skill = ally.skill_1
-					3:
+					2:
 						skill = ally.skill_2
+					3:
+						skill = ally.skill_3
 					4:
-						skill = ally.ult
+						skill = ally.skill_4
 				if (skill):
 					var check = false
 					var tokens1 = 0

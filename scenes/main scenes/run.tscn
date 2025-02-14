@@ -180,4 +180,6 @@ label_settings = SubResource("LabelSettings_1crx1")
 [node name="XPGainPosition" type="Node2D" parent="XPBar"]
 position = Vector2(-103, 25)
 
+[node name="SkillsManager" type="Node" parent="."]
+
 [connection signal="pressed" from="ReactionGuide" to="." method="_on_reaction_guide_pressed"]

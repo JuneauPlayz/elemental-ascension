@@ -1,10 +1,10 @@
 extends Unit
 class_name Ally
 
-@export var basic_atk : Skill
-@export var skill_1: Skill
+@export var skill_1 : Skill
 @export var skill_2: Skill
-@export var ult: Skill
+@export var skill_3: Skill
+@export var skill_4: Skill
 
 @export var ult_choice_1 : Skill
 @export var ult_choice_2 : Skill
@@ -72,10 +72,18 @@ func _ready() -> void:
 	if run_starting:
 		health = res.starting_health
 		max_health = res.starting_health
-		basic_atk = res.skill1
-		skill_1 = res.skill2
-		skill_2 = res.skill3
-		ult = res.skill4
+		skill_1 = res.skill1
+		if skill_1 != null:
+			run.add_skill(skill_1)
+		skill_2 = res.skill2
+		if skill_2 != null:
+			run.add_skill(skill_2)
+		skill_3 = res.skill3
+		if skill_3 != null:
+			run.add_skill(skill_3)
+		skill_4 = res.skill4
+		if skill_4 != null:
+			run.add_skill(skill_4)
 		title = res.name
 		ult_choice_1 = res.ult_1
 		ult_choice_1.update()
@@ -98,10 +106,10 @@ func _ready() -> void:
 	else:
 		health = health
 		max_health = max_health
-	spell_select_ui.skill1 = basic_atk
-	spell_select_ui.skill2 = skill_1
-	spell_select_ui.skill3 = skill_2
-	spell_select_ui.skill4 = ult
+	spell_select_ui.skill1 = skill_1
+	spell_select_ui.skill2 = skill_2
+	spell_select_ui.skill3 = skill_3
+	spell_select_ui.skill4 = skill_4
 	spell_select_ui.load_skills()
 	hp_bar.set_hp(health)
 	hp_bar.set_maxhp(max_health)
@@ -109,10 +117,10 @@ func _ready() -> void:
 		
 	
 func update_vars():
-	spell_select_ui.skill1 = basic_atk
-	spell_select_ui.skill2 = skill_1
-	spell_select_ui.skill3 = skill_2
-	spell_select_ui.skill4 = ult
+	spell_select_ui.skill1 = skill_1
+	spell_select_ui.skill2 = skill_2
+	spell_select_ui.skill3 = skill_3
+	spell_select_ui.skill4 = skill_4
 
 func show_skills():
 	spell_select_ui.visible = true
@@ -122,14 +130,14 @@ func hide_skills():
 	
 	
 func update_skills():
-	if basic_atk != null:
-		basic_atk.update()
 	if skill_1 != null:
 		skill_1.update()
 	if skill_2 != null:
 		skill_2.update()
-	if ult != null:
-		ult.update()
+	if skill_3 != null:
+		skill_3.update()
+	if skill_4 != null:
+		skill_4.update()
 	spell_select_ui.load_skills()
 	
 func show_level_up(level):
@@ -183,23 +191,24 @@ func _on_confirm_swap_pressed() -> void:
 	AudioPlayer.play_FX("click",-10)
 	match skill_swap_1_spot:
 		1:
-			basic_atk = skill_swap_2
-		2:
 			skill_1 = skill_swap_2
-		3:
+		2:
 			skill_2 = skill_swap_2
+		3:
+			skill_3 = skill_swap_2
 		4:
-			ult = skill_swap_2
+			skill_4 = skill_swap_2
+	run.add_skill(skill_swap_2)
 	update_spell_select()
 	update_skills()
 	swap_tutorial.visible = false
 	spell_select_ui.reset()
 
 func update_spell_select():
-	spell_select_ui.skill1 = basic_atk
-	spell_select_ui.skill2 = skill_1
-	spell_select_ui.skill3 = skill_2
-	spell_select_ui.skill4 = ult
+	spell_select_ui.skill1 = skill_1
+	spell_select_ui.skill2 = skill_2
+	spell_select_ui.skill3 = skill_3
+	spell_select_ui.skill4 = skill_4
 	spell_select_ui.load_skills()
 	
 
@@ -208,13 +217,14 @@ func _on_confirm_swap_level_pressed() -> void:
 	if level_up_reward.choosing_skills:
 		match skill_swap_1_spot:
 			1:
-				basic_atk = skill_swap_2
-			2:
 				skill_1 = skill_swap_2
-			3:
+			2:
 				skill_2 = skill_swap_2
+			3:
+				skill_3 = skill_swap_2
 			4:
-				ult = skill_swap_2
+				skill_4 = skill_swap_2
+		run.add_skill(skill_swap_2)
 	elif level_up_reward.choosing_options:
 		run.relic_handler.purchase_relic(chosen_relic)
 	level_up_reward.visible = false
