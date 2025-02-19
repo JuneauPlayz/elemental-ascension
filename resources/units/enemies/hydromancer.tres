@@ -9,6 +9,7 @@
 
 [resource]
 resource_local_to_scene = true
+resource_name = "Hydromancer"
 script = ExtResource("1_vfdnl")
 starting_health = 250
 skill1 = ExtResource("2_af38f")
@@ -17,4 +18,4 @@ skill3 = ExtResource("4_ks3nl")
 skill4 = ExtResource("5_owkgm")
 sprite = ExtResource("3_3viei")
 sprite_scale = 0.3
-name = ""
+name = "Hydromancer"

@@ -30,6 +30,10 @@ class_name Skill
 @export var damage2 : int = 0
 @export_enum("none", "water", "fire", "lightning", "earth", "grass") var element2 : String
 
+@export_category("Blast")
+@export var blast = false
+@export var blast_damage : int = 0
+
 @export_category("Tags")
 @export_enum("Fire","Water","Lightning","Grass","Earth","Single Target","AOE","Healing","Shielding","Damage") var tag1 : String
 @export_enum("Fire","Water","Lightning","Grass","Earth","Single Target","AOE","Healing","Shielding","Damage") var tag2 : String

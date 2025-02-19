@@ -25,33 +25,48 @@ const L1R1 = preload("res://resources/rewards/level1/L1R1.tres")
 const L1R2 = preload("res://resources/rewards/level1/L1R2.tres")
 const L1R3 = preload("res://resources/rewards/level1/L1R3.tres")
 const L1R4 = preload("res://resources/rewards/level1/L1R4.tres")
+const L2R1 = preload("res://resources/rewards/level2/L2R1.tres")
 
 # predetermined fights
-var fight_1 = [TEAM_MAGMA_GRUNT, CHILL_GUY, null, null]
-var fight_1_reward = 6
+var f1v1 = [TEAM_MAGMA_GRUNT, CHILL_GUY, null, null]
+var f1v2 = [CHILL_GUY, CHILL_GUY, null, null]
+var f1v3 = [TEAM_MAGMA_GRUNT, TEAM_MAGMA_GRUNT, null, null]
 
-var fight_2 = [CHILL_GUY, TEAM_MAGMA_GRUNT, BAGUETTE, null]
-var fight_2_reward = 6
+var f2v1 = [CHILL_GUY, TEAM_MAGMA_GRUNT, BAGUETTE, null]
+var f2v2 = [null, BAGUETTE, BAGUETTE, null]
+var f2v3 = [TEAM_MAGMA_GRUNT, TEAM_MAGMA_GRUNT, TEAM_MAGMA_GRUNT, TEAM_MAGMA_GRUNT]
 
 var fight_3 = [PYROMANCER, HYDROMANCER, null, null]
-var fight_3_reward = 9
-
-var fight_4 = [CHILL_GUY, LIGHTNING_MASTER, BAGUETTE, ORB_WIZARD]
-var fight_4_reward = 12
 
 var fight_5 = [PYROMANCER, HYDROMANCER, LIGHTNING_MASTER, ORB_WIZARD]
-var fight_5_reward = 15
 
 var fight_6 = [null, null, THEFINALBOSS, null]
-var fight_6_reward = 18
 
-var level_1_fights = [fight_1]
+var level_1_fights = [f1v1, f1v2, f1v3]
 var level_1_rewards = [L1R1,L1R2,L1R3,L1R4]
-var level_2_fights = [fight_2]
-var level_2_rewards = [L1R1,L1R2,L1R3]
+
+var level_2_fights = [f2v1,f2v2,f2v3]
+var level_2_rewards = [L2R1]
+
+var miniboss_1_fights = [fight_3]
+
 var level_3_fights = [fight_3]
 var level_3_rewards = [L1R1,L1R2,L1R3]
 
+var level_4_fights = [fight_3]
+var level_4_rewards = [L2R1]
+
+var level_5_fights = [fight_3]
+var level_5_rewards = [L2R1]
+
+var level_6_fights = [fight_3]
+var level_6_rewards = [L2R1]
+
+var level_7_fights = [fight_3]
+var level_7_rewards = [L2R1]
+
+var level_8_fights = [fight_3]
+var level_8_rewards = [L2R1]
 #transition to run:
 
 var ally1 : UnitRes
@@ -100,6 +115,21 @@ func get_random_fight(level):
 		3:
 			random_num = rng.randi_range(0,level_3_fights.size()-1)
 			fight = level_3_fights[random_num]
+		4:
+			random_num = rng.randi_range(0,level_4_fights.size()-1)
+			fight = level_4_fights[random_num]
+		5:
+			random_num = rng.randi_range(0,level_5_fights.size()-1)
+			fight = level_5_fights[random_num]
+		6:
+			random_num = rng.randi_range(0,level_6_fights.size()-1)
+			fight = level_6_fights[random_num]
+		7:
+			random_num = rng.randi_range(0,level_7_fights.size()-1)
+			fight = level_7_fights[random_num]
+		8:
+			random_num = rng.randi_range(0,level_8_fights.size()-1)
+			fight = level_8_fights[random_num]
 	return fight
 	
 func get_random_reward(level):
@@ -116,4 +146,19 @@ func get_random_reward(level):
 		3:
 			random_num = rng.randi_range(0,level_3_rewards.size()-1)
 			reward = level_3_rewards[random_num]
+		4:
+			random_num = rng.randi_range(0,level_4_rewards.size()-1)
+			reward = level_4_rewards[random_num]
+		5:
+			random_num = rng.randi_range(0,level_5_rewards.size()-1)
+			reward = level_5_rewards[random_num]
+		6:
+			random_num = rng.randi_range(0,level_6_rewards.size()-1)
+			reward = level_6_rewards[random_num]
+		7:
+			random_num = rng.randi_range(0,level_7_rewards.size()-1)
+			reward = level_7_rewards[random_num]
+		8:
+			random_num = rng.randi_range(0,level_8_rewards.size()-1)
+			reward = level_8_rewards[random_num]
 	return reward

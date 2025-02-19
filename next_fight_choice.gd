@@ -61,16 +61,36 @@ func _ready() -> void:
 			hard_reward = GC.get_random_reward(level)
 		rewards.append(hard_reward)
 	else:
-		easy_level.text = "Level: " + str(level-1)
-		medium_level.text = "Level: " + str(level)
-		hard_level.text = "Level: " + str(level+1)
-		easy_fight = GC.get_random_fight(level-1)
-		medium_fight = GC.get_random_fight(level)
-		hard_fight = GC.get_random_fight(level+1)
-		easy_reward = GC.get_random_reward(level-1)
-		medium_reward = GC.get_random_reward(level)
-		hard_reward = GC.get_random_reward(level+1)
-		
+		if level < run.max_fight_level:
+			easy_level.text = "Level: " + str(level-1)
+			medium_level.text = "Level: " + str(level)
+			hard_level.text = "Level: " + str(level+1)
+			easy_fight = GC.get_random_fight(level-1)
+			medium_fight = GC.get_random_fight(level)
+			hard_fight = GC.get_random_fight(level+1)
+			easy_reward = GC.get_random_reward(level-1)
+			medium_reward = GC.get_random_reward(level)
+			hard_reward = GC.get_random_reward(level+1)
+		else:
+			easy_level.text = "Level: " + str(level)
+			medium_level.text = "Level: " + str(level)
+			hard_level.text = "Level: " + str(level)
+			easy_fight = GC.get_random_fight(level)
+			medium_fight = GC.get_random_fight(level)
+			hard_fight = GC.get_random_fight(level)
+			rewards = []
+			easy_reward = GC.get_random_reward(level)
+			while easy_reward in rewards:
+				easy_reward = GC.get_random_reward(level)
+			rewards.append(easy_reward)
+			medium_reward = GC.get_random_reward(level)
+			while medium_reward in rewards:
+				medium_reward = GC.get_random_reward(level)
+			rewards.append(medium_reward)
+			hard_reward = GC.get_random_reward(level)
+			while hard_reward in rewards:
+				hard_reward = GC.get_random_reward(level)
+			rewards.append(hard_reward)
 	for enemy in easy_fight:
 		if enemy != null:
 			var new_sprite = CHOOSE_FIGHT_SCENE_SPRITE.instantiate()
@@ -92,15 +112,19 @@ func _ready() -> void:
 	if easy_reward.XP != 0:
 		easy_reward_text.text += str(easy_reward.XP) + " XP, "
 	if easy_reward.shop_type != "none":
-		easy_reward_text.text += easy_reward.shop_type + " Shop"
-	
+		easy_reward_text.text += easy_reward.shop_type + " Shop, "
+	if easy_reward.event_type != "none":
+		easy_reward_text.text += easy_reward.event_type + " Event, " 
+		
 	medium_reward_text.text += " "
 	if medium_reward.gold != 0:
 		medium_reward_text.text += str(medium_reward.gold) + " Gold, "
 	if medium_reward.XP != 0:
 		medium_reward_text.text += str(medium_reward.XP) + " XP, "
 	if medium_reward.shop_type != "none":
-		medium_reward_text.text += medium_reward.shop_type + " Shop"
+		medium_reward_text.text += medium_reward.shop_type + " Shop, "
+	if medium_reward.event_type != "none":
+		medium_reward_text.text += medium_reward.event_type + " Event, "
 	
 	hard_reward_text.text += " "
 	if hard_reward.gold != 0:
@@ -109,6 +133,8 @@ func _ready() -> void:
 		hard_reward_text.text += str(hard_reward.XP) + " XP, "
 	if hard_reward.shop_type != "none":
 		hard_reward_text.text += hard_reward.shop_type + " Shop, "
+	if hard_reward.event_type != "none":
+		hard_reward_text.text += hard_reward.event_type + " Event, "
 	easy_reward_text.text = easy_reward_text.text.substr(0,easy_reward_text.text.length()-2)
 	medium_reward_text.text = medium_reward_text.text.substr(0,medium_reward_text.text.length()-2)
 	hard_reward_text.text = hard_reward_text.text.substr(0,hard_reward_text.text.length()-2)

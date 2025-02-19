@@ -9,6 +9,7 @@
 
 [resource]
 resource_local_to_scene = true
+resource_name = "Miku"
 script = ExtResource("1_606r8")
 starting_health = 1500
 skill1 = ExtResource("2_pgvml")

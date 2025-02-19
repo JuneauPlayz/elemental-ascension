@@ -9,6 +9,7 @@
 
 [resource]
 resource_local_to_scene = true
+resource_name = "Pyromancer"
 script = ExtResource("1_2elhq")
 starting_health = 250
 skill1 = ExtResource("2_m1i4n")
@@ -17,4 +18,4 @@ skill3 = ExtResource("4_0gn1f")
 skill4 = ExtResource("5_pjva1")
 sprite = ExtResource("3_f15hj")
 sprite_scale = 0.3
-name = ""
+name = "Pyromancer"

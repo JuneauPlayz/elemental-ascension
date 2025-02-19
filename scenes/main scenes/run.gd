@@ -69,6 +69,7 @@ var hard = false
 #combat
 var current_reward = 6
 var fight_level = 1
+var max_fight_level = 20
 #checks
 var reaction_guide_open = false
 
@@ -248,7 +249,7 @@ var sow_grass_token_mult = 1
 var sow_earth_token_bonus = 0
 var sow_grass_token_bonus = 0
 
-var current_fight = GC.fight_1
+var current_fight = null
 var end = false
 
 # event based relics

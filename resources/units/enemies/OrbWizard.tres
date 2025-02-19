@@ -7,10 +7,11 @@
 
 [resource]
 resource_local_to_scene = true
+resource_name = "Orb Wizard"
 script = ExtResource("1_fl0vp")
 starting_health = 80
 skill1 = ExtResource("2_gisy7")
 skill2 = ExtResource("3_muxna")
 sprite = ExtResource("5_00eno")
 sprite_scale = 0.4
-name = ""
+name = "OrbWizard"

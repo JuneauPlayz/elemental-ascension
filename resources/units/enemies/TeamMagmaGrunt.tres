@@ -8,6 +8,7 @@
 
 [resource]
 resource_local_to_scene = true
+resource_name = "MagmaGrunt"
 script = ExtResource("1_ro0vw")
 starting_health = 150
 skill1 = ExtResource("2_0wqnq")

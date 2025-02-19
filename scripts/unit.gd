@@ -85,6 +85,17 @@ func receive_skill(skill, unit, value_multiplier):
 					hp_bar.update_statuses(status)
 				if not copy:
 					DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Harvest!", 32)
+	if skill.blast == true:
+		if hasLeft():
+			if left.current_element == "none":
+				left.take_damage(skill.blast_damage, skill.element, true)
+			else:
+				await combat_manager.ReactionManager.reaction(left.current_element, skill.element, left, skill.blast_damage, false, unit)
+		if hasRight():
+			if right.current_element == "none":
+				right.take_damage(skill.blast_damage,skill.element, true)
+			else:
+				await combat_manager.ReactionManager.reaction(right.current_element,skill.element, right, skill.blast_damage, false, unit)
 	if skill.status_effects != []:
 		for x in skill.status_effects:
 			if x.name == "Bleed":
@@ -117,6 +128,7 @@ func receive_skill(skill, unit, value_multiplier):
 			hp_bar.update_statuses(status)
 	if not copy:
 		hp_bar.update_element(current_element)
+	
 
 func receive_skill_friendly(skill, unit, value_multiplier):
 	var rounded : int

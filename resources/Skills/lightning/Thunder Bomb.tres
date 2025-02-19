@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://cf872gclr1t1s"]
+
+[ext_resource type="Script" uid="uid://b6jr4peo4gndo" path="res://scripts/skill.gd" id="1_71p28"]
+
+[resource]
+script = ExtResource("1_71p28")
+name = "Thunder Bomb"
+damage = 20
+element = "lightning"
+damaging = true
+healing = false
+shielding = false
+target_type = "single_enemy"
+purchaseable = true
+tier = "Common"
+friendly = false
+lifesteal = false
+lifesteal_rate = 1.0
+cost = 3
+token_type = "lightning"
+cost2 = 0
+token_type2 = ""
+status_effects = []
+double_hit = false
+damage2 = 0
+element2 = ""
+blast = true
+blast_damage = 5
+tag1 = "Lightning"
+tag2 = ""
+target_tag = "Blast"
+tags = []
+metadata/_custom_type_script = ExtResource("1_71p28")

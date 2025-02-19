@@ -55,6 +55,7 @@ func play_FX(sound, volume = 0.0):
 			"healing":
 				soundfx = HEALING_EFFECT
 		var fx_player = AudioStreamPlayer.new()
+		fx_player.pitch_scale = randf_range(0.9,1.1)
 		fx_player.stream = soundfx
 		fx_player.name = "FX_PLAYER"
 		fx_player.volume_db = volume-5

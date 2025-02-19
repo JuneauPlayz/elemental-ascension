@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt8o73wc38o1j"]
+
+[ext_resource type="Script" uid="uid://cqv3nsv8sambe" path="res://scripts/audio_player.gd" id="1_irxkl"]
+
+[node name="AudioPlayer" type="AudioStreamPlayer"]
+script = ExtResource("1_irxkl")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.02
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

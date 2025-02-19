@@ -69,9 +69,11 @@ signal reaction_finished
 
 var run
 @onready var reaction_manager: Node = $ReactionManager
+var ReactionManager = reaction_manager
 
 func run_simulation(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, action_queue, target_queue, ally_queue):
 	run = get_tree().get_first_node_in_group("run")
+	ReactionManager = reaction_manager
 	fire_tokens_change = 0
 	water_tokens_change = 0
 	lightning_tokens_change = 0
