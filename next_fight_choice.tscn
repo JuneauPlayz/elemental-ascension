@@ -1,0 +1,275 @@
+[gd_scene load_steps=8 format=3 uid="uid://dayqrnbuvrocm"]
+
+[ext_resource type="Script" uid="uid://blim31asjjo3m" path="res://next_fight_choice.gd" id="1_ecw7q"]
+[ext_resource type="Texture2D" uid="uid://133h4yyl8s4l" path="res://assets/chillpyro.png" id="2_i05vp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jcw1"]
+bg_color = Color(0.526194, 0.632642, 0.547312, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_aru2f"]
+font_size = 56
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1wcfq"]
+font_size = 64
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac5hj"]
+bg_color = Color(0.756863, 0.584314, 0.415686, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ny5kq"]
+bg_color = Color(0.690196, 0.47451, 0.482353, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="NextFightChoice" type="Node2D"]
+script = ExtResource("1_ecw7q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 1086.0
+offset_top = 99.0
+offset_right = 1821.0
+offset_bottom = 1149.0
+theme_override_constants/separation = 75
+
+[node name="Fight1" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 250)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1jcw1")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Fight1"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Fight1/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="Difficulty" type="Label" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Easy"
+label_settings = SubResource("LabelSettings_aru2f")
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Level :"
+label_settings = SubResource("LabelSettings_aru2f")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Sprite2D" type="TextureRect" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_i05vp")
+expand_mode = 1
+
+[node name="Sprite2D2" type="TextureRect" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_i05vp")
+expand_mode = 1
+
+[node name="Sprite2D3" type="TextureRect" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_i05vp")
+expand_mode = 1
+
+[node name="Sprite2D4" type="TextureRect" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_i05vp")
+expand_mode = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Reward" type="Label" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Reward: "
+label_settings = SubResource("LabelSettings_1wcfq")
+
+[node name="Reward2" type="RichTextLabel" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 64
+
+[node name="EasyFight" type="Button" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Fight!"
+
+[node name="Fight2" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 250)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ac5hj")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Fight2"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Fight2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 170
+
+[node name="Difficulty" type="Label" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_aru2f")
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Level :"
+label_settings = SubResource("LabelSettings_aru2f")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Sprite2D" type="TextureRect" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_i05vp")
+expand_mode = 1
+
+[node name="Sprite2D2" type="TextureRect" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_i05vp")
+expand_mode = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Reward" type="Label" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Reward: "
+label_settings = SubResource("LabelSettings_1wcfq")
+
+[node name="Reward2" type="RichTextLabel" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 64
+
+[node name="MediumFight" type="Button" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Fight!"
+
+[node name="Fight3" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 250)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ny5kq")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Fight3"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Fight3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="Difficulty" type="Label" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Hard"
+label_settings = SubResource("LabelSettings_aru2f")
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Level :"
+label_settings = SubResource("LabelSettings_aru2f")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Sprite2D4" type="TextureRect" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_i05vp")
+expand_mode = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Reward" type="Label" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Reward: "
+label_settings = SubResource("LabelSettings_1wcfq")
+
+[node name="Reward2" type="RichTextLabel" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 64
+
+[node name="HardFight" type="Button" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 51
+text = "Fight!"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+offset_right = 1929.0
+offset_bottom = 1085.0
+mouse_filter = 2
+color = Color(0.188235, 0.2, 0.266667, 0.658824)
+
+[connection signal="pressed" from="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3/EasyFight" to="." method="_on_easy_fight_pressed"]
+[connection signal="pressed" from="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3/MediumFight" to="." method="_on_medium_fight_pressed"]
+[connection signal="pressed" from="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3/HardFight" to="." method="_on_hard_fight_pressed"]

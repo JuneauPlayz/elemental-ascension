@@ -1,32 +1,35 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://doxqj6lskh6mh"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://doxqj6lskh6mh"]
 
 [ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/relic handler/relic.gd" id="1_50oi7"]
-[ext_resource type="Texture2D" uid="uid://lusgwdgw1no1" path="res://assets/Blastoise.png" id="1_lwtm3"]
-[ext_resource type="Script" uid="uid://cunubpflnk7xm" path="res://resources/relic scripts/basic_mults.gd" id="2_fn3p8"]
+[ext_resource type="Script" uid="uid://hgh6nfo6nphs" path="res://resources/relic scripts/skill_damage.gd" id="2_fn3p8"]
 
 [resource]
 script = ExtResource("2_fn3p8")
-fire_damage_bonus = 0
-fire_damage_mult = 0.0
-water_damage_bonus = 5
-water_damage_mult = 0.0
-lightning_damage_bonus = 0
-lightning_damage_mult = 0.0
-earth_damage_bonus = 0
-earth_damage_mult = 0.0
-grass_damage_bonus = 0
-grass_damage_mult = 0.0
-healing_bonus = 0
-healing_mult = 0.0
-shielding_bonus = 0
-shielding_mult = 0.0
+fire_skill_damage_bonus = 0
+fire_skill_damage_mult = 0.0
+water_skill_damage_bonus = 5
+water_skill_damage_mult = 0.0
+lightning_skill_damage_bonus = 0
+lightning_skill_damage_mult = 0.0
+earth_skill_damage_bonus = 0
+earth_skill_damage_mult = 0.0
+grass_skill_damage_bonus = 0
+grass_skill_damage_mult = 0.0
+physical_skill_damage_bonus = 0
+physical_skill_damage_mult = 0.0
+all_skill_damage_bonus = 0
+all_skill_damage_mult = 0.0
+healing_skill_bonus = 0
+healing_skill_mult = 0.0
+shielding_skill_bonus = 0
+shielding_skill_mult = 0.0
 relic_name = "Mini Water Boost"
 tier = "Common"
 type = 4
 tag1 = "Water"
 tag2 = ""
 tag3 = ""
-icon = ExtResource("1_lwtm3")
-tooltip = "Increases all water damage
-on enemies by 5"
+tags = []
+tooltip = "All Ally Water Skills
++5 Damage"
 metadata/_custom_type_script = ExtResource("1_50oi7")

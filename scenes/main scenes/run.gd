@@ -20,6 +20,7 @@ const COMBAT = preload("res://scenes/main scenes/combat.tscn")
 const SHOP = preload("res://scenes/main scenes/shop.tscn")
 const LEVEL_UP = preload("res://level_up_scene.tscn")
 const END = preload("res://scenes/main scenes/ending_screen.tscn")
+const NEXT_FIGHT_CHOICE = preload("res://next_fight_choice.tscn")
 
 @onready var S: Node = $StateMachine
 
@@ -32,6 +33,7 @@ var event = false
 var event_scene
 var level_up = false
 var level_up_scene
+var choose_fight_scene
 
 signal scene_end
 signal special_scene_end
@@ -64,6 +66,7 @@ var current_xp_goal = 100
 var hard = false
 #combat
 var current_reward = 6
+var fight_level = 1
 #checks
 var reaction_guide_open = false
 
@@ -253,48 +256,22 @@ var lightning_strikes_twice = false
 var burn_stack = false
 var discharge_destruction = false
 var steamer = false
+
 func run_loop():
 	while not end:
 		# combat
+		S.transition("choosefight")
+		await scene_end
 		if (level_up):
 			S.transition("levelup")
 			await scene_end
 		S.transition("combat")
 		await scene_end
+		if (level_up):
+			S.transition("levelup")
+			await scene_end
 		if (end):
 			break
-		# event
-		if (level_up):
-			S.transition("levelup")
-			await scene_end
-		S.transition("event")
-		await scene_end
-		# combat
-		if (level_up):
-			S.transition("levelup")
-			await scene_end
-		S.transition("combat")
-		await scene_end
-		if (end):
-			break
-		# event
-		if (level_up):
-			S.transition("levelup")
-			await scene_end
-		S.transition("event")
-		await scene_end
-		# combat
-		if (level_up):
-			S.transition("levelup")
-			await scene_end
-		S.transition("combat")
-		await scene_end
-		# shop
-		if (level_up):
-			S.transition("levelup")
-			await scene_end
-		S.transition("shop")
-		await scene_end
 	shop_scene.queue_free()
 	var end_scene = END.instantiate()
 	self.add_child(end_scene)
@@ -468,7 +445,12 @@ func load_level_up():
 func load_event(event):
 	event_scene = event.instantiate()
 	self.add_child(event_scene)
-	
+
+func load_choose_fight(level):
+	choose_fight_scene = NEXT_FIGHT_CHOICE.instantiate()
+	choose_fight_scene.level = level
+	self.add_child(choose_fight_scene)
+	 
 func add_gold(count):
 	gold += ((count + bonus_gold) * gold_mult)
 	gold_text.text = "[color=yellow]Gold[/color] : " + str(gold)

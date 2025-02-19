@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dypw27wcl2dat"]
+
+[ext_resource type="Texture2D" uid="uid://133h4yyl8s4l" path="res://assets/chillpyro.png" id="1_yo07i"]
+
+[node name="ChooseFightSceneSprite" type="TextureRect"]
+custom_minimum_size = Vector2(100, 100)
+texture = ExtResource("1_yo07i")
+expand_mode = 1

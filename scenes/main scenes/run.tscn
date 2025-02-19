@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://o2oy1rvwobsh"]
+[gd_scene load_steps=14 format=3 uid="uid://o2oy1rvwobsh"]
 
 [ext_resource type="Script" uid="uid://drftmrt3lasq0" path="res://scenes/main scenes/run.gd" id="1_e7k3u"]
 [ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="2_fgc7h"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bq1neyovm73vq" path="res://scripts/States/EventState.gd" id="6_vpwr2"]
 [ext_resource type="Script" uid="uid://c6pkihqpaueax" path="res://scripts/States/LevelUpState.gd" id="7_1crx1"]
 [ext_resource type="Script" uid="uid://b86ovwwhqlkcf" path="res://scripts/States/SpecialShopState.gd" id="9_vpwr2"]
+[ext_resource type="Script" uid="uid://bxydft84qy3h2" path="res://scripts/States/ChooseFightState.gd" id="10_1crx1"]
 [ext_resource type="PackedScene" uid="uid://cokl4xcoeufdp" path="res://scenes/reusables/reaction_panel.tscn" id="10_prr82"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dcmsy"]
@@ -127,6 +128,10 @@ metadata/_custom_type_script = ExtResource("7_1crx1")
 [node name="SpecialShop" type="Node" parent="StateMachine"]
 script = ExtResource("9_vpwr2")
 metadata/_custom_type_script = ExtResource("9_vpwr2")
+
+[node name="ChooseFight" type="Node" parent="StateMachine"]
+script = ExtResource("10_1crx1")
+metadata/_custom_type_script = ExtResource("10_1crx1")
 
 [node name="GoldText" type="RichTextLabel" parent="."]
 z_index = 3
