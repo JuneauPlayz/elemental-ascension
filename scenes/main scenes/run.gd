@@ -35,6 +35,8 @@ var level_up = false
 var level_up_scene
 var choose_fight_scene
 
+var scene_reward = ""
+
 signal scene_end
 signal special_scene_end
 
@@ -260,15 +262,15 @@ var steamer = false
 func run_loop():
 	while not end:
 		# combat
-		S.transition("choosefight")
+		S.transition("choosefight","")
 		await scene_end
 		if (level_up):
-			S.transition("levelup")
+			S.transition("levelup","")
 			await scene_end
-		S.transition("combat")
+		S.transition("combat","")
 		await scene_end
 		if (level_up):
-			S.transition("levelup")
+			S.transition("levelup","")
 			await scene_end
 		if (end):
 			break
@@ -292,7 +294,34 @@ func scene_ended(next_scene):
 				load_shop("grass")
 			"earth_shop":
 				load_shop("earth")
-		S.transition("specialshop")
+		S.transition("specialshop","")
+		await special_scene_end
+		scene_end.emit()
+	elif scene_reward != "":
+		match scene_reward:
+			"common_event":
+				S.transition("event","common")
+			"rare_event":
+				S.transition("event","rare")
+			"normal_shop":
+				load_shop("none")
+				S.transition("specialshop","")
+			"fire_shop":
+				load_shop("fire")
+				S.transition("specialshop","")
+			"water_shop":
+				load_shop("water")
+				S.transition("specialshop","")
+			"lightning_shop":
+				load_shop("lightning")
+				S.transition("specialshop","")
+			"grass_shop":
+				load_shop("grass")
+				S.transition("specialshop","")
+			"earth_shop":
+				load_shop("earth")
+				S.transition("specialshop","")
+		scene_reward = ""
 		await special_scene_end
 		scene_end.emit()
 	else:
@@ -459,31 +488,30 @@ func spend_gold(count):
 	gold -= count
 	gold_text.text = "[color=yellow]Gold[/color] : " + str(gold)
 
-func next_fight():
-	match current_fight:
-		GC.fight_1:
-			current_fight = GC.fight_2
-			current_reward = GC.fight_2_reward
-		GC.fight_2:
-			current_fight = GC.fight_3
-			current_reward = GC.fight_3_reward
-		GC.fight_3:
-			current_fight = GC.fight_4
-			current_reward = GC.fight_4_reward
-		GC.fight_4:
-			current_fight = GC.fight_5
-			current_reward = GC.fight_5_reward
-		GC.fight_5:
-			current_fight = GC.fight_6
-			current_reward = GC.fight_6_reward
-		GC.fight_6:
-			if (hard == true):
-				end = true
-			else:
-				hard = true
-				current_fight = GC.fight_1
-				current_reward = GC.fight_1_reward
-			
+func add_reward(reward):
+	add_gold(reward.gold)
+	increase_xp(reward.XP)
+	if reward.shop_type != "none":
+		match reward.shop_type:
+			"normal":
+				scene_reward = "normal_shop"
+			"fire":
+				scene_reward = "fire_shop"
+			"water":
+				scene_reward = "water_shop"
+			"lightning":
+				scene_reward = "lightning_shop"
+			"grass":
+				scene_reward = "grass_shop"
+			"earth":
+				scene_reward = "earth_shop"
+	if reward.event_type != "none":
+		match reward.event_type:
+			"common":
+				scene_reward = "common_event"
+			"rare":
+				scene_reward = "rare_event"
+
 func level_up_allies():
 	level += 1
 	level_up = true

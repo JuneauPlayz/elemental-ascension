@@ -24,6 +24,7 @@ const SACRIFICE_EVENT = preload("res://sacrifice_event.tscn")
 const L1R1 = preload("res://resources/rewards/level1/L1R1.tres")
 const L1R2 = preload("res://resources/rewards/level1/L1R2.tres")
 const L1R3 = preload("res://resources/rewards/level1/L1R3.tres")
+const L1R4 = preload("res://resources/rewards/level1/L1R4.tres")
 
 # predetermined fights
 var fight_1 = [TEAM_MAGMA_GRUNT, CHILL_GUY, null, null]
@@ -45,7 +46,7 @@ var fight_6 = [null, null, THEFINALBOSS, null]
 var fight_6_reward = 18
 
 var level_1_fights = [fight_1]
-var level_1_rewards = [L1R1,L1R2,L1R3]
+var level_1_rewards = [L1R1,L1R2,L1R3,L1R4]
 var level_2_fights = [fight_2]
 var level_2_rewards = [L1R1,L1R2,L1R3]
 var level_3_fights = [fight_3]
@@ -60,18 +61,28 @@ var ally4 : UnitRes
 
 var events = [REST_EVENT, SPECIAL_SHOP_EVENT, SACRIFICE_EVENT, REST_EVENT, SPECIAL_SHOP_EVENT,]
 
+var common_events = [REST_EVENT]
+var rare_events = [SPECIAL_SHOP_EVENT, SACRIFICE_EVENT]
+
 func load_run(ally1, ally2, ally3, ally4):
 	self.ally1 = ally1
 	self.ally2 = ally2
 	self.ally3 = ally3
 	self.ally4 = ally4
 	
-func get_random_event():
+func get_random_event(rarity):
 	if events == []:
 		return null
 	var rng = RandomNumberGenerator.new()
-	var random_num = rng.randi_range(0,events.size()-1)
-	var event = events[random_num]
+	var random_num = 0
+	var event = null
+	match rarity:
+		"common":
+			random_num = rng.randi_range(0,common_events.size()-1)
+			event = common_events[random_num]
+		"rare":
+			random_num = rng.randi_range(0,rare_events.size()-1)
+			event = rare_events[random_num]
 	
 	return event
 	

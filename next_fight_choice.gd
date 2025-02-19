@@ -86,21 +86,23 @@ func _ready() -> void:
 			var new_sprite = CHOOSE_FIGHT_SCENE_SPRITE.instantiate()
 			new_sprite.texture = load(enemy.sprite.resource_path)
 			hard_enemies.add_child(new_sprite)
-	
+	easy_reward_text.text += " "
 	if easy_reward.gold != 0:
 		easy_reward_text.text += str(easy_reward.gold) + " Gold, "
 	if easy_reward.XP != 0:
 		easy_reward_text.text += str(easy_reward.XP) + " XP, "
 	if easy_reward.shop_type != "none":
 		easy_reward_text.text += easy_reward.shop_type + " Shop"
-		
+	
+	medium_reward_text.text += " "
 	if medium_reward.gold != 0:
 		medium_reward_text.text += str(medium_reward.gold) + " Gold, "
 	if medium_reward.XP != 0:
 		medium_reward_text.text += str(medium_reward.XP) + " XP, "
 	if medium_reward.shop_type != "none":
 		medium_reward_text.text += medium_reward.shop_type + " Shop"
-		
+	
+	hard_reward_text.text += " "
 	if hard_reward.gold != 0:
 		hard_reward_text.text += str(hard_reward.gold) + " Gold, "
 	if hard_reward.XP != 0:

@@ -2,7 +2,7 @@ extends State
 class_name ShopState
 @onready var run: Node = $"../.."
 
-func Enter():
+func Enter(rarity):
 	run.loading_screen(0.35)
 	run.shop = true
 	run.load_shop("none")

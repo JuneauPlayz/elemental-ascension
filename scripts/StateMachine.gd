@@ -12,7 +12,7 @@ func _ready():
 			child.Transitioned.connect(on_child_transition)
 			
 	if initial_state:
-		initial_state.Enter()
+		initial_state.Enter("")
 		current_state = initial_state
 
 func _process(delta):
@@ -29,19 +29,19 @@ func on_child_transition(state, new_state_name):
 	
 	if current_state:
 		current_state.Exit()
-		
-	new_state.Enter()
+	new_state.Enter("")
 	
 	current_state = new_state
 	
-func transition(state_name):
+func transition(state_name, rarity):
 	var new_state = states.get(state_name.to_lower())
 	if !new_state:
 		return
 	
 	if current_state:
 		current_state.Exit()
-		
-	new_state.Enter()
+	
+	new_state.Enter(rarity)
+	
 	
 	current_state = new_state

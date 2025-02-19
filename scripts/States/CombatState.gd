@@ -2,7 +2,7 @@ extends State
 class_name CombatState
 @onready var run: Node = $"../.."
 
-func Enter():
+func Enter(rarity):
 	run.loading_screen(0.5)
 	run.combat = true
 	for ally in run.allies:
@@ -17,7 +17,6 @@ func Exit():
 		ally.current_element = "none"
 	run.combat = false
 	run.combat_scene.queue_free()
-	run.next_fight()
 	
 func Update(_delta: float):
 	pass

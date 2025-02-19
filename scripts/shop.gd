@@ -49,7 +49,7 @@ signal special_shop_ended
 func _ready() -> void:
 	AudioPlayer.play_music("wii_shop", -30)
 	run = get_tree().get_first_node_in_group("run")
-	shop_ended.connect(run.scene_ended)
+	shop_ended.connect(run.special_scene_ended)
 	special_shop_ended.connect(run.special_scene_ended)
 	relic_list.append(relic_1_spot)
 	relic_list.append(relic_2_spot)
@@ -210,7 +210,7 @@ func buying_new_skill(shop_item):
 func _on_next_combat_pressed() -> void:
 	AudioPlayer.play_FX("click",-10)
 	if type == "none":
-		shop_ended.emit("")
+		shop_ended.emit()
 	else:
 		special_shop_ended.emit()
 	

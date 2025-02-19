@@ -2,14 +2,14 @@ extends State
 class_name EventState
 @onready var run: Node = $"../.."
 
-func Enter():
+func Enter(rarity):
 	run.loading_screen(0.35)
 	for ally in run.allies:
 		ally.spell_select_ui.visible = true
 		ally.spell_select_ui.enable_all()
 		ally.spell_select_ui.reset()
 	run.event = true
-	run.load_event(GC.get_random_event())
+	run.load_event(GC.get_random_event(rarity))
 	
 func Exit():
 	run.event = false

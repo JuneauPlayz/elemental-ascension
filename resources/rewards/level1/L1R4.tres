@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Reward" load_steps=2 format=3 uid="uid://bdxt4gr5g0yhy"]
+
+[ext_resource type="Script" uid="uid://c1myaj4finqo7" path="res://scripts/reward.gd" id="1_3n7mr"]
+
+[resource]
+script = ExtResource("1_3n7mr")
+gold = 0
+XP = 25
+shop_type = "none"
+event_type = "common"
+metadata/_custom_type_script = ExtResource("1_3n7mr")

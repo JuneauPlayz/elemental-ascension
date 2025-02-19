@@ -282,14 +282,12 @@ func defeat():
 	
 func finish_battle():
 	if victorious:
-		run.add_gold(run.current_reward)
+		run.add_reward(run.current_reward)
 		if run.end:
-			run.increase_xp(xp_reward)
 			combat_ended.emit("")
 		else:
 			for ally in allies:
 				ally.spell_select_ui.new_select.disconnect(run.combat_manager._on_spell_select_ui_new_select)
-			run.increase_xp(xp_reward)
 			combat_ended.emit("")
 	if not victorious:
 		run.reset()

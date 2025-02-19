@@ -10,7 +10,7 @@ signal event_ended
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	event_ended.connect(run.scene_ended)
+	event_ended.connect(run.special_scene_ended)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 
 
 func _on_next_combat_pressed() -> void:
-	event_ended.emit("")
+	event_ended.emit()
 	
 
 

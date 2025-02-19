@@ -2,7 +2,7 @@ extends State
 class_name LevelUpState
 @onready var run: Node = $"../.."
 
-func Enter():
+func Enter(rarity):
 	run.loading_screen(0.35)
 	run.load_level_up()
 	for ally in run.allies:

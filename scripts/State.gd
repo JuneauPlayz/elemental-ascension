@@ -3,7 +3,7 @@ class_name State
 
 signal Transitioned
 
-func Enter():
+func Enter(rarity):
 	pass
 	
 func Exit():

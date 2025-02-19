@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ydkggenx6prk"]
 
-[ext_resource type="Script" path="res://scripts/result_screen.gd" id="1_couv2"]
+[ext_resource type="Script" uid="uid://bl01n8mf86sh" path="res://scripts/result_screen.gd" id="1_couv2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dymp5"]
 content_margin_left = 7.0
@@ -75,9 +75,24 @@ label_settings = SubResource("LabelSettings_1pbcr")
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_pmpuw")
 
-[node name="+Gold" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Result" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Result"
+label_settings = SubResource("LabelSettings_6s3dt")
+
+[node name="XP" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "+10  XP"
+label_settings = SubResource("LabelSettings_6s3dt")
+
+[node name="Gold" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "+10  Gold"
+label_settings = SubResource("LabelSettings_6s3dt")
+
+[node name="Shop" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shop"
 label_settings = SubResource("LabelSettings_6s3dt")
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]

@@ -136,9 +136,9 @@ metadata/_custom_type_script = ExtResource("10_1crx1")
 [node name="GoldText" type="RichTextLabel" parent="."]
 z_index = 3
 offset_left = 1684.0
-offset_top = 94.0
+offset_top = 85.0
 offset_right = 1884.0
-offset_bottom = 155.0
+offset_bottom = 146.0
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
