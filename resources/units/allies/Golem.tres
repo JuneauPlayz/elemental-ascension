@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=11 format=3 uid="uid://brb2gubx0hm1h"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=12 format=3 uid="uid://brb2gubx0hm1h"]
 
 [ext_resource type="Resource" uid="uid://bivvenkk5l4lx" path="res://resources/level_up_relics/Rock Starter.tres" id="1_akhwl"]
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_rsp8b"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://pnpb0odeh88v" path="res://assets/golem.png" id="4_a2f0g"]
 [ext_resource type="Resource" uid="uid://csv227wkcqdev" path="res://resources/level_up_relics/Shield Boost.tres" id="4_hc7ce"]
 [ext_resource type="Resource" uid="uid://i3q5vd6ou4km" path="res://resources/Skills/earth/Rock Barrier.tres" id="5_06fex"]
+[ext_resource type="Resource" uid="uid://ebw1lyateyty" path="res://resources/Skills/earth/Rock Slam.tres" id="8_hc7ce"]
 [ext_resource type="Resource" uid="uid://b5cvbcitp58fx" path="res://resources/Skills/earth/Rock Guardian.tres" id="10_akhwl"]
 
 [resource]
@@ -16,6 +17,7 @@ script = ExtResource("1_rsp8b")
 starting_health = 125
 skill1 = ExtResource("2_famig")
 skill2 = ExtResource("3_3j15h")
+skill3 = ExtResource("8_hc7ce")
 relic_1 = ExtResource("1_akhwl")
 relic_2 = ExtResource("2_akhwl")
 ult_1 = ExtResource("5_06fex")

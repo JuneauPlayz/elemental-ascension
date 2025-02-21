@@ -151,7 +151,7 @@ func detonate(elem1: String, elem2: String, unit: Unit, value, friendly: bool, c
 		if unit.right.current_element == "none":
 			unit.right.take_damage(res_value * run.detonate_side_mult, elem2, true)
 		else:
-			await reaction(unit.right.current_element, elem2, unit.right, res_value * run.detonate_side_mult, false, unit)
+			await reaction(unit.right.current_element, elem2, unit.right, res_value * run.detonate_side_mult, false, caster)
 	if not friendly:
 		unit.take_damage(res_value * run.detonate_main_mult, elem2, false)
 	await get_tree().create_timer(0.001).timeout
@@ -243,9 +243,11 @@ func discharge(elem1: String, elem2: String, unit: Unit, value, friendly: bool, 
 	var split_damage = value
 	if combat.enemies.size() > 0:
 		split_damage = roundi((value * run.discharge_mult) / combat.enemies.size())
-		unit.current_element = "none"
 	if not friendly:
 		unit.take_damage(roundi(split_damage), elem2, false)
+		unit.current_element = "none"
+		if not unit.copy:
+			unit.hp_bar.update_element(unit.current_element)
 	elif friendly:
 		unit.receive_shielding(roundi(value), elem2, false)
 	for enemy in combat.enemies:

@@ -258,36 +258,28 @@ func use_skill(skill,target,unit,event,spend_tokens):
 				if (skill.friendly == true):
 					for ally in allies:
 						ally.receive_skill_friendly(skill,unit,value_multiplier)
-						await get_tree().create_timer(0.001).timeout
 				else:
 					for ally in allies:
 						ally.receive_skill(skill,unit,value_multiplier)
-						await get_tree().create_timer(0.001).timeout
 						#print(ally.title + " taking " + str(skill.damage) + " damage from " + unit.title)
 			elif (skill.target_type == "all_enemies" and allies.size() > 0):
 				if (skill.friendly == true):
 					for enemy in enemies:
 						enemy.receive_skill_friendly(skill,unit,value_multiplier)
-						await get_tree().create_timer(0.001).timeout
 				else:
 					for enemy in enemies:
 						enemy.receive_skill(skill,unit,value_multiplier)
-						await get_tree().create_timer(0.001).timeout
 			elif (skill.target_type == "all_units" and allies.size() > 0 and enemies.size() > 0):
 				if (skill.friendly == true):
 					for enemy in enemies:
 						enemy.receive_skill_friendly(skill,unit,value_multiplier)
-						await get_tree().create_timer(0.001).timeout
 					for ally in allies:
 						ally.receive_skill_friendly(skill,unit,value_multiplier)
-						await get_tree().create_timer(0.001).timeout
 				else:
 					for enemy in enemies:
 						enemy.receive_skill(skill,unit,value_multiplier)
-						await get_tree().create_timer(0.001).timeout
 					for ally in allies:
 						ally.receive_skill(skill,unit,value_multiplier)
-						await get_tree().create_timer(0.001).timeout
 	if (skill.lifesteal):
 		unit.receive_healing(roundi(skill.damage * skill.lifesteal_rate), "grass", false)
 

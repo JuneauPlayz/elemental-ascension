@@ -813,9 +813,6 @@ func reset() -> void:
 		sow_earth_token_bonus = 0
 		sow_grass_token_bonus = 0
 
-		# Reset current fight
-		current_fight = GC.fight_1
-
 		# Reset event-based relics
 		ghostfire = false
 		flow = false

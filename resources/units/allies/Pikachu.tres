@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=11 format=3 uid="uid://coik84dyxxr16"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=12 format=3 uid="uid://coik84dyxxr16"]
 
 [ext_resource type="Resource" uid="uid://cwwj3sjm5m7cf" path="res://resources/level_up_relics/Storm Starter.tres" id="1_h6d0o"]
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_psg7m"]
@@ -10,12 +10,14 @@
 [ext_resource type="Resource" uid="uid://b8ljfrydbv3bn" path="res://resources/level_up_relics/Lightning Boost.tres" id="4_h6d0o"]
 [ext_resource type="Resource" uid="uid://bfvyaecgwi1s6" path="res://resources/Skills/lightning/Thunder.tres" id="5_ioqke"]
 [ext_resource type="Texture2D" uid="uid://dmsixe7n4f266" path="res://assets/pikachu.png" id="6_vnyy7"]
+[ext_resource type="Resource" uid="uid://cf3f0mnd7a8pe" path="res://resources/Skills/lightning/Thunder Dome.tres" id="8_r077k"]
 
 [resource]
 script = ExtResource("1_psg7m")
 starting_health = 75
 skill1 = ExtResource("2_sd5ql")
 skill2 = ExtResource("3_2ycgk")
+skill3 = ExtResource("8_r077k")
 relic_1 = ExtResource("1_h6d0o")
 relic_2 = ExtResource("2_r077k")
 ult_1 = ExtResource("3_e3nc1")

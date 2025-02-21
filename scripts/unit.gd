@@ -166,10 +166,6 @@ func take_damage(damage : int, element : String, change_element : bool):
 			_:
 				AudioPlayer.play_FX("fire_hit", -18)
 
-	if change_element:
-		self.current_element = element
-	if not copy:
-		hp_bar.update_element(current_element)
 	var damage_left = roundi(damage)
 	if self is Enemy:
 		damage_left += run.all_damage_bonus
@@ -233,7 +229,15 @@ func take_damage(damage : int, element : String, change_element : bool):
 	check_if_dead()
 	if not copy:
 		hp_bar.set_hp(roundi(health))
+	if change_element:
+		change_element(element)
 	return total_dmg
+
+func change_element(element):
+	await get_tree().create_timer(0.00001).timeout
+	current_element = element
+	if not copy:
+		hp_bar.update_element(current_element)
 
 func receive_healing(healing: int, element : String, change_element):
 	var healing_reduction = 1
