@@ -7,7 +7,9 @@ extends Node
 @export var allies : Array = []
 
 var front_ally : Ally
+var front_ally_2 : Ally
 var back_ally : Ally
+var back_ally_2 : Ally
 
 @export var enemy1 : Enemy
 @export var enemy2 : Enemy
@@ -15,7 +17,9 @@ var back_ally : Ally
 @export var enemy4 : Enemy
 @export var enemies : Array = []
 var front_enemy : Enemy
+var front_enemy_2 : Enemy
 var back_enemy : Enemy
+var back_enemy_2 : Enemy
 
 var ally_list = [ally1, ally2, ally3, ally4]
 var enemy_list = [enemy1, enemy2]
@@ -377,9 +381,15 @@ func set_unit_pos():
 	if enemies.size() > 0:
 		front_enemy = enemies[0]
 		back_enemy = enemies[enemies.size()-1]
+		if enemies.size() > 1:
+			front_enemy_2 = enemies[1]
+			back_enemy_2 = enemies[enemies.size()-2]
 	if allies.size() > 0:
 		front_ally = allies[allies.size()-1]
 		back_ally = allies[0]
+		if allies.size() > 1:
+			front_ally_2 = allies[allies.size()-2]
+			back_ally_2 = allies[1]
 		
 func vaporize(unit, caster, element):
 	add_token("fire", (run.vaporize_fire_token_base + run.vaporize_fire_token_bonus) * run.vaporize_fire_token_mult)
