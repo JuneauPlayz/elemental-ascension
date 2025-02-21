@@ -46,6 +46,9 @@ signal died
 
 
 func receive_skill(skill, unit, value_multiplier):
+	if skill.friendly == true:
+		receive_skill_friendly(skill, unit, value_multiplier)
+		return
 	var rounded : int
 	var reaction = ""
 	var value = skill.damage * value_multiplier

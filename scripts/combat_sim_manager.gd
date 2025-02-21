@@ -225,14 +225,30 @@ func use_skill(skill,target,unit,event,spend_tokens):
 	else:
 		if (skill.target_type == "front_ally" and front_ally != null):
 			front_ally.receive_skill(skill,unit,value_multiplier)
+		elif (skill.target_type == "front_2_allies" and front_ally != null):
+			front_ally.receive_skill(skill,unit,value_multiplier)
+			if front_ally_2 != null:
+				front_ally_2.receive_skill(skill,unit,value_multiplier)
 		elif (skill.target_type == "front_enemy" and front_enemy != null):
 			front_enemy.receive_skill(skill,unit,value_multiplier)
+		elif (skill.target_type == "front_2_enemies" and front_enemy != null):
+			front_enemy.receive_skill(skill,unit,value_multiplier)
+			if front_enemy_2 != null:
+				front_enemy_2.receive_skill(skill,unit,value_multiplier)
 		elif (skill.target_type == "back_ally" and back_ally != null):
 			back_ally.receive_skill(skill,unit,value_multiplier)
+		elif (skill.target_type == "back_2_allies" and back_ally != null):
+			back_ally.receive_skill(skill,unit,value_multiplier)
+			if back_ally_2 != null:
+				back_ally_2.receive_skill(skill,unit,value_multiplier)
 		elif (skill.target_type == "back_enemy" and back_enemy != null):
 			back_enemy.receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "single_ally" and skill.friendly and target != null):
-			target.receive_skill_friendly(skill,unit,value_multiplier)
+		elif (skill.target_type == "back_2_enemies" and back_enemy != null):
+			back_enemy.receive_skill(skill,unit,value_multiplier)
+			if back_enemy_2 != null:
+				back_enemy_2.receive_skill(skill,unit,value_multiplier)
+		elif (skill.target_type == "single_ally" and target != null):
+			target.receive_skill(skill,unit,value_multiplier)
 		elif (skill.target_type == "random_enemy" and enemies.size() > 0):
 			var rng = RandomNumberGenerator.new()
 			var random_num = rng.randi_range(1,enemies.size())
@@ -259,31 +275,17 @@ func use_skill(skill,target,unit,event,spend_tokens):
 					allies[3].receive_skill(skill,unit,value_multiplier)
 		elif (target == null):
 			if (skill.target_type == "all_allies" and allies.size() > 0):
-				if (skill.friendly == true):
-					for ally in allies:
-						ally.receive_skill_friendly(skill,unit,value_multiplier)
-				else:
-					for ally in allies:
-						ally.receive_skill(skill,unit,value_multiplier)
+				for ally in allies:
+					ally.receive_skill(skill,unit,value_multiplier)
 						#print(ally.title + " taking " + str(skill.damage) + " damage from " + unit.title)
 			elif (skill.target_type == "all_enemies" and allies.size() > 0):
-				if (skill.friendly == true):
-					for enemy in enemies:
-						enemy.receive_skill_friendly(skill,unit,value_multiplier)
-				else:
-					for enemy in enemies:
-						enemy.receive_skill(skill,unit,value_multiplier)
+				for enemy in enemies:
+					enemy.receive_skill(skill,unit,value_multiplier)
 			elif (skill.target_type == "all_units" and allies.size() > 0 and enemies.size() > 0):
-				if (skill.friendly == true):
-					for enemy in enemies:
-						enemy.receive_skill_friendly(skill,unit,value_multiplier)
-					for ally in allies:
-						ally.receive_skill_friendly(skill,unit,value_multiplier)
-				else:
-					for enemy in enemies:
-						enemy.receive_skill(skill,unit,value_multiplier)
-					for ally in allies:
-						ally.receive_skill(skill,unit,value_multiplier)
+				for enemy in enemies:
+					enemy.receive_skill(skill,unit,value_multiplier)
+				for ally in allies:
+					ally.receive_skill(skill,unit,value_multiplier)
 	if (skill.lifesteal):
 		unit.receive_healing(roundi(skill.damage * skill.lifesteal_rate), "grass", false)
 
