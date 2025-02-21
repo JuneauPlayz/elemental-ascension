@@ -15,7 +15,7 @@ class_name Unit
 @export var connected = false
 @export var left : Unit
 @export var right : Unit
-
+@export var id : int
 var run
 
 @export var defense : float

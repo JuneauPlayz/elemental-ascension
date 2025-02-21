@@ -1069,7 +1069,7 @@ func run_sim():
 			var new_target = null
 			for target in sim_target_queue:
 				if target != null and target_queue[i] != null:
-					if target.title == target_queue[i].title:
+					if target.id == target_queue[i].id:
 						make_duplicate = false
 						new_target = target
 			if make_duplicate and target_queue[i] != null:
@@ -1103,12 +1103,12 @@ func run_sim():
 			var new_ally = null
 			for ally in sim_ally_queue:
 				if ally != null and ally_queue[i] != null:
-					if ally.title == ally_queue[i].title:
+					if ally.id == ally_queue[i].id:
 						make_duplicate = false
 						new_ally = ally
 			for ally in sim_target_queue:
 				if ally != null and ally_queue[i] != null:
-					if ally.title == ally_queue[i].title:
+					if ally.id == ally_queue[i].id:
 						make_duplicate = false
 						new_ally = ally
 			if make_duplicate and ally_queue[i] != null:

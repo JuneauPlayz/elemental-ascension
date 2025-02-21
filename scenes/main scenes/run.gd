@@ -45,6 +45,7 @@ var ally_2_spot_og_pos
 var ally_3_spot_og_pos
 var ally_4_spot_og_pos
 
+var id = 0
 var ally1 : Ally
 var ally2 : Ally
 var ally3 : Ally

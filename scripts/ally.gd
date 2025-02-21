@@ -53,7 +53,9 @@ var sow_just_applied = false
 func _ready() -> void:
 	# loading
 	run = get_tree().get_first_node_in_group("run")
-	await get_tree().create_timer(0.1).timeout
+	id = run.id
+	run.id += 1
+	await get_tree().create_timer(0.0001).timeout
 	# spell select ui first child, hp bar ui second child
 	if run.combat == true and not run_starting:
 		if not copy:
@@ -66,7 +68,8 @@ func _ready() -> void:
 			spell_select_ui.new_select.connect(run.combat_manager._on_spell_select_ui_new_select)
 			self.target_chosen.connect(run.combat_manager.target_signal)
 			hp_bar.update_statuses(status)
-	current_element = "none"
+	if not copy:
+		current_element = "none"
 	hp_bar = $"HP Bar"
 	targeting_area = $TargetingArea
 	if run_starting:

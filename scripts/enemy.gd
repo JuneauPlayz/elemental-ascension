@@ -26,6 +26,8 @@ func _ready() -> void:
 		combat_manager = get_tree().get_first_node_in_group("combat_sim")
 		ReactionManager = combat_manager.reaction_manager
 	run = get_tree().get_first_node_in_group("run")
+	id = run.id
+	run.id += 1
 	hp_bar = $"HP Bar"
 	targeting_area = $TargetingArea
 	self.died.connect(combat_manager.reaction_signal)
