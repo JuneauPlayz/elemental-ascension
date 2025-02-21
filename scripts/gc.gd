@@ -16,6 +16,9 @@ const ORB_WIZARD = preload("res://resources/units/enemies/OrbWizard.tres")
 const LIGHTNING_MASTER = preload("res://resources/units/enemies/LightningMaster.tres")
 const THEFINALBOSS = preload("res://resources/units/enemies/THEFINALBOSS.tres")
 
+const FIRE_SWORDSMAN = preload("res://resources/units/enemies/Fire Swordsman.tres")
+const FIRE_ARCHER = preload("res://resources/units/enemies/FireArcher.tres")
+
 # events
 const REST_EVENT = preload("res://rest_event.tscn")
 const SPECIAL_SHOP_EVENT = preload("res://SpecialShopEvent.tscn")
@@ -28,9 +31,9 @@ const L1R4 = preload("res://resources/rewards/level1/L1R4.tres")
 const L2R1 = preload("res://resources/rewards/level2/L2R1.tres")
 
 # predetermined fights
-var f1v1 = [TEAM_MAGMA_GRUNT, CHILL_GUY, null, null]
-var f1v2 = [CHILL_GUY, CHILL_GUY, null, null]
-var f1v3 = [TEAM_MAGMA_GRUNT, TEAM_MAGMA_GRUNT, null, null]
+var f1v1 = [FIRE_SWORDSMAN, FIRE_ARCHER, null, null]
+var f1v2 = [FIRE_SWORDSMAN, FIRE_ARCHER, null, null]
+var f1v3 = [FIRE_SWORDSMAN, FIRE_ARCHER, null, null]
 
 var f2v1 = [CHILL_GUY, TEAM_MAGMA_GRUNT, BAGUETTE, null]
 var f2v2 = [null, BAGUETTE, BAGUETTE, null]

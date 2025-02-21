@@ -12,7 +12,7 @@ var current_skill : Skill
 @export var reaction_primed = 0
 
 @onready var skill_info: Control = $ShowNextSkill/SkillInfo
-@onready var sprite_spot: Sprite2D = $SpriteSpot
+@onready var sprite_spot: TextureRect = $SpriteSpot
 @onready var show_next_skill: Control = $ShowNextSkill
 
 var sow_just_applied = false
@@ -48,7 +48,6 @@ func _ready() -> void:
 		title = res.name
 	print("title:" + title)
 	sprite_spot.texture = load(res.sprite.resource_path)
-	sprite_spot.scale = Vector2(res.sprite_scale,res.sprite_scale)
 	if (run.hard == true):
 		if skill1 != null:
 			skill1.damage *= 2

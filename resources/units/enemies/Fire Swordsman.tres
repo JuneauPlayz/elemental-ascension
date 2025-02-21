@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://cdmnfbmw58yst"]
+
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_ydms3"]
+[ext_resource type="Resource" uid="uid://cyvnn65bd5t6h" path="res://resources/enemy_skills/Fire Slash.tres" id="2_xs3x8"]
+[ext_resource type="Resource" uid="uid://lsdjevkv2wyw" path="res://resources/enemy_skills/Fire Stab.tres" id="3_nagyx"]
+[ext_resource type="Texture2D" uid="uid://cocwma44i6k74" path="res://assets/flamesword.png" id="4_hfdsk"]
+
+[resource]
+script = ExtResource("1_ydms3")
+starting_health = 115
+skill1 = ExtResource("2_xs3x8")
+skill2 = ExtResource("2_xs3x8")
+skill3 = ExtResource("3_nagyx")
+sprite = ExtResource("4_hfdsk")
+sprite_scale = 0.5
+name = "Fire Swordsman"
+metadata/_custom_type_script = ExtResource("1_ydms3")

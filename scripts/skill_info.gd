@@ -43,12 +43,20 @@ func update_skill_info():
 			target = "all units"
 		"front_ally":
 			target = "the front ally"
+		"front_2_allies":
+			target = "the two front allies"
 		"front_enemy":
 			target = "the front enemy"
+		"front_2_enemies":
+			target = "the two front enemies"
 		"back_ally":
 			target = "the back ally"
+		"back_2_allies":
+			target = "the two back allies"
 		"back_enemy":
 			target = "the back enemy"
+		"back_2_enemies":
+			target = "the two back enemies"
 		"random_enemy":
 			target = "a random enemy"
 		"random_ally":

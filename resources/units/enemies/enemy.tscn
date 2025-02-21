@@ -34,10 +34,15 @@ health = 100
 max_health = 100
 title = "Baguette"
 
-[node name="SpriteSpot" type="Sprite2D" parent="."]
-position = Vector2(169.333, 325.333)
+[node name="SpriteSpot" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(300, 300)
+offset_left = 46.6667
+offset_top = 186.667
+offset_right = 307.667
+offset_bottom = 436.667
 scale = Vector2(0.938, 0.809)
 texture = ExtResource("3_n62cc")
+expand_mode = 1
 
 [node name="HP Bar" parent="." instance=ExtResource("4_8i2d0")]
 offset_left = 67.9999
