@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://csqs0yrjcaaw1"]
+
+[ext_resource type="Script" uid="uid://b6jr4peo4gndo" path="res://scripts/skill.gd" id="1_yj56m"]
+
+[resource]
+script = ExtResource("1_yj56m")
+name = "Water Stab"
+damage = 30
+element = "fire"
+damaging = true
+healing = false
+shielding = false
+target_type = "front_ally"
+purchaseable = false
+tier = "Common"
+friendly = false
+lifesteal = false
+lifesteal_rate = 1.0
+cost = 0
+token_type = ""
+cost2 = 0
+token_type2 = ""
+status_effects = []
+double_hit = false
+damage2 = 0
+element2 = ""
+blast = false
+blast_damage = 0
+tag1 = "Water"
+tag2 = ""
+target_tag = ""
+tags = []
+metadata/_custom_type_script = ExtResource("1_yj56m")

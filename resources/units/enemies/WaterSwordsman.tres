@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://dw1vbumj3wyko"]
+
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_wsint"]
+[ext_resource type="Resource" uid="uid://bb3ubjcq372cl" path="res://resources/enemy_skills/Water Slash.tres" id="2_16kki"]
+[ext_resource type="Resource" uid="uid://csqs0yrjcaaw1" path="res://resources/enemy_skills/Water Stab.tres" id="3_fx1j1"]
+[ext_resource type="Texture2D" uid="uid://b6ifsg6s13c55" path="res://assets/waterswordsman.jpg" id="4_quvvh"]
+
+[resource]
+script = ExtResource("1_wsint")
+starting_health = 115
+skill1 = ExtResource("2_16kki")
+skill2 = ExtResource("2_16kki")
+skill3 = ExtResource("3_fx1j1")
+sprite = ExtResource("4_quvvh")
+sprite_scale = 1.0
+name = "Water Swordsman"
+metadata/_custom_type_script = ExtResource("1_wsint")

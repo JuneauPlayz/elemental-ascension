@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://ch5s2jtiggggs"]
+
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_mm3w7"]
+[ext_resource type="Resource" uid="uid://dusfgwxd10o41" path="res://resources/enemy_skills/Lightning Barrage.tres" id="2_jlb7e"]
+[ext_resource type="Resource" uid="uid://bjkxcbou5i8r8" path="res://resources/enemy_skills/Lightning Snipe.tres" id="3_pg3ux"]
+[ext_resource type="Texture2D" uid="uid://co44w7uvj6dre" path="res://assets/lightningarcher.png" id="4_xrke7"]
+
+[resource]
+script = ExtResource("1_mm3w7")
+starting_health = 60
+skill1 = ExtResource("2_jlb7e")
+skill2 = ExtResource("2_jlb7e")
+skill3 = ExtResource("3_pg3ux")
+sprite = ExtResource("4_xrke7")
+sprite_scale = 1.0
+name = "Lightning Archer"
+metadata/_custom_type_script = ExtResource("1_mm3w7")
