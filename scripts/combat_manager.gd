@@ -14,7 +14,7 @@ var front_ally : Ally
 var front_ally_2 : Ally
 var back_ally : Ally
 var back_ally_2 : Ally
-
+var middle_allies = []
 @export var enemy1 : Enemy
 @export var enemy2 : Enemy
 @export var enemy3 : Enemy
@@ -178,6 +178,7 @@ func execute_ally_turn():
 		var target = target_queue[n]
 		var ally = ally_queue[n]
 		use_skill(skill,target,ally,true,true)
+		check_post_skill(skill)
 		update_tokens()
 		combat_currency.update()
 		# checks if target is dead, currently skips the rest of the loop (wont print landed)
@@ -216,6 +217,7 @@ func enemy_turn():
 		print("using enemy skill")
 		set_unit_pos()
 		use_skill(enemy.current_skill,null,enemy,true,false)
+		check_post_skill(enemy.current_skill)
 		hit.emit()
 		enemy.change_skills()
 		if enemies.size() > i+1:
@@ -230,6 +232,17 @@ func enemy_turn():
 		victory()
 	else:
 		enemy_turn_done.emit()
+
+func check_post_skill(skill):
+	if skill.decay == true:
+		skill.damage -= skill.decay_value
+		if skill.damage < 0:
+			skill.damage = 0
+		if skill.blast == true:
+			skill.blast_damage -= skill.decay_value
+			if skill.blast_damage < 0:
+				skill.blast_damage = 0
+		skill.update()
 
 func check_event_relics(skill,unit,value_multiplier,target):
 	if (run.ghostfire and unit is Ally and skill.element == "fire"):
@@ -350,6 +363,14 @@ func use_skill(skill,target,unit,event,spend_tokens):
 			back_enemy.receive_skill(skill,unit,value_multiplier)
 			if back_enemy_2 != null:
 				back_enemy_2.receive_skill(skill,unit,value_multiplier)
+		elif (skill.target_type == "random_middle_ally" and middle_allies != []):
+			var rng = RandomNumberGenerator.new()
+			var random_num = rng.randi_range(1,middle_allies.size())
+			match random_num:
+				1:
+					middle_allies[0].receive_skill(skill,unit,value_multiplier)
+				2:
+					middle_allies[1].receive_skill(skill,unit,value_multiplier)
 		elif (skill.target_type == "single_ally" and target != null):
 			target.receive_skill(skill,unit,value_multiplier)
 		elif (skill.target_type == "random_enemy" and enemies.size() > 0):
@@ -367,6 +388,8 @@ func use_skill(skill,target,unit,event,spend_tokens):
 		elif (skill.target_type == "random_ally"):
 			var rng = RandomNumberGenerator.new()
 			var random_num = rng.randi_range(1,allies.size())
+			if allies == []:
+				return
 			match random_num:
 				1:
 					allies[0].receive_skill(skill,unit,value_multiplier)
@@ -930,6 +953,7 @@ func check_requirements():
 						ally.spell_select_ui.enable(i)
 		
 func set_unit_pos():
+	middle_allies = []
 	for n in range(enemies.size()):
 		if n > 0:
 			enemies[n].left = enemies[n-1]
@@ -966,6 +990,17 @@ func set_unit_pos():
 		else:
 			front_ally_2 = null
 			back_ally_2 = null
+	match allies.size():
+		1:
+			middle_allies.append(allies[0])
+		2:
+			middle_allies.append(allies[0])
+			middle_allies.append(allies[1])
+		3:
+			middle_allies.append(allies[1])
+		4:
+			middle_allies.append(allies[1])
+			middle_allies.append(allies[2])
 
 		
 func vaporize(unit, caster, element):

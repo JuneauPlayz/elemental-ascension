@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=12 format=3 uid="uid://bchghb71yo8ln"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=11 format=3 uid="uid://bchghb71yo8ln"]
 
 [ext_resource type="Resource" uid="uid://c812gom3pv4ae" path="res://resources/level_up_relics/Fire Starter.tres" id="1_1tw62"]
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_5rsqq"]
@@ -9,7 +9,6 @@
 [ext_resource type="Resource" uid="uid://gi8226pxp46w" path="res://resources/level_up_relics/Flame Boost.tres" id="4_1tw62"]
 [ext_resource type="Resource" uid="uid://drjm7bxw8bu8w" path="res://resources/Skills/fire/Fire Snipe.tres" id="4_8uraa"]
 [ext_resource type="Resource" uid="uid://bgmq3ov7xln34" path="res://resources/Skills/fire/Flare Blitz.tres" id="5_u235h"]
-[ext_resource type="Resource" uid="uid://b70k44ljti3df" path="res://resources/Skills/fire/Wildfire.tres" id="8_xgj21"]
 [ext_resource type="Resource" uid="uid://fa2xrxusorfa" path="res://resources/Skills/fire/Blast Burn.tres" id="10_1tw62"]
 
 [resource]
@@ -17,7 +16,6 @@ script = ExtResource("1_5rsqq")
 starting_health = 75
 skill1 = ExtResource("2_odqjc")
 skill2 = ExtResource("4_8uraa")
-skill3 = ExtResource("8_xgj21")
 relic_1 = ExtResource("1_1tw62")
 relic_2 = ExtResource("2_xgj21")
 ult_1 = ExtResource("5_u235h")

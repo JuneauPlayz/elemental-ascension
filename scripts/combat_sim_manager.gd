@@ -10,6 +10,7 @@ var front_ally : Ally
 var front_ally_2 : Ally
 var back_ally : Ally
 var back_ally_2 : Ally
+var middle_allies = []
 
 @export var enemy1 : Enemy
 @export var enemy2 : Enemy
@@ -247,6 +248,14 @@ func use_skill(skill,target,unit,event,spend_tokens):
 			back_enemy.receive_skill(skill,unit,value_multiplier)
 			if back_enemy_2 != null:
 				back_enemy_2.receive_skill(skill,unit,value_multiplier)
+		elif (skill.target_type == "random_middle_ally" and middle_allies != []):
+			var rng = RandomNumberGenerator.new()
+			var random_num = rng.randi_range(1,middle_allies.size())
+			match random_num:
+				1:
+					middle_allies[0].receive_skill(skill,unit,value_multiplier)
+				2:
+					middle_allies[1].receive_skill(skill,unit,value_multiplier)
 		elif (skill.target_type == "single_ally" and target != null):
 			target.receive_skill(skill,unit,value_multiplier)
 		elif (skill.target_type == "random_enemy" and enemies.size() > 0):
@@ -362,6 +371,7 @@ func ally_post_status():
 					
 		
 func set_unit_pos():
+	middle_allies = []
 	for n in range(enemies.size()):
 		if n > 0:
 			enemies[n].left = enemies[n-1]
@@ -392,6 +402,17 @@ func set_unit_pos():
 		if allies.size() > 1:
 			front_ally_2 = allies[allies.size()-2]
 			back_ally_2 = allies[1]
+	match allies.size():
+		1:
+			middle_allies.append(allies[0])
+		2:
+			middle_allies.append(allies[0])
+			middle_allies.append(allies[1])
+		3:
+			middle_allies.append(allies[1])
+		4:
+			middle_allies.append(allies[1])
+			middle_allies.append(allies[2])
 		
 func vaporize(unit, caster, element):
 	add_token("fire", (run.vaporize_fire_token_base + run.vaporize_fire_token_bonus) * run.vaporize_fire_token_mult)

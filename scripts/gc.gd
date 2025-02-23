@@ -31,6 +31,10 @@ const EARTH_ARCHER = preload("res://resources/units/enemies/EarthArcher.tres")
 const GRASS_SWORDSMAN = preload("res://resources/units/enemies/GrassSwordsman.tres")
 const GRASS_ARCHER = preload("res://resources/units/enemies/GrassArcher.tres")
 
+const FIRE_BOMBER = preload("res://resources/units/enemies/FireBomber.tres")
+const LIGHTNING_BOMBER = preload("res://resources/units/enemies/LightningBomber.tres")
+const WATER_BOMBER = preload("res://resources/units/enemies/WaterBomber.tres")
+
 # events
 const REST_EVENT = preload("res://rest_event.tscn")
 const SPECIAL_SHOP_EVENT = preload("res://SpecialShopEvent.tscn")
@@ -56,6 +60,10 @@ var f3v1 = [EARTH_SWORDSMAN, GRASS_SWORDSMAN, EARTH_ARCHER, LIGHTNING_ARCHER]
 var f3v2 = [FIRE_SWORDSMAN, LIGHTNING_SWORDSMAN, WATER_ARCHER, null]
 var f3v3 = [WATER_SWORDSMAN, FIRE_SWORDSMAN, LIGHTNING_SWORDSMAN, null]
 
+var m1v1 = [FIRE_BOMBER, LIGHTNING_BOMBER, WATER_BOMBER, null]
+var m1v2 = [LIGHTNING_BOMBER, FIRE_BOMBER, WATER_BOMBER, null]
+var m1v3 = [WATER_BOMBER, FIRE_BOMBER, LIGHTNING_BOMBER, null]
+
 var fight_5 = [PYROMANCER, HYDROMANCER, LIGHTNING_MASTER, ORB_WIZARD]
 
 var fight_6 = [null, null, THEFINALBOSS, null]
@@ -66,7 +74,8 @@ var level_1_rewards = [L1R1,L1R2,L1R3,L1R4]
 var level_2_fights = [f2v1,f2v2,f2v3]
 var level_2_rewards = [L2R1]
 
-#var miniboss_1_fights = [fight_3]
+var miniboss_1_fights = [m1v1, m1v2, m1v3]
+var miniboss_1_rewards = [L2R1, L1R1, L1R3]
 
 var level_3_fights = [f3v1,f3v2,f3v3]
 var level_3_rewards = [L1R1,L1R2,L1R3]
@@ -149,7 +158,26 @@ func get_random_fight(level):
 			random_num = rng.randi_range(0,level_8_fights.size()-1)
 			fight = level_8_fights[random_num]
 	return fight
+
+func get_random_boss(level):
+	var rng = RandomNumberGenerator.new()
+	var random_num = 0
+	var fight = null
+	match level:
+		1:
+			random_num = rng.randi_range(0,miniboss_1_fights.size()-1)
+			fight = miniboss_1_fights[random_num]
+	return fight
 	
+func get_random_boss_reward(level):
+	var rng = RandomNumberGenerator.new()
+	var random_num = 0
+	var reward = null
+	match level:
+		1:
+			random_num = rng.randi_range(0,miniboss_1_rewards.size()-1)
+			reward = miniboss_1_rewards[random_num]
+	return reward
 func get_random_reward(level):
 	var rng = RandomNumberGenerator.new()
 	var random_num = 0

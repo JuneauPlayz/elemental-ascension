@@ -72,6 +72,8 @@ func _ready() -> void:
 		self.target_chosen.connect(combat_manager.target_signal)
 
 func change_skills():
+	skill_info.skill = current_skill
+	skill_info.update_skill_info()
 	var num_skills = 1
 	if skill2 != null:
 		num_skills = 2
@@ -79,7 +81,8 @@ func change_skills():
 		num_skills = 3
 	if skill4 != null:
 		num_skills = 4
-	
+	if num_skills == 1:
+		return
 	var rng = RandomNumberGenerator.new()
 	var random_num = 1
 	var new_skill

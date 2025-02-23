@@ -61,6 +61,8 @@ func update_skill_info():
 			target = "a random enemy"
 		"random_ally":
 			target = "a random ally"
+		"random_middle_ally":
+			target = "one of the middle allies"
 	
 	if skill.damaging == true:
 		description.text += "Deals " + str(skill.damage) + " " + str(skill.element) + " damage\nto " + target
@@ -72,7 +74,7 @@ func update_skill_info():
 	if description.text == "" and skill.element != "none":
 		description.text = "Applies " + skill.element + " to " + target
 	if skill.blast == true:
-		description.text += " and the units to the left and right"
+		description.text += "\n and " + str(skill.blast_damage) + " damage to the units to \nthe left and right"
 	if skill.double_hit == true:
 		description.text += "\nThen, deals " + str(skill.damage2) + " " + str(skill.element2) + " damage\nto the same target(s)"
 	if skill.lifesteal == true:

@@ -36,8 +36,11 @@ var hard_reward = null
 
 var rewards = []
 var fights = []
+var type = ""
 signal choice_ended
 var easy_color = "86a18c"
+var hard_color = "b0797b"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(0.0001).timeout
@@ -50,56 +53,26 @@ func _ready() -> void:
 		child.queue_free()
 	for child in hard_enemies.get_children():
 		child.queue_free()
-	if level == 1:
-		update_color(fight_2, easy_color)
-		difficulty_2.text = "Easy"
-		easy_level.text = "Level: " + str(level)
-		medium_level.text = "Level: " + str(level)
-		hard_level.text = "Level: " + str(level+1)
-		fights = []
-		easy_fight = GC.get_random_fight(level)
-		while easy_fight in fights:
-			easy_fight = GC.get_random_fight(level)
-		fights.append(easy_fight)
-		medium_fight = GC.get_random_fight(level)
-		while medium_fight in fights:
-			medium_fight = GC.get_random_fight(level)
-		fights.append(medium_fight)
-		hard_fight = GC.get_random_fight(level+1)
-		while hard_fight in fights:
-			hard_fight = GC.get_random_fight(level+1)
-		fights.append(hard_fight)
-		rewards = []
-		easy_reward = GC.get_random_reward(level)
-		while easy_reward in rewards:
-			easy_reward = GC.get_random_reward(level)
-		rewards.append(easy_reward)
-		medium_reward = GC.get_random_reward(level)
-		while medium_reward in rewards:
-			medium_reward = GC.get_random_reward(level)
-		rewards.append(medium_reward)
-		hard_reward = GC.get_random_reward(level+1)
-		while hard_reward in rewards:
-			hard_reward = GC.get_random_reward(level+1)
-		rewards.append(hard_reward)
-	else:
-		if level < run.max_fight_level:
-			easy_level.text = "Level: " + str(level-1)
-			medium_level.text = "Level: " + str(level)
-			hard_level.text = "Level: " + str(level+1)
-			easy_fight = GC.get_random_fight(level-1)
-			medium_fight = GC.get_random_fight(level)
-			hard_fight = GC.get_random_fight(level+1)
-			easy_reward = GC.get_random_reward(level-1)
-			medium_reward = GC.get_random_reward(level)
-			hard_reward = GC.get_random_reward(level+1)
-		else:
+	if type == "":
+		if level == 1:
+			update_color(fight_2, easy_color)
+			difficulty_2.text = "Easy"
 			easy_level.text = "Level: " + str(level)
 			medium_level.text = "Level: " + str(level)
-			hard_level.text = "Level: " + str(level)
+			hard_level.text = "Level: " + str(level+1)
+			fights = []
 			easy_fight = GC.get_random_fight(level)
+			while easy_fight in fights:
+				easy_fight = GC.get_random_fight(level)
+			fights.append(easy_fight)
 			medium_fight = GC.get_random_fight(level)
-			hard_fight = GC.get_random_fight(level)
+			while medium_fight in fights:
+				medium_fight = GC.get_random_fight(level)
+			fights.append(medium_fight)
+			hard_fight = GC.get_random_fight(level+1)
+			while hard_fight in fights:
+				hard_fight = GC.get_random_fight(level+1)
+			fights.append(hard_fight)
 			rewards = []
 			easy_reward = GC.get_random_reward(level)
 			while easy_reward in rewards:
@@ -109,9 +82,76 @@ func _ready() -> void:
 			while medium_reward in rewards:
 				medium_reward = GC.get_random_reward(level)
 			rewards.append(medium_reward)
-			hard_reward = GC.get_random_reward(level)
+			hard_reward = GC.get_random_reward(level+1)
 			while hard_reward in rewards:
+				hard_reward = GC.get_random_reward(level+1)
+			rewards.append(hard_reward)
+		else:
+			if level < run.max_fight_level:
+				easy_level.text = "Level: " + str(level-1)
+				medium_level.text = "Level: " + str(level)
+				hard_level.text = "Level: " + str(level+1)
+				easy_fight = GC.get_random_fight(level-1)
+				medium_fight = GC.get_random_fight(level)
+				hard_fight = GC.get_random_fight(level+1)
+				easy_reward = GC.get_random_reward(level-1)
+				medium_reward = GC.get_random_reward(level)
+				hard_reward = GC.get_random_reward(level+1)
+			else:
+				easy_level.text = "Level: " + str(level)
+				medium_level.text = "Level: " + str(level)
+				hard_level.text = "Level: " + str(level)
+				easy_fight = GC.get_random_fight(level)
+				medium_fight = GC.get_random_fight(level)
+				hard_fight = GC.get_random_fight(level)
+				rewards = []
+				easy_reward = GC.get_random_reward(level)
+				while easy_reward in rewards:
+					easy_reward = GC.get_random_reward(level)
+				rewards.append(easy_reward)
+				medium_reward = GC.get_random_reward(level)
+				while medium_reward in rewards:
+					medium_reward = GC.get_random_reward(level)
+				rewards.append(medium_reward)
 				hard_reward = GC.get_random_reward(level)
+				while hard_reward in rewards:
+					hard_reward = GC.get_random_reward(level)
+				rewards.append(hard_reward)
+	elif type == "boss":
+		if run.boss_level % 2 == 1:
+			update_color(fight_1, hard_color)
+			update_color(fight_2, hard_color)
+			difficulty_1.text = "Miniboss"
+			difficulty_2.text = "Miniboss"
+			difficulty_3.text = "Miniboss"
+			easy_level.text = "Level: " + str(run.boss_level)
+			medium_level.text = "Level: " + str(run.boss_level)
+			hard_level.text = "Level: " + str(run.boss_level)
+			fights = []
+			easy_fight = GC.get_random_boss(run.boss_level)
+			while easy_fight in fights:
+				easy_fight = GC.get_random_boss(run.boss_level)
+			fights.append(easy_fight)
+			medium_fight = GC.get_random_boss(run.boss_level)
+			while medium_fight in fights:
+				medium_fight = GC.get_random_boss(run.boss_level)
+			fights.append(medium_fight)
+			hard_fight = GC.get_random_boss(run.boss_level)
+			while hard_fight in fights:
+				hard_fight = GC.get_random_boss(run.boss_level)
+			fights.append(hard_fight)
+			rewards = []
+			easy_reward = GC.get_random_boss_reward(run.boss_level)
+			while easy_reward in rewards:
+				easy_reward = GC.get_random_boss_reward(run.boss_level)
+			rewards.append(easy_reward)
+			medium_reward = GC.get_random_boss_reward(run.boss_level)
+			while medium_reward in rewards:
+				medium_reward = GC.get_random_boss_reward(run.boss_level)
+			rewards.append(medium_reward)
+			hard_reward = GC.get_random_boss_reward(run.boss_level)
+			while hard_reward in rewards:
+				hard_reward = GC.get_random_boss_reward(run.boss_level)
 			rewards.append(hard_reward)
 	for enemy in easy_fight:
 		if enemy != null:

@@ -71,6 +71,7 @@ var hard = false
 var current_reward = 6
 var fight_level = 1
 var max_fight_level = 20
+var boss_level = 0
 #checks
 var reaction_guide_open = false
 
@@ -262,15 +263,22 @@ var discharge_destruction = false
 var steamer = false
 
 func run_loop():
+	var fight_count = 0
 	while not end:
 		# combat
-		S.transition("choosefight","")
+		if fight_count == 3:
+			fight_count = 0
+			boss_level += 1
+			S.transition("choosefight","boss")
+		else:
+			S.transition("choosefight","")
 		await scene_end
 		if (level_up):
 			S.transition("levelup","")
 			await scene_end
 		S.transition("combat","")
 		await scene_end
+		fight_count += 1
 		if (level_up):
 			S.transition("levelup","")
 			await scene_end
@@ -477,9 +485,10 @@ func load_event(event):
 	event_scene = event.instantiate()
 	self.add_child(event_scene)
 
-func load_choose_fight(level):
+func load_choose_fight(level, fight_type):
 	choose_fight_scene = NEXT_FIGHT_CHOICE.instantiate()
 	choose_fight_scene.level = level
+	choose_fight_scene.type = fight_type
 	self.add_child(choose_fight_scene)
 	 
 func add_gold(count):
