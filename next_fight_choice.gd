@@ -25,9 +25,19 @@ var easy_reward = null
 var medium_reward = null
 var hard_reward = null
 
-var rewards = []
+@onready var fight_1: PanelContainer = $VBoxContainer/Fight1
+@onready var fight_2: PanelContainer = $VBoxContainer/Fight2
+@onready var fight_3: PanelContainer = $VBoxContainer/Fight3
 
+@onready var difficulty_1: Label = $VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer2/Difficulty
+@onready var difficulty_2: Label = $VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer2/Difficulty
+@onready var difficulty_3: Label = $VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer2/Difficulty
+
+
+var rewards = []
+var fights = []
 signal choice_ended
+var easy_color = "86a18c"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(0.0001).timeout
@@ -41,12 +51,24 @@ func _ready() -> void:
 	for child in hard_enemies.get_children():
 		child.queue_free()
 	if level == 1:
+		update_color(fight_2, easy_color)
+		difficulty_2.text = "Easy"
 		easy_level.text = "Level: " + str(level)
 		medium_level.text = "Level: " + str(level)
-		hard_level.text = "Level: " + str(level)
+		hard_level.text = "Level: " + str(level+1)
+		fights = []
 		easy_fight = GC.get_random_fight(level)
+		while easy_fight in fights:
+			easy_fight = GC.get_random_fight(level)
+		fights.append(easy_fight)
 		medium_fight = GC.get_random_fight(level)
-		hard_fight = GC.get_random_fight(level)
+		while medium_fight in fights:
+			medium_fight = GC.get_random_fight(level)
+		fights.append(medium_fight)
+		hard_fight = GC.get_random_fight(level+1)
+		while hard_fight in fights:
+			hard_fight = GC.get_random_fight(level+1)
+		fights.append(hard_fight)
 		rewards = []
 		easy_reward = GC.get_random_reward(level)
 		while easy_reward in rewards:
@@ -56,9 +78,9 @@ func _ready() -> void:
 		while medium_reward in rewards:
 			medium_reward = GC.get_random_reward(level)
 		rewards.append(medium_reward)
-		hard_reward = GC.get_random_reward(level)
+		hard_reward = GC.get_random_reward(level+1)
 		while hard_reward in rewards:
-			hard_reward = GC.get_random_reward(level)
+			hard_reward = GC.get_random_reward(level+1)
 		rewards.append(hard_reward)
 	else:
 		if level < run.max_fight_level:
@@ -157,3 +179,8 @@ func _on_hard_fight_pressed() -> void:
 	run.current_fight = hard_fight
 	run.current_reward = hard_reward
 	choice_ended.emit("")
+
+func update_color(button, color):
+	var new_stylebox_normal = button.get_theme_stylebox("panel").duplicate()
+	new_stylebox_normal.bg_color = color
+	button.add_theme_stylebox_override("panel", new_stylebox_normal)

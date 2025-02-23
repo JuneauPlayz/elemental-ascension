@@ -69,9 +69,10 @@ func update_skill_info():
 		description.text += "Shields " + str(skill.damage) + " to " + target
 	if skill.healing == true:
 		description.text += "Heals " + str(skill.damage) + " to " + target
-	
 	if description.text == "" and skill.element != "none":
 		description.text = "Applies " + skill.element + " to " + target
+	if skill.blast == true:
+		description.text += " and the units to the left and right"
 	if skill.double_hit == true:
 		description.text += "\nThen, deals " + str(skill.damage2) + " " + str(skill.element2) + " damage\nto the same target(s)"
 	if skill.lifesteal == true:

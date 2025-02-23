@@ -24,6 +24,13 @@ const WATER_ARCHER = preload("res://resources/units/enemies/WaterArcher.tres")
 
 const LIGHTNING_SWORDSMAN = preload("res://resources/units/enemies/Lightning Swordsman.tres")
 const LIGHTNING_ARCHER = preload("res://resources/units/enemies/Lightning Archer.tres")
+
+const EARTH_SWORDSMAN = preload("res://resources/units/enemies/EarthSwordsman.tres")
+const EARTH_ARCHER = preload("res://resources/units/enemies/EarthArcher.tres")
+
+const GRASS_SWORDSMAN = preload("res://resources/units/enemies/GrassSwordsman.tres")
+const GRASS_ARCHER = preload("res://resources/units/enemies/GrassArcher.tres")
+
 # events
 const REST_EVENT = preload("res://rest_event.tscn")
 const SPECIAL_SHOP_EVENT = preload("res://SpecialShopEvent.tscn")
@@ -40,11 +47,14 @@ var f1v1 = [FIRE_SWORDSMAN, FIRE_ARCHER, null, null]
 var f1v2 = [WATER_SWORDSMAN, WATER_ARCHER, null, null]
 var f1v3 = [LIGHTNING_SWORDSMAN, LIGHTNING_ARCHER, null, null]
 
-var f2v1 = [CHILL_GUY, TEAM_MAGMA_GRUNT, BAGUETTE, null]
-var f2v2 = [null, BAGUETTE, BAGUETTE, null]
-var f2v3 = [TEAM_MAGMA_GRUNT, TEAM_MAGMA_GRUNT, TEAM_MAGMA_GRUNT, TEAM_MAGMA_GRUNT]
 
-var fight_3 = [PYROMANCER, HYDROMANCER, null, null]
+var f2v1 = [WATER_SWORDSMAN, FIRE_SWORDSMAN, null, null]
+var f2v2 = [GRASS_SWORDSMAN, LIGHTNING_ARCHER, LIGHTNING_ARCHER, null]
+var f2v3 = [EARTH_SWORDSMAN, FIRE_ARCHER, GRASS_ARCHER, null]
+
+var f3v1 = [EARTH_SWORDSMAN, GRASS_SWORDSMAN, EARTH_ARCHER, LIGHTNING_ARCHER]
+var f3v2 = [FIRE_SWORDSMAN, LIGHTNING_SWORDSMAN, WATER_ARCHER, null]
+var f3v3 = [WATER_SWORDSMAN, FIRE_SWORDSMAN, LIGHTNING_SWORDSMAN, null]
 
 var fight_5 = [PYROMANCER, HYDROMANCER, LIGHTNING_MASTER, ORB_WIZARD]
 
@@ -56,24 +66,24 @@ var level_1_rewards = [L1R1,L1R2,L1R3,L1R4]
 var level_2_fights = [f2v1,f2v2,f2v3]
 var level_2_rewards = [L2R1]
 
-var miniboss_1_fights = [fight_3]
+#var miniboss_1_fights = [fight_3]
 
-var level_3_fights = [fight_3]
+var level_3_fights = [f3v1,f3v2,f3v3]
 var level_3_rewards = [L1R1,L1R2,L1R3]
 
-var level_4_fights = [fight_3]
+var level_4_fights = [f3v1]
 var level_4_rewards = [L2R1]
 
-var level_5_fights = [fight_3]
+var level_5_fights = [f3v1]
 var level_5_rewards = [L2R1]
 
-var level_6_fights = [fight_3]
+var level_6_fights = [f3v1]
 var level_6_rewards = [L2R1]
 
-var level_7_fights = [fight_3]
+var level_7_fights = [f3v1]
 var level_7_rewards = [L2R1]
 
-var level_8_fights = [fight_3]
+var level_8_fights = [f3v1]
 var level_8_rewards = [L2R1]
 #transition to run:
 

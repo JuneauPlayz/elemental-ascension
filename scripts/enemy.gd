@@ -31,9 +31,10 @@ func _ready() -> void:
 	hp_bar = $"HP Bar"
 	targeting_area = $TargetingArea
 	self.died.connect(combat_manager.reaction_signal)
-	health = res.starting_health
-	max_health = res.starting_health
-	shield = 0
+	if not copy:
+		health = res.starting_health
+		max_health = res.starting_health
+		shield = 0
 	title = res.name
 	if res.skill1 != null:
 		skill1 = res.skill1.duplicate()
@@ -48,17 +49,18 @@ func _ready() -> void:
 		title = res.name
 	print("title:" + title)
 	sprite_spot.texture = load(res.sprite.resource_path)
-	if (run.hard == true):
-		if skill1 != null:
-			skill1.damage *= 2
-		if skill2 != null:
-			skill2.damage *= 2
-		if skill3 != null:
-			skill3.damage *= 2
-		if skill4 != null:
-			skill4.damage *= 2
-		max_health = roundi(max_health * 2.5)
-		health = max_health
+	if not copy:
+		if (run.hard == true):
+			if skill1 != null:
+				skill1.damage *= 2
+			if skill2 != null:
+				skill2.damage *= 2
+			if skill3 != null:
+				skill3.damage *= 2
+			if skill4 != null:
+				skill4.damage *= 2
+			max_health = roundi(max_health * 2.5)
+			health = max_health
 	skill_info.skill = current_skill
 	skill_info.update_skill_info()
 	

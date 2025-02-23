@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://ecome54fmint"]
+
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_wp0xm"]
+[ext_resource type="Resource" uid="uid://ctw41s7omopds" path="res://resources/enemy_skills/Rock Barrage.tres" id="2_aqgnq"]
+[ext_resource type="Resource" uid="uid://byg42541conek" path="res://resources/enemy_skills/Rock Snipe.tres" id="3_wp47b"]
+[ext_resource type="Texture2D" uid="uid://bt4d8lhs2ku4r" path="res://assets/eartharcher.png" id="4_e3uw4"]
+
+[resource]
+script = ExtResource("1_wp0xm")
+starting_health = 90
+skill1 = ExtResource("2_aqgnq")
+skill2 = ExtResource("2_aqgnq")
+skill3 = ExtResource("3_wp47b")
+sprite = ExtResource("4_e3uw4")
+sprite_scale = 1.0
+name = "Earth Archer"
+metadata/_custom_type_script = ExtResource("1_wp0xm")

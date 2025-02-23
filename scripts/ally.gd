@@ -107,8 +107,9 @@ func _ready() -> void:
 		run_starting = false
 		update_skills()
 	else:
-		health = health
-		max_health = max_health
+		if not copy:
+			health = health
+			max_health = max_health
 	spell_select_ui.skill1 = skill_1
 	spell_select_ui.skill2 = skill_2
 	spell_select_ui.skill3 = skill_3

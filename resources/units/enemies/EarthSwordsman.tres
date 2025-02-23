@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://dy077s6sps1rb"]
+
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_tk6i2"]
+[ext_resource type="Resource" uid="uid://b8ak87ack7mhx" path="res://resources/enemy_skills/Rock Slash.tres" id="2_v4hjf"]
+[ext_resource type="Resource" uid="uid://byg42541conek" path="res://resources/enemy_skills/Rock Snipe.tres" id="3_ixb6a"]
+[ext_resource type="Texture2D" uid="uid://m315nyoie0is" path="res://assets/earthswordsman.png" id="4_a3cpe"]
+
+[resource]
+script = ExtResource("1_tk6i2")
+starting_health = 150
+skill1 = ExtResource("2_v4hjf")
+skill2 = ExtResource("2_v4hjf")
+skill3 = ExtResource("3_ixb6a")
+sprite = ExtResource("4_a3cpe")
+sprite_scale = 1.0
+name = "Earth Swordsman"
+metadata/_custom_type_script = ExtResource("1_tk6i2")

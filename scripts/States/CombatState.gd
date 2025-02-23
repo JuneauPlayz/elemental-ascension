@@ -15,6 +15,7 @@ func Exit():
 		ally.receive_healing(1000,"none",true)
 		ally.visible = true
 		ally.current_element = "none"
+		ally.hp_bar.update_element(ally.current_element)
 	run.combat = false
 	run.combat_scene.queue_free()
 	

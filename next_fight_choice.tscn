@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blim31asjjo3m" path="res://next_fight_choice.gd" id="1_ecw7q"]
 [ext_resource type="Texture2D" uid="uid://133h4yyl8s4l" path="res://assets/chillpyro.png" id="2_i05vp"]
+[ext_resource type="Texture2D" uid="uid://db0nc82teu7c5" path="res://assets/pixel_chest-removebg-preview.png" id="3_i05vp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jcw1"]
 bg_color = Color(0.526194, 0.632642, 0.547312, 1)
@@ -12,11 +13,6 @@ corner_radius_bottom_left = 6
 
 [sub_resource type="LabelSettings" id="LabelSettings_aru2f"]
 font_size = 56
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_1wcfq"]
-font_size = 64
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
@@ -113,16 +109,18 @@ expand_mode = 1
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Reward" type="Label" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Reward" type="TextureRect" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-text = "Reward: "
-label_settings = SubResource("LabelSettings_1wcfq")
+texture = ExtResource("3_i05vp")
+expand_mode = 1
 
 [node name="Reward2" type="RichTextLabel" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(300, 50)
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 52
+vertical_alignment = 1
 
 [node name="EasyFight" type="Button" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(200, 0)
@@ -184,16 +182,18 @@ expand_mode = 1
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Reward" type="Label" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Reward" type="TextureRect" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-text = "Reward: "
-label_settings = SubResource("LabelSettings_1wcfq")
+texture = ExtResource("3_i05vp")
+expand_mode = 1
 
 [node name="Reward2" type="RichTextLabel" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(300, 50)
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 52
+vertical_alignment = 1
 
 [node name="MediumFight" type="Button" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(200, 0)
@@ -249,16 +249,18 @@ expand_mode = 1
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Reward" type="Label" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="Reward" type="TextureRect" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-text = "Reward: "
-label_settings = SubResource("LabelSettings_1wcfq")
+texture = ExtResource("3_i05vp")
+expand_mode = 1
 
 [node name="Reward2" type="RichTextLabel" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(300, 50)
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 52
+vertical_alignment = 1
 
 [node name="HardFight" type="Button" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(200, 0)
