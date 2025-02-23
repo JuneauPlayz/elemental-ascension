@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://sdwnoh61gawa"]
+[gd_scene load_steps=6 format=3 uid="uid://sdwnoh61gawa"]
 
 [ext_resource type="Script" uid="uid://dg1loamhcyprq" path="res://scripts/skill_info.gd" id="1_c7637"]
 
@@ -21,6 +21,11 @@ corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 shadow_size = 9
 
+[sub_resource type="LabelSettings" id="LabelSettings_5vcrp"]
+font_size = 24
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_807co"]
 font_size = 24
 outline_size = 12
@@ -35,66 +40,101 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.25, 1.25)
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 2
 script = ExtResource("1_c7637")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_right = 202.0
-offset_bottom = 155.0
+offset_right = 242.0
+offset_bottom = 137.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dymp5")
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Panel/PanelContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p7yi6")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/PanelContainer/PanelContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 7
 theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 7
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/PanelContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="SkillName" type="RichTextLabel" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SkillName" type="RichTextLabel" parent="Panel/PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(175, 30)
 layout_mode = 2
-size_flags_horizontal = 4
-mouse_filter = 2
-theme_override_constants/outline_size = 20
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[center]Name[/center]"
+text = "Name"
+fit_content = true
+horizontal_alignment = 1
 
-[node name="Element" type="RichTextLabel" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(175, 25)
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-mouse_filter = 2
-theme_override_constants/outline_size = 20
+size_flags_vertical = 0
+
+[node name="Element" type="RichTextLabel" parent="Panel/PanelContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "Element"
+text = "Lightning"
+fit_content = true
+autowrap_mode = 0
 
-[node name="Description" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Target" type="Label" parent="Panel/PanelContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 20
+text = "Random Middle Ally"
+label_settings = SubResource("LabelSettings_5vcrp")
+horizontal_alignment = 2
+
+[node name="Cost" type="Label" parent="Panel/PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "2  Lightning"
+label_settings = SubResource("LabelSettings_807co")
+
+[node name="Description" type="Label" parent="Panel/PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Description"
 label_settings = SubResource("LabelSettings_807co")
 
-[node name="Tags" type="RichTextLabel" parent="PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 39)
+[node name="Tags" type="RichTextLabel" parent="Panel/PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "Tags : "
+fit_content = true

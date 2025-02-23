@@ -4,7 +4,9 @@ extends Control
 @onready var skill_name: RichTextLabel = %SkillName
 @onready var element: RichTextLabel = %Element
 @onready var description: Label = %Description
-@onready var tags: RichTextLabel = $PanelContainer/PanelContainer/MarginContainer/VBoxContainer/Tags
+@onready var target_label: Label = %Target
+@onready var cost_label: Label = %Cost
+@onready var tags: RichTextLabel = %Tags
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,9 +16,10 @@ func _ready() -> void:
 func update_skill_info():
 	description.text = ""
 	var target = ""
-	skill_name.text = "[center]" + skill.name + "[/center]"
+	skill_name.text = skill.name
 	var element_text = ""
 	tags.text = " Tags : "
+	cost_label.text = ""
 	match skill.element:
 		"fire":
 			element_text = " [color=coral]Fire[/color]"
@@ -32,87 +35,91 @@ func update_skill_info():
 	element.text = "[center]" + element_text + "[/center]"
 	match skill.target_type:
 		"single_enemy":
-			target = "an enemy"
+			target = "Any Enemy"
 		"single_ally":
-			target = "an ally"
+			target = "Any Ally"
 		"all_allies":
-			target = "all allies"
+			target = "All Allies"
 		"all_enemies":
-			target = "all enemies"
+			target = "All Enemies"
 		"all_units":
-			target = "all units"
+			target = "All Units"
 		"front_ally":
-			target = "the front ally"
+			target = "Front Ally"
 		"front_2_allies":
-			target = "the two front allies"
+			target = "Two Closest Allies"
 		"front_enemy":
-			target = "the front enemy"
+			target = "Front Enemy"
 		"front_2_enemies":
-			target = "the two front enemies"
+			target = "Two Closest Enemies"
 		"back_ally":
-			target = "the back ally"
+			target = "Back Ally"
 		"back_2_allies":
-			target = "the two back allies"
+			target = "Two Farthest Allies"
 		"back_enemy":
-			target = "the back enemy"
+			target = "Back Enemy"
 		"back_2_enemies":
-			target = "the two back enemies"
+			target = "Back 2 Enemies"
 		"random_enemy":
-			target = "a random enemy"
+			target = "Random Enemy"
 		"random_ally":
-			target = "a random ally"
+			target = "Random Ally"
 		"random_middle_ally":
-			target = "one of the middle allies"
-	
+			target = "Random Middle Ally"
+	target_label.text = " " + target
 	if skill.damaging == true:
-		description.text += "Deals " + str(skill.damage) + " " + str(skill.element) + " damage\nto " + target
-		
+		description.text += "Damage " + str(skill.damage) 
 	if skill.shielding == true:
-		description.text += "Shields " + str(skill.damage) + " to " + target
+		description.text += "Shield " + str(skill.damage)
 	if skill.healing == true:
-		description.text += "Heals " + str(skill.damage) + " to " + target
+		description.text += "Heal " + str(skill.damage)
 	if description.text == "" and skill.element != "none":
-		description.text = "Applies " + skill.element + " to " + target
+		description.text = "Apply " + skill.element
 	if skill.blast == true:
-		description.text += "\n and " + str(skill.blast_damage) + " damage to the units to \nthe left and right"
+		description.text += "\nBlast " + str(skill.blast_damage)
 	if skill.double_hit == true:
-		description.text += "\nThen, deals " + str(skill.damage2) + " " + str(skill.element2) + " damage\nto the same target(s)"
+		description.text += "\nDouble Hit " + str(skill.damage2) + " " + str(skill.element2)
 	if skill.lifesteal == true:
-		description.text += "\nThe caster also heals for the skill's damage"
+		description.text += "\nLifesteal"
 	if skill.status_effects != []:
 		for x in skill.status_effects:
 			if x.name == "Bleed":
-				description.text += "\nApplies Bleed on targets"
+				description.text += "\nBleed"
 			if x.name == "Burn":
-				description.text += "\nApplies Burn on targets"
+				description.text += "\nBurn"
 			if x.name == "Bubble":
-				description.text += "\nApplies Bubble on targets"
+				description.text += "\nBubble"
 			if x.name == "Muck":
-				description.text += "\nApplies Muck on targets"
+				description.text += "\nMuck"
 			if x.name == "Nitro":
-				description.text += "\nApplies Nitro on targets"
+				description.text += "\nNitro"
 			if x.name == "Sow":
-				description.text += "\nApplise Sow on targets"
+				description.text += "\nSow"
 	if skill.cost > 0:
-		description.text += "\nCosts " +  str(skill.cost) + " " + skill.token_type + " tokens"
+		cost_label.visible = true
+		cost_label.text += "Cost: " +  str(skill.cost) + " " + skill.token_type + " tokens"
 		if skill.cost2 > 0:
-			description.text += "\nand " + str(skill.cost2) + " " + skill.token_type2 + " tokens to use"
-		else:
-			description.text += " to use"
+			cost_label.text += "\n    " + str(skill.cost2) + " " + skill.token_type2 + " tokens"
+	else:
+		cost_label.visible = false
 	
-	for tag in skill.tags:
-		var added_text = tag
-		match tag:
-			"Fire":
-				added_text = " [color=coral]Fire[/color]"
-			"Water":
-				added_text = " [color=dark_cyan]Water[/color]"
-			"Lightning":
-				added_text = " [color=purple]Lightning[/color]"
-			"Grass":
-				added_text = " [color=web_green]Grass[/color]"
-			"Earth":
-				added_text = " [color=saddle_brown]Earth[/color]"
-		if tag != "" or null:
-			tags.text += added_text + ",  "
-	tags.text = tags.text.substr(0, tags.text.length()-3)
+	if skill.tags == []:
+		tags.visible = false
+	else:
+		tags.visible = true
+		for tag in skill.tags:
+			var added_text = tag
+			match tag:
+				"Fire":
+					added_text = " [color=coral]Fire[/color]"
+				"Water":
+					added_text = " [color=dark_cyan]Water[/color]"
+				"Lightning":
+					added_text = " [color=purple]Lightning[/color]"
+				"Grass":
+					added_text = " [color=web_green]Grass[/color]"
+				"Earth":
+					added_text = " [color=saddle_brown]Earth[/color]"
+			if tag != "" or null:
+				tags.text += added_text + ",  "
+		tags.text = tags.text.substr(0, tags.text.length()-3)
