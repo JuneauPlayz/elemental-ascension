@@ -12,7 +12,25 @@ const SOW = preload("res://resources/Status Effects/Sow.tres")
 @onready var combat: Node = $".."
 
 var run
+var vaporize_mult = 2
+var shock_mult = 0.25
+var erupt_mult = 3
+var detonate_main_mult = 1.5
+var detonate_side_mult = 0.5
+var nitro_mult = 1.5
+var bubble_mult = 0.5
+var burn_damage = 10
+var burn_length = 2
+var muck_mult = 0.75
+var discharge_mult = 1.5
+var sow_shielding = 5
+var sow_healing = 5
+var sow_healing_mult = 1
+var sow_shielding_mult = 1
 
+var bloom_mult = 1
+var ally_bloom_healing = 5
+var enemy_bloom_healing = 5
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	run = get_tree().get_first_node_in_group("run")
@@ -126,61 +144,94 @@ func reaction(elem1: String, elem2: String, unit: Unit, value, friendly: bool, c
 						combat.nitro(unit, caster)
 	return true
 
-func vaporize(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
+func vaporize(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> void:
 	var reaction_name = " Vaporize!"
-	var res_value = roundi(value * run.vaporize_mult)
+	var res_value = roundi(value)
+	if caster is Ally:
+		res_value = roundi(value * run.vaporize_mult)
+	elif caster is Enemy:
+		res_value = roundi(value * vaporize_mult)  # Use the original multiplier
 	unit.current_element = "none"
 	if not friendly:
 		unit.take_damage(res_value, elem2, false)
 	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func detonate(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
+func detonate(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> void:
 	var reaction_name = " Detonate!"
 	var res_value = roundi(value)
+	var side_value = roundi(value)
+	if caster is Ally:
+		res_value = roundi(value * run.detonate_main_mult)
+		side_value = roundi(value * run.detonate_side_mult)
+	elif caster is Enemy:
+		res_value = roundi(value * detonate_main_mult)  # Use the original multiplier
+		side_value = roundi(value * detonate_side_mult)  # Use the original multiplier
 	unit.current_element = "none"
 	if unit == null:
 		return
 	if unit.hasLeft():
 		if unit.left.current_element == "none":
-			unit.left.take_damage(res_value * run.detonate_side_mult, elem2, true)
+			unit.left.take_damage(side_value, elem2, true)
 		else:
 			print("Left detonate")
-			await reaction(unit.left.current_element, elem2, unit.left, res_value * run.detonate_side_mult, false, caster)
+			await reaction(unit.left.current_element, elem2, unit.left, side_value, false, caster)
 	if unit.hasRight():
 		if unit.right.current_element == "none":
-			unit.right.take_damage(res_value * run.detonate_side_mult, elem2, true)
+			unit.right.take_damage(side_value, elem2, true)
 		else:
-			await reaction(unit.right.current_element, elem2, unit.right, res_value * run.detonate_side_mult, false, caster)
+			await reaction(unit.right.current_element, elem2, unit.right, side_value, false, caster)
 	if not friendly:
-		unit.take_damage(res_value * run.detonate_main_mult, elem2, false)
+		unit.take_damage(res_value, elem2, false)
 	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func erupt(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
+func erupt(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> void:
 	var reaction_name = " Erupted!"
 	var res_value = roundi(value)
+	if caster is Ally:
+		res_value = roundi(value * run.erupt_mult)
+	elif caster is Enemy:
+		res_value = roundi(value * erupt_mult)  # Use the original multiplier
 	unit.current_element = "none"
-	if not friendly:
-		if unit.shield > 0:
-			var shield = unit.shield
-			if (value * run.erupt_mult) < shield:
-				unit.take_damage(value * run.erupt_mult, elem2, false)
-				res_value = value * run.erupt_mult
+	if caster is Ally:
+		if not friendly:
+			if unit.shield > 0:
+				var shield = unit.shield
+				if (res_value) < shield:
+					unit.take_damage(value * run.erupt_mult, elem2, false)
+					res_value = value * run.erupt_mult
+				else:
+					var shield_dmg = (shield + run.erupt_mult - 1) / run.erupt_mult
+					value -= shield_dmg
+					res_value = value + shield
+					unit.take_damage(res_value, elem2, false)
+					reaction_name = " Erupted!!"
 			else:
-				var shield_dmg = (shield + run.erupt_mult - 1) / run.erupt_mult
-				value -= shield_dmg
-				res_value = value + shield
 				unit.take_damage(res_value, elem2, false)
-				reaction_name = " Erupted!!"
-		else:
-			unit.take_damage(res_value, elem2, false)
-	elif friendly:
-		unit.receive_shielding(value, elem2, false)
+		elif friendly:
+			unit.receive_shielding(value, elem2, false)
+	elif caster is Enemy:
+		if not friendly:
+			if unit.shield > 0:
+				var shield = unit.shield
+				if (res_value) < shield:
+					unit.take_damage(value * erupt_mult, elem2, false)
+					res_value = value * run.erupt_mult
+				else:
+					var shield_dmg = (shield + erupt_mult - 1) / erupt_mult
+					value -= shield_dmg
+					res_value = value + shield
+					unit.take_damage(res_value, elem2, false)
+					reaction_name = " Erupted!!"
+			else:
+				unit.take_damage(res_value, elem2, false)
+		elif friendly:
+			unit.receive_shielding(value, elem2, false)
 	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func burn(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
+func burn(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> void:
 	var reaction_name = " Burn!"
 	if not run.burn_stack:
 		for stati in unit.status:
@@ -192,6 +243,7 @@ func burn(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caste
 		new_burn.damage = run.burn_damage
 	unit.current_element = "none"
 	unit.status.append(new_burn)
+	unit.hp_bar.update_statuses(unit.status)
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)
 	elif friendly:
@@ -199,25 +251,33 @@ func burn(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caste
 	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func shock(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
+func shock(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> void:
 	var reaction_name = " Shock!"
-	var res_value = roundi(value * run.shock_mult)
+	var res_value = roundi(value)
+	if caster is Ally:
+		res_value = roundi(value * run.shock_mult)
+	elif caster is Enemy:
+		res_value = roundi(value * shock_mult)  # Use the original multiplier
 	unit.current_element = "none"
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)
+		await get_tree().create_timer(0.02).timeout
 		if unit != null:
 			unit.take_damage(res_value, "lightning", true)
+		await get_tree().create_timer(0.02).timeout
 		if unit != null:
 			unit.take_damage(res_value, "lightning", true)
+			await get_tree().create_timer(0.02).timeout
 		if unit != null:
 			unit.take_damage(res_value, "lightning", true)
 	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func bloom(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
+func bloom(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> void:
 	var reaction_name = " Bloom!"
 	var bubble_effect = BUBBLE.duplicate()
 	unit.status.append(bubble_effect)
+	unit.hp_bar.update_statuses(unit.status)
 	unit.current_element = "none"
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)
@@ -226,10 +286,11 @@ func bloom(elem1: String, elem2: String, unit: Unit, value, friendly: bool, cast
 	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func nitro(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
+func nitro(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> void:
 	var reaction_name = " Nitro!"
 	var nitro_effect = NITRO.duplicate()
 	unit.status.append(nitro_effect)
+	unit.hp_bar.update_statuses(unit.status)
 	unit.current_element = "none"
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)
@@ -238,11 +299,13 @@ func nitro(elem1: String, elem2: String, unit: Unit, value, friendly: bool, cast
 	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func discharge(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
+func discharge(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> void:
 	var reaction_name = " Discharge!"
 	var split_damage = value
-	if combat.enemies.size() > 0:
+	if caster is Ally:
 		split_damage = roundi((value * run.discharge_mult) / combat.enemies.size())
+	elif caster is Enemy:
+		split_damage = roundi((value * discharge_mult) / combat.enemies.size())  # Use the original multiplier
 	if not friendly:
 		unit.take_damage(roundi(split_damage), elem2, false)
 		unit.current_element = "none"
@@ -255,10 +318,11 @@ func discharge(elem1: String, elem2: String, unit: Unit, value, friendly: bool, 
 			enemy.take_damage(roundi(split_damage), "none", true)
 	reaction_finished.emit()
 
-func sow(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
+func sow(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> void:
 	var reaction_name = " Sow!"
 	var sow_effect = SOW.duplicate()
 	unit.status.append(sow_effect)
+	unit.hp_bar.update_statuses(unit.status)
 	unit.current_element = "none"
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)
@@ -269,10 +333,11 @@ func sow(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster
 	await get_tree().create_timer(0.001).timeout
 	reaction_finished.emit()
 
-func muck(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster : Unit) -> void:
+func muck(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> void:
 	var reaction_name = " Muck!"
 	var muck_effect = MUCK.duplicate()
 	unit.status.append(muck_effect)
+	unit.hp_bar.update_statuses(unit.status)
 	unit.current_element = "none"
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)

@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_x15xq")
-name = "Fire Slash"
-damage = 30
+name = "Fire Stab"
+damage = 25
 element = "fire"
 damaging = true
 healing = false
@@ -26,8 +26,12 @@ damage2 = 0
 element2 = ""
 blast = false
 blast_damage = 0
+decay = false
+decay_value = 0
+buff = false
+buff_value = 0
 tag1 = ""
 tag2 = ""
 target_tag = ""
 tags = []
-metadata/_custom_type_script = ExtResource("1_x15xq")
+metadata/_custom_type_script = "uid://b6jr4peo4gndo"

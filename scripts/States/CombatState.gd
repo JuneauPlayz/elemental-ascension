@@ -16,7 +16,7 @@ func Exit():
 		ally.visible = true
 		ally.current_element = "none"
 		ally.hp_bar.update_element(ally.current_element)
-		ally.status == []
+		ally.status = []
 		ally.hp_bar.update_statuses(ally.status)
 	run.combat = false
 	run.combat_scene.queue_free()

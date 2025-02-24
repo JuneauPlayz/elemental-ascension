@@ -140,7 +140,7 @@ func receive_skill_friendly(skill, unit, value_multiplier):
 	var number = skill.damage * value_multiplier
 	var value = skill.damage * value_multiplier
 	if skill.buff == true:
-		increase_skill_damage(skill.damage)
+		increase_skill_damage(skill.buff_value)
 	else:
 		var r = await ReactionManager.reaction(current_element, skill.element, self, value, skill.friendly, unit)
 		if (!r):

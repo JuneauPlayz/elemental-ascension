@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_bygfq")
 name = "Fire Snipe"
-damage = 20
+damage = 16
 element = "fire"
 damaging = true
 healing = false
@@ -28,8 +28,10 @@ blast = false
 blast_damage = 0
 decay = false
 decay_value = 0
+buff = false
+buff_value = 0
 tag1 = ""
 tag2 = ""
 target_tag = ""
 tags = []
-metadata/_custom_type_script = ExtResource("1_bygfq")
+metadata/_custom_type_script = "uid://b6jr4peo4gndo"

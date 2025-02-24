@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_ca2mb")
 name = "Pray To Miku"
-damage = 5
+damage = 0
 element = "none"
 damaging = false
 healing = false
@@ -29,7 +29,7 @@ blast_damage = 0
 decay = false
 decay_value = 0
 buff = true
-buff_value = 0
+buff_value = 5
 tag1 = ""
 tag2 = ""
 target_tag = ""

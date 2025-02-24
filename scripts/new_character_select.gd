@@ -128,7 +128,7 @@ func _on_golem_drag_ended() -> void:
 
 func display_character_info(character):
 	character_info.visible = true
-	character_info.text = character.name
+	character_info.text = character.name + "  " + str(character.starting_health) + "  HP"
 	skill_info_1.skill = character.skill1
 	skill_info_2.skill = character.skill2
 	skill_info_1.update_skill_info()
