@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_h6bvc")
-name = "MIKU CELERY SNACK"
-damage = 300
+name = "MIKU SNACK"
+damage = 100
 element = "earth"
 damaging = false
 healing = false
@@ -24,3 +24,13 @@ status_effects = []
 double_hit = false
 damage2 = 0
 element2 = ""
+blast = false
+blast_damage = 0
+decay = false
+decay_value = 0
+buff = false
+buff_value = 0
+tag1 = ""
+tag2 = ""
+target_tag = ""
+tags = []

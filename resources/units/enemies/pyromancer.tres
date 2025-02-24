@@ -1,21 +1,15 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=7 format=3 uid="uid://difhbre5yysvi"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=4 format=3 uid="uid://difhbre5yysvi"]
 
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_2elhq"]
 [ext_resource type="Resource" uid="uid://cr3bbtfskjida" path="res://resources/enemy_skills/EnemyAOEFire.tres" id="2_m1i4n"]
 [ext_resource type="Texture2D" uid="uid://dspavikuf1db6" path="res://assets/leo-val-pyromancer-01-v001.jpg" id="3_f15hj"]
-[ext_resource type="Resource" uid="uid://brh5ruku5f0xa" path="res://resources/enemy_skills/Fire Punch.tres" id="3_yfcni"]
-[ext_resource type="Resource" uid="uid://c3h41i8t3pvsx" path="res://resources/enemy_skills/Fire Yeet.tres" id="4_0gn1f"]
-[ext_resource type="Resource" uid="uid://cap1r3pplmwmf" path="res://resources/enemy_skills/Magma Strike.tres" id="5_pjva1"]
 
 [resource]
 resource_local_to_scene = true
 resource_name = "Pyromancer"
 script = ExtResource("1_2elhq")
-starting_health = 250
+starting_health = 120
 skill1 = ExtResource("2_m1i4n")
-skill2 = ExtResource("3_yfcni")
-skill3 = ExtResource("4_0gn1f")
-skill4 = ExtResource("5_pjva1")
 sprite = ExtResource("3_f15hj")
 sprite_scale = 0.3
 name = "Pyromancer"

@@ -15,4 +15,5 @@ tags = []
 icon = ExtResource("1_n731v")
 tooltip = "When an ally uses a
 single enemy fire skill,
-the front enemy is also hit with the same skill"
+the front enemy is also hit 
+with the same skill"

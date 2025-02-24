@@ -138,21 +138,36 @@ func receive_skill_friendly(skill, unit, value_multiplier):
 	var reaction = ""
 	var number = skill.damage * value_multiplier
 	var value = skill.damage * value_multiplier
-	var r = await ReactionManager.reaction(current_element, skill.element, self, value, skill.friendly, unit)
-	if (!r):
-		if skill.shielding == true:
-			self.receive_shielding(value, skill.element, true)
-		if skill.healing == true:
-			if (health + number >= max_health):
-				number = max_health - health
-			self.receive_healing(value, skill.element, true)
-	if skill.status_effects != []:
-		for x in skill.status_effects:
-			status.append(x)
-	if not copy:
-		hp_bar.update_element(current_element)
-		hp_bar.update_statuses(status)
+	if skill.buff == true:
+		increase_skill_damage(skill.damage)
+	else:
+		var r = await ReactionManager.reaction(current_element, skill.element, self, value, skill.friendly, unit)
+		if (!r):
+			if skill.shielding == true:
+				self.receive_shielding(value, skill.element, true)
+			if skill.healing == true:
+				if (health + number >= max_health):
+					number = max_health - health
+				self.receive_healing(value, skill.element, true)
+		if skill.status_effects != []:
+			for x in skill.status_effects:
+				status.append(x)
+		if not copy:
+			hp_bar.update_element(current_element)
+			hp_bar.update_statuses(status)
 
+func increase_skill_damage(value):
+	if self.skill1 != null:
+		self.skill1.damage += value
+	if self.skill2 != null:
+		self.skill2.damage += value
+	if self.skill3 != null:
+		self.skill3.damage += value
+	if self.skill4 != null:
+		self.skill4.damage += value
+	if self is Enemy:
+		self.skill_info.update_skill_info()
+	
 func take_damage(damage : int, element : String, change_element : bool):
 	if not copy:
 		match element:

@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://c34scmk01ocky"]
+
+[ext_resource type="Script" uid="uid://b6jr4peo4gndo" path="res://scripts/skill.gd" id="1_ca2mb"]
+
+[resource]
+script = ExtResource("1_ca2mb")
+name = "Pray To Miku"
+damage = 5
+element = "none"
+damaging = false
+healing = false
+shielding = false
+target_type = "back_enemy"
+purchaseable = true
+tier = "Common"
+friendly = true
+lifesteal = false
+lifesteal_rate = 1.0
+cost = 0
+token_type = ""
+cost2 = 0
+token_type2 = ""
+status_effects = []
+double_hit = false
+damage2 = 0
+element2 = ""
+blast = false
+blast_damage = 0
+decay = false
+decay_value = 0
+buff = true
+buff_value = 0
+tag1 = ""
+tag2 = ""
+target_tag = ""
+tags = []
+metadata/_custom_type_script = "uid://b6jr4peo4gndo"

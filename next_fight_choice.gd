@@ -153,6 +153,41 @@ func _ready() -> void:
 			while hard_reward in rewards:
 				hard_reward = GC.get_random_boss_reward(run.boss_level)
 			rewards.append(hard_reward)
+		if run.boss_level % 2 == 0:
+			update_color(fight_1, hard_color)
+			update_color(fight_2, hard_color)
+			difficulty_1.text = "Boss"
+			difficulty_2.text = "Boss"
+			difficulty_3.text = "Boss"
+			easy_level.text = "Level: " + str(run.boss_level)
+			medium_level.text = "Level: " + str(run.boss_level)
+			hard_level.text = "Level: " + str(run.boss_level)
+			fights = []
+			easy_fight = GC.get_random_boss(run.boss_level)
+			#while easy_fight in fights:
+				#easy_fight = GC.get_random_boss(run.boss_level)
+			fights.append(easy_fight)
+			medium_fight = GC.get_random_boss(run.boss_level)
+			#while medium_fight in fights:
+				#medium_fight = GC.get_random_boss(run.boss_level)
+			fights.append(medium_fight)
+			hard_fight = GC.get_random_boss(run.boss_level)
+			#while hard_fight in fights:
+				#hard_fight = GC.get_random_boss(run.boss_level)
+			fights.append(hard_fight)
+			rewards = []
+			easy_reward = GC.get_random_boss_reward(run.boss_level)
+			#while easy_reward in rewards:
+				#easy_reward = GC.get_random_boss_reward(run.boss_level)
+			rewards.append(easy_reward)
+			medium_reward = GC.get_random_boss_reward(run.boss_level)
+			#while medium_reward in rewards:
+				#medium_reward = GC.get_random_boss_reward(run.boss_level)
+			rewards.append(medium_reward)
+			hard_reward = GC.get_random_boss_reward(run.boss_level)
+			#while hard_reward in rewards:
+				#hard_reward = GC.get_random_boss_reward(run.boss_level)
+			rewards.append(hard_reward)
 	for enemy in easy_fight:
 		if enemy != null:
 			var new_sprite = CHOOSE_FIGHT_SCENE_SPRITE.instantiate()

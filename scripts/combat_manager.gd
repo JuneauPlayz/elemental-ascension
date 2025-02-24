@@ -4,6 +4,7 @@ extends Node
 @onready var combat_currency: Control = $CombatCurrency
 
 const COMBAT_SIM = preload("res://combat_sim.tscn")
+const ENEMY = preload("res://resources/units/enemies/enemy.tscn")
 
 @export var ally1 : Ally
 @export var ally2 : Ally
@@ -221,7 +222,8 @@ func enemy_turn():
 		hit.emit()
 		enemy.change_skills()
 		if enemies.size() > i+1:
-			enemies[i+1].attack_animation()
+			if not enemies[i+1].animation:
+				enemies[i+1].attack_animation()
 		await get_tree().create_timer(GC.GLOBAL_INTERVAL+0.05).timeout
 	await get_tree().create_timer(0.1).timeout
 	enemy_post_status()
@@ -312,6 +314,24 @@ func use_skill(skill,target,unit,event,spend_tokens):
 	if enemies == []:
 		victory()
 	skill.update()
+	if skill.summon != null:
+		var new_summon = ENEMY.instantiate()
+		new_summon.res = skill.summon.duplicate()
+		if enemy3 == null:
+			get_parent().enemy_3_spot.add_child(new_summon)
+			enemy3 = new_summon
+			enemies.push_front(enemy3)
+		elif enemy2 == null:
+			get_parent().enemy_2_spot.add_child(new_summon)
+			enemy2 = new_summon
+			enemies.push_front(enemy2)
+		elif enemy1 == null:
+			get_parent().enemy_1_spot.add_child(new_summon)
+			enemy1 = new_summon
+			enemies.push_front(enemy1)
+		else:
+			return
+		return
 	var value_multiplier = 1
 	# token spending
 	if unit.muck == true:
@@ -391,17 +411,29 @@ func use_skill(skill,target,unit,event,spend_tokens):
 					allies[3].receive_skill(skill,unit,value_multiplier)
 		elif (target == null):
 			if (skill.target_type == "all_allies" and allies.size() > 0):
-				for ally in allies:
-					ally.receive_skill(skill,unit,value_multiplier)
+				var temp_allies = allies.duplicate()
+				for ally in temp_allies:
+					if ally in allies:
+						ally.receive_skill(skill,unit,value_multiplier)
+						set_unit_pos()
 						#print(ally.title + " taking " + str(skill.damage) + " damage from " + unit.title)
 			elif (skill.target_type == "all_enemies" and allies.size() > 0):
-				for enemy in enemies:
-					enemy.receive_skill(skill,unit,value_multiplier)
+				var temp_enemies = enemies.duplicate()
+				for enemy in temp_enemies:
+					if enemy in enemies:
+						enemy.receive_skill(skill,unit,value_multiplier)
+						set_unit_pos()
 			elif (skill.target_type == "all_units" and allies.size() > 0 and enemies.size() > 0):
-				for enemy in enemies:
-					enemy.receive_skill(skill,unit,value_multiplier)
-				for ally in allies:
-					ally.receive_skill(skill,unit,value_multiplier)
+				var temp_enemies = enemies.duplicate()
+				for enemy in temp_enemies:
+					if enemy in enemies:
+						enemy.receive_skill(skill,unit,value_multiplier)
+						set_unit_pos()
+				var temp_allies = allies.duplicate()
+				for ally in temp_allies:
+					if ally in allies:
+						ally.receive_skill(skill,unit,value_multiplier)
+						set_unit_pos()
 	if (skill.lifesteal):
 		unit.receive_healing(roundi(skill.damage * skill.lifesteal_rate), "grass", false)
 
@@ -944,6 +976,24 @@ func check_requirements():
 		
 func set_unit_pos():
 	middle_allies = []
+	enemies = []
+	allies = []
+	if enemy1 != null:
+		enemies.append(enemy1)
+	if enemy2 != null:
+		enemies.append(enemy2)
+	if enemy3 != null:
+		enemies.append(enemy3)
+	if enemy4 != null:
+		enemies.append(enemy4)
+	if ally1 != null:
+		allies.append(ally1)
+	if ally2 != null:
+		allies.append(ally2)
+	if ally3 != null:
+		allies.append(ally3)
+	if ally4 != null:
+		allies.append(ally4)
 	for n in range(enemies.size()):
 		if n > 0:
 			enemies[n].left = enemies[n-1]

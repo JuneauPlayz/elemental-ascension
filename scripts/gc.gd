@@ -68,9 +68,18 @@ var m1v1 = [FIRE_BOMBER, LIGHTNING_BOMBER, WATER_BOMBER, null]
 var m1v2 = [LIGHTNING_BOMBER, FIRE_BOMBER, WATER_BOMBER, null]
 var m1v3 = [WATER_BOMBER, FIRE_BOMBER, LIGHTNING_BOMBER, null]
 
-var fight_5 = [PYROMANCER, HYDROMANCER, LIGHTNING_MASTER, ORB_WIZARD]
+var f4v1 = [EARTH_SWORDSMAN, GRASS_SWORDSMAN, ORB_WIZARD, null]
+var f4v2 = [WATER_SWORDSMAN, FIRE_SWORDSMAN, ORB_WIZARD, null]
 
-var fight_6 = [null, null, THEFINALBOSS, null]
+var f5v1 = [EARTH_SWORDSMAN, GRASS_SWORDSMAN, ORB_WIZARD, null]
+var f5v2 = [LIGHTNING_SWORDSMAN, FIRE_SWORDSMAN, WATER_ARCHER, ORB_WIZARD]
+
+var f6v1 = [PYROMANCER, HYDROMANCER, ORB_WIZARD, ORB_WIZARD]
+
+var b1v1 = [null, null, null, THEFINALBOSS]
+var b1v2 = [null, null, null, THEFINALBOSS]
+var b1v3 = [null, null, null, THEFINALBOSS]
+
 
 var level_1_fights = [f1v1, f1v2, f1v3]
 var level_1_rewards = [L1R1,L1R2,L1R3,L1R4]
@@ -84,14 +93,17 @@ var miniboss_1_rewards = [M1R1, M1R2, M1R3]
 var level_3_fights = [f3v1,f3v2,f3v3]
 var level_3_rewards = [L1R1,L1R2,L1R3]
 
-var level_4_fights = [f3v1]
+var level_4_fights = [f4v1, f4v2]
 var level_4_rewards = [L2R1]
 
-var level_5_fights = [f3v1]
+var level_5_fights = [f5v1]
 var level_5_rewards = [L2R1]
 
-var level_6_fights = [f3v1]
+var level_6_fights = [f6v1]
 var level_6_rewards = [L2R1]
+
+var boss_1_fights = [b1v1, b1v2, b1v3]
+var boss_1_rewards = [M1R1, M1R2, M1R3]
 
 var level_7_fights = [f3v1]
 var level_7_rewards = [L2R1]
@@ -161,6 +173,12 @@ func get_random_fight(level):
 		8:
 			random_num = rng.randi_range(0,level_8_fights.size()-1)
 			fight = level_8_fights[random_num]
+		9:
+			random_num = rng.randi_range(0,level_8_fights.size()-1)
+			fight = level_8_fights[random_num]
+		10:
+			random_num = rng.randi_range(0,level_8_fights.size()-1)
+			fight = level_8_fights[random_num]
 	return fight
 
 func get_random_boss(level):
@@ -171,6 +189,9 @@ func get_random_boss(level):
 		1:
 			random_num = rng.randi_range(0,miniboss_1_fights.size()-1)
 			fight = miniboss_1_fights[random_num]
+		2:
+			random_num = rng.randi_range(0,boss_1_fights.size()-1)
+			fight = boss_1_fights[random_num]
 	return fight
 	
 func get_random_boss_reward(level):
@@ -179,6 +200,9 @@ func get_random_boss_reward(level):
 	var reward = null
 	match level:
 		1:
+			random_num = rng.randi_range(0,miniboss_1_rewards.size()-1)
+			reward = miniboss_1_rewards[random_num]
+		2:
 			random_num = rng.randi_range(0,miniboss_1_rewards.size()-1)
 			reward = miniboss_1_rewards[random_num]
 	return reward

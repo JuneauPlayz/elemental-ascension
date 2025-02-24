@@ -1,21 +1,17 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=7 format=3 uid="uid://dewwyiharccfo"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://dewwyiharccfo"]
 
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_606r8"]
-[ext_resource type="Resource" uid="uid://dfgin1pydgukr" path="res://resources/enemy_skills/MIKU BEAM.tres" id="2_pgvml"]
+[ext_resource type="Resource" uid="uid://ck0yohfjasyyu" path="res://resources/enemy_skills/SummonFan.tres" id="2_i0rbu"]
 [ext_resource type="Texture2D" uid="uid://dbe58uqp7vm5v" path="res://assets/hatsune_miku_boss.jpg" id="2_vjx7t"]
-[ext_resource type="Resource" uid="uid://bhk7c70m0pn1l" path="res://resources/enemy_skills/MIKU CELERY SNACK.tres" id="3_6w7n1"]
 [ext_resource type="Resource" uid="uid://ccx36cyjmjt4x" path="res://resources/enemy_skills/MIKU FIREWORK.tres" id="4_wijm7"]
-[ext_resource type="Resource" uid="uid://dvk1q4qjshwh1" path="res://resources/enemy_skills/MIKU STEAM ATAAAAAAAAKU.tres" id="5_rl2ea"]
 
 [resource]
 resource_local_to_scene = true
 resource_name = "Miku"
 script = ExtResource("1_606r8")
 starting_health = 1500
-skill1 = ExtResource("2_pgvml")
-skill2 = ExtResource("3_6w7n1")
-skill3 = ExtResource("4_wijm7")
-skill4 = ExtResource("5_rl2ea")
+skill1 = ExtResource("2_i0rbu")
+skill2 = ExtResource("4_wijm7")
 sprite = ExtResource("2_vjx7t")
 sprite_scale = 1.0
 name = "MIKU"

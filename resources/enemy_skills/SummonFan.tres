@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://ck0yohfjasyyu"]
+
+[ext_resource type="Script" uid="uid://b6jr4peo4gndo" path="res://scripts/skill.gd" id="1_ykoqh"]
+[ext_resource type="Resource" uid="uid://v8hd3sgcvbf0" path="res://resources/enemy_skills/MikuFan.tres" id="2_jgimx"]
+
+[resource]
+script = ExtResource("1_ykoqh")
+name = "Summon Fan"
+damage = 0
+element = "none"
+damaging = false
+healing = false
+shielding = false
+target_type = ""
+purchaseable = true
+tier = "Common"
+friendly = false
+lifesteal = false
+lifesteal_rate = 1.0
+cost = 0
+token_type = ""
+cost2 = 0
+token_type2 = ""
+status_effects = []
+double_hit = false
+damage2 = 0
+element2 = ""
+blast = false
+blast_damage = 0
+decay = false
+decay_value = 0
+buff = false
+buff_value = 0
+summon = ExtResource("2_jgimx")
+tag1 = ""
+tag2 = ""
+target_tag = ""
+tags = []
+metadata/_custom_type_script = "uid://b6jr4peo4gndo"

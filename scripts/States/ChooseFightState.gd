@@ -11,5 +11,4 @@ func Enter(fight_type):
 		ally.spell_select_ui.enable_all()
 		
 func Exit():
-	run.fight_level += 1
 	run.choose_fight_scene.queue_free()

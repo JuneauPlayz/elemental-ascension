@@ -1,21 +1,15 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=7 format=3 uid="uid://rccuvvqawkuw"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=4 format=3 uid="uid://rccuvvqawkuw"]
 
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_vfdnl"]
 [ext_resource type="Resource" uid="uid://bdhvjuo1cekdg" path="res://resources/enemy_skills/EnemyAOEWater.tres" id="2_af38f"]
 [ext_resource type="Texture2D" uid="uid://c3wn67rl0ods7" path="res://assets/hydromancer.jpg" id="3_3viei"]
-[ext_resource type="Resource" uid="uid://we8b2k5q6pnw" path="res://resources/enemy_skills/Water Punch.tres" id="3_odkt6"]
-[ext_resource type="Resource" uid="uid://4mg01twvwsvu" path="res://resources/enemy_skills/Water Yeet.tres" id="4_ks3nl"]
-[ext_resource type="Resource" uid="uid://drrrj6plbrlss" path="res://resources/enemy_skills/Water Strike.tres" id="5_owkgm"]
 
 [resource]
 resource_local_to_scene = true
 resource_name = "Hydromancer"
 script = ExtResource("1_vfdnl")
-starting_health = 250
+starting_health = 120
 skill1 = ExtResource("2_af38f")
-skill2 = ExtResource("3_odkt6")
-skill3 = ExtResource("4_ks3nl")
-skill4 = ExtResource("5_owkgm")
 sprite = ExtResource("3_3viei")
 sprite_scale = 0.3
 name = "Hydromancer"

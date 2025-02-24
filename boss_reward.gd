@@ -9,6 +9,7 @@ var rewards = []
 var fights = []
 var type = ""
 signal choice_ended
+var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.PURPLE, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
 var easy_color = "86a18c"
 var hard_color = "b0797b"
 
@@ -52,8 +53,11 @@ func _ready() -> void:
 	match reward_type:
 		"bombers":
 			set_reward(1, FIRE_BOMB)
+			update_color(reward_1,element_dict.get("fire"))
 			set_reward(2, WATER_BOMB)
+			update_color(reward_2,element_dict.get("water"))
 			set_reward(3, THUNDER_BOMB)
+			update_color(reward_3,element_dict.get("lightning"))
 
 func update_color(button, color):
 	var new_stylebox_normal = button.get_theme_stylebox("panel").duplicate()

@@ -281,6 +281,7 @@ func run_loop():
 			await scene_end
 		else:
 			S.transition("choosefight","")
+			fight_level += 1
 			await scene_end
 			if (level_up):
 				S.transition("levelup","")

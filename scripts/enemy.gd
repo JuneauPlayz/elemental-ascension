@@ -8,6 +8,7 @@ class_name Enemy
 @export var skill4 : Skill
 var current_skill : Skill
 
+var animation = false
 
 @export var reaction_primed = 0
 
@@ -18,7 +19,7 @@ var current_skill : Skill
 var sow_just_applied = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.005).timeout
 	if not copy:
 		combat_manager = get_parent().get_parent().get_combat_manager()
 		ReactionManager = combat_manager.ReactionManager
@@ -96,7 +97,7 @@ func change_skills():
 			new_skill = skill3
 		4:
 			new_skill = skill4
-	while new_skill == current_skill:
+	while new_skill == current_skill or (new_skill.summon != null and combat_manager.enemies.size() == 4):
 		random_num = rng.randi_range(1,num_skills)
 		match random_num:
 			1:
@@ -118,6 +119,7 @@ func show_next_skill_info():
 	show_next_skill.visible = true
 	
 func attack_animation():
+	animation = true
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(
@@ -141,7 +143,8 @@ func attack_animation():
 	tween.tween_property(
 		sprite_spot, "position:x", sprite_spot.position.x, 0.05
 	).set_ease(Tween.EASE_OUT).set_delay(0.30)
-
+	await get_tree().create_timer(0.50).timeout
+	animation = false
 	
 func _on_targeting_area_pressed() -> void:
 	target_chosen.emit(self)
