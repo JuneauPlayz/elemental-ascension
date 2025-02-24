@@ -6,11 +6,11 @@
 script = ExtResource("1_h6bvc")
 name = "MIKU SNACK"
 damage = 100
-element = "earth"
+element = "grass"
 damaging = false
-healing = false
-shielding = true
-target_type = "all_enemies"
+healing = true
+shielding = false
+target_type = "back_enemy"
 purchaseable = true
 tier = "1"
 friendly = true

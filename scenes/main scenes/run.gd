@@ -279,6 +279,8 @@ func run_loop():
 			await scene_end
 			S.transition("choosereward",current_boss)
 			await scene_end
+			if boss_level == 2:
+				end = true
 		else:
 			S.transition("choosefight","")
 			fight_level += 1
@@ -294,7 +296,6 @@ func run_loop():
 			await scene_end
 		if (end):
 			break
-	shop_scene.queue_free()
 	var end_scene = END.instantiate()
 	self.add_child(end_scene)
 	
@@ -321,29 +322,42 @@ func scene_ended(next_scene):
 		match scene_reward:
 			"common_event":
 				S.transition("event","common")
+				await special_scene_end
+				scene_end.emit()
 			"rare_event":
 				S.transition("event","rare")
+				await special_scene_end
 			"normal_shop":
 				load_shop("none")
 				S.transition("specialshop","")
+				await special_scene_end
+				scene_end.emit()
 			"fire_shop":
 				load_shop("fire")
 				S.transition("specialshop","")
+				await special_scene_end
+				scene_end.emit()
 			"water_shop":
 				load_shop("water")
 				S.transition("specialshop","")
+				await special_scene_end
+				scene_end.emit()
 			"lightning_shop":
 				load_shop("lightning")
 				S.transition("specialshop","")
+				await special_scene_end
+				scene_end.emit()
 			"grass_shop":
 				load_shop("grass")
 				S.transition("specialshop","")
+				await special_scene_end
+				scene_end.emit()
 			"earth_shop":
 				load_shop("earth")
 				S.transition("specialshop","")
+				await special_scene_end
+				scene_end.emit()
 		scene_reward = ""
-		await special_scene_end
-		scene_end.emit()
 	else:
 		scene_end.emit()
 

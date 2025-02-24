@@ -31,8 +31,6 @@ var combat = true
 
 var level_up_complete = false
 
-var position = 0
-
 var level
 var level_up
 

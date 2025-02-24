@@ -38,7 +38,6 @@ const WATER_BOMBER = preload("res://resources/units/enemies/WaterBomber.tres")
 # events
 const REST_EVENT = preload("res://rest_event.tscn")
 const SPECIAL_SHOP_EVENT = preload("res://SpecialShopEvent.tscn")
-const SACRIFICE_EVENT = preload("res://sacrifice_event.tscn")
 
 const L1R1 = preload("res://resources/rewards/level1/L1R1.tres")
 const L1R2 = preload("res://resources/rewards/level1/L1R2.tres")
@@ -46,6 +45,14 @@ const L1R3 = preload("res://resources/rewards/level1/L1R3.tres")
 const L1R4 = preload("res://resources/rewards/level1/L1R4.tres")
 const L2R1 = preload("res://resources/rewards/level2/L2R1.tres")
 const L2R2 = preload("res://resources/rewards/level2/L2R2.tres")
+const L3R1 = preload("res://resources/rewards/level3/L3R1.tres")
+const L3R2 = preload("res://resources/rewards/level3/L3R2.tres")
+const L4R1 = preload("res://resources/rewards/level4/L4R1.tres")
+const L5R1 = preload("res://resources/rewards/level5/L5R1.tres")
+const L5R2 = preload("res://resources/rewards/level5/L5R2.tres")
+const L6R1 = preload("res://resources/rewards/level6/L6R1.tres")
+const L6R2 = preload("res://resources/rewards/level6/L6R2.tres")
+
 const M1R1 = preload("res://resources/rewards/miniboss_1/M1R1.tres")
 const M1R2 = preload("res://resources/rewards/miniboss_1/M1R2.tres")
 const M1R3 = preload("res://resources/rewards/miniboss_1/M1R3.tres")
@@ -91,25 +98,25 @@ var miniboss_1_fights = [m1v1, m1v2, m1v3]
 var miniboss_1_rewards = [M1R1, M1R2, M1R3]
 
 var level_3_fights = [f3v1,f3v2,f3v3]
-var level_3_rewards = [L1R1,L1R2,L1R3]
+var level_3_rewards = [L3R1,L3R2]
 
 var level_4_fights = [f4v1, f4v2]
-var level_4_rewards = [L2R1]
+var level_4_rewards = [L4R1]
 
 var level_5_fights = [f5v1]
-var level_5_rewards = [L2R1]
+var level_5_rewards = [L5R1, L5R2]
 
 var level_6_fights = [f6v1]
-var level_6_rewards = [L2R1]
+var level_6_rewards = [L6R1, L6R2]
 
 var boss_1_fights = [b1v1, b1v2, b1v3]
 var boss_1_rewards = [M1R1, M1R2, M1R3]
 
 var level_7_fights = [f3v1]
-var level_7_rewards = [L2R1]
+var level_7_rewards = [L6R2]
 
 var level_8_fights = [f3v1]
-var level_8_rewards = [L2R1]
+var level_8_rewards = [L6R2]
 #transition to run:
 
 var ally1 : UnitRes
@@ -117,10 +124,10 @@ var ally2 : UnitRes
 var ally3 : UnitRes
 var ally4 : UnitRes
 
-var events = [REST_EVENT, SPECIAL_SHOP_EVENT, SACRIFICE_EVENT, REST_EVENT, SPECIAL_SHOP_EVENT,]
+var events = [REST_EVENT, SPECIAL_SHOP_EVENT]
 
 var common_events = [REST_EVENT]
-var rare_events = [SPECIAL_SHOP_EVENT, SACRIFICE_EVENT]
+var rare_events = [SPECIAL_SHOP_EVENT]
 
 func load_run(ally1, ally2, ally3, ally4):
 	self.ally1 = ally1

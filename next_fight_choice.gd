@@ -272,3 +272,5 @@ func update_color(button, color):
 func check_boss(fight):
 	if GC.FIRE_BOMBER in fight:
 		run.current_boss = "bombers"
+	if GC.THEFINALBOSS in fight:
+		run.current_boss = "miku"

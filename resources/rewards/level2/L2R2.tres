@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_q3gya")
 gold = 6
-XP = 50
+XP = 0
 shop_type = "normal"
 event_type = "none"
 boss = false

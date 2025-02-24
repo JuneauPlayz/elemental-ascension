@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Reward" load_steps=2 format=3 uid="uid://q5si7pb5e3dl"]
+
+[ext_resource type="Script" uid="uid://c1myaj4finqo7" path="res://scripts/reward.gd" id="1_pfjqb"]
+
+[resource]
+script = ExtResource("1_pfjqb")
+gold = 3
+XP = 50
+shop_type = "normal"
+event_type = "none"
+boss = false
+metadata/_custom_type_script = "uid://c1myaj4finqo7"

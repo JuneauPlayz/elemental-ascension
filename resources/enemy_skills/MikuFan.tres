@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_e2hfi")
-starting_health = 100
+starting_health = 200
 skill1 = ExtResource("2_ol52o")
 sprite = ExtResource("2_slmp8")
 sprite_scale = 1.0

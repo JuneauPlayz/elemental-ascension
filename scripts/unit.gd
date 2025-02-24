@@ -18,6 +18,7 @@ class_name Unit
 @export var id : int
 var run
 
+var position : int
 @export var defense : float
 @export var status_resistance: float
 @export var title : String
@@ -307,8 +308,26 @@ func die():
 	self.visible = false
 	if self is Ally:
 		combat_manager.allies.erase(self)
+		match position:
+			1:
+				combat_manager.ally1 = null
+			2:
+				combat_manager.ally2 = null
+			3:
+				combat_manager.ally3 = null
+			4:
+				combat_manager.ally4 = null
 	elif self is Enemy:
 		combat_manager.enemies.erase(self)
+		match position:
+			1:
+				combat_manager.enemy1 = null
+			2:
+				combat_manager.enemy2 = null
+			3:
+				combat_manager.enemy3 = null
+			4:
+				combat_manager.enemy4 = null
 	combat_manager.set_unit_pos()
 
 func hasLeft():

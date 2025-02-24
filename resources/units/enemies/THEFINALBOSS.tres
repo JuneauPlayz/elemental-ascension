@@ -1,17 +1,19 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://dewwyiharccfo"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=6 format=3 uid="uid://dewwyiharccfo"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_606r8"]
-[ext_resource type="Resource" uid="uid://ck0yohfjasyyu" path="res://resources/enemy_skills/SummonFan.tres" id="2_i0rbu"]
-[ext_resource type="Texture2D" uid="uid://dbe58uqp7vm5v" path="res://assets/hatsune_miku_boss.jpg" id="2_vjx7t"]
-[ext_resource type="Resource" uid="uid://ccx36cyjmjt4x" path="res://resources/enemy_skills/MIKU FIREWORK.tres" id="4_wijm7"]
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_wh2li"]
+[ext_resource type="Resource" uid="uid://ck0yohfjasyyu" path="res://resources/enemy_skills/SummonFan.tres" id="2_cetji"]
+[ext_resource type="Resource" uid="uid://ccx36cyjmjt4x" path="res://resources/enemy_skills/MIKU FIREWORK.tres" id="3_tkt7y"]
+[ext_resource type="Resource" uid="uid://bhk7c70m0pn1l" path="res://resources/enemy_skills/MIKU CELERY SNACK.tres" id="4_knjn4"]
+[ext_resource type="Texture2D" uid="uid://dbe58uqp7vm5v" path="res://assets/hatsune_miku_boss.jpg" id="5_bfqbs"]
 
 [resource]
 resource_local_to_scene = true
 resource_name = "Miku"
-script = ExtResource("1_606r8")
+script = ExtResource("1_wh2li")
 starting_health = 1500
-skill1 = ExtResource("2_i0rbu")
-skill2 = ExtResource("4_wijm7")
-sprite = ExtResource("2_vjx7t")
+skill1 = ExtResource("2_cetji")
+skill2 = ExtResource("3_tkt7y")
+skill3 = ExtResource("4_knjn4")
+sprite = ExtResource("5_bfqbs")
 sprite_scale = 1.0
 name = "MIKU"

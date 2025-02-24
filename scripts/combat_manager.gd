@@ -980,20 +980,28 @@ func set_unit_pos():
 	allies = []
 	if enemy1 != null:
 		enemies.append(enemy1)
+		enemy1.position = 1
 	if enemy2 != null:
 		enemies.append(enemy2)
+		enemy2.position = 2
 	if enemy3 != null:
 		enemies.append(enemy3)
+		enemy3.position = 3
 	if enemy4 != null:
 		enemies.append(enemy4)
+		enemy4.position = 4
 	if ally1 != null:
 		allies.append(ally1)
+		ally1.position = 1
 	if ally2 != null:
 		allies.append(ally2)
+		ally2.position = 2
 	if ally3 != null:
 		allies.append(ally3)
+		ally3.position = 3
 	if ally4 != null:
 		allies.append(ally4)
+		ally4.position = 4
 	for n in range(enemies.size()):
 		if n > 0:
 			enemies[n].left = enemies[n-1]
