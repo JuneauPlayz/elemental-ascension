@@ -1,0 +1,203 @@
+[gd_scene load_steps=7 format=3 uid="uid://ftsffc4p4q0x"]
+
+[ext_resource type="Script" uid="uid://dti37hgd31qgr" path="res://boss_reward.gd" id="1_wstjn"]
+[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="2_oc45t"]
+[ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="3_hd3cb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jcw1"]
+bg_color = Color(0.526194, 0.632642, 0.547312, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac5hj"]
+bg_color = Color(0.488944, 0.642291, 0.769862, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ny5kq"]
+bg_color = Color(0.690196, 0.47451, 0.482353, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="BossReward" type="Node2D" groups=["choose_reward"]]
+script = ExtResource("1_wstjn")
+
+[node name="Rewards" type="VBoxContainer" parent="."]
+offset_left = 1086.0
+offset_top = 5.0
+offset_right = 1821.0
+offset_bottom = 1202.0
+scale = Vector2(0.9, 0.9)
+mouse_filter = 2
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="Reward1" type="PanelContainer" parent="Rewards"]
+custom_minimum_size = Vector2(100, 250)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1jcw1")
+
+[node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward1"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward1/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 500
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward1/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="RelicInfo" parent="Rewards/Reward1/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_oc45t")]
+visible = false
+layout_mode = 2
+
+[node name="SkillInfo" parent="Rewards/Reward1/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_hd3cb")]
+layout_mode = 2
+
+[node name="Choose" type="Button" parent="Rewards/Reward1/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 61
+text = "Choose"
+
+[node name="Reward2" type="PanelContainer" parent="Rewards"]
+custom_minimum_size = Vector2(100, 250)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ac5hj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward2"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 500
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="RelicInfo" parent="Rewards/Reward2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_oc45t")]
+visible = false
+layout_mode = 2
+
+[node name="SkillInfo" parent="Rewards/Reward2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_hd3cb")]
+layout_mode = 2
+
+[node name="Choose" type="Button" parent="Rewards/Reward2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 61
+text = "Choose"
+
+[node name="Reward3" type="PanelContainer" parent="Rewards"]
+custom_minimum_size = Vector2(100, 250)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ny5kq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward3"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 500
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="RelicInfo" parent="Rewards/Reward3/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_oc45t")]
+visible = false
+layout_mode = 2
+
+[node name="SkillInfo" parent="Rewards/Reward3/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_hd3cb")]
+layout_mode = 2
+
+[node name="Choose" type="Button" parent="Rewards/Reward3/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 61
+text = "Choose"
+
+[node name="SkipReward" type="Button" parent="."]
+visible = false
+offset_left = 1087.0
+offset_top = 971.0
+offset_right = 1322.0
+offset_bottom = 1066.0
+theme_override_font_sizes/font_size = 81
+text = "Skip Reward"
+
+[node name="Continue" type="Button" parent="."]
+visible = false
+offset_left = 1361.0
+offset_top = 377.0
+offset_right = 1729.0
+offset_bottom = 573.0
+theme_override_font_sizes/font_size = 81
+text = "Continue"
+
+[node name="ConfirmSwap" type="Button" parent="."]
+visible = false
+offset_left = 1348.0
+offset_top = 496.0
+offset_right = 1617.0
+offset_bottom = 589.0
+theme_override_font_sizes/font_size = 61
+text = "Confirm Swap"
+
+[node name="ChoiceSkillInfo" parent="." instance=ExtResource("3_hd3cb")]
+visible = false
+offset_left = 1078.0
+offset_top = 439.0
+offset_right = 1078.0
+offset_bottom = 439.0
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = 2.0
+offset_top = 9.0
+offset_right = 1921.0
+offset_bottom = 91.0
+theme_override_font_sizes/normal_font_size = 81
+bbcode_enabled = true
+text = "[color=red]Boss[/color] Reward"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+offset_right = 1929.0
+offset_bottom = 1085.0
+mouse_filter = 2
+color = Color(0.188235, 0.2, 0.266667, 0.658824)
+
+[connection signal="pressed" from="Rewards/Reward1/MarginContainer/HBoxContainer/Choose" to="." method="_on_choose1_pressed"]
+[connection signal="pressed" from="Rewards/Reward2/MarginContainer/HBoxContainer/Choose" to="." method="_on_choose2_pressed"]
+[connection signal="pressed" from="Rewards/Reward3/MarginContainer/HBoxContainer/Choose" to="." method="_on_choose3_pressed"]
+[connection signal="pressed" from="SkipReward" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="ConfirmSwap" to="." method="_on_confirm_swap_pressed"]

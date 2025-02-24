@@ -45,6 +45,10 @@ const L1R2 = preload("res://resources/rewards/level1/L1R2.tres")
 const L1R3 = preload("res://resources/rewards/level1/L1R3.tres")
 const L1R4 = preload("res://resources/rewards/level1/L1R4.tres")
 const L2R1 = preload("res://resources/rewards/level2/L2R1.tres")
+const L2R2 = preload("res://resources/rewards/level2/L2R2.tres")
+const M1R1 = preload("res://resources/rewards/miniboss_1/M1R1.tres")
+const M1R2 = preload("res://resources/rewards/miniboss_1/M1R2.tres")
+const M1R3 = preload("res://resources/rewards/miniboss_1/M1R3.tres")
 
 # predetermined fights
 var f1v1 = [FIRE_SWORDSMAN, FIRE_ARCHER, null, null]
@@ -75,7 +79,7 @@ var level_2_fights = [f2v1,f2v2,f2v3]
 var level_2_rewards = [L2R1]
 
 var miniboss_1_fights = [m1v1, m1v2, m1v3]
-var miniboss_1_rewards = [L2R1, L1R1, L1R3]
+var miniboss_1_rewards = [M1R1, M1R2, M1R3]
 
 var level_3_fights = [f3v1,f3v2,f3v3]
 var level_3_rewards = [L1R1,L1R2,L1R3]

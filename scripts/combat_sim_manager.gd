@@ -178,17 +178,7 @@ func check_event_relics(skill,unit,value_multiplier,target):
 	if (run.ghostfire and unit is Ally and skill.element == "fire"):
 		if (skill.target_type == "single_enemy" or skill.target_type == "back_enemy" or skill.target_type == "front_enemy"):
 			await get_tree().create_timer(0.002).timeout
-			var rng = RandomNumberGenerator.new()
-			var random_num = rng.randi_range(1,enemies.size())
-			match random_num:
-				1:
-					enemies[0].receive_skill(skill,unit,value_multiplier)
-				2:
-					enemies[1].receive_skill(skill,unit,value_multiplier)
-				3:
-					enemies[2].receive_skill(skill,unit,value_multiplier)
-				4:
-					enemies[3].receive_skill(skill,unit,value_multiplier)
+			front_enemy.receive_skill(skill, unit, value_multiplier)
 	if (run.flow and unit is Ally and skill.element == "water"):
 		await get_tree().create_timer(0.002).timeout
 		var new_target = target

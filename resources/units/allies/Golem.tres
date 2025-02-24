@@ -13,7 +13,7 @@
 
 [resource]
 script = ExtResource("1_rsp8b")
-starting_health = 125
+starting_health = 110
 skill1 = ExtResource("2_famig")
 skill2 = ExtResource("3_3j15h")
 relic_1 = ExtResource("1_akhwl")

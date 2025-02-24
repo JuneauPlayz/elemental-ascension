@@ -11,8 +11,8 @@ type = 4
 tag1 = "Fire"
 tag2 = ""
 tag3 = ""
+tags = []
 icon = ExtResource("1_n731v")
 tooltip = "When an ally uses a
 single enemy fire skill,
-a random enemy is also 
-hit with the same skill"
+the front enemy is also hit with the same skill"

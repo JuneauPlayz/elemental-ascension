@@ -54,6 +54,7 @@ droppable=""
 shopitem=""
 run=""
 combat_sim=""
+choose_reward=""
 
 [gui]
 

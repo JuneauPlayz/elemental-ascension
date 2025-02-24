@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://o2oy1rvwobsh"]
+[gd_scene load_steps=15 format=3 uid="uid://o2oy1rvwobsh"]
 
 [ext_resource type="Script" uid="uid://drftmrt3lasq0" path="res://scenes/main scenes/run.gd" id="1_e7k3u"]
 [ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="2_fgc7h"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b86ovwwhqlkcf" path="res://scripts/States/SpecialShopState.gd" id="9_vpwr2"]
 [ext_resource type="Script" uid="uid://bxydft84qy3h2" path="res://scripts/States/ChooseFightState.gd" id="10_1crx1"]
 [ext_resource type="PackedScene" uid="uid://cokl4xcoeufdp" path="res://scenes/reusables/reaction_panel.tscn" id="10_prr82"]
+[ext_resource type="Script" uid="uid://dkic5dc64l36y" path="res://scripts/States/CurrentRewardState.gd" id="11_1cp5a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dcmsy"]
 font_size = 291
@@ -111,27 +112,31 @@ script = ExtResource("4_kj6k4")
 
 [node name="Combat" type="Node" parent="StateMachine"]
 script = ExtResource("4_tqy7d")
-metadata/_custom_type_script = ExtResource("4_tqy7d")
+metadata/_custom_type_script = "uid://c77ooj0w5nd"
 
 [node name="Shop" type="Node" parent="StateMachine"]
 script = ExtResource("5_kj6k4")
-metadata/_custom_type_script = ExtResource("5_kj6k4")
+metadata/_custom_type_script = "uid://cm6m2gxhv076j"
 
 [node name="Event" type="Node" parent="StateMachine"]
 script = ExtResource("6_vpwr2")
-metadata/_custom_type_script = ExtResource("6_vpwr2")
+metadata/_custom_type_script = "uid://bq1neyovm73vq"
 
 [node name="LevelUp" type="Node" parent="StateMachine"]
 script = ExtResource("7_1crx1")
-metadata/_custom_type_script = ExtResource("7_1crx1")
+metadata/_custom_type_script = "uid://c6pkihqpaueax"
 
 [node name="SpecialShop" type="Node" parent="StateMachine"]
 script = ExtResource("9_vpwr2")
-metadata/_custom_type_script = ExtResource("9_vpwr2")
+metadata/_custom_type_script = "uid://b86ovwwhqlkcf"
 
 [node name="ChooseFight" type="Node" parent="StateMachine"]
 script = ExtResource("10_1crx1")
-metadata/_custom_type_script = ExtResource("10_1crx1")
+metadata/_custom_type_script = "uid://bxydft84qy3h2"
+
+[node name="ChooseReward" type="Node" parent="StateMachine"]
+script = ExtResource("11_1cp5a")
+metadata/_custom_type_script = "uid://dkic5dc64l36y"
 
 [node name="GoldText" type="RichTextLabel" parent="."]
 z_index = 3

@@ -180,7 +180,6 @@ func item_bought(item, shop_item) -> void:
 		buying_new_skill(shop_item)
 		shop_item.queue_free()
 
-	
 func buying_new_skill(shop_item):
 	new_skill_ally = null
 	for ally in allies:
@@ -204,7 +203,6 @@ func buying_new_skill(shop_item):
 	confirm_swap.visible = false
 	if (not run.reaction_guide_open):
 		next_combat.visible = true
-
 
 
 func _on_next_combat_pressed() -> void:

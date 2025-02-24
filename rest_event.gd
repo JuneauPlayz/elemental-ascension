@@ -25,13 +25,12 @@ func _on_next_combat_pressed() -> void:
 func _on_rest_pressed() -> void:
 	for ally in run.allies:
 		ally.increase_max_hp(10,true)
-	run.increase_xp(50)
 	next_combat.visible = true
 	event_popup.visible = false
 
 
 func _on_work_pressed() -> void:
-	run.add_gold(6)
+	run.add_gold(3)
 	next_combat.visible = true
 	event_popup.visible = false
 	
@@ -40,6 +39,6 @@ func _on_work_pressed() -> void:
 func _on_continue_pressed() -> void:
 	for ally in run.allies:
 		ally.take_damage(30,"none",true)
-	run.all_damage_bonus += 3
+	run.increase_xp(50)
 	next_combat.visible = true
 	event_popup.visible = false

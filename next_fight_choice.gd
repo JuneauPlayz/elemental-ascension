@@ -177,6 +177,8 @@ func _ready() -> void:
 		easy_reward_text.text += easy_reward.shop_type + " Shop, "
 	if easy_reward.event_type != "none":
 		easy_reward_text.text += easy_reward.event_type + " Event, " 
+	if easy_reward.boss == true:
+		easy_reward_text.text += " Boss Reward, "
 		
 	medium_reward_text.text += " "
 	if medium_reward.gold != 0:
@@ -187,6 +189,8 @@ func _ready() -> void:
 		medium_reward_text.text += medium_reward.shop_type + " Shop, "
 	if medium_reward.event_type != "none":
 		medium_reward_text.text += medium_reward.event_type + " Event, "
+	if medium_reward.boss == true:
+		medium_reward_text.text += " Boss Reward, "
 	
 	hard_reward_text.text += " "
 	if hard_reward.gold != 0:
@@ -197,6 +201,8 @@ func _ready() -> void:
 		hard_reward_text.text += hard_reward.shop_type + " Shop, "
 	if hard_reward.event_type != "none":
 		hard_reward_text.text += hard_reward.event_type + " Event, "
+	if hard_reward.boss == true:
+		hard_reward_text.text += " Boss Reward, "
 	easy_reward_text.text = easy_reward_text.text.substr(0,easy_reward_text.text.length()-2)
 	medium_reward_text.text = medium_reward_text.text.substr(0,medium_reward_text.text.length()-2)
 	hard_reward_text.text = hard_reward_text.text.substr(0,hard_reward_text.text.length()-2)
@@ -206,21 +212,28 @@ func _on_easy_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
 	run.current_fight = easy_fight
 	run.current_reward = easy_reward
+	check_boss(easy_fight)
 	choice_ended.emit("")
 
 func _on_medium_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
 	run.current_fight = medium_fight
 	run.current_reward = medium_reward
+	check_boss(medium_fight)
 	choice_ended.emit("")
 
 func _on_hard_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
 	run.current_fight = hard_fight
 	run.current_reward = hard_reward
+	check_boss(hard_fight)
 	choice_ended.emit("")
 
 func update_color(button, color):
 	var new_stylebox_normal = button.get_theme_stylebox("panel").duplicate()
 	new_stylebox_normal.bg_color = color
 	button.add_theme_stylebox_override("panel", new_stylebox_normal)
+
+func check_boss(fight):
+	if GC.FIRE_BOMBER in fight:
+		run.current_boss = "bombers"

@@ -6,7 +6,7 @@
 script = ExtResource("1_yj56m")
 name = "Water Stab"
 damage = 30
-element = "fire"
+element = "water"
 damaging = true
 healing = false
 shielding = false
@@ -26,6 +26,8 @@ damage2 = 0
 element2 = ""
 blast = false
 blast_damage = 0
+decay = false
+decay_value = 0
 tag1 = "Water"
 tag2 = ""
 target_tag = ""

@@ -169,6 +169,9 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	if run.shop == true:
 		var shop = get_tree().get_first_node_in_group("shop")
 		shop.new_skill_ally = self
+	if run.choose_reward == true:
+		var choose_reward = get_tree().get_first_node_in_group("choose_reward")
+		choose_reward.new_skill_ally = self
 		
 
 

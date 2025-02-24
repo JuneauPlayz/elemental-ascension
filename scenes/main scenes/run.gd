@@ -21,6 +21,7 @@ const SHOP = preload("res://scenes/main scenes/shop.tscn")
 const LEVEL_UP = preload("res://level_up_scene.tscn")
 const END = preload("res://scenes/main scenes/ending_screen.tscn")
 const NEXT_FIGHT_CHOICE = preload("res://next_fight_choice.tscn")
+const BOSS_REWARD = preload("res://boss_reward.tscn")
 
 @onready var S: Node = $StateMachine
 
@@ -34,6 +35,8 @@ var event_scene
 var level_up = false
 var level_up_scene
 var choose_fight_scene
+var choose_reward_scene
+var choose_reward = false
 
 var scene_reward = ""
 
@@ -253,6 +256,7 @@ var sow_grass_token_bonus = 0
 
 var current_fight = null
 var end = false
+var current_boss = null
 
 # event based relics
 var ghostfire = false
@@ -270,15 +274,20 @@ func run_loop():
 			fight_count = 0
 			boss_level += 1
 			S.transition("choosefight","boss")
+			await scene_end
+			S.transition("combat","")
+			await scene_end
+			S.transition("choosereward",current_boss)
+			await scene_end
 		else:
 			S.transition("choosefight","")
-		await scene_end
-		if (level_up):
-			S.transition("levelup","")
 			await scene_end
-		S.transition("combat","")
-		await scene_end
-		fight_count += 1
+			if (level_up):
+				S.transition("levelup","")
+				await scene_end
+			S.transition("combat","")
+			await scene_end
+			fight_count += 1
 		if (level_up):
 			S.transition("levelup","")
 			await scene_end
@@ -490,7 +499,11 @@ func load_choose_fight(level, fight_type):
 	choose_fight_scene.level = level
 	choose_fight_scene.type = fight_type
 	self.add_child(choose_fight_scene)
-	 
+
+func load_choose_reward(reward_type):
+	choose_reward_scene = BOSS_REWARD.instantiate()
+	choose_reward_scene.reward_type = reward_type
+	self.add_child(choose_reward_scene)
 func add_gold(count):
 	gold += ((count + bonus_gold) * gold_mult)
 	gold_text.text = "[color=yellow]Gold[/color] : " + str(gold)
@@ -539,10 +552,10 @@ func level_up_allies():
 		ally4.level += 1
 		ally4.level_up = true
 	for ally in allies:
-		ally.increase_max_hp(10,true)
+		ally.increase_max_hp(10,false)
 	current_xp_goal += 100
 	current_level.text = str(level)
-	next_level.text = str(level+1)
+	next_level.text = str(level+1)	
 	xp_number.text = str(xp) + " / " + str(current_xp_goal) + " XP"
 		
 func get_random_relic():

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c3wn67rl0ods7" path="res://assets/hydromancer.jpg" id="3_3viei"]
 [ext_resource type="Resource" uid="uid://we8b2k5q6pnw" path="res://resources/enemy_skills/Water Punch.tres" id="3_odkt6"]
 [ext_resource type="Resource" uid="uid://4mg01twvwsvu" path="res://resources/enemy_skills/Water Yeet.tres" id="4_ks3nl"]
-[ext_resource type="Resource" path="res://resources/enemy_skills/Water Strike.tres" id="5_owkgm"]
+[ext_resource type="Resource" uid="uid://drrrj6plbrlss" path="res://resources/enemy_skills/Water Strike.tres" id="5_owkgm"]
 
 [resource]
 resource_local_to_scene = true

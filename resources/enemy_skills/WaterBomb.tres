@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_hbg0v")
 name = "Water Bomb"
-damage = 12
+damage = 10
 element = "water"
 damaging = true
 healing = false
@@ -25,7 +25,7 @@ double_hit = false
 damage2 = 0
 element2 = ""
 blast = true
-blast_damage = 12
+blast_damage = 10
 decay = false
 decay_value = 5
 tag1 = "Water"

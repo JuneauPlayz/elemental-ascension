@@ -335,6 +335,7 @@ func increase_max_hp(count, changehp):
 	if max_health < 1:
 		max_health = 1
 	hp_bar.set_maxhp(max_health)
+	hp_bar.set_hp(health+count)
 	if changehp:
 		health = max_health
 		hp_bar.set_hp(max_health)
