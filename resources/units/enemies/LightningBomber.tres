@@ -11,4 +11,4 @@ skill1 = ExtResource("2_w2b7d")
 sprite = ExtResource("3_qq37c")
 sprite_scale = 1.0
 name = "Lightning Bomber"
-metadata/_custom_type_script = ExtResource("1_1dv5l")
+metadata/_custom_type_script = "uid://bpkpxp60hx4da"

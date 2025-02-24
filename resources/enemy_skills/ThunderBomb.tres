@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_oqt2g")
 name = "Thunder Bomb"
-damage = 10
+damage = 8
 element = "lightning"
 damaging = true
 healing = false
@@ -25,9 +25,11 @@ double_hit = false
 damage2 = 0
 element2 = ""
 blast = true
-blast_damage = 10
+blast_damage = 8
 decay = false
 decay_value = 5
+buff = false
+buff_value = 0
 tag1 = "Lightning"
 tag2 = ""
 target_tag = ""
