@@ -74,7 +74,7 @@ func update_skill_info():
 	if skill.healing == true:
 		description.text += "Heal " + str(skill.damage)
 	if skill.buff == true:
-		description.text += "Buff " + str(skill.damage)
+		description.text += "Buff " + str(skill.buff_value)
 	if skill.summon != null:
 		description.text += "Summon " + skill.summon.name
 	if description.text == "" and skill.element != "none" and not skill.buff:

@@ -145,7 +145,6 @@ visible = false
 layout_mode = 2
 
 [node name="SkillInfo" parent="Rewards/Reward3/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_hd3cb")]
-visible = false
 layout_mode = 2
 
 [node name="Choose" type="Button" parent="Rewards/Reward3/MarginContainer/HBoxContainer"]
@@ -180,7 +179,6 @@ offset_left = 1348.0
 offset_top = 496.0
 offset_right = 1617.0
 offset_bottom = 589.0
-mouse_filter = 2
 theme_override_font_sizes/font_size = 61
 text = "Confirm Swap"
 
