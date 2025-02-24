@@ -8,6 +8,7 @@ func Enter(rarity):
 	run.load_shop("none")
 	for ally in run.allies:
 		ally.spell_select_ui.reset()
+		ally.spell_select_ui.enable_all()
 	
 func Exit():
 	run.shop = false

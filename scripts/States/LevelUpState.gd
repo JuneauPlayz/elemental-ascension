@@ -8,6 +8,7 @@ func Enter(rarity):
 	for ally in run.allies:
 		ally.show_level_up(run.level)
 		ally.spell_select_ui.reset()
+		ally.spell_select_ui.enable_all()
 	run.move_allies(425,-150)
 	run.split_allies()
 
