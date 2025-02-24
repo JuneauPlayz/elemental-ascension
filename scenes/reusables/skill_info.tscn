@@ -50,6 +50,7 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 242.0
 offset_bottom = 137.0
+mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Panel"]
 layout_mode = 2
@@ -85,6 +86,7 @@ mouse_filter = 2
 [node name="SkillName" type="RichTextLabel" parent="Panel/PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
@@ -100,6 +102,7 @@ size_flags_vertical = 0
 [node name="Element" type="RichTextLabel" parent="Panel/PanelContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
@@ -133,6 +136,7 @@ label_settings = SubResource("LabelSettings_807co")
 [node name="Tags" type="RichTextLabel" parent="Panel/PanelContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true

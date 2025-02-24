@@ -93,28 +93,33 @@ func _on_confirm_swap_pressed() -> void:
 
 
 func _on_choose1_pressed() -> void:
-	if reward_1_reward is Skill:
-		new_skill = reward_1_reward.duplicate()
-		skill_reward_chosen()
-	elif reward_1_reward is Relic:
-		run.relic_handler.purchase_relic(reward_1_reward)
-		relic_reward_chosen()
+	if not run.reaction_guide_open:
+		if reward_1_reward is Skill:
+			new_skill = reward_1_reward.duplicate()
+			skill_reward_chosen()
+		elif reward_1_reward is Relic:
+			run.relic_handler.purchase_relic(reward_1_reward)
+			relic_reward_chosen()
 
 func _on_choose2_pressed() -> void:
-	if reward_2_reward is Skill:
-		new_skill = reward_2_reward.duplicate()
-		skill_reward_chosen()
-	elif reward_2_reward is Relic:
-		run.relic_handler.purchase_relic(reward_2_reward)
-		relic_reward_chosen()
+	run = get_tree().get_first_node_in_group("run")
+	if not run.reaction_guide_open:
+		if reward_2_reward is Skill:
+			new_skill = reward_2_reward.duplicate()
+			skill_reward_chosen()
+		elif reward_2_reward is Relic:
+			run.relic_handler.purchase_relic(reward_2_reward)
+			relic_reward_chosen()
 		
 func _on_choose3_pressed() -> void:
-	if reward_3_reward is Skill:
-		new_skill = reward_3_reward.duplicate()
-		skill_reward_chosen()
-	elif reward_3_reward is Relic:
-		run.relic_handler.purchase_relic(reward_3_reward)
-		relic_reward_chosen()
+	run = get_tree().get_first_node_in_group("run")
+	if not run.reaction_guide_open:
+		if reward_3_reward is Skill:
+			new_skill = reward_3_reward.duplicate()
+			skill_reward_chosen()
+		elif reward_3_reward is Relic:
+			run.relic_handler.purchase_relic(reward_3_reward)
+			relic_reward_chosen()
 
 func skill_reward_chosen():
 	rewards_box.visible = false

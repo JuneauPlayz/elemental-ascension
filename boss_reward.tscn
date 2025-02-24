@@ -47,6 +47,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1jcw1")
 
 [node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward1"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 15
@@ -54,10 +55,12 @@ theme_override_constants/margin_bottom = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward1/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 500
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward1/MarginContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="RelicInfo" parent="Rewards/Reward1/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_oc45t")]
 visible = false
@@ -83,6 +86,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ac5hj")
 
 [node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward2"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 15
@@ -90,10 +94,12 @@ theme_override_constants/margin_bottom = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward2/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 500
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward2/MarginContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="RelicInfo" parent="Rewards/Reward2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_oc45t")]
 visible = false
@@ -119,6 +125,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ny5kq")
 
 [node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward3"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 15
@@ -126,10 +133,12 @@ theme_override_constants/margin_bottom = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward3/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 500
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward3/MarginContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="RelicInfo" parent="Rewards/Reward3/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_oc45t")]
 visible = false
@@ -171,6 +180,7 @@ offset_left = 1348.0
 offset_top = 496.0
 offset_right = 1617.0
 offset_bottom = 589.0
+mouse_filter = 2
 theme_override_font_sizes/font_size = 61
 text = "Confirm Swap"
 
@@ -186,6 +196,7 @@ offset_left = 2.0
 offset_top = 9.0
 offset_right = 1921.0
 offset_bottom = 91.0
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 81
 bbcode_enabled = true
 text = "[color=red]Boss[/color] Reward"

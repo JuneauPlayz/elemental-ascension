@@ -245,24 +245,27 @@ func _ready() -> void:
 
 func _on_easy_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	run.current_fight = easy_fight
-	run.current_reward = easy_reward
-	check_boss(easy_fight)
-	choice_ended.emit("")
+	if not run.reaction_guide_open:
+		run.current_fight = easy_fight
+		run.current_reward = easy_reward
+		check_boss(easy_fight)
+		choice_ended.emit("")
 
 func _on_medium_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	run.current_fight = medium_fight
-	run.current_reward = medium_reward
-	check_boss(medium_fight)
-	choice_ended.emit("")
+	if not run.reaction_guide_open:
+		run.current_fight = medium_fight
+		run.current_reward = medium_reward
+		check_boss(medium_fight)
+		choice_ended.emit("")
 
 func _on_hard_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	run.current_fight = hard_fight
-	run.current_reward = hard_reward
-	check_boss(hard_fight)
-	choice_ended.emit("")
+	if not run.reaction_guide_open:
+		run.current_fight = hard_fight
+		run.current_reward = hard_reward
+		check_boss(hard_fight)
+		choice_ended.emit("")
 
 func update_color(button, color):
 	var new_stylebox_normal = button.get_theme_stylebox("panel").duplicate()

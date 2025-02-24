@@ -1172,7 +1172,7 @@ func run_sim():
 				sim_target_queue[i] = new_target
 			if (ally1 != null and ally1.visible == true and target_queue[i] == ally1):
 				sim_ally1 = sim_target_queue[i]
-			elif (ally2 != null and ally1.visible == true and target_queue[i] == ally2):
+			elif (ally2 != null and ally2.visible == true and target_queue[i] == ally2):
 				sim_ally2 = sim_target_queue[i]
 			elif (ally3 != null and ally3.visible == true and target_queue[i] == ally3):
 				sim_ally3 = sim_target_queue[i]

@@ -51,6 +51,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1jcw1")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Fight1"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
@@ -58,10 +59,12 @@ theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Fight1/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 15
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 200
 
 [node name="Difficulty" type="Label" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -79,6 +82,7 @@ horizontal_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 100
 alignment = 1
 
@@ -108,6 +112,7 @@ expand_mode = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Reward" type="TextureRect" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(50, 50)
@@ -118,6 +123,7 @@ expand_mode = 1
 [node name="Reward2" type="RichTextLabel" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 52
 vertical_alignment = 1
@@ -136,6 +142,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ac5hj")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Fight2"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
@@ -143,10 +150,12 @@ theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Fight2/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 15
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 170
 
 [node name="Difficulty" type="Label" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -164,6 +173,7 @@ horizontal_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 100
 alignment = 1
 
@@ -181,6 +191,7 @@ expand_mode = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Reward" type="TextureRect" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(50, 50)
@@ -191,6 +202,7 @@ expand_mode = 1
 [node name="Reward2" type="RichTextLabel" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 52
 vertical_alignment = 1
@@ -209,6 +221,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ny5kq")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Fight3"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
@@ -216,10 +229,12 @@ theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Fight3/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 15
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 200
 
 [node name="Difficulty" type="Label" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -237,17 +252,20 @@ horizontal_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 100
 alignment = 1
 
 [node name="Sprite2D4" type="TextureRect" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_i05vp")
 expand_mode = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Reward" type="TextureRect" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(50, 50)
@@ -258,6 +276,7 @@ expand_mode = 1
 [node name="Reward2" type="RichTextLabel" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/normal_font_size = 52
 vertical_alignment = 1

@@ -4,5 +4,6 @@
 
 [node name="ChooseFightSceneSprite" type="TextureRect"]
 custom_minimum_size = Vector2(100, 100)
+mouse_filter = 2
 texture = ExtResource("1_yo07i")
 expand_mode = 1

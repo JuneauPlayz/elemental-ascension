@@ -22,6 +22,10 @@ func update_text(result, reward):
 	result_title.text = result
 	if result == "Defeat!":
 		result_text.text = "Better luck next time.."
+		xp_text.visible = false
+		gold_text.visible = false
+		shop_text.visible = false
+		
 	else:
 		if reward.gold > 0:
 			gold_text.text = "+" + str(reward.gold) + "  Gold"
