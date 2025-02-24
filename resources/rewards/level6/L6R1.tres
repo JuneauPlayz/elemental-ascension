@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_bm3nb")
-gold = 0
-XP = 50
+gold = 9
+XP = 0
 shop_type = "none"
-event_type = "none"
+event_type = "rare"
 boss = false
 metadata/_custom_type_script = "uid://c1myaj4finqo7"
