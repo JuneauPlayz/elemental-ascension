@@ -270,9 +270,6 @@ func run_loop():
 	var fight_count = 0
 	while not end:
 		# combat
-		if (level_up):
-				S.transition("levelup","")
-				await scene_end
 		if fight_count == 3:
 			fight_count = 0
 			boss_level += 1
@@ -280,6 +277,9 @@ func run_loop():
 			await scene_end
 			S.transition("combat","")
 			await scene_end
+			if (level_up):
+				S.transition("levelup","")
+				await scene_end
 			S.transition("choosereward",current_boss)
 			await scene_end
 			if boss_level == 2:
@@ -291,15 +291,12 @@ func run_loop():
 			S.transition("choosefight","")
 			fight_level += 1
 			await scene_end
-			if (level_up):
-				S.transition("levelup","")
-				await scene_end
 			S.transition("combat","")
 			await scene_end
 			fight_count += 1
-		if (level_up):
-			S.transition("levelup","")
-			await scene_end
+			if (level_up):
+				S.transition("levelup","")
+				await scene_end
 		if (end):
 			break
 	var end_scene = END.instantiate()
