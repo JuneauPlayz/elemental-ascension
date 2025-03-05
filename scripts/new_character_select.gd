@@ -5,6 +5,10 @@ extends Node2D
 @onready var pikachu: Draggable = $GridContainer/Pikachu
 @onready var golem: Draggable = $GridContainer/Golem
 
+var game
+
+const RUN = preload("res://scenes/main scenes/run.tscn")
+
 const CHARIZARD = preload("res://resources/units/allies/Charizard.tres")
 const BLASTOISE = preload("res://resources/units/allies/Blastoise.tres")
 const VENASAUR = preload("res://resources/units/allies/Venasaur.tres")
@@ -42,6 +46,8 @@ var ally4
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	game = get_tree().get_first_node_in_group("game")
+	
 	characters.append(charizard)
 	characters.append(blastoise)
 	characters.append(venasaur)
@@ -97,7 +103,7 @@ func _on_begin_run_pressed() -> void:
 			empty_team = false
 	if empty_team == false:
 		GC.load_run(ally1,ally2,ally3,ally4)
-		get_tree().change_scene_to_file("res://scenes/main scenes/run.tscn")
+		game.new_scene(RUN)
 
 func check_spot(char, og_spot):
 	update_positions()

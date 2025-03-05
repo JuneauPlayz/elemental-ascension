@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1mf3hjl87uag"]
+[gd_scene load_steps=3 format=3 uid="uid://c1mf3hjl87uag"]
 
 [ext_resource type="Script" uid="uid://c4uogyfybmr7j" path="res://scenes/main scenes/setup_combat.gd" id="1_y2pgk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y2pgk"]
+font_size = 36
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="SetupCombat" type="Node2D"]
 script = ExtResource("1_y2pgk")
@@ -172,6 +177,25 @@ theme_override_constants/icon_max_width = 100
 theme_override_font_sizes/font_size = 39
 expand_icon = true
 
+[node name="Relics" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 1013.0
+offset_top = 31.0
+offset_right = 1303.0
+offset_bottom = 81.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/icon_max_width = 100
+theme_override_font_sizes/font_size = 39
+expand_icon = true
+
+[node name="AddRelic" type="Button" parent="."]
+offset_left = 1490.0
+offset_top = 26.0
+offset_right = 1775.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 86
+text = "Add Relic"
+
 [node name="Enemy2" type="OptionButton" parent="."]
 custom_minimum_size = Vector2(200, 50)
 offset_left = 1454.0
@@ -204,3 +228,55 @@ scale = Vector2(1.5, 1.5)
 theme_override_constants/icon_max_width = 100
 theme_override_font_sizes/font_size = 39
 expand_icon = true
+
+[node name="StartCombat" type="Button" parent="."]
+offset_left = 1082.0
+offset_top = 964.0
+offset_right = 1367.0
+offset_bottom = 1051.0
+theme_override_font_sizes/font_size = 86
+text = "Start"
+
+[node name="PositionText" type="Label" parent="."]
+offset_left = 189.0
+offset_top = 459.0
+offset_right = 357.0
+offset_bottom = 512.375
+text = "Back Ally"
+label_settings = SubResource("LabelSettings_y2pgk")
+
+[node name="PositionText2" type="Label" parent="."]
+offset_left = 666.0
+offset_top = 460.0
+offset_right = 834.0
+offset_bottom = 513.375
+text = "Middle Back Ally"
+label_settings = SubResource("LabelSettings_y2pgk")
+
+[node name="PositionText3" type="Label" parent="."]
+offset_left = 167.0
+offset_top = 514.0
+offset_right = 350.0
+offset_bottom = 567.375
+text = "Middle Front Ally"
+label_settings = SubResource("LabelSettings_y2pgk")
+
+[node name="PositionText4" type="Label" parent="."]
+offset_left = 671.0
+offset_top = 516.0
+offset_right = 839.0
+offset_bottom = 569.375
+text = "Front Ally"
+label_settings = SubResource("LabelSettings_y2pgk")
+
+[connection signal="item_selected" from="Ally1" to="." method="_on_ally_1_item_selected"]
+[connection signal="item_selected" from="Ally2" to="." method="_on_ally_2_item_selected"]
+[connection signal="item_selected" from="Ally3" to="." method="_on_ally_3_item_selected"]
+[connection signal="item_selected" from="Ally4" to="." method="_on_ally_4_item_selected"]
+[connection signal="item_selected" from="Enemy1" to="." method="_on_enemy_1_item_selected"]
+[connection signal="item_selected" from="Relics" to="." method="_on_relics_item_selected"]
+[connection signal="pressed" from="AddRelic" to="." method="_on_add_relic_pressed"]
+[connection signal="item_selected" from="Enemy2" to="." method="_on_enemy_2_item_selected"]
+[connection signal="item_selected" from="Enemy3" to="." method="_on_enemy_3_item_selected"]
+[connection signal="item_selected" from="Enemy4" to="." method="_on_enemy_4_item_selected"]
+[connection signal="pressed" from="StartCombat" to="." method="_on_start_combat_pressed"]

@@ -454,7 +454,16 @@ func _ready() -> void:
 				obtainable_skills.append(skill)
 	relic_handler = RELIC_HANDLER.instantiate()
 	relic_handler_spot.add_child(relic_handler)
-	run_loop()
+	if GC.combat_test == false:
+		run_loop()
+	elif GC.combat_test == true:
+		for relic in GC.test_relics:
+			relic_handler.purchase_relic(relic)
+		loading_screen(0.5)
+		combat = true
+		for ally in allies:
+			ally.spell_select_ui.show_position()
+		load_combat(GC.enemy1, GC.enemy2, GC.enemy3, GC.enemy4)
 		
 func get_all_files_from_directory(path : String, file_ext:= "", files := []):
 	var resources = ResourceLoader.list_directory(path)

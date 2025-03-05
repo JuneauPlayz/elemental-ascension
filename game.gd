@@ -1,20 +1,18 @@
 extends Node2D
 const MAIN_SCENE = preload("res://scenes/main scenes/main_scene.tscn")
-var run
-var game
+
+var current_scene
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	run = get_tree().get_first_node_in_group("run")
-	game = get_tree().get_first_node_in_group("game")
+	new_scene(MAIN_SCENE)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-
-func _on_new_run_pressed() -> void:
-	game.new_scene(MAIN_SCENE)
-
-
-func _on_exit_pressed() -> void:
-	get_tree().quit()
+func new_scene(scene):
+	if current_scene != null:
+		current_scene.queue_free()
+	current_scene = scene.instantiate()
+	self.add_child(current_scene)

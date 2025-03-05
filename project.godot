@@ -23,7 +23,7 @@ resources_spreadsheet_view/resource_cell_label_mode=1
 [application]
 
 config/name="Project Burg"
-run/main_scene="res://scenes/main scenes/main_scene.tscn"
+run/main_scene="uid://geispkaccrd1"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://assets/icon.svg"
 
@@ -55,6 +55,7 @@ shopitem=""
 run=""
 combat_sim=""
 choose_reward=""
+game=""
 
 [gui]
 
