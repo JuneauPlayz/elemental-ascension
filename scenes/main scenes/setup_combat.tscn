@@ -1,0 +1,206 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1mf3hjl87uag"]
+
+[ext_resource type="Script" uid="uid://c4uogyfybmr7j" path="res://scenes/main scenes/setup_combat.gd" id="1_y2pgk"]
+
+[node name="SetupCombat" type="Node2D"]
+script = ExtResource("1_y2pgk")
+
+[node name="Ally1" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 39.0
+offset_top = 28.0
+offset_right = 329.0
+offset_bottom = 78.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/icon_max_width = 100
+theme_override_font_sizes/font_size = 39
+expand_icon = true
+
+[node name="Skill1" type="OptionButton" parent="Ally1"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 65.0
+offset_right = 262.0
+offset_bottom = 112.0
+
+[node name="Skill2" type="OptionButton" parent="Ally1"]
+layout_mode = 0
+offset_left = 23.3333
+offset_top = 124.0
+offset_right = 262.333
+offset_bottom = 171.0
+
+[node name="Skill3" type="OptionButton" parent="Ally1"]
+layout_mode = 0
+offset_left = 23.3333
+offset_top = 180.667
+offset_right = 262.333
+offset_bottom = 227.667
+
+[node name="Skill4" type="OptionButton" parent="Ally1"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 239.333
+offset_right = 263.0
+offset_bottom = 286.333
+
+[node name="Ally2" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 511.0
+offset_top = 29.0
+offset_right = 801.0
+offset_bottom = 79.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/icon_max_width = 100
+theme_override_font_sizes/font_size = 39
+expand_icon = true
+
+[node name="Skill1" type="OptionButton" parent="Ally2"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 65.0
+offset_right = 262.0
+offset_bottom = 112.0
+
+[node name="Skill2" type="OptionButton" parent="Ally2"]
+layout_mode = 0
+offset_left = 23.3333
+offset_top = 124.0
+offset_right = 262.333
+offset_bottom = 171.0
+
+[node name="Skill3" type="OptionButton" parent="Ally2"]
+layout_mode = 0
+offset_left = 23.3333
+offset_top = 180.667
+offset_right = 262.333
+offset_bottom = 227.667
+
+[node name="Skill4" type="OptionButton" parent="Ally2"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 239.333
+offset_right = 263.0
+offset_bottom = 286.333
+
+[node name="Ally3" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 53.0
+offset_top = 550.0
+offset_right = 343.0
+offset_bottom = 600.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/icon_max_width = 100
+theme_override_font_sizes/font_size = 39
+expand_icon = true
+
+[node name="Skill1" type="OptionButton" parent="Ally3"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 65.0
+offset_right = 262.0
+offset_bottom = 112.0
+
+[node name="Skill2" type="OptionButton" parent="Ally3"]
+layout_mode = 0
+offset_left = 23.3333
+offset_top = 124.0
+offset_right = 262.333
+offset_bottom = 171.0
+
+[node name="Skill3" type="OptionButton" parent="Ally3"]
+layout_mode = 0
+offset_left = 23.3333
+offset_top = 180.667
+offset_right = 262.333
+offset_bottom = 227.667
+
+[node name="Skill4" type="OptionButton" parent="Ally3"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 239.333
+offset_right = 263.0
+offset_bottom = 286.333
+
+[node name="Ally4" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 519.0
+offset_top = 550.0
+offset_right = 809.0
+offset_bottom = 600.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/icon_max_width = 100
+theme_override_font_sizes/font_size = 39
+expand_icon = true
+
+[node name="Skill1" type="OptionButton" parent="Ally4"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 65.0
+offset_right = 262.0
+offset_bottom = 112.0
+
+[node name="Skill2" type="OptionButton" parent="Ally4"]
+layout_mode = 0
+offset_left = 23.3333
+offset_top = 124.0
+offset_right = 262.333
+offset_bottom = 171.0
+
+[node name="Skill3" type="OptionButton" parent="Ally4"]
+layout_mode = 0
+offset_left = 23.3333
+offset_top = 180.667
+offset_right = 262.333
+offset_bottom = 227.667
+
+[node name="Skill4" type="OptionButton" parent="Ally4"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 239.333
+offset_right = 263.0
+offset_bottom = 286.333
+
+[node name="Enemy1" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 1452.0
+offset_top = 316.0
+offset_right = 1742.0
+offset_bottom = 366.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/icon_max_width = 100
+theme_override_font_sizes/font_size = 39
+expand_icon = true
+
+[node name="Enemy2" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 1454.0
+offset_top = 412.0
+offset_right = 1744.0
+offset_bottom = 462.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/icon_max_width = 100
+theme_override_font_sizes/font_size = 39
+expand_icon = true
+
+[node name="Enemy3" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 1455.0
+offset_top = 507.0
+offset_right = 1745.0
+offset_bottom = 557.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/icon_max_width = 100
+theme_override_font_sizes/font_size = 39
+expand_icon = true
+
+[node name="Enemy4" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(200, 50)
+offset_left = 1457.0
+offset_top = 597.0
+offset_right = 1747.0
+offset_bottom = 647.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/icon_max_width = 100
+theme_override_font_sizes/font_size = 39
+expand_icon = true

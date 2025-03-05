@@ -40,5 +40,14 @@ offset_bottom = 532.0
 theme_override_font_sizes/font_size = 74
 text = "Exit"
 
+[node name="CombatTesting" type="Button" parent="."]
+offset_left = 714.0
+offset_top = 900.0
+offset_right = 1206.0
+offset_bottom = 973.0
+theme_override_font_sizes/font_size = 74
+text = "Combat Testing"
+
 [connection signal="pressed" from="StartB" to="." method="_on_start_b_pressed"]
 [connection signal="pressed" from="ExitGame" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="CombatTesting" to="." method="_on_combat_testing_pressed"]

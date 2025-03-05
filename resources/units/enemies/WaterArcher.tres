@@ -13,5 +13,5 @@ skill2 = ExtResource("2_c7elv")
 skill3 = ExtResource("3_mpni1")
 sprite = ExtResource("4_5rbj4")
 sprite_scale = 1.0
-name = ""
-metadata/_custom_type_script = ExtResource("1_no7gg")
+name = "Water Archer"
+metadata/_custom_type_script = "uid://bpkpxp60hx4da"
