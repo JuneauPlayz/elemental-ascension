@@ -5,6 +5,7 @@ class_name Unit
 @export var health = 0
 @export var max_health = 0
 @export var shield = 0
+@export var fire_damage_block = 0
 @export var status : Array = []
 @export var current_element : String = "none"
 @export var bubble : bool = false
@@ -231,6 +232,8 @@ func take_damage(damage : int, element : String, change_element : bool):
 				damage_left = roundi(damage_left * run.nitro_mult)
 				if not copy:
 					DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Nitrate!", 32)
+	if (element == "fire"):
+		damage_left -= self.fire_damage_block
 	if not copy:
 		DamageNumbers.display_number(damage_left, damage_number_origin.global_position, element, "")
 	total_dmg = damage_left

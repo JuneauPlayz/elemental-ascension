@@ -65,6 +65,7 @@ func _ready() -> void:
 	skill_info.skill = current_skill
 	skill_info.update_skill_info()
 	
+	fire_damage_block = res.fire_damage_block
 	if not copy:
 		hp_bar = get_child(1)
 		hp_bar.set_hp(health)
