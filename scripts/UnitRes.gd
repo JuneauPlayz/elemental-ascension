@@ -26,3 +26,5 @@ var level_up = false
 @export var sprite_scale = 1.0
 
 @export var name : String
+
+@export var fire_damage_block : int
