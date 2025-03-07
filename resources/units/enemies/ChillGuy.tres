@@ -17,3 +17,4 @@ skill4 = ExtResource("4_prss2")
 sprite = ExtResource("3_i7tmh")
 sprite_scale = 1.0
 name = "ChillGuy"
+fire_damage_block = 0

@@ -25,3 +25,4 @@ relic_4 = ExtResource("4_qshh3")
 sprite = ExtResource("6_rlwy5")
 sprite_scale = 0.39
 name = "Venasaur"
+fire_damage_block = 0

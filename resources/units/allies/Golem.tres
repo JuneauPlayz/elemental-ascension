@@ -25,3 +25,4 @@ relic_4 = ExtResource("4_hc7ce")
 sprite = ExtResource("4_a2f0g")
 sprite_scale = 0.45
 name = "Golem"
+fire_damage_block = 0

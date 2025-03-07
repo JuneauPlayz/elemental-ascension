@@ -13,3 +13,4 @@ skill1 = ExtResource("2_m1i4n")
 sprite = ExtResource("3_f15hj")
 sprite_scale = 0.3
 name = "Pyromancer"
+fire_damage_block = 0

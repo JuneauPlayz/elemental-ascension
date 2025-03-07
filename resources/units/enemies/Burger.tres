@@ -16,3 +16,4 @@ skill3 = ExtResource("4_apcrc")
 sprite = ExtResource("5_tfl7s")
 sprite_scale = 0.15
 name = "Burger"
+fire_damage_block = 0

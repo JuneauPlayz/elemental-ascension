@@ -15,3 +15,4 @@ skill2 = ExtResource("3_w676c")
 sprite = ExtResource("4_cmps0")
 sprite_scale = 0.4
 name = "OrbWizard"
+fire_damage_block = 0

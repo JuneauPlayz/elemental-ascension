@@ -17,3 +17,4 @@ skill3 = ExtResource("4_knjn4")
 sprite = ExtResource("5_bfqbs")
 sprite_scale = 1.0
 name = "MIKU"
+fire_damage_block = 0

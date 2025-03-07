@@ -25,3 +25,4 @@ relic_4 = ExtResource("4_h6d0o")
 sprite = ExtResource("6_vnyy7")
 sprite_scale = 0.39
 name = "Pikachu"
+fire_damage_block = 0

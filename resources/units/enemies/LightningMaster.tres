@@ -16,3 +16,4 @@ skill3 = ExtResource("4_wkxwl")
 sprite = ExtResource("5_bqxr6")
 sprite_scale = 0.39
 name = "Lightning Master"
+fire_damage_block = 0

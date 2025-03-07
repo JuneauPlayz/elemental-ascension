@@ -17,6 +17,7 @@ type = 1
 tag1 = "Fire"
 tag2 = ""
 tag3 = ""
+tags = []
 icon = ExtResource("1_j6w0u")
 tooltip = "Start Combat with +1
 Fire Tokens"

@@ -17,3 +17,4 @@ skill4 = ExtResource("4_jvuqw")
 sprite = ExtResource("3_p0ip3")
 sprite_scale = 1.0
 name = "Baguette"
+fire_damage_block = 0

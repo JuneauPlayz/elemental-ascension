@@ -11,4 +11,5 @@ skill1 = ExtResource("2_ol52o")
 sprite = ExtResource("2_slmp8")
 sprite_scale = 1.0
 name = "Miku Fan"
+fire_damage_block = 0
 metadata/_custom_type_script = "uid://bpkpxp60hx4da"

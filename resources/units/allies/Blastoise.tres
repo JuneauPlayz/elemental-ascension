@@ -25,3 +25,4 @@ relic_4 = ExtResource("4_lxhfm")
 sprite = ExtResource("6_iyk0c")
 sprite_scale = 1.25
 name = "Blastoise"
+fire_damage_block = 0

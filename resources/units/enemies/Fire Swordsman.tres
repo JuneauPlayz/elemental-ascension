@@ -14,4 +14,5 @@ skill3 = ExtResource("3_nagyx")
 sprite = ExtResource("4_hfdsk")
 sprite_scale = 0.5
 name = "Fire Swordsman"
+fire_damage_block = 0
 metadata/_custom_type_script = ExtResource("1_ydms3")

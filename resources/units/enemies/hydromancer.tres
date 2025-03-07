@@ -13,3 +13,4 @@ skill1 = ExtResource("2_af38f")
 sprite = ExtResource("3_3viei")
 sprite_scale = 0.3
 name = "Hydromancer"
+fire_damage_block = 0
