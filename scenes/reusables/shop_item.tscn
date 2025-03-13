@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://i473wibgqlvt"]
+[gd_scene load_steps=6 format=3 uid="uid://i473wibgqlvt"]
 
 [ext_resource type="Script" uid="uid://cmriwuxpet7jj" path="res://scripts/shop_item.gd" id="1_4dlhj"]
 [ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="2_bh41i"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="3_fsq2a"]
+[ext_resource type="PackedScene" uid="uid://dypw27wcl2dat" path="res://scenes/reusables/choose_fight_scene_sprite.tscn" id="4_xhlow"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev8a0"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -39,9 +40,18 @@ theme_override_font_sizes/font_size = 36
 text = "Buy (Price)"
 
 [node name="SkillInfo" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_fsq2a")]
+visible = false
 layout_mode = 2
 
 [node name="RelicInfo" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_bh41i")]
 layout_mode = 2
+
+[node name="RelicSprite" parent="PanelContainer/MarginContainer/VBoxContainer/RelicInfo" instance=ExtResource("4_xhlow")]
+layout_mode = 0
+offset_left = -68.25
+offset_top = -42.5
+offset_right = 31.75
+offset_bottom = 57.5
+scale = Vector2(0.7, 0.7)
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Buy" to="." method="_on_buy_pressed"]

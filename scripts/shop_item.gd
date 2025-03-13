@@ -4,6 +4,7 @@ const RELIC_UI = preload("res://scenes/relic handler/relic_ui.tscn")
 
 @onready var relic_info: Control = $PanelContainer/MarginContainer/VBoxContainer/RelicInfo
 @onready var skill_info: Control = $PanelContainer/MarginContainer/VBoxContainer/SkillInfo
+@onready var relic_sprite: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/RelicInfo/RelicSprite
 
 @onready var buy: Button = $PanelContainer/MarginContainer/VBoxContainer/Buy
 
@@ -28,6 +29,7 @@ func update_item():
 	if item is Relic:
 		relic_info.visible = true
 		relic_info.update_relic_info(item)
+		relic_sprite.texture = item.icon
 		#var new_relic_ui = RELIC_UI.instantiate()
 		#add_child(new_relic_ui)
 	elif item is Skill:

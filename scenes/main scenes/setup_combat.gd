@@ -146,7 +146,7 @@ func _ready() -> void:
 	for filename in file_relics:
 		var relic = load(filename)
 		p_relics.append(relic)
-		relics_p.add_item(relic.relic_name)
+		relics_p.add_icon_item(relic.icon, relic.relic_name)
 		relics_dict[relic.relic_name] = relic
 	
 			
@@ -219,3 +219,4 @@ func _on_add_relic_pressed() -> void:
 		relics.append(relics_dict[relic_name])
 	relic_name = ""
 	relics_p.select(0)
+	DamageNumbers.display_text(relics_p.global_position + Vector2(350,150), "none", "Added!", 32)
