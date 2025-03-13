@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://dg1frmvoqf78x"]
 
-[ext_resource type="Texture2D" uid="uid://dr5buhafiup2r" path="res://assets/venasaur (2).png" id="1_hnlm5"]
+[ext_resource type="Texture2D" uid="uid://ck204tuwxkug3" path="res://assets/healing potion.png" id="1_hnlm5"]
 [ext_resource type="Script" uid="uid://dqhomnj2nt3vg" path="res://resources/relic scripts/healing_potion.gd" id="1_qomhe"]
 
 [resource]

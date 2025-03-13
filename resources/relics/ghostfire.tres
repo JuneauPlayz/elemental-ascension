@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://bwhj7jk0eg4r2"]
 
-[ext_resource type="Texture2D" uid="uid://133h4yyl8s4l" path="res://assets/chillpyro.png" id="1_n731v"]
+[ext_resource type="Texture2D" uid="uid://udixn6v0if5c" path="res://assets/ghostfire.png" id="1_cjxkj"]
 [ext_resource type="Script" uid="uid://0fyvxtncrgrq" path="res://resources/relic scripts/ghostfire.gd" id="1_v84vh"]
 
 [resource]
@@ -12,7 +12,7 @@ tag1 = "Fire"
 tag2 = ""
 tag3 = ""
 tags = []
-icon = ExtResource("1_n731v")
+icon = ExtResource("1_cjxkj")
 tooltip = "When an ally uses a
 single enemy fire skill,
 the front enemy is also hit 

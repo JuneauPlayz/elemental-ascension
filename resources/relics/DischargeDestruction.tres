@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://c87m826vrlhew"]
 
-[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/relic handler/relic.gd" id="1_a5bqe"]
+[ext_resource type="Texture2D" uid="uid://buscqrgqy7e8r" path="res://assets/discharge destruction.png" id="1_h1vfa"]
 [ext_resource type="Script" uid="uid://om7igntcsih0" path="res://resources/relic scripts/discharge_destruction.gd" id="2_h1vfa"]
 
 [resource]
@@ -12,7 +12,8 @@ tag1 = "Lightning"
 tag2 = "Earth"
 tag3 = ""
 tags = []
+icon = ExtResource("1_h1vfa")
 tooltip = "On discharge, deal an extra
  (5 x Discharge Mult)
 damage to all enemies"
-metadata/_custom_type_script = ExtResource("1_a5bqe")
+metadata/_custom_type_script = "uid://bwy6w48crbb54"

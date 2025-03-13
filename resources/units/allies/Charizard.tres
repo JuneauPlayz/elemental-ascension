@@ -25,3 +25,4 @@ relic_4 = ExtResource("4_1tw62")
 sprite = ExtResource("2_ury01")
 sprite_scale = 0.63
 name = "Charizard"
+fire_damage_block = 0

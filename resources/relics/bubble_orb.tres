@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://be6lcrjbxyg57"]
 
-[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/relic handler/relic.gd" id="1_rs4yq"]
+[ext_resource type="Texture2D" uid="uid://8e5ds4w7v41l" path="res://assets/bubble orb.png" id="1_367fa"]
 [ext_resource type="Script" uid="uid://c88tg8gm1lg3r" path="res://resources/relic scripts/reaction_mults.gd" id="2_dq2db"]
 
 [resource]
@@ -30,8 +30,9 @@ tag1 = "Grass"
 tag2 = "Water"
 tag3 = ""
 tags = []
+icon = ExtResource("1_367fa")
 tooltip = "Bubbles on allies
 reduce the next instance
 of damage by +15%
 Bloom Healing +10"
-metadata/_custom_type_script = ExtResource("1_rs4yq")
+metadata/_custom_type_script = "uid://bwy6w48crbb54"

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://diay0vgqknlqc"]
 
-[ext_resource type="Texture2D" uid="uid://133h4yyl8s4l" path="res://assets/chillpyro.png" id="1_phqmp"]
+[ext_resource type="Texture2D" uid="uid://bmadtlfoetukr" path="res://assets/arsonist.png" id="1_phqmp"]
 [ext_resource type="Script" uid="uid://cguqp50cxso0u" path="res://resources/relic scripts/Arsonist.gd" id="2_t340d"]
 
 [resource]

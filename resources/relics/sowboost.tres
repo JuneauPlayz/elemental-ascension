@@ -1,13 +1,13 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://d365sjgcnwi3u"]
 
-[ext_resource type="Texture2D" uid="uid://c7bn1gnx4b71v" path="res://assets/grassy pixelated.jpg" id="1_e48f3"]
+[ext_resource type="Texture2D" uid="uid://bdieu1804qlo1" path="res://assets/sowboost.png" id="1_e48f3"]
 [ext_resource type="Script" uid="uid://di7tjw3hxenl5" path="res://resources/relic scripts/token_bonus.gd" id="1_w51im"]
 
 [resource]
 script = ExtResource("1_w51im")
-fire_token_count = null
-water_token_count = null
-lightning_token_count = null
+fire_token_count = 0
+water_token_count = 0
+lightning_token_count = 0
 earth_token_count = 2
 grass_token_count = 2
 relic_name = "Sowboost"
@@ -16,6 +16,7 @@ type = 1
 tag1 = "Earth"
 tag2 = "Grass"
 tag3 = ""
+tags = []
 icon = ExtResource("1_e48f3")
 tooltip = "Start Combat with
 +2 Grass Tokens

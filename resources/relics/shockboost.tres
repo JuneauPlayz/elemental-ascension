@@ -1,21 +1,22 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://bxgsa3muuk2iy"]
 
-[ext_resource type="Texture2D" uid="uid://dqmohettbpuc1" path="res://assets/electro wizard.jpg" id="1_m1k4x"]
+[ext_resource type="Texture2D" uid="uid://b1dqmtsqtj0gk" path="res://assets/shockboost.png" id="1_m1k4x"]
 [ext_resource type="Script" uid="uid://di7tjw3hxenl5" path="res://resources/relic scripts/token_bonus.gd" id="1_wrwqk"]
 
 [resource]
 script = ExtResource("1_wrwqk")
-fire_token_count = null
+fire_token_count = 0
 water_token_count = 2
 lightning_token_count = 2
-earth_token_count = null
-grass_token_count = null
+earth_token_count = 0
+grass_token_count = 0
 relic_name = "Shockboost"
 tier = "Common"
 type = 1
 tag1 = "Water"
 tag2 = "Lightning"
 tag3 = ""
+tags = []
 icon = ExtResource("1_m1k4x")
 tooltip = "Start Combat with
 +2 Lightning Tokens

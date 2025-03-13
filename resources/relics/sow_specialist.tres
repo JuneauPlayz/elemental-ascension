@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://crkjhbiu783ib"]
 
 [ext_resource type="Script" uid="uid://c88tg8gm1lg3r" path="res://resources/relic scripts/reaction_mults.gd" id="1_7bt71"]
-[ext_resource type="Texture2D" uid="uid://c7bn1gnx4b71v" path="res://assets/grassy pixelated.jpg" id="1_yp5c5"]
+[ext_resource type="Texture2D" uid="uid://bu7rbj45ptj0r" path="res://assets/sow specialist.png" id="1_yp5c5"]
 
 [resource]
 script = ExtResource("1_7bt71")
@@ -29,6 +29,7 @@ type = 4
 tag1 = "Grass"
 tag2 = "Earth"
 tag3 = ""
+tags = []
 icon = ExtResource("1_yp5c5")
 tooltip = "Adds 10 to Sow Shielding
 Adds 10 to Sow Healing"

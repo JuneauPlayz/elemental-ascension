@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://bo3se2l60exf2"]
 
-[ext_resource type="Texture2D" uid="uid://dqmohettbpuc1" path="res://assets/electro wizard.jpg" id="1_7os8u"]
+[ext_resource type="Texture2D" uid="uid://do0mbqvc5ux2j" path="res://assets/shock orb.png" id="1_7os8u"]
 [ext_resource type="Script" uid="uid://c88tg8gm1lg3r" path="res://resources/relic scripts/reaction_mults.gd" id="1_tvuho"]
 
 [resource]

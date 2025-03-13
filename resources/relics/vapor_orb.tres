@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://ri585emt4d3a"]
 
-[ext_resource type="Texture2D" uid="uid://c3wn67rl0ods7" path="res://assets/hydromancer.jpg" id="1_3ghuw"]
+[ext_resource type="Texture2D" uid="uid://d1553na3t5yv4" path="res://assets/vapor orb.png" id="1_3ghuw"]
 [ext_resource type="Script" uid="uid://c88tg8gm1lg3r" path="res://resources/relic scripts/reaction_mults.gd" id="1_l77ma"]
 
 [resource]
@@ -29,5 +29,6 @@ type = 4
 tag1 = "Fire"
 tag2 = "Water"
 tag3 = ""
+tags = []
 icon = ExtResource("1_3ghuw")
 tooltip = "Adds 0.75x to Vaporize Multiplier"

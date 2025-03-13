@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://njjrwyud27wr"]
 
-[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/relic handler/relic.gd" id="1_mx21r"]
+[ext_resource type="Texture2D" uid="uid://bi3fgvovjypok" path="res://assets/muck orb.png" id="1_ux137"]
 [ext_resource type="Script" uid="uid://c88tg8gm1lg3r" path="res://resources/relic scripts/reaction_mults.gd" id="2_ux137"]
 
 [resource]
@@ -30,6 +30,7 @@ tag1 = "Water"
 tag2 = "Earth"
 tag3 = ""
 tags = []
+icon = ExtResource("1_ux137")
 tooltip = "Muck on enemies reduce
 damage by +25%"
-metadata/_custom_type_script = ExtResource("1_mx21r")
+metadata/_custom_type_script = "uid://bwy6w48crbb54"

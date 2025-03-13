@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://dtdqkj7d42px4"]
 
-[ext_resource type="Texture2D" uid="uid://gsryiov15e6m" path="res://assets/qiqifallen.png" id="1_dq2db"]
+[ext_resource type="Texture2D" uid="uid://bt1mpdkur57gi" path="res://assets/discharge orb.png" id="1_dq2db"]
 [ext_resource type="Script" uid="uid://c88tg8gm1lg3r" path="res://resources/relic scripts/reaction_mults.gd" id="2_ihpf7"]
 
 [resource]
