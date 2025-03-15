@@ -5,8 +5,8 @@
 [ext_resource type="Resource" uid="uid://lsx0fd6mol75" path="res://resources/level_up_relics/Fire Starter+.tres" id="3_bk0x0"]
 [ext_resource type="Resource" uid="uid://gi8226pxp46w" path="res://resources/level_up_relics/Flame Boost.tres" id="4_7uvqw"]
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="5_eo276"]
-[ext_resource type="Resource" uid="uid://c3yogn8m318q2" path="res://resources/Skills/fire/Fire_Bolt.tres" id="6_cdx5p"]
-[ext_resource type="Resource" uid="uid://drjm7bxw8bu8w" path="res://resources/Skills/fire/Fire Snipe.tres" id="7_52xrg"]
+[ext_resource type="Resource" uid="uid://2pv1s54dj86d" path="res://resources/Skills/fire/Fire Stab.tres" id="6_8fvsp"]
+[ext_resource type="Resource" uid="uid://7ubelbhl5mhr" path="res://resources/Skills/fire/Fire Slash.tres" id="7_tr5ab"]
 [ext_resource type="Texture2D" uid="uid://dcpdp71hxqvlk" path="res://assets/firecharprototype.png" id="8_8fvsp"]
 [ext_resource type="Resource" uid="uid://bgmq3ov7xln34" path="res://resources/Skills/fire/Flare Blitz.tres" id="9_0gcee"]
 [ext_resource type="Resource" uid="uid://fa2xrxusorfa" path="res://resources/Skills/fire/Blast Burn.tres" id="10_x1hxc"]
@@ -14,8 +14,8 @@
 [resource]
 script = ExtResource("5_eo276")
 starting_health = 60
-skill1 = ExtResource("6_cdx5p")
-skill2 = ExtResource("7_52xrg")
+skill1 = ExtResource("6_8fvsp")
+skill2 = ExtResource("7_tr5ab")
 relic_1 = ExtResource("1_8fvsp")
 relic_2 = ExtResource("2_tr5ab")
 ult_1 = ExtResource("9_0gcee")

@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dgisgofailnf2"]
+
+[ext_resource type="Script" uid="uid://b6jr4peo4gndo" path="res://scripts/skill.gd" id="1_8d4pu"]
+
+[resource]
+script = ExtResource("1_8d4pu")
+name = "Water Splash"
+damage = 10
+element = "water"
+damaging = true
+healing = false
+shielding = false
+target_type = "single_enemy"
+purchaseable = true
+tier = "Common"
+friendly = false
+lifesteal = false
+lifesteal_rate = 1.0
+cost = 2
+token_type = "water"
+cost2 = 0
+token_type2 = ""
+status_effects = []
+double_hit = false
+damage2 = 0
+element2 = ""
+blast = true
+blast_damage = 5
+decay = false
+decay_value = 0
+buff = false
+buff_value = 0
+tag1 = ""
+tag2 = ""
+target_tag = ""
+tags = []
+metadata/_custom_type_script = "uid://b6jr4peo4gndo"
