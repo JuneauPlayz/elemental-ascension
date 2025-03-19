@@ -973,74 +973,58 @@ func check_requirements():
 							ally.spell_select_ui.disable(i)
 					else:
 						ally.spell_select_ui.enable(i)
-		
+
+#had deepseek help improve my code, might be buggy
 func set_unit_pos():
-	middle_allies = []
-	enemies = []
-	allies = []
-	if enemy1 != null:
-		enemies.append(enemy1)
-		enemy1.position = 1
-	if enemy2 != null:
-		enemies.append(enemy2)
-		enemy2.position = 2
-	if enemy3 != null:
-		enemies.append(enemy3)
-		enemy3.position = 3
-	if enemy4 != null:
-		enemies.append(enemy4)
-		enemy4.position = 4
-	if ally1 != null:
-		allies.append(ally1)
-		ally1.position = 1
-	if ally2 != null:
-		allies.append(ally2)
-		ally2.position = 2
-	if ally3 != null:
-		allies.append(ally3)
-		ally3.position = 3
-	if ally4 != null:
-		allies.append(ally4)
-		ally4.position = 4
-	for n in range(enemies.size()):
-		if n > 0:
-			enemies[n].left = enemies[n-1]
-		else:
-			enemies[n].left = null
-		if n < enemies.size()-1:
-			enemies[n].right = enemies[n+1]
-		else:
-			enemies[n].right = null
-	for n in range(allies.size()):
-		if n > 0:
-			allies[n].left = allies[n-1]
-		else:
-			allies[n].left = null
-		if n < allies.size()-1:
-			allies[n].right = allies[n+1]
-		else:
-			allies[n].right = null
-	if enemies.size() > 0:
-		front_enemy = enemies[0]
-		back_enemy = enemies[enemies.size()-1]
-		if enemies.size() > 1:
-			front_enemy_2 = enemies[1]
-			back_enemy_2 = enemies[enemies.size()-2]
-		else:
-			front_enemy_2 = null
-			back_enemy_2 = null
-	if allies.size() > 0:
-		front_ally = allies[allies.size()-1]
-		back_ally = allies[0]
-		if allies.size() > 1:
-			front_ally_2 = allies[allies.size()-2]
-			back_ally_2 = allies[1]
-		else:
-			front_ally_2 = null
-			back_ally_2 = null
+	# Clear previous data
+	middle_allies.clear()
+	enemies.clear()
+	allies.clear()
+
+	# Add enemies and assign positions
+	for i in range(1, 5):
+		var enemy = get("enemy" + str(i))
+		if enemy != null:
+			enemies.append(enemy)
+			enemy.position = i
+
+	# Add allies and assign positions
+	for i in range(1, 5):
+		var ally = get("ally" + str(i))
+		if ally != null:
+			allies.append(ally)
+			ally.position = i
+
+	# Link enemies and allies (left and right)
+	link_units(enemies)
+	link_units(allies)
+
+	# Determine front and back units
+	front_enemy = enemies[0] if enemies.size() > 0 else null
+	back_enemy = enemies[enemies.size() - 1] if enemies.size() > 0 else null
+	front_enemy_2 = enemies[1] if enemies.size() > 1 else null
+	back_enemy_2 = enemies[enemies.size() - 2] if enemies.size() > 1 else null
+
+	front_ally = allies[allies.size() - 1] if allies.size() > 0 else null
+	back_ally = allies[0] if allies.size() > 0 else null
+
+	# Assign Front Ally 2 and Back Ally 2
+	front_ally_2 = null
+	back_ally_2 = null
+
+	if allies.size() > 1:
+		front_ally_2 = allies[allies.size() - 2]  # Ally directly behind Front Ally
+		back_ally_2 = allies[1]  # Ally directly in front of Back Ally
+
+	# Handle special case for 2 allies
+	if allies.size() == 2:
+		front_ally_2 = back_ally  # Back Ally is also Front Ally 2
+		back_ally_2 = front_ally  # Front Ally is also Back Ally 2
+
+	# Determine middle allies based on the number of allies
 	match allies.size():
 		1:
-			middle_allies.append(allies[0])
+			middle_allies.append(allies[0])  # Only ally is added to middle_allies
 		2:
 			middle_allies.append(allies[0])
 			middle_allies.append(allies[1])
@@ -1049,6 +1033,19 @@ func set_unit_pos():
 		4:
 			middle_allies.append(allies[1])
 			middle_allies.append(allies[2])
+
+# Helper function to link units (left and right)
+func link_units(units):
+	for i in range(units.size()):
+		if i > 0:
+			units[i].left = units[i - 1]
+		else:
+			units[i].left = null
+
+		if i < units.size() - 1:
+			units[i].right = units[i + 1]
+		else:
+			units[i].right = null
 
 		
 func vaporize(unit, caster, element):

@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5c6pngktpoun"]
+
+[ext_resource type="Script" uid="uid://bklicn21lrujk" path="res://status_bar.gd" id="1_m37av"]
+[ext_resource type="PackedScene" uid="uid://bclilm80vhoch" path="res://status_effect.tscn" id="2_4pqwi"]
+
+[node name="Status Bar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m37av")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 60.0
+theme_override_constants/h_separation = 60
+theme_override_constants/v_separation = 60
+columns = 5
+
+[node name="StatusEffect" parent="GridContainer" instance=ExtResource("2_4pqwi")]
+layout_mode = 2
+
+[node name="StatusEffect2" parent="GridContainer" instance=ExtResource("2_4pqwi")]
+layout_mode = 2
+
+[node name="StatusEffect3" parent="GridContainer" instance=ExtResource("2_4pqwi")]
+layout_mode = 2
+
+[node name="StatusEffect4" parent="GridContainer" instance=ExtResource("2_4pqwi")]
+layout_mode = 2
+
+[node name="StatusEffect5" parent="GridContainer" instance=ExtResource("2_4pqwi")]
+layout_mode = 2
+
+[node name="StatusEffect6" parent="GridContainer" instance=ExtResource("2_4pqwi")]
+layout_mode = 2

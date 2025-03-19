@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bada5mi2dlugm" path="res://scripts/hp_bar.gd" id="1_orq1w"]
 [ext_resource type="Texture2D" uid="uid://cfus0jnjm26vl" path="res://assets/shield.png" id="2_0hkbf"]
+[ext_resource type="PackedScene" uid="uid://b5c6pngktpoun" path="res://status_bar.tscn" id="3_76eju"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgu82"]
 bg_color = Color(0.784314, 0.662745, 0.698039, 0.803922)
@@ -36,11 +37,6 @@ corner_radius_bottom_left = 6
 
 [sub_resource type="LabelSettings" id="LabelSettings_36guj"]
 font_size = 42
-
-[sub_resource type="LabelSettings" id="LabelSettings_tatyv"]
-font_size = 36
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
 
 [node name="HP Bar" type="Control"]
 layout_mode = 3
@@ -112,10 +108,9 @@ position = Vector2(-5, 28.75)
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("2_0hkbf")
 
-[node name="Statuses" type="Label" parent="."]
-layout_mode = 0
-offset_left = -16.0
-offset_top = 89.0
-offset_right = 272.0
-offset_bottom = 127.0
-label_settings = SubResource("LabelSettings_tatyv")
+[node name="Status Bar" parent="." instance=ExtResource("3_76eju")]
+layout_mode = 1
+offset_left = -12.5
+offset_top = 95.0
+offset_right = -12.5
+offset_bottom = 95.0
