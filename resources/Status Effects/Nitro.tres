@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://b07t8og31u3ok"]
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://b07t8og31u3ok"]
 
-[ext_resource type="Script" path="res://scripts/DoT_Status.gd" id="1_eqlsr"]
+[ext_resource type="Texture2D" uid="uid://b4g8soedfvif5" path="res://assets/nitro orb.png" id="1_0lu7k"]
+[ext_resource type="Script" uid="uid://5lu86r10cr8o" path="res://scripts/DoT_Status.gd" id="1_eqlsr"]
 
 [resource]
 script = ExtResource("1_eqlsr")
@@ -11,3 +12,4 @@ element = ""
 turns_remaining = 99
 event_based = true
 unique_type = "nitro"
+icon = ExtResource("1_0lu7k")

@@ -18,5 +18,6 @@ func update_statuses(statuses):
 		var new_status = STATUS_EFFECT.instantiate()
 		grid_container.add_child(new_status)
 		new_status.status = status
+		new_status.get_child(0).texture = status.icon
 		
 	

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://cexr25c7jo7kd"]
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://cexr25c7jo7kd"]
 
 [ext_resource type="Script" uid="uid://5lu86r10cr8o" path="res://scripts/DoT_Status.gd" id="1_ea6qj"]
+[ext_resource type="Texture2D" uid="uid://bdieu1804qlo1" path="res://assets/sowboost.png" id="1_fvbhe"]
 
 [resource]
 script = ExtResource("1_ea6qj")
@@ -11,3 +12,4 @@ element = ""
 turns_remaining = 99
 event_based = true
 unique_type = "sow"
+icon = ExtResource("1_fvbhe")

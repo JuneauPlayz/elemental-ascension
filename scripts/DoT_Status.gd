@@ -8,3 +8,4 @@ class_name Status
 @export var turns_remaining : int
 @export var event_based : bool
 @export_enum("bubble", "muck", "nitro", "sow") var unique_type : String
+@export var icon : Texture

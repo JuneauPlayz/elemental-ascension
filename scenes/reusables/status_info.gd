@@ -13,7 +13,7 @@ func update(status):
 			turns_remaining.text = " Turns Remaining : " + str(status.turns_remaining)
 		"Nitro":
 			status_name.text = "Nitro (Does not stack)"
-			description.text = "This unit takes " + run.nitro_mult + "x damage, consumed when taking an instance of damage"
+			description.text = "This unit takes " + str(run.nitro_mult) + "x damage, consumed when taking an instance of damage"
 		"Muck":
 			status_name.text = "Muck (Does not stacK)"
 			description.text = "This unit's next skill does 0.75x less damage"
