@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=11 format=3 uid="uid://btrtrqusgest0"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=12 format=3 uid="uid://btrtrqusgest0"]
 
 [ext_resource type="Resource" uid="uid://c812gom3pv4ae" path="res://resources/level_up_relics/Fire Starter.tres" id="1_8fvsp"]
+[ext_resource type="Resource" uid="uid://be75ghoc14028" path="res://resources/core/FireStart.tres" id="1_tr5ab"]
 [ext_resource type="Resource" uid="uid://sxi1onrmugek" path="res://resources/level_up_relics/mini fire boost.tres" id="2_tr5ab"]
 [ext_resource type="Resource" uid="uid://lsx0fd6mol75" path="res://resources/level_up_relics/Fire Starter+.tres" id="3_bk0x0"]
 [ext_resource type="Resource" uid="uid://gi8226pxp46w" path="res://resources/level_up_relics/Flame Boost.tres" id="4_7uvqw"]
@@ -25,4 +26,5 @@ relic_4 = ExtResource("4_7uvqw")
 sprite = ExtResource("8_8fvsp")
 sprite_scale = 3.5
 name = "Fire guy"
+core_main_stat = ExtResource("1_tr5ab")
 fire_damage_block = 0

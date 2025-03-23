@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://kn2ixd2foerq"]
+
+[ext_resource type="Script" uid="uid://c2wjgqju54j2c" path="res://core.gd" id="1_qhobl"]
+[ext_resource type="Texture2D" uid="uid://cnnrsmq8lua1m" path="res://assets/burn orb.png" id="2_tvpqx"]
+
+[node name="Core" type="Node2D"]
+script = ExtResource("1_qhobl")
+
+[node name="Icon" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_tvpqx")
+
+[connection signal="mouse_entered" from="Icon" to="." method="_on_icon_mouse_entered"]
+[connection signal="mouse_exited" from="Icon" to="." method="_on_icon_mouse_exited"]

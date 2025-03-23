@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CoreUpgrade" load_steps=2 format=3 uid="uid://dbaraetyxcvbx"]
+
+[ext_resource type="Script" uid="uid://b5qk4bg7v0gmv" path="res://resources/core/core_upgrade.gd" id="1_pm8sy"]
+
+[resource]
+script = ExtResource("1_pm8sy")
+element = "earth"
+type = "token_gen_bonus"
+amount = 1
+metadata/_custom_type_script = "uid://b5qk4bg7v0gmv"

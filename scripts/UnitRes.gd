@@ -27,4 +27,5 @@ var level_up = false
 
 @export var name : String
 
+@export var core_main_stat : CoreUpgrade
 @export var fire_damage_block : int

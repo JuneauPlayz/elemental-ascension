@@ -24,6 +24,38 @@ var position : int
 @export var status_resistance: float
 @export var title : String
 
+#stats
+# Damage and stat-related variables
+var fire_skill_damage_bonus: float = 0.0
+var water_skill_damage_bonus: float = 0.0
+var lightning_skill_damage_bonus: float = 0.0
+var grass_skill_damage_bonus: float = 0.0
+var earth_skill_damage_bonus: float = 0.0
+var all_skill_damage_bonus: float = 0.0
+
+var fire_skill_damage_mult: float = 1.0
+var water_skill_damage_mult: float = 1.0
+var lightning_skill_damage_mult: float = 1.0
+var grass_skill_damage_mult: float = 1.0
+var earth_skill_damage_mult: float = 1.0
+var all_skill_damage_mult: float = 1.0
+
+var physical_skill_damage_bonus: float = 0.0
+var physical_skill_damage_mult: float = 1.0
+
+var healing_skill_bonus: float = 0.0
+var healing_skill_mult: float = 1.0
+
+var shielding_skill_bonus: float = 0.0
+var shielding_skill_mult: float = 1.0
+
+var fire_token_gen_bonus: float = 0.0
+var water_token_gen_bonus: float = 0.0
+var lightning_token_gen_bonus: float = 0.0
+var grass_token_gen_bonus: float = 0.0
+var earth_token_gen_bonus: float = 0.0
+
+
 # Status Effect Constants
 const BLEED = preload("res://resources/Status Effects/Bleed.tres")
 const BUBBLE = preload("res://resources/Status Effects/Bubble.tres")

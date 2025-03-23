@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CoreUpgrade" load_steps=2 format=3 uid="uid://be75ghoc14028"]
+
+[ext_resource type="Script" uid="uid://b5qk4bg7v0gmv" path="res://resources/core/core_upgrade.gd" id="1_vgl2g"]
+
+[resource]
+script = ExtResource("1_vgl2g")
+element = "fire"
+type = "skill_damage_bonus"
+amount = 2
+metadata/_custom_type_script = "uid://b5qk4bg7v0gmv"

@@ -129,6 +129,7 @@ func combat_ready():
 		allies.append(ally4)
 	for i in range(len(allies)):
 		allies[i].position = i+1
+		allies[i].update_core()
 	# setting left and right for units
 	set_unit_pos()
 	# relic stuff
