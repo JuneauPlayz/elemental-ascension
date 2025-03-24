@@ -47,6 +47,12 @@ var targeting_skill : Skill
 @onready var victory_screen: Control = $"../VictoryScreen"
 @onready var win: Button = $"../Win"
 
+@onready var sim_dmg_1: Label = $SimDMG
+@onready var sim_dmg_2: Label = $SimDMG2
+@onready var sim_dmg_3: Label = $SimDMG3
+@onready var sim_dmg_4: Label = $SimDMG4
+
+
 var ally1skill : int
 var ally2skill : int
 var ally3skill : int
@@ -82,6 +88,11 @@ var sim_water_tokens = 0
 var sim_lightning_tokens = 0
 var sim_grass_tokens = 0
 var sim_earth_tokens = 0
+
+var sim_enemy1_dmg = 0
+var sim_enemy2_dmg = 0
+var sim_enemy3_dmg = 0
+var sim_enemy4_dmg = 0
 
 const TARGET_CURSOR = preload("res://assets/target cursor.png")
 const DEFAULT_CURSOR = preload("res://assets/defaultcursor.png")
@@ -137,6 +148,10 @@ func combat_ready():
 	run.relic_handler.relics_activated.connect(_on_relics_activated)
 	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_COMBAT)
 	combat_currency.update()
+	sim_dmg_1.text = ""
+	sim_dmg_2.text = ""
+	sim_dmg_3.text = ""
+	sim_dmg_4.text = ""
 
 
 func start_combat():
@@ -713,6 +728,10 @@ func _on_end_turn_pressed() -> void:
 		set_unit_pos()
 		hide_skills()
 		hide_ui()
+		sim_dmg_1.text = ""
+		sim_dmg_2.text = ""
+		sim_dmg_3.text = ""
+		sim_dmg_4.text = ""
 		run.relic_handler.activate_relics_by_type(Relic.Type.END_OF_TURN)
 
 func _on_reset_choices_pressed() -> void:
@@ -1242,6 +1261,30 @@ func run_sim():
 		p_grass_tokens = grass_tokens + sim_grass_tokens - p_spent_grass_tokens
 		p_earth_tokens = earth_tokens + sim_earth_tokens - p_spent_earth_tokens
 	
+		if sim_enemy1_dmg > 0:
+			sim_dmg_1.text = "- " + str(sim_enemy1_dmg)
+		elif sim_enemy1_dmg < 0:
+			sim_dmg_1.text = "+ " + str(sim_enemy1_dmg)
+		else:
+			sim_dmg_1.text = ""
+		if sim_enemy2_dmg > 0:
+			sim_dmg_2.text = "- " + str(sim_enemy1_dmg)
+		elif sim_enemy2_dmg < 0:
+			sim_dmg_2.text = "+ " + str(sim_enemy2_dmg)
+		else:
+			sim_dmg_3.text = ""
+		if sim_enemy3_dmg > 0:
+			sim_dmg_3.text = "- " + str(sim_enemy3_dmg)
+		elif sim_enemy3_dmg < 0:
+			sim_dmg_3.text = "+ " + str(sim_enemy3_dmg)
+		else:
+			sim_dmg_3.text = ""
+		if sim_enemy4_dmg > 0:
+			sim_dmg_4.text = "- " + str(sim_enemy4_dmg)
+		elif sim_enemy3_dmg < 0:
+			sim_dmg_4.text = "+ " + str(sim_enemy4_dmg)
+		else:
+			sim_dmg_4.text = ""
 		combat_currency.update()
 	
 func reset_sim():

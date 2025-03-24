@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=11 format=3 uid="uid://rch61bky2ck8"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=12 format=3 uid="uid://rch61bky2ck8"]
 
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_5s5xv"]
+[ext_resource type="Resource" uid="uid://ckr8r3wq7e6eb" path="res://resources/core/GrassStart.tres" id="1_cr2bb"]
 [ext_resource type="Resource" uid="uid://dlpdqat8ipjw1" path="res://resources/level_up_relics/Garden Starter.tres" id="1_qshh3"]
 [ext_resource type="Resource" uid="uid://tjrsdrdx2xsa" path="res://resources/Skills/grass/Grass Needle.tres" id="2_3o77x"]
 [ext_resource type="Resource" uid="uid://butrwn0ku2t0p" path="res://resources/level_up_relics/mini healing boost.tres" id="2_cr2bb"]
@@ -25,4 +26,5 @@ relic_4 = ExtResource("4_qshh3")
 sprite = ExtResource("6_rlwy5")
 sprite_scale = 0.39
 name = "Venasaur"
+core_main_stat = ExtResource("1_cr2bb")
 fire_damage_block = 0

@@ -17,6 +17,7 @@ var middle_allies = []
 @export var enemy3 : Enemy
 @export var enemy4 : Enemy
 @export var enemies : Array = []
+
 var front_enemy : Enemy
 var front_enemy_2 : Enemy
 var back_enemy : Enemy
@@ -46,6 +47,11 @@ var water_tokens_change = 0
 var lightning_tokens_change = 0
 var grass_tokens_change = 0
 var earth_tokens_change = 0
+
+var enemy1_start_hp = 0
+var enemy2_start_hp = 0
+var enemy3_start_hp = 0
+var enemy4_start_hp = 0
 
 @export var action_queue = []
 @export var target_queue = []
@@ -93,18 +99,22 @@ func run_simulation(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, 
 		self.enemy1 = enemy1
 		enemies.append(self.enemy1)
 		self.add_child(enemy1)
+		enemy1_start_hp = enemy1.health
 	if (enemy2 != null):
 		self.enemy2 = enemy2
 		enemies.append(self.enemy2)
 		self.add_child(enemy2)
+		enemy2_start_hp = enemy2.health
 	if (enemy3 != null):
 		self.enemy3 = enemy3
 		enemies.append(self.enemy3)
 		self.add_child(enemy3)
+		enemy3_start_hp = enemy3.health
 	if (enemy4 != null):
 		self.enemy4 = enemy4
 		enemies.append(self.enemy4)
 		self.add_child(enemy4)
+		enemy4_start_hp = enemy4.health
 	if (ally1 != null):
 		self.ally1 = ally1
 		allies.append(self.ally1)
@@ -142,6 +152,15 @@ func run_simulation(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, 
 	run.combat_manager.sim_lightning_tokens = lightning_tokens_change
 	run.combat_manager.sim_grass_tokens = grass_tokens_change
 	run.combat_manager.sim_earth_tokens = earth_tokens_change
+	if enemy1_start_hp != 0:
+		run.combat_manager.sim_enemy1_dmg = enemy1_start_hp - enemy1.health
+	if enemy2_start_hp != 0:
+		run.combat_manager.sim_enemy1_dmg = enemy2_start_hp - enemy2.health
+	if enemy3_start_hp != 0:
+		run.combat_manager.sim_enemy1_dmg = enemy3_start_hp - enemy3.health
+	if enemy4_start_hp != 0:
+		run.combat_manager.sim_enemy1_dmg = enemy4_start_hp - enemy4.health
+	
 	return true
 func _ready():
 	run = get_tree().get_first_node_in_group("run")

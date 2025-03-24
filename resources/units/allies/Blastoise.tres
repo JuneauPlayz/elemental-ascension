@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=11 format=3 uid="uid://2stwmc2jhy14"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=12 format=3 uid="uid://2stwmc2jhy14"]
 
+[ext_resource type="Resource" uid="uid://dnhsg7q58rjph" path="res://resources/core/WaterStart.tres" id="1_bv3yi"]
 [ext_resource type="Resource" uid="uid://ih3lh3adqec6" path="res://resources/level_up_relics/Flood Starter.tres" id="1_lxhfm"]
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_yixfq"]
 [ext_resource type="Resource" uid="uid://doxqj6lskh6mh" path="res://resources/level_up_relics/mini water boost.tres" id="2_bv3yi"]
@@ -25,4 +26,5 @@ relic_4 = ExtResource("4_lxhfm")
 sprite = ExtResource("6_iyk0c")
 sprite_scale = 1.25
 name = "Blastoise"
+core_main_stat = ExtResource("1_bv3yi")
 fire_damage_block = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://do6gwn47eylu7"]
+[gd_scene load_steps=13 format=3 uid="uid://do6gwn47eylu7"]
 
 [ext_resource type="Script" uid="uid://sbmng0cirge2" path="res://scripts/combat_scene.gd" id="1_3ou8c"]
 [ext_resource type="Script" uid="uid://d0udq0kgc2102" path="res://scripts/combat_manager.gd" id="4_ucgqt"]
@@ -22,6 +22,11 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_rfbdu"]
 font_size = 61
 outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e4euj"]
+font_size = 72
+outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Combat" type="Node2D" groups=["combat"]]
@@ -71,6 +76,38 @@ offset_bottom = 678.0
 
 [node name="CombatCurrency" parent="CombatManager" instance=ExtResource("6_b6b3n")]
 mouse_filter = 2
+
+[node name="SimDMG" type="Label" parent="CombatManager"]
+offset_left = 1039.0
+offset_top = 94.0
+offset_right = 1138.0
+offset_bottom = 157.0
+text = "-30"
+label_settings = SubResource("LabelSettings_e4euj")
+
+[node name="SimDMG2" type="Label" parent="CombatManager"]
+offset_left = 1263.0
+offset_top = 93.0
+offset_right = 1362.0
+offset_bottom = 156.0
+text = "-30"
+label_settings = SubResource("LabelSettings_e4euj")
+
+[node name="SimDMG3" type="Label" parent="CombatManager"]
+offset_left = 1487.0
+offset_top = 90.0
+offset_right = 1586.0
+offset_bottom = 153.0
+text = "-30"
+label_settings = SubResource("LabelSettings_e4euj")
+
+[node name="SimDMG4" type="Label" parent="CombatManager"]
+offset_left = 1714.0
+offset_top = 94.0
+offset_right = 1813.0
+offset_bottom = 157.0
+text = "-30"
+label_settings = SubResource("LabelSettings_e4euj")
 
 [node name="Enemy 1 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true

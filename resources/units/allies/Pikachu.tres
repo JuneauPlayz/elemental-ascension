@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=11 format=3 uid="uid://coik84dyxxr16"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=12 format=3 uid="uid://coik84dyxxr16"]
 
 [ext_resource type="Resource" uid="uid://cwwj3sjm5m7cf" path="res://resources/level_up_relics/Storm Starter.tres" id="1_h6d0o"]
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_psg7m"]
+[ext_resource type="Resource" uid="uid://04pr4j5rw8lb" path="res://resources/core/LightningStart.tres" id="1_r077k"]
 [ext_resource type="Resource" uid="uid://bfx3wmxqlew4d" path="res://resources/level_up_relics/mini lightning boost.tres" id="2_r077k"]
 [ext_resource type="Resource" uid="uid://60omj8j38mfk" path="res://resources/Skills/lightning/Thunder Bolt.tres" id="2_sd5ql"]
 [ext_resource type="Resource" uid="uid://cnw2l4om8k28e" path="res://resources/Skills/lightning/Thunder Punch.tres" id="3_2ycgk"]
@@ -25,4 +26,5 @@ relic_4 = ExtResource("4_h6d0o")
 sprite = ExtResource("6_vnyy7")
 sprite_scale = 0.39
 name = "Pikachu"
+core_main_stat = ExtResource("1_r077k")
 fire_damage_block = 0

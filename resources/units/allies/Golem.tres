@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=11 format=3 uid="uid://brb2gubx0hm1h"]
+[gd_resource type="Resource" script_class="UnitRes" load_steps=12 format=3 uid="uid://brb2gubx0hm1h"]
 
 [ext_resource type="Resource" uid="uid://bivvenkk5l4lx" path="res://resources/level_up_relics/Rock Starter.tres" id="1_akhwl"]
+[ext_resource type="Resource" uid="uid://dbaraetyxcvbx" path="res://resources/core/EarthStart.tres" id="1_hc7ce"]
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_rsp8b"]
 [ext_resource type="Resource" uid="uid://d3opjmwuwct8t" path="res://resources/level_up_relics/mini shield boost.tres" id="2_akhwl"]
 [ext_resource type="Resource" uid="uid://dykdesfmc1oo8" path="res://resources/Skills/earth/Rock Throw.tres" id="2_famig"]
@@ -25,4 +26,5 @@ relic_4 = ExtResource("4_hc7ce")
 sprite = ExtResource("4_a2f0g")
 sprite_scale = 0.45
 name = "Golem"
+core_main_stat = ExtResource("1_hc7ce")
 fire_damage_block = 0
