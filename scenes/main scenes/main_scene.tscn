@@ -21,7 +21,7 @@ offset_left = 572.0
 offset_top = 129.0
 offset_right = 1373.0
 offset_bottom = 286.0
-text = "project burge "
+text = "working title"
 label_settings = SubResource("LabelSettings_k0nup")
 
 [node name="StartB" type="Button" parent="."]

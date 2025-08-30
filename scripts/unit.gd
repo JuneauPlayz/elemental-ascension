@@ -49,11 +49,11 @@ var healing_skill_mult: float = 1.0
 var shielding_skill_bonus: float = 0.0
 var shielding_skill_mult: float = 1.0
 
-var fire_token_gen_bonus: float = 0.0
-var water_token_gen_bonus: float = 0.0
-var lightning_token_gen_bonus: float = 0.0
-var grass_token_gen_bonus: float = 0.0
-var earth_token_gen_bonus: float = 0.0
+var fire_token_bonus: float = 0.0
+var water_token_bonus: float = 0.0
+var lightning_token_bonus: float = 0.0
+var grass_token_bonus: float = 0.0
+var earth_token_bonus: float = 0.0
 
 
 # Status Effect Constants

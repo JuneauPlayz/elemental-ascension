@@ -287,11 +287,11 @@ func update_core():
 	var total_grass_skill_damage_bonus = 0.0
 	var total_earth_skill_damage_bonus = 0.0
 	
-	var total_fire_token_gen_bonus = 0.0
-	var total_water_token_gen_bonus = 0.0
-	var total_lightning_token_gen_bonus = 0.0
-	var total_grass_token_gen_bonus = 0.0
-	var total_earth_token_gen_bonus = 0.0
+	var total_fire_token_bonus = 0.0
+	var total_water_token_bonus = 0.0
+	var total_lightning_token_bonus = 0.0
+	var total_grass_token_bonus = 0.0
+	var total_earth_token_bonus = 0.0
 	
 	# Add main_stat amount to the corresponding total
 	match name:
@@ -305,16 +305,16 @@ func update_core():
 			total_grass_skill_damage_bonus += main_stat.amount
 		"earth_skill_damage_bonus":
 			total_earth_skill_damage_bonus += main_stat.amount
-		"fire_token_gen_bonus":
-			total_fire_token_gen_bonus += main_stat.amount
-		"water_token_gen_bonus":
-			total_water_token_gen_bonus += main_stat.amount
-		"lightning_token_gen_bonus":
-			total_lightning_token_gen_bonus += main_stat.amount
-		"grass_token_gen_bonus":
-			total_grass_token_gen_bonus += main_stat.amount
-		"earth_token_gen_bonus":
-			total_earth_token_gen_bonus += main_stat.amount
+		"fire_token_bonus":
+			total_fire_token_bonus += main_stat.amount
+		"water_token_bonus":
+			total_water_token_bonus += main_stat.amount
+		"lightning_token_bonus":
+			total_lightning_token_bonus += main_stat.amount
+		"grass_token_bonus":
+			total_grass_token_bonus += main_stat.amount
+		"earth_token_bonus":
+			total_earth_token_bonus += main_stat.amount
 	
 	# Add substat amounts to the corresponding totals
 	for stat in core.substats:
@@ -330,29 +330,29 @@ func update_core():
 				total_grass_skill_damage_bonus += stat.amount
 			"earth_skill_damage_bonus":
 				total_earth_skill_damage_bonus += stat.amount
-			"fire_token_gen_bonus":
-				total_fire_token_gen_bonus += stat.amount
-			"water_token_gen_bonus":
-				total_water_token_gen_bonus += stat.amount
-			"lightning_token_gen_bonus":
-				total_lightning_token_gen_bonus += stat.amount
-			"grass_token_gen_bonus":
-				total_grass_token_gen_bonus += stat.amount
-			"earth_token_gen_bonus":
-				total_earth_token_gen_bonus += stat.amount
+			"fire_token_bonus":
+				total_fire_token_bonus += stat.amount
+			"water_token_bonus":
+				total_water_token_bonus += stat.amount
+			"lightning_token_bonus":
+				total_lightning_token_bonus += stat.amount
+			"grass_token_bonus":
+				total_grass_token_bonus += stat.amount
+			"earth_token_bonus":
+				total_earth_token_bonus += stat.amount
 	
 	# Set the final bonus variables using run.get(name)
-	fire_skill_damage_bonus = run.get(name) + total_fire_skill_damage_bonus
-	water_skill_damage_bonus = run.get(name) + total_water_skill_damage_bonus
-	lightning_skill_damage_bonus = run.get(name) + total_lightning_skill_damage_bonus
-	grass_skill_damage_bonus = run.get(name) + total_grass_skill_damage_bonus
-	earth_skill_damage_bonus = run.get(name) + total_earth_skill_damage_bonus
+	fire_skill_damage_bonus = run.get("fire_skill_damage_bonus") + total_fire_skill_damage_bonus
+	water_skill_damage_bonus = run.get("water_skill_damage_bonus") + total_water_skill_damage_bonus
+	lightning_skill_damage_bonus = run.get("lightning_skill_damage_bonus") + total_lightning_skill_damage_bonus
+	grass_skill_damage_bonus = run.get("grass_skill_damage_bonus") + total_grass_skill_damage_bonus
+	earth_skill_damage_bonus = run.get("earth_skill_damage_bonus") + total_earth_skill_damage_bonus
 	
-	fire_token_gen_bonus = run.get(name) + total_fire_token_gen_bonus
-	water_token_gen_bonus = run.get(name) + total_water_token_gen_bonus
-	lightning_token_gen_bonus = run.get(name) + total_lightning_token_gen_bonus
-	grass_token_gen_bonus = run.get(name) + total_grass_token_gen_bonus
-	earth_token_gen_bonus = run.get(name) + total_earth_token_gen_bonus
+	fire_token_bonus = run.get("fire_token_bonus") + total_fire_token_bonus
+	water_token_bonus = run.get("water_token_bonus") + total_water_token_bonus
+	lightning_token_bonus = run.get("lightning_token_bonus") + total_lightning_token_bonus
+	grass_token_bonus = run.get("grass_token_bonus") + total_grass_token_bonus
+	earth_token_bonus = run.get("earth_token_bonus") + total_earth_token_bonus
 				
 func update_skill_damage(skill):
 	skill.update()
