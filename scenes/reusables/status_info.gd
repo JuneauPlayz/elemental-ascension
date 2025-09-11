@@ -15,11 +15,11 @@ func update(status):
 			status_name.text = "Nitro (Does not stack)"
 			description.text = "This unit takes " + str(run.nitro_mult) + "x damage, consumed when taking an instance of damage"
 		"Muck":
-			status_name.text = "Muck (Does not stacK)"
+			status_name.text = "Muck (Does not stack)"
 			description.text = "This unit's next skill does 0.75x less damage"
 		"Sow":
 			status_name.text = "Sow (Can stack)"
-			description.text = "When a skill hits this unit, the caster of the skill heals " + run.sow_healing + " and gains " + run.sow_shielding + " shield"
+			description.text = "When a skill hits this unit, the caster of the skill heals " + str(run.sow_healing) + " and gains " + str(run.sow_shielding) + " shield"
 		"Bubble":
 			status_name.text = "Bubble (Does not stack)"
 			description.text = "This unit takes " + run.bubble_mult + "x damage"

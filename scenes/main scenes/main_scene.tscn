@@ -17,11 +17,11 @@ scale = Vector2(1.305, 1.305)
 texture = ExtResource("2_6dk50")
 
 [node name="Title" type="Label" parent="."]
-offset_left = 572.0
+offset_left = 600.0
 offset_top = 129.0
-offset_right = 1373.0
+offset_right = 1401.0
 offset_bottom = 286.0
-text = "working title"
+text = "project burg"
 label_settings = SubResource("LabelSettings_k0nup")
 
 [node name="StartB" type="Button" parent="."]
