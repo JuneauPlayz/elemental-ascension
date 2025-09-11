@@ -201,7 +201,7 @@ func buying_new_skill(shop_item):
 	for spot in spell_list:
 		spot.visible = true
 	confirm_swap.visible = false
-	if (not run.reaction_guide_open):
+	if (not run.UIManager.reaction_guide_open):
 		next_combat.visible = true
 
 

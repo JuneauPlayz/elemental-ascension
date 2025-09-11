@@ -93,7 +93,7 @@ func _on_confirm_swap_pressed() -> void:
 
 
 func _on_choose1_pressed() -> void:
-	if not run.reaction_guide_open:
+	if not run.UIManager.reaction_guide_open:
 		if reward_1_reward is Skill:
 			new_skill = reward_1_reward.duplicate()
 			skill_reward_chosen()
@@ -103,7 +103,7 @@ func _on_choose1_pressed() -> void:
 
 func _on_choose2_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	if not run.reaction_guide_open:
+	if not run.UIManager.reaction_guide_open:
 		if reward_2_reward is Skill:
 			new_skill = reward_2_reward.duplicate()
 			skill_reward_chosen()
@@ -113,7 +113,7 @@ func _on_choose2_pressed() -> void:
 		
 func _on_choose3_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	if not run.reaction_guide_open:
+	if not run.UIManager.reaction_guide_open:
 		if reward_3_reward is Skill:
 			new_skill = reward_3_reward.duplicate()
 			skill_reward_chosen()

@@ -776,7 +776,7 @@ func hide_ui():
 	reset_choices.visible = false
 	
 func show_ui():
-	if (not run.reaction_guide_open):
+	if (not run.UIManager.reaction_guide_open):
 		end_turn.visible = true
 	reset_choices.visible = true
 	

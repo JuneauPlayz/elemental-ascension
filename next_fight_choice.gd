@@ -245,7 +245,7 @@ func _ready() -> void:
 
 func _on_easy_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	if not run.reaction_guide_open:
+	if not run.UIManager.reaction_guide_open:
 		run.current_fight = easy_fight
 		run.current_reward = easy_reward
 		check_boss(easy_fight)
@@ -253,7 +253,7 @@ func _on_easy_fight_pressed() -> void:
 
 func _on_medium_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	if not run.reaction_guide_open:
+	if not run.UIManager.reaction_guide_open:
 		run.current_fight = medium_fight
 		run.current_reward = medium_reward
 		check_boss(medium_fight)
@@ -261,7 +261,7 @@ func _on_medium_fight_pressed() -> void:
 
 func _on_hard_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	if not run.reaction_guide_open:
+	if not run.UIManager.reaction_guide_open:
 		run.current_fight = hard_fight
 		run.current_reward = hard_reward
 		check_boss(hard_fight)

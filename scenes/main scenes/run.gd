@@ -25,6 +25,10 @@ const BOSS_REWARD = preload("res://boss_reward.tscn")
 
 @onready var S: Node = $StateMachine
 
+@onready var UIManager: Node = $UIManager
+@onready var SceneManager: Node = $SceneManager
+@onready var SkillsManager: Node = $SkillsManager
+
 var combat_manager
 var combat = false
 var combat_scene
@@ -76,7 +80,6 @@ var fight_level = 1
 var max_fight_level = 20
 var boss_level = 0
 #checks
-var reaction_guide_open = false
 
 var relics = []
 var obtainable_relics = []
@@ -531,13 +534,14 @@ func load_choose_reward(reward_type):
 	choose_reward_scene = BOSS_REWARD.instantiate()
 	choose_reward_scene.reward_type = reward_type
 	self.add_child(choose_reward_scene)
+	
 func add_gold(count):
 	gold += ((count + bonus_gold) * gold_mult)
-	gold_text.text = "[color=yellow]Gold[/color] : " + str(gold)
+	UIManager.set_gold(gold)
 
 func spend_gold(count):
 	gold -= count
-	gold_text.text = "[color=yellow]Gold[/color] : " + str(gold)
+	UIManager.set_gold(gold)
 
 func add_reward(reward):
 	add_gold(reward.gold)
@@ -581,9 +585,9 @@ func level_up_allies():
 	for ally in allies:
 		ally.increase_max_hp(10,false)
 	current_xp_goal += 100
-	current_level.text = str(level)
-	next_level.text = str(level+1)	
-	xp_number.text = str(xp) + " / " + str(current_xp_goal) + " XP"
+	UIManager.set_current_level(level)
+	UIManager.set_xp(xp, current_xp_goal)
+	
 		
 func get_random_relic():
 	if obtainable_relics == []:
@@ -605,36 +609,15 @@ func get_random_skill():
 		skill = obtainable_skills[random_num]
 	return skill
 
-
-func _on_reaction_guide_pressed() -> void:
-	reaction_panel.update_mult_labels()
-	if reaction_panel.visible:
-		reaction_panel.visible = false
-		reaction_guide_open = false
-		#for enemy in enemies:
-			#enemy.show_next_skill_info()
-		#for ally in allies:
-			#ally.spell_select_ui.visible = true
-	elif not reaction_panel.visible:
-		reaction_panel.visible = true
-		reaction_guide_open = true
-		#for enemy in enemies:
-			#enemy.hide_next_skill_info()
-		#for ally in allies:
-			#ally.spell_select_ui.visible = false
-
 func toggle_relic_tooltip():
-	relic_info.visible = !relic_info.visible
+	UIManager.toggle_relic_tooltip()
 	
 func loading_screen(time):
-	loading.visible = true
-	await get_tree().create_timer(time).timeout
-	loading.visible = false
+	UIManager.loading_screen(time)
 
 func increase_xp(count):
 	xp += ((count + xp_bonus) * xp_mult)
-	xp_bar.value = xp
-	xp_number.text = str(xp) + " / " + str(current_xp_goal) + " XP"
+	UIManager.set_xp(xp, current_xp_goal)
 	DamageNumbers.display_number_plus(count, xp_gain_position.global_position, "none", " XP!")
 
 func move_allies(x,y):
@@ -722,7 +705,7 @@ func reset() -> void:
 		current_reward = 6
 
 		# Reset checks
-		reaction_guide_open = false
+		UIManager.reset()
 
 		# Reset relics and skills
 		relics = []
@@ -877,7 +860,6 @@ func reset() -> void:
 
 		# Reset reaction panel visibility
 		reaction_panel.visible = false
-		reaction_guide_open = false
 
 		# Reset relic info visibility
 		relic_info.visible = false

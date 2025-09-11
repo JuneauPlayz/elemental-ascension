@@ -41,7 +41,7 @@ func update_item():
 
 
 func _on_buy_pressed() -> void:
-	if not run.reaction_guide_open and run.gold >= price:
+	if not run.UIManager.reaction_guide_open and run.gold >= price:
 		AudioPlayer.play_FX("click",-10)
 		run.spend_gold(price)
 		purchased.emit(item, self)
