@@ -29,6 +29,8 @@ var empty2 = false
 var empty3 = false
 var empty4 = false
 
+var disabled_all = false
+
 @onready var skill_info_1: Control = $SkillInfo
 @onready var skill_info_2: Control = $SkillInfo2
 @onready var skill_info_3: Control = $SkillInfo3
@@ -171,6 +173,7 @@ func reset():
 	update_color(s_2, gray)
 	update_color(ult, gray)
 	selected = 0
+	disabled_all = false
 
 func hide_position():
 	position_ui.visible = false
@@ -214,6 +217,14 @@ func disable(num):
 		4:
 			ult.disabled = true
 
+func disable_all():
+	ba_1.disabled = true
+	s_1.disabled = true
+	s_2.disabled = true
+	ult.disabled = true
+	disabled_all = true
+
+	
 func empty(num):
 	match num:
 		1:

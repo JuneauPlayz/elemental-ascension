@@ -37,7 +37,6 @@ AudioPlayer="*res://scenes/main scenes/audio_player.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 mouse_cursor/custom_image="res://assets/defaultcursor.png"
 
 [editor]

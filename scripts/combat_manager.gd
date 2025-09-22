@@ -29,15 +29,12 @@ var back_enemy_2 : Enemy
 var ally_list = [ally1, ally2, ally3, ally4]
 var enemy_list = [enemy1, enemy2]
 
-@export var action_queue = []
 var choosing_skills = false
 # parallel array for targets
-@export var target_queue = []
 var targeting = false
 
 var targeting_skill : Skill
-# parallel array for allies
-@export var ally_queue = []
+
 
 @onready var end_turn: Button = $"../EndTurn"
 @onready var reset_choices: Button = $"../ResetChoices"
@@ -182,45 +179,32 @@ func start_ally_turn():
 	update_skill_positions()
 	choosing_skills = true
 
-	
-func execute_ally_turn():
-	# skill execution
-	if ally_queue != []:
-		ally_queue[0].attack_animation()
-	await get_tree().create_timer(0.15).timeout
-	for n in range(action_queue.size()):
-		if (action_queue.size() == 0):
-			continue
-		var skill = action_queue[n]
-		var target = target_queue[n]
-		var ally = ally_queue[n]
-		use_skill(skill,target,ally,true,true)
-		check_post_skill(skill)
-		update_tokens()
-		combat_currency.update()
-		# checks if target is dead, currently skips the rest of the loop (wont print landed)
-		if (target == null or target.visible == false):
-			await get_tree().create_timer(0.1).timeout
-			continue
-		await reaction_finished
-		print(str(skill.name) + " landed!")
-		hit.emit()
-		if ally_queue.size() > n+1:
-			ally_queue[n+1].attack_animation()
-		await get_tree().create_timer(GC.GLOBAL_INTERVAL+0.05).timeout
-		# for sow only
-		for stati in target.status:
-			if stati.unique_type == "sow":
-				target.sow = true
+# rework
+func ally_skill_use(skill, target, ally):
+	use_skill(skill,target,ally,true,true)
+	check_post_skill(skill)
+	update_tokens()
+	combat_currency.update()
+	# checks if target is dead, currently skips the rest of the loop (wont print landed)
+	if (target == null or target.visible == false):
+		await get_tree().create_timer(0.1).timeout
+	await reaction_finished
+	print(str(skill.name) + " landed!")
+	hit.emit()
+	# for sow only
+	for stati in target.status:
+		if stati.unique_type == "sow":
+			target.sow = true
+	ally.spell_select_ui.disable_all()
+	check_ally_turn_done()
 	await get_tree().create_timer(1).timeout
 	reset_sim()
 	ally_post_status()
 	if enemies.is_empty():
 		victory()
-	else:
-		turn_text.text = "Enemy Turn"
-		ally_turn_done.emit()
+	
 
+# rework
 func enemy_turn():
 	await get_tree().create_timer(0.25).timeout
 	enemy_pre_status()
@@ -261,6 +245,12 @@ func check_post_skill(skill):
 			if skill.blast_damage < 0:
 				skill.blast_damage = 0
 		skill.update()
+
+func check_ally_turn_done():
+	for ally in allies:
+		if ally.spell_select_ui.disabled_all == false:
+			return
+	ally_turn_done.emit()
 
 func check_event_relics(skill,unit,value_multiplier,target):
 	if (run.ghostfire and unit is Ally and skill.element == "fire"):
@@ -498,7 +488,7 @@ func _on_relics_activated(type : Relic.Type) -> void:
 		Relic.Type.END_OF_COMBAT:
 			victory()
 		Relic.Type.END_OF_TURN:
-			execute_ally_turn()
+			ally_turn_done.emit()
 		
 			
 func reaction_signal():
@@ -516,114 +506,37 @@ func enemy_lose_shields():
 	for enemy in enemies:
 		enemy.set_shield(0)
 	
-# char 1
 func _on_spell_select_ui_new_select(ally) -> void:
 	var spell_select_ui: Control = ally.get_spell_select()
-	var change = false
-	var ally_pos = 0
-	var allyskill = 0
-	match ally.position:
-		1:
-			allyskill = ally1skill
-			ally_pos = ally1_pos
-		2:
-			allyskill = ally2skill
-			ally_pos = ally2_pos
-		3:
-			allyskill = ally3skill
-			ally_pos = ally3_pos
-		4:
-			allyskill = ally4skill
-			ally_pos = ally4_pos
-
-	# if selecting something when not already selected on that character
-	if (spell_select_ui.selected != 0 and allyskill == -1):
-		ally_pos = next_pos
-		next_pos += 1
-		spell_select_ui.update_pos(ally_pos + 1)
-	# if changing selection and not unselecting
-	if (allyskill != -1 and spell_select_ui.selected != 0):
-		action_queue.remove_at(ally_pos)
-		target_queue.remove_at(ally_pos)
-		ally_queue.remove_at(ally_pos)
+	var selected_index = spell_select_ui.selected
+	
+	# If unselecting
+	if selected_index == 0:
+		ally.using_skill = false
 		spell_select_ui.update_pos(0)
-		change = true
-	allyskill = spell_select_ui.selected
-	match spell_select_ui.selected:
-		# if unselecting
-		0:
-			next_pos -= 1
-			action_queue.remove_at(ally_pos)
-			target_queue.remove_at(ally_pos)
-			ally_queue.remove_at(ally_pos)
-			update_positions(ally_pos)
-			ally_pos = -1
-			update_skill_positions()
-			spell_select_ui.update_pos(0)
-			allyskill = -1
-			ally.using_skill = false
-			combat_currency.update()
-		1:
-			if change:
-				action_queue.insert(ally_pos,ally.skill_1)
-				target_queue.insert(ally_pos,await choose_target(ally.skill_1))
-				ally_queue.insert(ally_pos,ally)
-			else:
-				action_queue.append(ally.skill_1)
-				target_queue.append(await choose_target(ally.skill_1))
-				ally_queue.append(ally)
-			ally.using_skill = true
-		2:
-			if change:
-				action_queue.insert(ally_pos,ally.skill_2)
-				target_queue.insert(ally_pos,await choose_target(ally.skill_2))
-				ally_queue.insert(ally_pos,ally)
-			else:
-				action_queue.append(ally.skill_2)
-				target_queue.append(await choose_target(ally.skill_2))
-				ally_queue.append(ally)
-			ally.using_skill = true
-		3:
-			if change:
-				action_queue.insert(ally_pos,ally.skill_3)
-				target_queue.insert(ally_pos,await choose_target(ally.skill_3))
-				ally_queue.insert(ally_pos,ally)
-			else:
-				action_queue.append(ally.skill_3)
-				target_queue.append(await choose_target(ally.skill_3))
-				ally_queue.append(ally)
-			ally.using_skill = true
-		4:
-			if change:
-				action_queue.insert(ally_pos,ally.skill_4)
-				target_queue.insert(ally_pos,await choose_target(ally.skill_4))
-				ally_queue.insert(ally_pos,ally)
-			else:
-				action_queue.append(ally.skill_4)
-				target_queue.append(await choose_target(ally.skill_4))
-				ally_queue.append(ally)
-			ally.using_skill = true
-	match ally.position:
-		1:
-			ally1skill = allyskill
-			ally1_pos = ally_pos
-			spell_select_ui.update_pos(ally1_pos+1)
-		2:
-			ally2skill = allyskill
-			ally2_pos = ally_pos
-			spell_select_ui.update_pos(ally2_pos+1)
-		3:
-			ally3skill = allyskill
-			ally3_pos = ally_pos
-			spell_select_ui.update_pos(ally3_pos+1)
-		4:
-			ally4skill = allyskill
-			ally4_pos = ally_pos
-			spell_select_ui.update_pos(ally4_pos+1)
-	await run_sim()
-	update_spend_skill_cost(action_queue)
+		combat_currency.update()
+		return
+	
+	# Pick the correct skill
+	var skill = null
+	match selected_index:
+		1: skill = ally.skill_1
+		2: skill = ally.skill_2
+		3: skill = ally.skill_3
+		4: skill = ally.skill_4
+	
+	if skill == null:
+		return
+	
+	# Select target + execute immediately
+	var target = await choose_target(skill)
+	if target:
+		ally.using_skill = true
+		await ally_skill_use(skill, target, ally)
+	
 	combat_currency.update()
 	check_requirements()
+
 		
 
 
@@ -703,9 +616,6 @@ func reset_skill_select():
 		spell_select_ui4.reset()
 		spell_select_ui4.update_pos(ally4_pos + 1)
 		ally4.using_skill = false
-	action_queue = []
-	target_queue = []
-	ally_queue = []
 	next_pos = 0
 	ally1_pos = -1
 	ally2_pos = -1
@@ -736,9 +646,6 @@ func _on_end_turn_pressed() -> void:
 
 func _on_reset_choices_pressed() -> void:
 	AudioPlayer.play_FX("click",0)
-	action_queue = []
-	target_queue = []
-	ally_queue = []
 	next_pos = 0
 	ally1_pos = -1
 	ally2_pos = -1
@@ -813,11 +720,9 @@ func choose_target(skill : Skill):
 		Input.set_custom_mouse_cursor(DEFAULT_CURSOR, 0)
 		targeting = false
 		return target
-		update_spend_skill_cost(action_queue)
 		combat_currency.update()
 		check_requirements()
 	else:
-		update_spend_skill_cost(action_queue)
 		combat_currency.update()
 		check_requirements()
 		return null
@@ -1136,156 +1041,156 @@ func reset_tokens():
 	earth_tokens = 0
 	grass_tokens = 0
 
-func run_sim():
-	if (prev_sim != null):
-		prev_sim.queue_free()
-	sim = COMBAT_SIM.instantiate()
-	self.add_child(sim)
-	prev_sim = sim
-	var sim_enemy1
-	var sim_enemy2
-	var sim_enemy3
-	var sim_enemy4
-	var sim_ally1
-	var sim_ally2
-	var sim_ally3
-	var sim_ally4
-	if (enemy1 != null):
-		sim_enemy1 = enemy1.duplicate()
-	if (enemy2 != null):
-		sim_enemy2 = enemy2.duplicate()
-	if (enemy3 != null):
-		sim_enemy3 = enemy3.duplicate()
-	if (enemy4 != null):
-		sim_enemy4 = enemy4.duplicate()
-	if (ally1 != null and ally1.visible == true):
-		sim_ally1 = ally1.duplicate()
-	if (ally2 != null and ally2.visible == true):
-		sim_ally2 = ally2.duplicate()
-	if (ally3 != null and ally3.visible == true):
-		sim_ally3 = ally3.duplicate()
-	if (ally4 != null and ally4.visible == true):
-		sim_ally4 = ally4.duplicate()
-		
-	var sim_action_queue = []
-	sim_action_queue.resize(action_queue.size())
-	for i in range(action_queue.size()):
-		sim_action_queue[i] = action_queue[i].duplicate()
-	
-	var sim_target_queue = []
-	sim_target_queue.resize(target_queue.size())
-	for i in range(target_queue.size()):
-		if target_queue != null:
-			var make_duplicate = true
-			var new_target = null
-			for target in sim_target_queue:
-				if target != null and target_queue[i] != null:
-					if target.id == target_queue[i].id:
-						make_duplicate = false
-						new_target = target
-			if make_duplicate and target_queue[i] != null:
-				sim_target_queue[i] = target_queue[i].duplicate()
-			else:
-				sim_target_queue[i] = new_target
-			if (ally1 != null and ally1.visible == true and target_queue[i] == ally1):
-				sim_ally1 = sim_target_queue[i]
-			elif (ally2 != null and ally2.visible == true and target_queue[i] == ally2):
-				sim_ally2 = sim_target_queue[i]
-			elif (ally3 != null and ally3.visible == true and target_queue[i] == ally3):
-				sim_ally3 = sim_target_queue[i]
-			elif (ally4 != null and ally4.visible == true and target_queue[i] == ally4):
-				sim_ally4 = sim_target_queue[i]
-			elif (enemy1 != null and target_queue[i] == enemy1):
-				sim_enemy1 = sim_target_queue[i]
-			elif (enemy2 != null and target_queue[i] == enemy2):
-				sim_enemy2 = sim_target_queue[i]
-			elif (enemy3 != null and target_queue[i] == enemy3):
-				sim_enemy3 = sim_target_queue[i]
-			elif (enemy4 != null and target_queue[i] == enemy4):
-				sim_enemy4 = sim_target_queue[i]
-		else:
-			sim_target_queue[i] = null
-			
-	var sim_ally_queue = []
-	sim_ally_queue.resize(ally_queue.size())
-	for i in range(ally_queue.size()):
-		if ally_queue != null:
-			var make_duplicate = true
-			var new_ally = null
-			for ally in sim_ally_queue:
-				if ally != null and ally_queue[i] != null:
-					if ally.id == ally_queue[i].id:
-						make_duplicate = false
-						new_ally = ally
-			for ally in sim_target_queue:
-				if ally != null and ally_queue[i] != null:
-					if ally.id == ally_queue[i].id:
-						make_duplicate = false
-						new_ally = ally
-			if make_duplicate and ally_queue[i] != null:
-				sim_ally_queue[i] = ally_queue[i].duplicate()
-			else:
-				sim_ally_queue[i] = new_ally
-			if (ally1 != null and ally1.visible == true and ally_queue[i] == ally1):
-				sim_ally1 = sim_ally_queue[i]
-			elif (ally1 != null and ally1.visible == true and ally_queue[i] == ally2):
-				sim_ally2 = sim_ally_queue[i]
-			elif (ally3 != null and ally3.visible == true and ally_queue[i] == ally3):
-				sim_ally3 = sim_ally_queue[i]
-			elif (ally4 != null and ally4.visible == true and ally_queue[i] == ally4):
-				sim_ally4 = sim_ally_queue[i]
-		else:
-			sim_ally_queue[i] = null
-	if (sim_enemy1 != null):
-		sim_enemy1.copy = true
-	if (sim_enemy2 != null):
-		sim_enemy2.copy = true
-	if (sim_enemy3 != null):
-		sim_enemy3.copy = true
-	if (sim_enemy4 != null):
-		sim_enemy4.copy = true
-	if (sim_ally1 != null):
-		sim_ally1.copy = true
-	if (sim_ally2 != null):
-		sim_ally2.copy = true
-	if (sim_ally3 != null):
-		sim_ally3.copy = true
-	if (sim_ally4 != null):
-		sim_ally4.copy = true	
-	var sim_finished = await sim.run_simulation(sim_ally1, sim_ally2, sim_ally3, sim_ally4, sim_enemy1, sim_enemy2, sim_enemy3, sim_enemy4, sim_action_queue, sim_target_queue, sim_ally_queue)
-	update_spend_skill_cost(action_queue)
-	if sim_finished:
-		p_fire_tokens = fire_tokens + sim_fire_tokens - p_spent_fire_tokens
-		p_water_tokens = water_tokens + sim_water_tokens - p_spent_water_tokens
-		p_lightning_tokens = lightning_tokens + sim_lightning_tokens - p_spent_lightning_tokens
-		p_grass_tokens = grass_tokens + sim_grass_tokens - p_spent_grass_tokens
-		p_earth_tokens = earth_tokens + sim_earth_tokens - p_spent_earth_tokens
-	
-		if sim_enemy1_dmg > 0:
-			sim_dmg_1.text = "- " + str(sim_enemy1_dmg)
-		elif sim_enemy1_dmg < 0:
-			sim_dmg_1.text = "+ " + str(sim_enemy1_dmg)
-		else:
-			sim_dmg_1.text = ""
-		if sim_enemy2_dmg > 0:
-			sim_dmg_2.text = "- " + str(sim_enemy1_dmg)
-		elif sim_enemy2_dmg < 0:
-			sim_dmg_2.text = "+ " + str(sim_enemy2_dmg)
-		else:
-			sim_dmg_3.text = ""
-		if sim_enemy3_dmg > 0:
-			sim_dmg_3.text = "- " + str(sim_enemy3_dmg)
-		elif sim_enemy3_dmg < 0:
-			sim_dmg_3.text = "+ " + str(sim_enemy3_dmg)
-		else:
-			sim_dmg_3.text = ""
-		if sim_enemy4_dmg > 0:
-			sim_dmg_4.text = "- " + str(sim_enemy4_dmg)
-		elif sim_enemy3_dmg < 0:
-			sim_dmg_4.text = "+ " + str(sim_enemy4_dmg)
-		else:
-			sim_dmg_4.text = ""
-		combat_currency.update()
+#func run_sim():
+	#if (prev_sim != null):
+		#prev_sim.queue_free()
+	#sim = COMBAT_SIM.instantiate()
+	#self.add_child(sim)
+	#prev_sim = sim
+	#var sim_enemy1
+	#var sim_enemy2
+	#var sim_enemy3
+	#var sim_enemy4
+	#var sim_ally1
+	#var sim_ally2
+	#var sim_ally3
+	#var sim_ally4
+	#if (enemy1 != null):
+		#sim_enemy1 = enemy1.duplicate()
+	#if (enemy2 != null):
+		#sim_enemy2 = enemy2.duplicate()
+	#if (enemy3 != null):
+		#sim_enemy3 = enemy3.duplicate()
+	#if (enemy4 != null):
+		#sim_enemy4 = enemy4.duplicate()
+	#if (ally1 != null and ally1.visible == true):
+		#sim_ally1 = ally1.duplicate()
+	#if (ally2 != null and ally2.visible == true):
+		#sim_ally2 = ally2.duplicate()
+	#if (ally3 != null and ally3.visible == true):
+		#sim_ally3 = ally3.duplicate()
+	#if (ally4 != null and ally4.visible == true):
+		#sim_ally4 = ally4.duplicate()
+		#
+	#var sim_action_queue = []
+	#sim_action_queue.resize(action_queue.size())
+	#for i in range(action_queue.size()):
+		#sim_action_queue[i] = action_queue[i].duplicate()
+	#
+	#var sim_target_queue = []
+	#sim_target_queue.resize(target_queue.size())
+	#for i in range(target_queue.size()):
+		#if target_queue != null:
+			#var make_duplicate = true
+			#var new_target = null
+			#for target in sim_target_queue:
+				#if target != null and target_queue[i] != null:
+					#if target.id == target_queue[i].id:
+						#make_duplicate = false
+						#new_target = target
+			#if make_duplicate and target_queue[i] != null:
+				#sim_target_queue[i] = target_queue[i].duplicate()
+			#else:
+				#sim_target_queue[i] = new_target
+			#if (ally1 != null and ally1.visible == true and target_queue[i] == ally1):
+				#sim_ally1 = sim_target_queue[i]
+			#elif (ally2 != null and ally2.visible == true and target_queue[i] == ally2):
+				#sim_ally2 = sim_target_queue[i]
+			#elif (ally3 != null and ally3.visible == true and target_queue[i] == ally3):
+				#sim_ally3 = sim_target_queue[i]
+			#elif (ally4 != null and ally4.visible == true and target_queue[i] == ally4):
+				#sim_ally4 = sim_target_queue[i]
+			#elif (enemy1 != null and target_queue[i] == enemy1):
+				#sim_enemy1 = sim_target_queue[i]
+			#elif (enemy2 != null and target_queue[i] == enemy2):
+				#sim_enemy2 = sim_target_queue[i]
+			#elif (enemy3 != null and target_queue[i] == enemy3):
+				#sim_enemy3 = sim_target_queue[i]
+			#elif (enemy4 != null and target_queue[i] == enemy4):
+				#sim_enemy4 = sim_target_queue[i]
+		#else:
+			#sim_target_queue[i] = null
+			#
+	#var sim_ally_queue = []
+	#sim_ally_queue.resize(ally_queue.size())
+	#for i in range(ally_queue.size()):
+		#if ally_queue != null:
+			#var make_duplicate = true
+			#var new_ally = null
+			#for ally in sim_ally_queue:
+				#if ally != null and ally_queue[i] != null:
+					#if ally.id == ally_queue[i].id:
+						#make_duplicate = false
+						#new_ally = ally
+			#for ally in sim_target_queue:
+				#if ally != null and ally_queue[i] != null:
+					#if ally.id == ally_queue[i].id:
+						#make_duplicate = false
+						#new_ally = ally
+			#if make_duplicate and ally_queue[i] != null:
+				#sim_ally_queue[i] = ally_queue[i].duplicate()
+			#else:
+				#sim_ally_queue[i] = new_ally
+			#if (ally1 != null and ally1.visible == true and ally_queue[i] == ally1):
+				#sim_ally1 = sim_ally_queue[i]
+			#elif (ally1 != null and ally1.visible == true and ally_queue[i] == ally2):
+				#sim_ally2 = sim_ally_queue[i]
+			#elif (ally3 != null and ally3.visible == true and ally_queue[i] == ally3):
+				#sim_ally3 = sim_ally_queue[i]
+			#elif (ally4 != null and ally4.visible == true and ally_queue[i] == ally4):
+				#sim_ally4 = sim_ally_queue[i]
+		#else:
+			#sim_ally_queue[i] = null
+	#if (sim_enemy1 != null):
+		#sim_enemy1.copy = true
+	#if (sim_enemy2 != null):
+		#sim_enemy2.copy = true
+	#if (sim_enemy3 != null):
+		#sim_enemy3.copy = true
+	#if (sim_enemy4 != null):
+		#sim_enemy4.copy = true
+	#if (sim_ally1 != null):
+		#sim_ally1.copy = true
+	#if (sim_ally2 != null):
+		#sim_ally2.copy = true
+	#if (sim_ally3 != null):
+		#sim_ally3.copy = true
+	#if (sim_ally4 != null):
+		#sim_ally4.copy = true	
+	#var sim_finished = await sim.run_simulation(sim_ally1, sim_ally2, sim_ally3, sim_ally4, sim_enemy1, sim_enemy2, sim_enemy3, sim_enemy4, sim_action_queue, sim_target_queue, sim_ally_queue)
+	#update_spend_skill_cost(action_queue)
+	#if sim_finished:
+		#p_fire_tokens = fire_tokens + sim_fire_tokens - p_spent_fire_tokens
+		#p_water_tokens = water_tokens + sim_water_tokens - p_spent_water_tokens
+		#p_lightning_tokens = lightning_tokens + sim_lightning_tokens - p_spent_lightning_tokens
+		#p_grass_tokens = grass_tokens + sim_grass_tokens - p_spent_grass_tokens
+		#p_earth_tokens = earth_tokens + sim_earth_tokens - p_spent_earth_tokens
+	#
+		#if sim_enemy1_dmg > 0:
+			#sim_dmg_1.text = "- " + str(sim_enemy1_dmg)
+		#elif sim_enemy1_dmg < 0:
+			#sim_dmg_1.text = "+ " + str(sim_enemy1_dmg)
+		#else:
+			#sim_dmg_1.text = ""
+		#if sim_enemy2_dmg > 0:
+			#sim_dmg_2.text = "- " + str(sim_enemy1_dmg)
+		#elif sim_enemy2_dmg < 0:
+			#sim_dmg_2.text = "+ " + str(sim_enemy2_dmg)
+		#else:
+			#sim_dmg_3.text = ""
+		#if sim_enemy3_dmg > 0:
+			#sim_dmg_3.text = "- " + str(sim_enemy3_dmg)
+		#elif sim_enemy3_dmg < 0:
+			#sim_dmg_3.text = "+ " + str(sim_enemy3_dmg)
+		#else:
+			#sim_dmg_3.text = ""
+		#if sim_enemy4_dmg > 0:
+			#sim_dmg_4.text = "- " + str(sim_enemy4_dmg)
+		#elif sim_enemy3_dmg < 0:
+			#sim_dmg_4.text = "+ " + str(sim_enemy4_dmg)
+		#else:
+			#sim_dmg_4.text = ""
+		#combat_currency.update()
 	
 func reset_sim():
 	sim_fire_tokens = 0
