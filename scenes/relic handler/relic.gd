@@ -1,7 +1,8 @@
 class_name Relic
 extends Resource
 
-enum Type {START_OF_TURN, START_OF_COMBAT, END_OF_TURN, END_OF_COMBAT, EVENT_BASED}
+#start_of_turn same as end_of_turn
+enum Type {START_OF_TURN, START_OF_COMBAT, END_OF_COMBAT, PRE_ALLY_SKILL, POST_ALLY_SKILL, PRE_ENEMY_SKILL, POST_ENEMY_SKILL, EVENT_BASED}
 
 @export var relic_name : String
 @export_enum("Common","Rare","Epic", "Legendary") var tier : String = "Common"

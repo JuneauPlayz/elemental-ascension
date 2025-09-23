@@ -170,6 +170,7 @@ func start_ally_turn():
 	show_ui()
 	update_tokens()
 	reset_sim()
+	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_TURN)
 	turn_text.text = "Ally Turn"
 	ally_pre_status()
 	lose_shields()
@@ -181,22 +182,19 @@ func start_ally_turn():
 
 # rework
 func ally_skill_use(skill, target, ally):
-	use_skill(skill,target,ally,true,true)
+	var new_target = use_skill(skill,target,ally,true,true)
 	check_post_skill(skill)
 	update_tokens()
 	combat_currency.update()
 	# checks if target is dead, currently skips the rest of the loop (wont print landed)
-	if (target == null or target.visible == false):
-		await get_tree().create_timer(0.1).timeout
 	await reaction_finished
 	print(str(skill.name) + " landed!")
 	hit.emit()
 	# for sow only
-	for stati in target.status:
-		if stati.unique_type == "sow":
-			target.sow = true
+	enemy_status_check()
 	ally.spell_select_ui.disable_all()
 	check_ally_turn_done()
+	run.relic_handler.activate_relics_by_type(Relic.Type.POST_ALLY_SKILL)
 	await get_tree().create_timer(1).timeout
 	reset_sim()
 	ally_post_status()
@@ -235,6 +233,12 @@ func enemy_turn():
 	else:
 		enemy_turn_done.emit()
 
+func enemy_status_check():
+	for enemy in enemies:
+		for stati in enemy.status:
+			if stati.unique_type == "sow":
+				enemy.sow = true
+
 func check_post_skill(skill):
 	if skill.decay == true:
 		skill.damage -= skill.decay_value
@@ -250,7 +254,7 @@ func check_ally_turn_done():
 	for ally in allies:
 		if ally.spell_select_ui.disabled_all == false:
 			return
-	ally_turn_done.emit()
+	_on_end_turn_pressed()
 
 func check_event_relics(skill,unit,value_multiplier,target):
 	if (run.ghostfire and unit is Ally and skill.element == "fire"):
@@ -487,8 +491,6 @@ func _on_relics_activated(type : Relic.Type) -> void:
 			start_combat()
 		Relic.Type.END_OF_COMBAT:
 			victory()
-		Relic.Type.END_OF_TURN:
-			ally_turn_done.emit()
 		
 			
 func reaction_signal():
@@ -527,12 +529,14 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	
 	if skill == null:
 		return
-	
-	# Select target + execute immediately
-	var target = await choose_target(skill)
-	if target:
-		ally.using_skill = true
-		await ally_skill_use(skill, target, ally)
+	if skill.target_type != "single_enemy" and skill.target_type != "single_ally":
+		await ally_skill_use(skill, null, ally)
+	else:
+		# Select target + execute immediately
+		var target = await choose_target(skill)
+		if target:
+			ally.using_skill = true
+			await ally_skill_use(skill, target, ally)
 	
 	combat_currency.update()
 	check_requirements()
@@ -642,7 +646,7 @@ func _on_end_turn_pressed() -> void:
 		sim_dmg_2.text = ""
 		sim_dmg_3.text = ""
 		sim_dmg_4.text = ""
-		run.relic_handler.activate_relics_by_type(Relic.Type.END_OF_TURN)
+		ally_turn_done.emit()
 
 func _on_reset_choices_pressed() -> void:
 	AudioPlayer.play_FX("click",0)

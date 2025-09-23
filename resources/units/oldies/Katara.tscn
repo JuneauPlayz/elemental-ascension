@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bct4eh82cq7e0"]
 
-[ext_resource type="Script" path="res://scripts/ally.gd" id="1_felic"]
+[ext_resource type="Script" uid="uid://bgugsa6ep270d" path="res://scripts/ally.gd" id="1_felic"]
 [ext_resource type="Resource" uid="uid://dooqfwlwxly5w" path="res://resources/Skills/water/Water_Bolt.tres" id="2_upkei"]
 [ext_resource type="Resource" uid="uid://d3hsiqbosdsp6" path="res://resources/Skills/water/Waterfall.tres" id="3_f0qav"]
 [ext_resource type="Resource" uid="uid://025hve2nq35j" path="res://resources/Skills/grass/Healing_Bloom.tres" id="4_2stdd"]

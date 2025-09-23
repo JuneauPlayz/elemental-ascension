@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dm2ulo66o18gj"]
 
-[ext_resource type="Script" path="res://scripts/ally.gd" id="1_8dtbb"]
+[ext_resource type="Script" uid="uid://bgugsa6ep270d" path="res://scripts/ally.gd" id="1_8dtbb"]
 [ext_resource type="Resource" uid="uid://t5il68wvfb0s" path="res://resources/Skills/physical/basic_attack.tres" id="2_40dqq"]
 [ext_resource type="Resource" uid="uid://dykdesfmc1oo8" path="res://resources/Skills/earth/Rock Throw.tres" id="3_s77gk"]
 [ext_resource type="Resource" uid="uid://bya4jpai0ygj5" path="res://resources/Skills/earth/Rock Shield.tres" id="4_hv5ix"]

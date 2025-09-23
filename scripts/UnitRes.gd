@@ -10,6 +10,14 @@ class_name UnitRes
 var ally_num : int
 var level = 0
 var level_up = false
+
+# only for enemies
+@export var skill_1_cd : int
+@export var skill_2_cd : int
+@export var skill_3_cd : int
+@export var skill_4_cd : int
+
+# only for allies
 @export_category("Level Up Reward 1")
 @export var relic_1 : Relic
 @export var relic_2 : Relic

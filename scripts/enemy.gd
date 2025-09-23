@@ -6,6 +6,8 @@ class_name Enemy
 @export var skill2 : Skill
 @export var skill3 : Skill
 @export var skill4 : Skill
+
+@export var countdown : int
 var current_skill : Skill
 
 var animation = false
@@ -17,6 +19,9 @@ var animation = false
 @onready var show_next_skill: Control = $ShowNextSkill
 
 var sow_just_applied = false
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(0.005).timeout

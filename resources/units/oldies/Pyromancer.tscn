@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://ebao16b2j48i"]
 
-[ext_resource type="Script" path="res://scripts/ally.gd" id="1_735fd"]
-[ext_resource type="Resource" uid="uid://bhnvgvm5xsfv3" path="res://resources/Skills/fire/Firestorm.tres" id="2_5oocg"]
+[ext_resource type="Script" uid="uid://bgugsa6ep270d" path="res://scripts/ally.gd" id="1_735fd"]
+[ext_resource type="Resource" path="res://resources/Skills/fire/Firestorm.tres" id="2_5oocg"]
 [ext_resource type="Resource" uid="uid://c3yogn8m318q2" path="res://resources/Skills/fire/Fire_Bolt.tres" id="2_arx5v"]
 [ext_resource type="Resource" uid="uid://b70k44ljti3df" path="res://resources/Skills/fire/Wildfire.tres" id="4_mf83k"]
 [ext_resource type="Resource" uid="uid://cucueo0alogd4" path="res://resources/unique_skills/Flameburst.tres" id="5_u3a02"]

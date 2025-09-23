@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/Targeting.gd" id="1_vaufx"]
 [ext_resource type="Script" path="res://scripts/SpellSelect.gd" id="2_xp76p"]
-[ext_resource type="Script" path="res://scripts/combat_manager.gd" id="3_u2x8x"]
+[ext_resource type="Script" uid="uid://d0udq0kgc2102" path="res://scripts/combat_manager.gd" id="3_u2x8x"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="4_3k7f0"]
-[ext_resource type="Script" path="res://scripts/ally.gd" id="5_dnyit"]
-[ext_resource type="Resource" uid="uid://bhnvgvm5xsfv3" path="res://resources/Skills/fire/Firestorm.tres" id="6_mx2yh"]
+[ext_resource type="Script" uid="uid://bgugsa6ep270d" path="res://scripts/ally.gd" id="5_dnyit"]
+[ext_resource type="Resource" path="res://resources/Skills/fire/Firestorm.tres" id="6_mx2yh"]
 [ext_resource type="Resource" uid="uid://dooqfwlwxly5w" path="res://resources/Skills/water/Water_Bolt.tres" id="7_kxb1f"]
 [ext_resource type="Resource" uid="uid://b70k44ljti3df" path="res://resources/Skills/fire/Wildfire.tres" id="8_gp3c1"]
 [ext_resource type="Resource" uid="uid://025hve2nq35j" path="res://resources/Skills/grass/Healing_Bloom.tres" id="9_kmx04"]
@@ -25,7 +25,7 @@
 [ext_resource type="Resource" uid="uid://cr3bbtfskjida" path="res://resources/enemy_skills/EnemyAOEFire.tres" id="23_n0tbm"]
 [ext_resource type="Resource" uid="uid://d0sxdut8uscys" path="res://resources/enemy_skills/EnemyAOEEarth.tres" id="24_jnwsm"]
 [ext_resource type="Texture2D" uid="uid://b6rhxb71os38w" path="res://assets/hsrbg.png" id="25_p4v8e"]
-[ext_resource type="Script" path="res://scripts/sound_manager.gd" id="26_x07ll"]
+[ext_resource type="Script" uid="uid://btaceapnkpmy5" path="res://scripts/sound_manager.gd" id="26_x07ll"]
 [ext_resource type="AudioStream" uid="uid://c0fyotn8lqfkv" path="res://assets/fire hit.mp3" id="27_v7xe6"]
 [ext_resource type="AudioStream" uid="uid://4rhr7pwkbdml" path="res://assets/cliack.mp3" id="28_prpkx"]
 
