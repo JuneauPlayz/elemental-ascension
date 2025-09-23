@@ -7,7 +7,13 @@ class_name Enemy
 @export var skill3 : Skill
 @export var skill4 : Skill
 
+var skill1_cd : int
+var skill2_cd : int
+var skill3_cd : int
+var skill4_cd : int
+
 @export var countdown : int
+var skill_used : bool
 var current_skill : Skill
 
 var animation = false
@@ -17,10 +23,11 @@ var animation = false
 @onready var skill_info: Control = $ShowNextSkill/SkillInfo
 @onready var sprite_spot: TextureRect = $SpriteSpot
 @onready var show_next_skill: Control = $ShowNextSkill
+@onready var countdown_label: Label = $CountdownLabel
 
 var sow_just_applied = false
 
-
+signal use_skill
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -53,8 +60,17 @@ func _ready() -> void:
 		skill4 = res.skill4.duplicate()
 	if res.name != null:
 		title = res.name
+	if res.skill_1_cd != null:
+		skill1_cd = res.skill_1_cd
+	if res.skill_2_cd != null:
+		skill2_cd = res.skill_2_cd
+	if res.skill_3_cd != null:
+		skill3_cd = res.skill_3_cd
+	if res.skill_4_cd != null:
+		skill4_cd = res.skill_4_cd
 	print("title:" + title)
 	sprite_spot.texture = load(res.sprite.resource_path)
+	skill_used = false
 	if not copy:
 		if (run.hard == true):
 			if skill1 != null:
@@ -68,6 +84,7 @@ func _ready() -> void:
 			max_health = roundi(max_health * 2.5)
 			health = max_health
 	skill_info.skill = current_skill
+	set_countdown()
 	skill_info.update_skill_info()
 	
 	fire_damage_block = res.fire_damage_block
@@ -117,6 +134,8 @@ func change_skills():
 	current_skill = new_skill
 	skill_info.skill = new_skill
 	skill_info.update_skill_info()
+	skill_used = false
+	set_countdown()
 
 func hide_next_skill_info():
 	show_next_skill.visible = false
@@ -155,3 +174,27 @@ func attack_animation():
 func _on_targeting_area_pressed() -> void:
 	target_chosen.emit(self)
 	
+func decrease_countdown(num):
+	countdown -= num
+	if countdown <= 0 and skill_used == false:
+		skill_used = true
+		combat_manager.enemy_skill_use(self)
+	update_countdown_label()
+
+func set_countdown():
+	match current_skill:
+		skill1:
+			countdown = skill1_cd
+		skill2:
+			countdown = skill2_cd
+		skill3:
+			countdown = skill3_cd
+		skill4:
+			countdown = skill4_cd
+	update_countdown_label()
+
+func update_countdown_label():
+	if countdown > 0:
+		countdown_label.text = "Countdown: " + str(countdown)
+	elif countdown <= 0:
+		countdown_label.text = "Skill Used This Turn"

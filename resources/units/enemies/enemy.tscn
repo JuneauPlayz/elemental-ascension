@@ -54,6 +54,20 @@ metadata/_edit_use_anchors_ = true
 [node name="DamageNumberOrigin" type="Node2D" parent="."]
 position = Vector2(115, 596)
 
+[node name="CountdownLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = -25.2
+anchor_top = -2.21667
+anchor_right = -23.975
+anchor_bottom = -1.86667
+offset_left = 65.3333
+offset_top = -130.667
+offset_right = 218.333
+offset_bottom = -93.9167
+text = "Countdown : "
+label_settings = SubResource("LabelSettings_hiluv")
+metadata/_edit_use_anchors_ = true
+
 [node name="ShowNextSkill" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -66,15 +80,15 @@ metadata/_edit_use_anchors_ = true
 [node name="NextSkillLabel" type="Label" parent="ShowNextSkill"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -25.2
+anchor_left = -25.1917
 anchor_top = -2.21667
-anchor_right = -23.975
+anchor_right = -23.7667
 anchor_bottom = -1.86667
 offset_left = 1393.0
 offset_top = 46.0
 offset_right = 1470.0
 offset_bottom = 69.0
-text = "Next Skill:"
+text = "Next Skill :"
 label_settings = SubResource("LabelSettings_hiluv")
 metadata/_edit_use_anchors_ = true
 

@@ -159,8 +159,6 @@ func start_combat():
 	while (!combat_finished):
 		start_ally_turn()
 		await ally_turn_done
-		enemy_turn()
-		await enemy_turn_done
 
 func end_battle():
 	pass
@@ -193,6 +191,8 @@ func ally_skill_use(skill, target, ally):
 	# for sow only
 	enemy_status_check()
 	ally.spell_select_ui.disable_all()
+	for enemy in enemies:
+		enemy.decrease_countdown(1)
 	check_ally_turn_done()
 	run.relic_handler.activate_relics_by_type(Relic.Type.POST_ALLY_SKILL)
 	await get_tree().create_timer(1).timeout
@@ -202,6 +202,18 @@ func ally_skill_use(skill, target, ally):
 		victory()
 	
 
+func enemy_skill_use(enemy):
+	run.relic_handler.activate_relics_by_type(Relic.Type.PRE_ENEMY_SKILL)
+	match enemy.position:
+		1:
+			use_skill(enemy1.current_skill,null,enemy1,true,false)
+		2:
+			use_skill(enemy2.current_skill,null,enemy2,true,false)
+		3:
+			use_skill(enemy3.current_skill,null,enemy3,true,false)
+		4:
+			use_skill(enemy4.current_skill,null,enemy4,true,false)
+			
 # rework
 func enemy_turn():
 	await get_tree().create_timer(0.25).timeout
@@ -215,10 +227,8 @@ func enemy_turn():
 		var enemy = enemies[i]
 		print("using enemy skill")
 		set_unit_pos()
-		use_skill(enemy.current_skill,null,enemy,true,false)
 		check_post_skill(enemy.current_skill)
 		hit.emit()
-		enemy.change_skills()
 		if enemies.size() > i+1:
 			if not enemies[i+1].animation:
 				enemies[i+1].attack_animation()
@@ -254,6 +264,9 @@ func check_ally_turn_done():
 	for ally in allies:
 		if ally.spell_select_ui.disabled_all == false:
 			return
+	for enemy in enemies:
+		if enemy.skill_used == false:
+			enemy_skill_use(enemy)
 	_on_end_turn_pressed()
 
 func check_event_relics(skill,unit,value_multiplier,target):
@@ -647,6 +660,8 @@ func _on_end_turn_pressed() -> void:
 		sim_dmg_3.text = ""
 		sim_dmg_4.text = ""
 		ally_turn_done.emit()
+		for enemy in enemies:
+			enemy.change_skills()
 
 func _on_reset_choices_pressed() -> void:
 	AudioPlayer.play_FX("click",0)
