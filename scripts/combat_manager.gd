@@ -29,6 +29,7 @@ var back_enemy_2 : Enemy
 var ally_list = [ally1, ally2, ally3, ally4]
 var enemy_list = [enemy1, enemy2]
 
+var enemy_skill_queue = []
 var choosing_skills = false
 # parallel array for targets
 var targeting = false
@@ -195,25 +196,38 @@ func ally_skill_use(skill, target, ally):
 		enemy.decrease_countdown(1)
 	check_ally_turn_done()
 	run.relic_handler.activate_relics_by_type(Relic.Type.POST_ALLY_SKILL)
-	await get_tree().create_timer(1).timeout
-	reset_sim()
+	await get_tree().create_timer(0.1).timeout
+	if enemy_skill_queue != []:
+		await check_enemy_skills()
+	
+	show_ui()
+	#reset_sim()
 	ally_post_status()
 	if enemies.is_empty():
 		victory()
 	
+	
+	
 
 func enemy_skill_use(enemy):
+	
 	run.relic_handler.activate_relics_by_type(Relic.Type.PRE_ENEMY_SKILL)
 	match enemy.position:
 		1:
-			use_skill(enemy1.current_skill,null,enemy1,true,false)
+			enemy_skill_queue.append(enemy1)
 		2:
-			use_skill(enemy2.current_skill,null,enemy2,true,false)
+			enemy_skill_queue.append(enemy2)
 		3:
-			use_skill(enemy3.current_skill,null,enemy3,true,false)
+			enemy_skill_queue.append(enemy3)
 		4:
-			use_skill(enemy4.current_skill,null,enemy4,true,false)
-			
+			enemy_skill_queue.append(enemy4)
+
+func check_enemy_skills():
+	for enemy in enemy_skill_queue:
+		use_skill(enemy.current_skill,null,enemy,true,false)
+		await get_tree().create_timer(0.1).timeout
+	enemy_skill_queue = []
+
 # rework
 func enemy_turn():
 	await get_tree().create_timer(0.25).timeout
@@ -264,9 +278,12 @@ func check_ally_turn_done():
 	for ally in allies:
 		if ally.spell_select_ui.disabled_all == false:
 			return
+	await get_tree().create_timer(0.5).timeout
 	for enemy in enemies:
 		if enemy.skill_used == false:
 			enemy_skill_use(enemy)
+	
+	check_enemy_skills()
 	_on_end_turn_pressed()
 
 func check_event_relics(skill,unit,value_multiplier,target):
@@ -525,6 +542,7 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	var spell_select_ui: Control = ally.get_spell_select()
 	var selected_index = spell_select_ui.selected
 	
+	hide_ui()
 	# If unselecting
 	if selected_index == 0:
 		ally.using_skill = false
@@ -659,6 +677,7 @@ func _on_end_turn_pressed() -> void:
 		sim_dmg_2.text = ""
 		sim_dmg_3.text = ""
 		sim_dmg_4.text = ""
+		await get_tree().create_timer(0.5).timeout
 		ally_turn_done.emit()
 		for enemy in enemies:
 			enemy.change_skills()
@@ -714,7 +733,6 @@ func choose_target(skill : Skill):
 		targeting_skill = skill
 		toggle_targeting_ui(skill)
 		hide_skills()
-		hide_ui()
 		Input.set_custom_mouse_cursor(TARGET_CURSOR, 0, Vector2(32,32))
 		targeting_skill_info.visible = true
 		targeting_label.visible = true

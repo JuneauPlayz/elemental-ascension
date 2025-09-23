@@ -352,6 +352,7 @@ func die():
 				combat_manager.ally3 = null
 			4:
 				combat_manager.ally4 = null
+		combat_manager.check_ally_turn_done()
 	elif self is Enemy:
 		combat_manager.enemies.erase(self)
 		match position:
