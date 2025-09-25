@@ -190,6 +190,28 @@ func receive_skill_friendly(skill, unit, value_multiplier):
 			hp_bar.update_element(current_element)
 			hp_bar.update_statuses(status)
 
+func receive_damage(damage: int, element: String, unit) -> void:
+	var r = false
+	if not connected:
+		ReactionManager.reaction_finished.connect(self.reaction_signal)
+		connected = true
+	
+	# Attempt reaction
+	r = await ReactionManager.reaction(current_element, element, self, damage, false, unit)
+	
+	if r:
+		await reaction_ended
+	else:
+		# No reaction, take the damage
+		self.take_damage(damage, element, true)
+		if element != "none":
+			self.current_element = element
+	
+	# Update UI if not copy
+	if not copy:
+		hp_bar.update_element(current_element)
+
+
 func increase_skill_damage(value):
 	if self.skill1 != null:
 		self.skill1.damage += value

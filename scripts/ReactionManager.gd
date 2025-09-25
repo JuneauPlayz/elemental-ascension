@@ -39,6 +39,8 @@ func _ready() -> void:
 func reaction(elem1: String, elem2: String, unit: Unit, value, friendly: bool, caster: Unit) -> bool:
 	var res_value = value
 	
+	# ADD: accept caster null
+	
 	# if unit is dead
 	if unit == null:
 		return false

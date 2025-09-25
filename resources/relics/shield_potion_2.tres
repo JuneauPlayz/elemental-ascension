@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_8u71w")
 shield_amount = 1
-relic_name = "Shield Potion"
+relic_name = "Shield Potion 2"
 tier = "Common"
 type = 4
 tag1 = "Shielding"

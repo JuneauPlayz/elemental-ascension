@@ -8,6 +8,10 @@
 script = ExtResource("1_e2hfi")
 starting_health = 200
 skill1 = ExtResource("2_ol52o")
+skill_1_cd = 0
+skill_2_cd = 0
+skill_3_cd = 0
+skill_4_cd = 0
 sprite = ExtResource("2_slmp8")
 sprite_scale = 1.0
 name = "Miku Fan"

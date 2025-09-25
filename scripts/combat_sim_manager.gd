@@ -468,8 +468,8 @@ func discharge(unit, caster):
 			enemy.take_damage(5*run.discharge_mult,"none",false)
 
 func sow(unit, caster):
-	add_token("earth", (run.sow_earth_token_base + run.sow_earth_token_bonus) * run.sow_earth_token_mult)
-	add_token("grass", (run.sow_grass_token_base + run.sow_grass_token_bonus) * run.sow_grass_token_mult)
+	add_token("earth", (run.sow_earth_token_base + run.sow_earth_token_bonus + caster.earth_token_bonus) * run.sow_earth_token_mult)
+	add_token("grass", (run.sow_grass_token_base + run.sow_grass_token_bonus + caster.grass_token_bonus) * run.sow_grass_token_mult)
 	
 func add_token(element, count):
 	match element:

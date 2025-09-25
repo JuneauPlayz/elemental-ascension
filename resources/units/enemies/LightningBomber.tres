@@ -8,6 +8,10 @@
 script = ExtResource("1_1dv5l")
 starting_health = 150
 skill1 = ExtResource("2_w2b7d")
+skill_1_cd = 0
+skill_2_cd = 0
+skill_3_cd = 0
+skill_4_cd = 0
 sprite = ExtResource("3_qq37c")
 sprite_scale = 1.0
 name = "Lightning Bomber"
