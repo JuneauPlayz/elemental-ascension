@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="5_2x1un"]
 [ext_resource type="FontFile" uid="uid://ca0ii6rndnaqf" path="res://assets/pokemon_pixel_font.ttf" id="5_wtw4i"]
 [ext_resource type="PackedScene" uid="uid://rtk527cyr7kb" path="res://scenes/reusables/combat_currency.tscn" id="6_b6b3n"]
+[ext_resource type="PackedScene" uid="uid://dsbsfehaqkwh1" path="res://scenes/reusables/enemy_combat_currency.tscn" id="6_uo10a"]
 [ext_resource type="Texture2D" uid="uid://bsae24ot6vmo6" path="res://assets/battle_bg.jpg" id="7_qh8p2"]
 [ext_resource type="PackedScene" uid="uid://ydkggenx6prk" path="res://scenes/reusables/result_screen.tscn" id="8_xw3f4"]
 [ext_resource type="Script" uid="uid://ywsxina60jdl" path="res://scripts/ReactionManager.gd" id="10_cmui4"]
@@ -22,11 +23,6 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_rfbdu"]
 font_size = 61
 outline_size = 15
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_e4euj"]
-font_size = 72
-outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Combat" type="Node2D" groups=["combat"]]
@@ -75,39 +71,14 @@ offset_right = 491.0
 offset_bottom = 678.0
 
 [node name="CombatCurrency" parent="CombatManager" instance=ExtResource("6_b6b3n")]
+scale = Vector2(1, 1.01443)
 mouse_filter = 2
 
-[node name="SimDMG" type="Label" parent="CombatManager"]
-offset_left = 1039.0
-offset_top = 94.0
-offset_right = 1138.0
-offset_bottom = 157.0
-text = "-30"
-label_settings = SubResource("LabelSettings_e4euj")
-
-[node name="SimDMG2" type="Label" parent="CombatManager"]
-offset_left = 1263.0
-offset_top = 93.0
-offset_right = 1362.0
-offset_bottom = 156.0
-text = "-30"
-label_settings = SubResource("LabelSettings_e4euj")
-
-[node name="SimDMG3" type="Label" parent="CombatManager"]
-offset_left = 1487.0
-offset_top = 90.0
-offset_right = 1586.0
-offset_bottom = 153.0
-text = "-30"
-label_settings = SubResource("LabelSettings_e4euj")
-
-[node name="SimDMG4" type="Label" parent="CombatManager"]
-offset_left = 1714.0
-offset_top = 94.0
-offset_right = 1813.0
-offset_bottom = 157.0
-text = "-30"
-label_settings = SubResource("LabelSettings_e4euj")
+[node name="EnemyCombatCurrency" parent="CombatManager" instance=ExtResource("6_uo10a")]
+offset_left = 1603.0
+offset_top = 2.0
+offset_right = 1603.0
+offset_bottom = 2.0
 
 [node name="Enemy 1 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -164,7 +135,7 @@ combat_manager = NodePath("../CombatManager")
 self_modulate = Color(1, 1, 1, 0.411)
 z_index = -5
 position = Vector2(963, 539.5)
-scale = Vector2(1.708, 1.703)
+scale = Vector2(1.6798, 1.703)
 texture = ExtResource("7_qh8p2")
 
 [node name="ReactionManager" type="Node" parent="."]

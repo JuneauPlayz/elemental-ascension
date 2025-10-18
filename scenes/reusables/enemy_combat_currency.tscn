@@ -1,0 +1,194 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsbsfehaqkwh1"]
+
+[ext_resource type="Script" uid="uid://c13fetopibjic" path="res://scenes/reusables/enemy_combat_currency.gd" id="1_jdfjd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evy26"]
+bg_color = Color(0.449653, 0.548845, 0.58154, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_bottom_left = 25
+shadow_size = 7
+
+[sub_resource type="LabelSettings" id="LabelSettings_a672k"]
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0ro6"]
+content_margin_top = 3.0
+bg_color = Color(0.207843, 0.0745098, 0.0901961, 0.717647)
+expand_margin_left = 6.0
+expand_margin_right = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_pyo7b"]
+font_size = 36
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="EnemyCombatCurrency" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jdfjd")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 263.0
+offset_bottom = 247.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_evy26")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enemy Tokens:"
+label_settings = SubResource("LabelSettings_a672k")
+horizontal_alignment = 1
+
+[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_t0ro6")
+
+[node name="Control" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Fire" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Control"]
+custom_minimum_size = Vector2(225, 36)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = " [color=coral]Fire[/color] Tokens:"
+
+[node name="FireCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = " (0)"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="Control2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Water" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Control2"]
+custom_minimum_size = Vector2(225, 36)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = " [color=dark_cyan]Water[/color] Tokens:"
+
+[node name="WaterCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control2"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="WaterCount2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control2"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = " (0)"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="Control3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Lightning" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Control3"]
+custom_minimum_size = Vector2(225, 36)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = " [color=purple]Lightning[/color] Tokens:"
+
+[node name="LightningCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control3"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="LightningCount2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control3"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = " (0)"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="Control5" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Earth" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Control5"]
+custom_minimum_size = Vector2(225, 36)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = " [color=saddle_brown]Earth[/color] Tokens:"
+
+[node name="EarthCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control5"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="EarthCount2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control5"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = " (0)"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="Control4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Grass" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Control4"]
+custom_minimum_size = Vector2(225, 36)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = " [color=web_green]Grass[/color] Tokens:
+"
+
+[node name="GrassCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control4"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2
+
+[node name="GrassCount2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control4"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = " (0)"
+label_settings = SubResource("LabelSettings_pyo7b")
+horizontal_alignment = 2

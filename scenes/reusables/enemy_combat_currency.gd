@@ -9,8 +9,8 @@ extends Control
 
 func update():
 	var run = get_tree().get_first_node_in_group("run")
-	fire_count.text = str(run.combat_manager.fire_tokens)
-	water_count.text = str(run.combat_manager.water_tokens)
-	lightning_count.text = str(run.combat_manager.lightning_tokens)
-	grass_count.text = str(run.combat_manager.grass_tokens)
-	earth_count.text = str(run.combat_manager.earth_tokens)
+	fire_count.text = str(run.combat_manager.enemy_fire_tokens)
+	water_count.text = str(run.combat_manager.enemy_water_tokens)
+	lightning_count.text = str(run.combat_manager.enemy_lightning_tokens)
+	grass_count.text = str(run.combat_manager.enemy_grass_tokens)
+	earth_count.text = str(run.combat_manager.enemy_earth_tokens)

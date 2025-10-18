@@ -3,7 +3,6 @@ extends Node
 @onready var turn_text: Label = $TurnText
 @onready var combat_currency: Control = $CombatCurrency
 
-const COMBAT_SIM = preload("res://combat_sim.tscn")
 const ENEMY = preload("res://resources/units/enemies/enemy.tscn")
 
 @export var ally1 : Ally
@@ -45,11 +44,6 @@ var targeting_skill : Skill
 @onready var victory_screen: Control = $"../VictoryScreen"
 @onready var win: Button = $"../Win"
 
-@onready var sim_dmg_1: Label = $SimDMG
-@onready var sim_dmg_2: Label = $SimDMG2
-@onready var sim_dmg_3: Label = $SimDMG3
-@onready var sim_dmg_4: Label = $SimDMG4
-
 
 var ally1skill : int
 var ally2skill : int
@@ -69,28 +63,7 @@ var lightning_tokens = 0
 var grass_tokens = 0
 var earth_tokens = 0
 
-var p_fire_tokens = 0
-var p_water_tokens =0
-var p_lightning_tokens = 0
-var p_grass_tokens = 0
-var p_earth_tokens = 0
 
-var p_spent_fire_tokens = 0
-var p_spent_water_tokens = 0
-var p_spent_lightning_tokens = 0
-var p_spent_grass_tokens = 0
-var p_spent_earth_tokens = 0
-
-var sim_fire_tokens = 0
-var sim_water_tokens = 0
-var sim_lightning_tokens = 0
-var sim_grass_tokens = 0
-var sim_earth_tokens = 0
-
-var sim_enemy1_dmg = 0
-var sim_enemy2_dmg = 0
-var sim_enemy3_dmg = 0
-var sim_enemy4_dmg = 0
 
 const TARGET_CURSOR = preload("res://assets/target cursor.png")
 const DEFAULT_CURSOR = preload("res://assets/defaultcursor.png")
@@ -111,8 +84,7 @@ signal signal_received
 signal reaction_finished
 
 var run
-var sim
-var prev_sim
+
 @onready var ReactionManager: Node = $"../ReactionManager"
 
 func combat_ready():
@@ -146,10 +118,7 @@ func combat_ready():
 	run.relic_handler.relics_activated.connect(_on_relics_activated)
 	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_COMBAT)
 	combat_currency.update()
-	sim_dmg_1.text = ""
-	sim_dmg_2.text = ""
-	sim_dmg_3.text = ""
-	sim_dmg_4.text = ""
+
 
 
 func start_combat():
@@ -167,8 +136,6 @@ func end_battle():
 func start_ally_turn():
 	set_unit_pos()
 	show_ui()
-	update_tokens()
-	reset_sim()
 	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_TURN)
 	turn_text.text = "Ally Turn"
 	ally_pre_status()
@@ -183,7 +150,6 @@ func start_ally_turn():
 func ally_skill_use(skill, target, ally):
 	var new_target = use_skill(skill,target,ally,true,true)
 	check_post_skill(skill)
-	update_tokens()
 	combat_currency.update()
 	# checks if target is dead, currently skips the rest of the loop (wont print landed)
 	await reaction_finished
@@ -201,7 +167,6 @@ func ally_skill_use(skill, target, ally):
 		await check_enemy_skills()
 	
 	show_ui()
-	#reset_sim()
 	ally_post_status()
 	if enemies.is_empty():
 		victory()
@@ -501,13 +466,6 @@ func spend_skill_cost(skill):
 				earth_tokens -= skill.cost2
 	combat_currency.update()
 
-func update_tokens():
-	p_fire_tokens = fire_tokens
-	p_water_tokens = water_tokens
-	p_lightning_tokens = lightning_tokens
-	p_earth_tokens = earth_tokens
-	p_grass_tokens = grass_tokens
-	combat_currency.update()
 
 func _on_relics_activated(type : Relic.Type) -> void:
 	match type:
@@ -568,37 +526,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 
 		
 
-
-func update_spend_skill_cost(skills):
-	p_spent_fire_tokens = 0
-	p_spent_water_tokens = 0
-	p_spent_lightning_tokens = 0
-	p_spent_grass_tokens = 0
-	p_spent_earth_tokens = 0
-	for skill in skills:
-		match skill.token_type:
-			"fire":
-				p_spent_fire_tokens += skill.cost
-			"water":
-				p_spent_water_tokens += skill.cost
-			"lightning":
-				p_spent_lightning_tokens += skill.cost
-			"grass":
-				p_spent_grass_tokens += skill.cost
-			"earth":
-				p_spent_earth_tokens += skill.cost
-		match skill.token_type2:
-			"fire":
-				p_spent_fire_tokens += skill.cost2
-			"water":
-				p_spent_water_tokens += skill.cost2
-			"lightning":
-				p_spent_lightning_tokens += skill.cost2
-			"grass":
-				p_spent_grass_tokens += skill.cost2
-			"earth":
-				p_spent_earth_tokens += skill.cost2
-			
 func update_positions(cpos):
 	if ally1_pos > cpos:
 		ally1_pos -= 1
@@ -673,10 +600,6 @@ func _on_end_turn_pressed() -> void:
 		choosing_skills = false
 		set_unit_pos()
 		hide_skills()
-		sim_dmg_1.text = ""
-		sim_dmg_2.text = ""
-		sim_dmg_3.text = ""
-		sim_dmg_4.text = ""
 		await get_tree().create_timer(0.5).timeout
 		ally_turn_done.emit()
 		for enemy in enemies:
@@ -689,10 +612,8 @@ func _on_reset_choices_pressed() -> void:
 	ally2_pos = -1
 	ally3_pos = -1
 	ally4_pos = -1
-	reset_sim()
 	reset_skill_select()
 	update_skill_positions()
-	update_tokens()
 	combat_currency.update()
 	check_requirements()
 
@@ -876,6 +797,11 @@ func ally_post_status():
 		ally.hp_bar.update_statuses(ally.status)
 					
 func check_requirements():
+	var check = false
+	var tokens1 = 0
+	var tokens2 = 0
+
+	var run = get_tree().get_first_node_in_group("run")
 	for ally in allies:
 		if not ally.using_skill:
 			var skill : Skill
@@ -890,33 +816,35 @@ func check_requirements():
 					4:
 						skill = ally.skill_4
 				if (skill):
-					var check = false
-					var tokens1 = 0
-					var tokens2 = 0
+					# Check first cost
 					if skill.cost != null:
 						match skill.token_type:
 							"fire":
-								tokens1 = p_fire_tokens
+								tokens1 = fire_tokens
 							"water":
-								tokens1 = p_water_tokens
+								tokens1 = water_tokens
 							"lightning":
-								tokens1 = p_lightning_tokens
+								tokens1 = lightning_tokens
 							"grass":
-								tokens1 = p_grass_tokens
+								tokens1 = grass_tokens
 							"earth":
-								tokens1 = p_earth_tokens
+								tokens1 = earth_tokens
+
+					# Check second cost
 					if skill.cost2 != null:
 						match skill.token_type2:
 							"fire":
-								tokens2 = p_fire_tokens
+								tokens2 = fire_tokens
 							"water":
-								tokens2 = p_water_tokens
+								tokens2 = water_tokens
 							"lightning":
-								tokens2 = p_lightning_tokens
+								tokens2 = lightning_tokens
 							"grass":
-								tokens2 = p_grass_tokens
+								tokens2 = grass_tokens
 							"earth":
-								tokens2 = p_earth_tokens
+								tokens2 = earth_tokens
+
+					# Final check for first cost
 					if skill.cost != null:
 						if skill.cost <= tokens1:
 							check = true
@@ -935,6 +863,7 @@ func check_requirements():
 							ally.spell_select_ui.disable(i)
 					else:
 						ally.spell_select_ui.enable(i)
+
 
 #had deepseek help improve my code, might be buggy
 func set_unit_pos():
@@ -1078,167 +1007,3 @@ func reset_tokens():
 	lightning_tokens = 0
 	earth_tokens = 0
 	grass_tokens = 0
-
-#func run_sim():
-	#if (prev_sim != null):
-		#prev_sim.queue_free()
-	#sim = COMBAT_SIM.instantiate()
-	#self.add_child(sim)
-	#prev_sim = sim
-	#var sim_enemy1
-	#var sim_enemy2
-	#var sim_enemy3
-	#var sim_enemy4
-	#var sim_ally1
-	#var sim_ally2
-	#var sim_ally3
-	#var sim_ally4
-	#if (enemy1 != null):
-		#sim_enemy1 = enemy1.duplicate()
-	#if (enemy2 != null):
-		#sim_enemy2 = enemy2.duplicate()
-	#if (enemy3 != null):
-		#sim_enemy3 = enemy3.duplicate()
-	#if (enemy4 != null):
-		#sim_enemy4 = enemy4.duplicate()
-	#if (ally1 != null and ally1.visible == true):
-		#sim_ally1 = ally1.duplicate()
-	#if (ally2 != null and ally2.visible == true):
-		#sim_ally2 = ally2.duplicate()
-	#if (ally3 != null and ally3.visible == true):
-		#sim_ally3 = ally3.duplicate()
-	#if (ally4 != null and ally4.visible == true):
-		#sim_ally4 = ally4.duplicate()
-		#
-	#var sim_action_queue = []
-	#sim_action_queue.resize(action_queue.size())
-	#for i in range(action_queue.size()):
-		#sim_action_queue[i] = action_queue[i].duplicate()
-	#
-	#var sim_target_queue = []
-	#sim_target_queue.resize(target_queue.size())
-	#for i in range(target_queue.size()):
-		#if target_queue != null:
-			#var make_duplicate = true
-			#var new_target = null
-			#for target in sim_target_queue:
-				#if target != null and target_queue[i] != null:
-					#if target.id == target_queue[i].id:
-						#make_duplicate = false
-						#new_target = target
-			#if make_duplicate and target_queue[i] != null:
-				#sim_target_queue[i] = target_queue[i].duplicate()
-			#else:
-				#sim_target_queue[i] = new_target
-			#if (ally1 != null and ally1.visible == true and target_queue[i] == ally1):
-				#sim_ally1 = sim_target_queue[i]
-			#elif (ally2 != null and ally2.visible == true and target_queue[i] == ally2):
-				#sim_ally2 = sim_target_queue[i]
-			#elif (ally3 != null and ally3.visible == true and target_queue[i] == ally3):
-				#sim_ally3 = sim_target_queue[i]
-			#elif (ally4 != null and ally4.visible == true and target_queue[i] == ally4):
-				#sim_ally4 = sim_target_queue[i]
-			#elif (enemy1 != null and target_queue[i] == enemy1):
-				#sim_enemy1 = sim_target_queue[i]
-			#elif (enemy2 != null and target_queue[i] == enemy2):
-				#sim_enemy2 = sim_target_queue[i]
-			#elif (enemy3 != null and target_queue[i] == enemy3):
-				#sim_enemy3 = sim_target_queue[i]
-			#elif (enemy4 != null and target_queue[i] == enemy4):
-				#sim_enemy4 = sim_target_queue[i]
-		#else:
-			#sim_target_queue[i] = null
-			#
-	#var sim_ally_queue = []
-	#sim_ally_queue.resize(ally_queue.size())
-	#for i in range(ally_queue.size()):
-		#if ally_queue != null:
-			#var make_duplicate = true
-			#var new_ally = null
-			#for ally in sim_ally_queue:
-				#if ally != null and ally_queue[i] != null:
-					#if ally.id == ally_queue[i].id:
-						#make_duplicate = false
-						#new_ally = ally
-			#for ally in sim_target_queue:
-				#if ally != null and ally_queue[i] != null:
-					#if ally.id == ally_queue[i].id:
-						#make_duplicate = false
-						#new_ally = ally
-			#if make_duplicate and ally_queue[i] != null:
-				#sim_ally_queue[i] = ally_queue[i].duplicate()
-			#else:
-				#sim_ally_queue[i] = new_ally
-			#if (ally1 != null and ally1.visible == true and ally_queue[i] == ally1):
-				#sim_ally1 = sim_ally_queue[i]
-			#elif (ally1 != null and ally1.visible == true and ally_queue[i] == ally2):
-				#sim_ally2 = sim_ally_queue[i]
-			#elif (ally3 != null and ally3.visible == true and ally_queue[i] == ally3):
-				#sim_ally3 = sim_ally_queue[i]
-			#elif (ally4 != null and ally4.visible == true and ally_queue[i] == ally4):
-				#sim_ally4 = sim_ally_queue[i]
-		#else:
-			#sim_ally_queue[i] = null
-	#if (sim_enemy1 != null):
-		#sim_enemy1.copy = true
-	#if (sim_enemy2 != null):
-		#sim_enemy2.copy = true
-	#if (sim_enemy3 != null):
-		#sim_enemy3.copy = true
-	#if (sim_enemy4 != null):
-		#sim_enemy4.copy = true
-	#if (sim_ally1 != null):
-		#sim_ally1.copy = true
-	#if (sim_ally2 != null):
-		#sim_ally2.copy = true
-	#if (sim_ally3 != null):
-		#sim_ally3.copy = true
-	#if (sim_ally4 != null):
-		#sim_ally4.copy = true	
-	#var sim_finished = await sim.run_simulation(sim_ally1, sim_ally2, sim_ally3, sim_ally4, sim_enemy1, sim_enemy2, sim_enemy3, sim_enemy4, sim_action_queue, sim_target_queue, sim_ally_queue)
-	#update_spend_skill_cost(action_queue)
-	#if sim_finished:
-		#p_fire_tokens = fire_tokens + sim_fire_tokens - p_spent_fire_tokens
-		#p_water_tokens = water_tokens + sim_water_tokens - p_spent_water_tokens
-		#p_lightning_tokens = lightning_tokens + sim_lightning_tokens - p_spent_lightning_tokens
-		#p_grass_tokens = grass_tokens + sim_grass_tokens - p_spent_grass_tokens
-		#p_earth_tokens = earth_tokens + sim_earth_tokens - p_spent_earth_tokens
-	#
-		#if sim_enemy1_dmg > 0:
-			#sim_dmg_1.text = "- " + str(sim_enemy1_dmg)
-		#elif sim_enemy1_dmg < 0:
-			#sim_dmg_1.text = "+ " + str(sim_enemy1_dmg)
-		#else:
-			#sim_dmg_1.text = ""
-		#if sim_enemy2_dmg > 0:
-			#sim_dmg_2.text = "- " + str(sim_enemy1_dmg)
-		#elif sim_enemy2_dmg < 0:
-			#sim_dmg_2.text = "+ " + str(sim_enemy2_dmg)
-		#else:
-			#sim_dmg_3.text = ""
-		#if sim_enemy3_dmg > 0:
-			#sim_dmg_3.text = "- " + str(sim_enemy3_dmg)
-		#elif sim_enemy3_dmg < 0:
-			#sim_dmg_3.text = "+ " + str(sim_enemy3_dmg)
-		#else:
-			#sim_dmg_3.text = ""
-		#if sim_enemy4_dmg > 0:
-			#sim_dmg_4.text = "- " + str(sim_enemy4_dmg)
-		#elif sim_enemy3_dmg < 0:
-			#sim_dmg_4.text = "+ " + str(sim_enemy4_dmg)
-		#else:
-			#sim_dmg_4.text = ""
-		#combat_currency.update()
-	
-func reset_sim():
-	sim_fire_tokens = 0
-	sim_water_tokens = 0
-	sim_lightning_tokens = 0
-	sim_grass_tokens = 0
-	sim_earth_tokens = 0
-	if (sim != null):
-		sim.queue_free()
-	if (prev_sim != null):
-		sim.queue_free()
-	sim = null
-	prev_sim = null
