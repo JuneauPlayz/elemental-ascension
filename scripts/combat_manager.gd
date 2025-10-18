@@ -515,7 +515,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	if skill.target_type != "single_enemy" and skill.target_type != "single_ally":
 		await ally_skill_use(skill, null, ally)
 	else:
-		# Select target + execute immediately
 		var target = await choose_target(skill)
 		if target:
 			ally.using_skill = true
@@ -803,7 +802,7 @@ func check_requirements():
 
 	var run = get_tree().get_first_node_in_group("run")
 	for ally in allies:
-		if not ally.using_skill:
+		if not ally.using_skill and ally.spell_select_ui.disabled_all == false:
 			var skill : Skill
 			for i in range(1, 5):
 				match i:
