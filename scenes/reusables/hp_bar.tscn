@@ -36,7 +36,7 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [sub_resource type="LabelSettings" id="LabelSettings_36guj"]
-font_size = 42
+font_size = 34
 
 [node name="HP Bar" type="Control"]
 layout_mode = 3
@@ -62,23 +62,25 @@ value = 100.0
 show_percentage = false
 
 [node name="HP" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 0
-offset_left = 76.25
+offset_left = 58.75
 offset_top = 43.75
-offset_right = 157.25
-offset_bottom = 96.75
+offset_right = 208.75
+offset_bottom = 102.75
 text = "0 / 0"
 label_settings = SubResource("LabelSettings_tqes5")
+horizontal_alignment = 1
 
 [node name="CurrentElement" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 19.0
-offset_top = -37.0
-offset_right = 356.0
-offset_bottom = 16.0
+offset_left = 3.75
+offset_top = -50.0
+offset_right = 340.75
+offset_bottom = 3.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Element : None"
 
@@ -95,10 +97,10 @@ show_percentage = false
 [node name="ShieldLabel" type="Label" parent="."]
 z_index = 2
 layout_mode = 0
-offset_left = -17.5
-offset_top = 7.5
-offset_right = 28.5
-offset_bottom = 59.5
+offset_left = -21.25
+offset_top = 6.25
+offset_right = 24.75
+offset_bottom = 58.25
 text = "15"
 label_settings = SubResource("LabelSettings_36guj")
 
@@ -111,6 +113,6 @@ texture = ExtResource("2_0hkbf")
 [node name="Status Bar" parent="." instance=ExtResource("3_76eju")]
 layout_mode = 1
 offset_left = -12.5
-offset_top = 95.0
+offset_top = 105.0
 offset_right = -12.5
-offset_bottom = 95.0
+offset_bottom = 105.0

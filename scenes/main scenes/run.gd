@@ -912,3 +912,15 @@ func add_skill(skill):
 func update_skills():
 	for skill in skills:
 		update_damage(skill)
+
+func hide_gold():
+	gold_text.visible = false
+
+func show_gold():
+	gold_text.visible = true
+
+func hide_xp():
+	xp_bar.visible = false
+
+func show_xp():
+	xp_bar.visible = true

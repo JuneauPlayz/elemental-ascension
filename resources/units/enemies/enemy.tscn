@@ -45,10 +45,10 @@ texture = ExtResource("2_7vn7i")
 expand_mode = 1
 
 [node name="HP Bar" parent="." instance=ExtResource("4_8i2d0")]
-offset_left = 67.9999
-offset_top = 471.0
-offset_right = 67.9999
-offset_bottom = 471.0
+offset_left = 69.3333
+offset_top = 470.667
+offset_right = 69.3333
+offset_bottom = 470.667
 metadata/_edit_use_anchors_ = true
 
 [node name="DamageNumberOrigin" type="Node2D" parent="."]

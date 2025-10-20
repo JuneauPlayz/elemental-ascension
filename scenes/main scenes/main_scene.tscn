@@ -17,12 +17,13 @@ scale = Vector2(1.305, 1.305)
 texture = ExtResource("2_6dk50")
 
 [node name="Title" type="Label" parent="."]
-offset_left = 600.0
-offset_top = 129.0
-offset_right = 1401.0
-offset_bottom = 286.0
+offset_left = -8.0
+offset_top = 85.0
+offset_right = 1921.0
+offset_bottom = 300.0
 text = "project burg"
 label_settings = SubResource("LabelSettings_k0nup")
+horizontal_alignment = 1
 
 [node name="StartB" type="Button" parent="."]
 offset_left = 712.0
@@ -41,10 +42,10 @@ theme_override_font_sizes/font_size = 74
 text = "Exit"
 
 [node name="CombatTesting" type="Button" parent="."]
-offset_left = 714.0
-offset_top = 900.0
-offset_right = 1206.0
-offset_bottom = 973.0
+offset_left = 690.0
+offset_top = 892.0
+offset_right = 1235.0
+offset_bottom = 990.0
 theme_override_font_sizes/font_size = 74
 text = "Combat Testing"
 

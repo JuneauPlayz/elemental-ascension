@@ -39,7 +39,7 @@ var disabled_all = false
 var initial_load = false
 
 var blue = Color("3f61a1")
-var gray = Color("3f3f3f78")
+var gray = Color("515461")
 
 func load_skills():
 	run = get_tree().get_first_node_in_group("run")
@@ -75,6 +75,7 @@ func load_skills():
 		ult.text = skill4.name
 	else:
 		empty(4)
+		
 	if (run.shop):
 		enable_all()
 	if not initial_load and not run.shop:
@@ -231,18 +232,22 @@ func empty(num):
 			ba_1.disabled = true
 			update_color_disabled(ba_1, gray)
 			empty1 = true
+			ba_1.text = ""
 		2:
 			s_1.disabled = true
 			update_color_disabled(s_1, gray)
 			empty2 = true
+			s_1.text = ""
 		3:
 			s_2.disabled = true
 			update_color_disabled(s_2, gray)
 			empty3 = true
+			s_2.text = ""
 		4:
 			ult.disabled = true
 			update_color_disabled(ult, gray)
 			empty4 = true
+			ult.text = ""
 	
 func _on_ba_1_mouse_entered() -> void:
 	if (not empty1 and skill1):

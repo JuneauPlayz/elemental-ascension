@@ -1,21 +1,22 @@
 extends Node2D
-@onready var charizard: Draggable = $GridContainer/Charizard
+@onready var fire_girl: Draggable = $GridContainer/FireGirl
 @onready var blastoise: Draggable = $GridContainer/Blastoise
 @onready var venasaur: Draggable = $GridContainer/Venasaur
 @onready var pikachu: Draggable = $GridContainer/Pikachu
 @onready var golem: Draggable = $GridContainer/Golem
 
+
 var game
 
 const RUN = preload("res://scenes/main scenes/run.tscn")
 
-const CHARIZARD = preload("res://resources/units/allies/Charizard.tres")
+const FIRE_GIRL = preload("res://resources/units/allies/FireGirl.tres")
 const BLASTOISE = preload("res://resources/units/allies/Blastoise.tres")
 const VENASAUR = preload("res://resources/units/allies/Venasaur.tres")
 const PIKACHU = preload("res://resources/units/allies/Pikachu.tres")
 const GOLEM = preload("res://resources/units/allies/Golem.tres")
 
-var charizard_spot
+var fire_girl_spot
 var blastoise_spot
 var venasaur_spot
 var pikachu_spot
@@ -23,8 +24,7 @@ var golem_spot
 
 var empty_team = true
 
-const BAGUETTE = preload("res://resources/units/enemies/Baguette.tres")
-const BURGER_ENEMY = preload("res://resources/units/enemies/Burger.tres")
+
 
 var characters = []
 var character_res_list = []
@@ -42,19 +42,20 @@ var ally4
 @onready var character_info: Label = $CharacterInfo
 @onready var skill_info_1: Control = $CharacterInfo/SkillInfo1
 @onready var skill_info_2: Control = $CharacterInfo/SkillInfo2
+@onready var base_hp: Label = $CharacterInfo/Base_HP
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	game = get_tree().get_first_node_in_group("game")
 	
-	characters.append(charizard)
+	characters.append(fire_girl)
 	characters.append(blastoise)
 	characters.append(venasaur)
 	characters.append(pikachu)
 	characters.append(golem)
 	
-	character_res_list.append(CHARIZARD)
+	character_res_list.append(FIRE_GIRL)
 	character_res_list.append(BLASTOISE)
 	character_res_list.append(VENASAUR)
 	character_res_list.append(PIKACHU)
@@ -66,10 +67,12 @@ func _ready() -> void:
 	_on_venasaur_drag_ended()
 	_on_pikachu_drag_ended()
 	_on_golem_drag_ended()
-
+	
+	character_info.visible = false
+	
 func update_positions():
-	if charizard:
-		charizard_spot = charizard.global_position
+	if fire_girl:
+		fire_girl_spot = fire_girl.global_position
 	if blastoise:
 		blastoise_spot = blastoise.global_position
 	if venasaur:
@@ -114,7 +117,7 @@ func check_spot(char, og_spot):
 				update_positions()
 
 func _on_charizard_drag_ended() -> void:
-	check_spot(charizard, charizard_spot)
+	check_spot(fire_girl, fire_girl_spot)
 
 
 func _on_blastoise_drag_ended() -> void:
@@ -134,14 +137,15 @@ func _on_golem_drag_ended() -> void:
 
 func display_character_info(character):
 	character_info.visible = true
-	character_info.text = character.name + "  " + str(character.starting_health) + "  HP"
+	character_info.text = character.name
+	base_hp.text = "Base HP: " + str(character.starting_health) + "  HP"
 	skill_info_1.skill = character.skill1
 	skill_info_2.skill = character.skill2
 	skill_info_1.update_skill_info()
 	skill_info_2.update_skill_info()
 	
 func _on_charizard_mouse_entered() -> void:
-	display_character_info(CHARIZARD)
+	display_character_info(FIRE_GIRL)	
 
 
 func _on_blastoise_mouse_entered() -> void:

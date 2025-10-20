@@ -22,7 +22,7 @@ func update(status):
 			description.text = "When a skill hits this unit, the caster of the skill heals " + str(run.sow_healing) + " and gains " + str(run.sow_shielding) + " shield"
 		"Bubble":
 			status_name.text = "Bubble (Does not stack)"
-			description.text = "This unit takes " + run.bubble_mult + "x damage"
+			description.text = "This unit takes " + str(run.bubble_mult) + "x damage"
 		_:
 			status_name.text = "Finish"
 			description.text = "the rest of the statuses u bob"

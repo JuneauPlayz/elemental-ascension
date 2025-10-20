@@ -1,17 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://do6gwn47eylu7"]
+[gd_scene load_steps=14 format=3 uid="uid://do6gwn47eylu7"]
 
 [ext_resource type="Script" uid="uid://sbmng0cirge2" path="res://scripts/combat_scene.gd" id="1_3ou8c"]
+[ext_resource type="FontFile" uid="uid://mmnf6x0iyi0y" path="res://assets/Gravity-Book.otf" id="3_cmui4"]
 [ext_resource type="Script" uid="uid://d0udq0kgc2102" path="res://scripts/combat_manager.gd" id="4_ucgqt"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="5_2x1un"]
 [ext_resource type="FontFile" uid="uid://ca0ii6rndnaqf" path="res://assets/pokemon_pixel_font.ttf" id="5_wtw4i"]
 [ext_resource type="PackedScene" uid="uid://rtk527cyr7kb" path="res://scenes/reusables/combat_currency.tscn" id="6_b6b3n"]
-[ext_resource type="PackedScene" uid="uid://dsbsfehaqkwh1" path="res://scenes/reusables/enemy_combat_currency.tscn" id="6_uo10a"]
+[ext_resource type="PackedScene" uid="uid://cb1kmohoelulf" path="res://scenes/reusables/enemy_combat_currency.tscn" id="6_uo10a"]
 [ext_resource type="Texture2D" uid="uid://bsae24ot6vmo6" path="res://assets/battle_bg.jpg" id="7_qh8p2"]
 [ext_resource type="PackedScene" uid="uid://ydkggenx6prk" path="res://scenes/reusables/result_screen.tscn" id="8_xw3f4"]
 [ext_resource type="Script" uid="uid://ywsxina60jdl" path="res://scripts/ReactionManager.gd" id="10_cmui4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mo5rj"]
-font = ExtResource("5_wtw4i")
+font = ExtResource("3_cmui4")
 font_size = 90
 
 [sub_resource type="LabelSettings" id="LabelSettings_g8qlp"]
@@ -63,6 +64,8 @@ text = "1  or Z for Enemy 1
 4  or V for Enemy 4"
 label_settings = SubResource("LabelSettings_rfbdu")
 
+[node name="CombatCurrency" parent="CombatManager" instance=ExtResource("6_b6b3n")]
+
 [node name="TargetingSkillInfo" parent="CombatManager" instance=ExtResource("5_2x1un")]
 visible = false
 offset_left = 491.0
@@ -70,14 +73,10 @@ offset_top = 678.0
 offset_right = 491.0
 offset_bottom = 678.0
 
-[node name="CombatCurrency" parent="CombatManager" instance=ExtResource("6_b6b3n")]
-scale = Vector2(1, 1.01443)
-mouse_filter = 2
-
 [node name="EnemyCombatCurrency" parent="CombatManager" instance=ExtResource("6_uo10a")]
-offset_left = 1603.0
+offset_left = 1686.0
 offset_top = 2.0
-offset_right = 1603.0
+offset_right = 1686.0
 offset_bottom = 2.0
 
 [node name="Enemy 1 Spot" type="Node2D" parent="."]

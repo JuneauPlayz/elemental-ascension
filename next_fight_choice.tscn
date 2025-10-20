@@ -125,7 +125,7 @@ custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 52
+theme_override_font_sizes/normal_font_size = 36
 vertical_alignment = 1
 
 [node name="EasyFight" type="Button" parent="VBoxContainer/Fight1/MarginContainer/VBoxContainer/HBoxContainer3"]
@@ -204,7 +204,7 @@ custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 52
+theme_override_font_sizes/normal_font_size = 36
 vertical_alignment = 1
 
 [node name="MediumFight" type="Button" parent="VBoxContainer/Fight2/MarginContainer/VBoxContainer/HBoxContainer3"]
@@ -278,7 +278,7 @@ custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 52
+theme_override_font_sizes/normal_font_size = 36
 vertical_alignment = 1
 
 [node name="HardFight" type="Button" parent="VBoxContainer/Fight3/MarginContainer/VBoxContainer/HBoxContainer3"]

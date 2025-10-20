@@ -118,6 +118,8 @@ func combat_ready():
 	run.relic_handler.relics_activated.connect(_on_relics_activated)
 	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_COMBAT)
 	combat_currency.update()
+	run.hide_gold()
+	run.hide_xp()
 
 
 
@@ -273,10 +275,14 @@ func victory():
 	victory_screen.update_text("Victory!", run.current_reward)
 	hide_skills()
 	hide_ui()
+	run.show_gold()
+	run.show_xp()
 	victory_screen.continue_pressed.connect(self.finish_battle)
 
 func defeat():
 	win.visible = false
+	run.show_gold()
+	run.show_xp()
 	run.reset()
 	victorious = false
 	victory_screen.visible = true
@@ -990,15 +996,16 @@ func sow(unit, caster):
 func add_token(element, count):
 	match element:
 		"fire":
-			fire_tokens += ((count + run.fire_token_bonus) * run.fire_token_multiplier)
+			fire_tokens += int((count + run.fire_token_bonus) * run.fire_token_multiplier)
 		"water":
-			water_tokens += ((count + run.water_token_bonus) * run.water_token_multiplier)
+			water_tokens += int((count + run.water_token_bonus) * run.water_token_multiplier)
 		"lightning":
-			lightning_tokens += ((count + run.lightning_token_bonus) * run.lightning_token_multiplier)
+			lightning_tokens += int((count + run.lightning_token_bonus) * run.lightning_token_multiplier)
 		"grass":
-			grass_tokens += ((count + run.grass_token_bonus) * run.grass_token_multiplier)
+			grass_tokens += int((count + run.grass_token_bonus) * run.grass_token_multiplier)
 		"earth":
-			earth_tokens += ((count + run.earth_token_bonus) * run.earth_token_multiplier)
+			earth_tokens += int((count + run.earth_token_bonus) * run.earth_token_multiplier)
+
 
 func reset_tokens():
 	fire_tokens = 0

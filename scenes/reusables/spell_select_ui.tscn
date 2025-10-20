@@ -61,9 +61,9 @@ bg_color = Color(0.223103, 0.223103, 0.223103, 1)
 shadow_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_1aora"]
-font_size = 42
+font_size = 28
 font_color = Color(0.878646, 0.868238, 0.89352, 1)
-outline_size = 16
+outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1vgtr"]
@@ -106,11 +106,12 @@ custom_minimum_size = Vector2(261, 48)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 24
-theme_override_font_sizes/font_size = 42
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 38
 theme_override_styles/disabled = SubResource("StyleBoxFlat_rghh4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1dgm8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ur654")
+text = "test"
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -126,11 +127,12 @@ mouse_filter = 2
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 24
-theme_override_font_sizes/font_size = 42
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 38
 theme_override_styles/disabled = SubResource("StyleBoxFlat_667es")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ni84r")
 theme_override_styles/normal = SubResource("StyleBoxFlat_sleic")
+text = "test"
 
 [node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -147,11 +149,12 @@ mouse_filter = 2
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 24
-theme_override_font_sizes/font_size = 42
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 38
 theme_override_styles/disabled = SubResource("StyleBoxFlat_pfass")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q85v1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lt1l8")
+text = "test"
 
 [node name="VSeparator3" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -168,13 +171,12 @@ mouse_filter = 2
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 24
-theme_override_font_sizes/font_size = 42
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 38
 theme_override_styles/disabled = SubResource("StyleBoxFlat_v4ccb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_i2ev1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_s2255")
-text = "
-"
+text = "test"
 
 [node name="SkillInfo" parent="." instance=ExtResource("2_ae65f")]
 visible = false
@@ -238,10 +240,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6v8fa")
 
 [node name="Position" type="Label" parent="PositionUI"]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 253.0
-offset_right = 220.0
-offset_bottom = 290.0
+offset_left = 74.0
+offset_top = 245.0
+offset_right = 219.0
+offset_bottom = 282.0
 theme_override_font_sizes/font_size = 0
 text = "POSITION"
 label_settings = SubResource("LabelSettings_1aora")
@@ -257,8 +259,8 @@ label_settings = SubResource("LabelSettings_1vgtr")
 
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_mouse_exited"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/SP1Panel/S1" to="." method="_on_s_1_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/SP1Panel/S1" to="." method="_on_s_1_mouse_exited"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/SP1Panel/S1" to="." method="_on_s_1_pressed"]

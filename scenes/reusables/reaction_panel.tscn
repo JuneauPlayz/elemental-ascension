@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cokl4xcoeufdp"]
+[gd_scene load_steps=16 format=3 uid="uid://cokl4xcoeufdp"]
 
 [ext_resource type="Script" uid="uid://dcvxhs1moex51" path="res://scenes/reusables/reaction_panel.gd" id="1_vmy8d"]
 
@@ -34,9 +34,9 @@ font_size = 28
 outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_kgnrs"]
-font_size = 28
-outline_size = 7
+[sub_resource type="LabelSettings" id="LabelSettings_xkdt6"]
+font_size = 19
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5ene"]
@@ -45,29 +45,22 @@ bg_color = Color(0.207843, 0.0745098, 0.0901961, 0.717647)
 expand_margin_left = 14.0
 expand_margin_right = 14.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_02ugj"]
-font_size = 28
-outline_size = 7
+[sub_resource type="LabelSettings" id="LabelSettings_kh4rx"]
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_qqncj"]
-font_size = 28
-outline_size = 7
+[sub_resource type="LabelSettings" id="LabelSettings_y170n"]
+font_size = 20
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ax82d"]
-font_size = 32
-outline_size = 7
+[sub_resource type="LabelSettings" id="LabelSettings_upps1"]
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_v0f5j"]
-font_size = 25
-outline_size = 7
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_vm6sf"]
-font_size = 32
-outline_size = 7
+[sub_resource type="LabelSettings" id="LabelSettings_ofxuh"]
+font_size = 19
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ku7jd"]
@@ -80,18 +73,8 @@ expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ku7jd"]
-font_size = 42
+font_size = 34
 outline_size = 7
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_5oal1"]
-font_size = 36
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_osba5"]
-font_size = 28
-outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
 [node name="ReactionPanel" type="Control"]
@@ -151,7 +134,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Vaporize = [color=coral]Fire[/color] + [color=dark_cyan]Water[/color]"
 scroll_active = false
@@ -176,7 +159,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 text = "Multiplies the second element's damage by Vaporize Multiplier"
-label_settings = SubResource("LabelSettings_kgnrs")
+label_settings = SubResource("LabelSettings_xkdt6")
 horizontal_alignment = 2
 
 [node name="FireVaporizeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage"]
@@ -204,7 +187,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Detonate = [color=coral]Fire[/color] + [color=purple]Lightning[/color]"
 
@@ -230,7 +213,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Detonate Multiplier
 Deals (Side Multiplier x Second Element's Damage) to the left and right units"
-label_settings = SubResource("LabelSettings_02ugj")
+label_settings = SubResource("LabelSettings_xkdt6")
 
 [node name="FireDetonateTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage"]
 custom_minimum_size = Vector2(100, 36)
@@ -256,7 +239,7 @@ custom_minimum_size = Vector2(500, 55)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Burn = [color=coral]Fire[/color] + [color=web_green]Grass[/color]"
 
@@ -282,7 +265,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Burn debuff to the unit, causing them to take Burn Damage before their 
 turn and reduces the unit's healing received by 50% for Burn Length turns"
-label_settings = SubResource("LabelSettings_qqncj")
+label_settings = SubResource("LabelSettings_xkdt6")
 
 [node name="FireBurnTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage"]
 custom_minimum_size = Vector2(100, 36)
@@ -308,7 +291,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Erupt = [color=coral]Fire[/color] + [color=saddle_brown]Earth[/color]"
 
@@ -332,7 +315,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Erupt Multiplier against SHIELDS"
-label_settings = SubResource("LabelSettings_ax82d")
+label_settings = SubResource("LabelSettings_xkdt6")
 horizontal_alignment = 2
 
 [node name="FireEruptTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage"]
@@ -402,7 +385,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Vaporize = [color=dark_cyan]Water[/color] + [color=coral]Fire[/color]"
 scroll_active = false
@@ -427,7 +410,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Vaporize Multiplier"
-label_settings = SubResource("LabelSettings_kgnrs")
+label_settings = SubResource("LabelSettings_kh4rx")
 horizontal_alignment = 2
 
 [node name="WaterVaporizeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage"]
@@ -454,7 +437,7 @@ custom_minimum_size = Vector2(500, 55)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Shock = [color=dark_cyan]Water[/color] + [color=purple]Lightning[/color]"
 
@@ -479,7 +462,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "After shocking, deals 3 bonus instances of lightning damage. 
  (Shock Multiplier x Second Element's Damage)"
-label_settings = SubResource("LabelSettings_qqncj")
+label_settings = SubResource("LabelSettings_kh4rx")
 
 [node name="WaterShockTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -505,7 +488,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Bloom = [color=dark_cyan]Water[/color] + [color=web_green]Grass[/color]"
 
@@ -531,7 +514,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "On Bloom, adds the Bubble buff to the unit. After the unit is attacked, the bubble
  will pop, multiplying the attack's damage by Bubble Mult and healing the unit for Bloom Healing"
-label_settings = SubResource("LabelSettings_v0f5j")
+label_settings = SubResource("LabelSettings_kh4rx")
 
 [node name="WaterBloomTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -558,7 +541,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Muck = [color=dark_cyan]Water[/color] + [color=saddle_brown]Earth[/color]"
 
@@ -583,7 +566,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Muck debuff to the unit, causing their next skill's damage to be multiplied
 by Muck Multiplier"
-label_settings = SubResource("LabelSettings_02ugj")
+label_settings = SubResource("LabelSettings_kh4rx")
 
 [node name="WaterMuckTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -624,6 +607,7 @@ text = " [color=dark_cyan]Water Damage Mult[/color] : 1x"
 horizontal_alignment = 1
 
 [node name="LightningPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 0
 
@@ -651,7 +635,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Detonate = [color=purple]Lightning[/color] + [color=coral]Fire[/color]"
 
@@ -677,7 +661,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Detonate Multiplier
 Deals (Side Multiplier x Second Element's Damage) to the left and right units"
-label_settings = SubResource("LabelSettings_02ugj")
+label_settings = SubResource("LabelSettings_y170n")
 
 [node name="LightningDetonateTokens2" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -703,7 +687,7 @@ custom_minimum_size = Vector2(500, 55)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Shock = [color=purple]Lightning[/color] + [color=dark_cyan]Water[/color]"
 
@@ -728,7 +712,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "After shocking, deals 3 bonus instances of lightning damage. 
  (Shock Multiplier x Second Element's Damage)"
-label_settings = SubResource("LabelSettings_qqncj")
+label_settings = SubResource("LabelSettings_y170n")
 
 [node name="LightningShockTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -754,7 +738,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Nitro = [color=purple]Lightning[/color] + [color=web_green]Grass[/color]"
 scroll_active = false
@@ -780,7 +764,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Nitro debuff to the unit, causing the next instance of damage taken
  by them to be multiplied by Nitro Multipler (Applied the next turn)"
-label_settings = SubResource("LabelSettings_kgnrs")
+label_settings = SubResource("LabelSettings_y170n")
 
 [node name="LightningNitroTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -807,7 +791,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Discharge = [color=purple]Lightning[/color] + [color=saddle_brown]Earth[/color]"
 
@@ -832,7 +816,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Discharge, then the resulting
 damage is split between the unit's team"
-label_settings = SubResource("LabelSettings_ax82d")
+label_settings = SubResource("LabelSettings_y170n")
 
 [node name="LightningDischargeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -901,7 +885,7 @@ custom_minimum_size = Vector2(500, 55)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Burn = [color=web_green]Grass[/color] + [color=coral]Fire[/color]"
 
@@ -927,7 +911,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Burn debuff to the unit, causing them to take Burn Damage before their 
 turn and reduces the unit's healing received by 50% for Burn Length turns"
-label_settings = SubResource("LabelSettings_qqncj")
+label_settings = SubResource("LabelSettings_upps1")
 
 [node name="GrassBurnTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -953,7 +937,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Bloom = [color=web_green]Grass[/color] + [color=dark_cyan]Water[/color]"
 
@@ -979,7 +963,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "On Bloom, adds the Bubble buff to the unit. After the unit is attacked, the bubble
  will pop, multiplying the attack's damage by Bubble Mult and healing the unit for Bloom Healing"
-label_settings = SubResource("LabelSettings_v0f5j")
+label_settings = SubResource("LabelSettings_upps1")
 
 [node name="GrassBloomTokens2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -1006,7 +990,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Nitro = [color=web_green]Grass[/color] + [color=purple]Lightning[/color]"
 scroll_active = false
@@ -1032,7 +1016,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Nitro debuff to the unit, causing the next instance of damage taken
  by them to be multiplied by Nitro Multipler (Applied the next turn)"
-label_settings = SubResource("LabelSettings_kgnrs")
+label_settings = SubResource("LabelSettings_upps1")
 
 [node name="GrassNitroTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -1059,7 +1043,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Sow = [color=web_green]Grass[/color] + [color=saddle_brown]Earth[/color]"
 
@@ -1085,7 +1069,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Sow debuff to the unit. If another unit hits this unit with a skill,
 the attacker will heal Sow Healing and gain Sow Shielding shield."
-label_settings = SubResource("LabelSettings_vm6sf")
+label_settings = SubResource("LabelSettings_upps1")
 
 [node name="GrassSowTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -1183,7 +1167,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Erupt = [color=saddle_brown]Earth[/color] + [color=coral]Fire[/color]"
 
@@ -1207,7 +1191,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Erupt Multiplier against SHIELDS"
-label_settings = SubResource("LabelSettings_ax82d")
+label_settings = SubResource("LabelSettings_ofxuh")
 horizontal_alignment = 2
 
 [node name="EarthEruptTokens2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage"]
@@ -1234,7 +1218,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Muck = [color=saddle_brown]Earth[/color] + [color=dark_cyan]Water[/color]"
 
@@ -1259,7 +1243,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Muck debuff to the unit, causing their next skill's damage to be multiplied
 by Muck Multiplier"
-label_settings = SubResource("LabelSettings_02ugj")
+label_settings = SubResource("LabelSettings_ofxuh")
 
 [node name="EarthMuckTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -1285,7 +1269,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Discharge = [color=saddle_brown]Earth[/color] + [color=purple]Lightning[/color]"
 
@@ -1310,7 +1294,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Discharge, then the resulting
 damage is split between the unit's team"
-label_settings = SubResource("LabelSettings_ax82d")
+label_settings = SubResource("LabelSettings_ofxuh")
 
 [node name="EarthDischargeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -1336,7 +1320,7 @@ custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Sow = [color=saddle_brown]Earth[/color] + [color=web_green]Grass[/color]"
 
@@ -1362,7 +1346,7 @@ custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Sow debuff to the unit. If another unit hits this unit with a skill,
 the attacker will heal Sow Healing and gain Sow Shielding shield."
-label_settings = SubResource("LabelSettings_vm6sf")
+label_settings = SubResource("LabelSettings_ofxuh")
 
 [node name="EarthSowTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage"]
 custom_minimum_size = Vector2(100, 36)
@@ -1432,7 +1416,6 @@ text = " [color=saddle_brown]Shielding Mult[/color] : 1x"
 horizontal_alignment = 1
 
 [node name="StatsPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-visible = false
 layout_mode = 2
 mouse_filter = 0
 theme_override_constants/separation = 5
@@ -1479,7 +1462,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=coral]Fire Damage Bonus[/color]  :  0"
 
@@ -1487,7 +1470,7 @@ text = " [color=coral]Fire Damage Bonus[/color]  :  0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=coral]Fire Damage Mult[/color]  :  1x"
 
@@ -1495,7 +1478,7 @@ text = " [color=coral]Fire Damage Mult[/color]  :  1x"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=dark_cyan]Water Damage Bonus[/color] : 0"
 
@@ -1503,7 +1486,7 @@ text = " [color=dark_cyan]Water Damage Bonus[/color] : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=dark_cyan]Water Damage Mult[/color] : 1x"
 
@@ -1511,7 +1494,7 @@ text = " [color=dark_cyan]Water Damage Mult[/color] : 1x"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=purple]Lightning Damage Bonus[/color] : 0"
 
@@ -1519,7 +1502,7 @@ text = " [color=purple]Lightning Damage Bonus[/color] : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=purple]Lightning Damage Mult[/color] : 1x"
 
@@ -1527,7 +1510,7 @@ text = " [color=purple]Lightning Damage Mult[/color] : 1x"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=web_green]Grass Damage Bonus[/color] : 0"
 
@@ -1535,7 +1518,7 @@ text = " [color=web_green]Grass Damage Bonus[/color] : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=web_green]Grass Damage Mult[/color] : 1x"
 
@@ -1543,7 +1526,7 @@ text = " [color=web_green]Grass Damage Mult[/color] : 1x"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=saddle_brown]Earth Damage Bonus[/color] : 0"
 
@@ -1551,7 +1534,7 @@ text = " [color=saddle_brown]Earth Damage Bonus[/color] : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=saddle_brown]Earth Damage Mult[/color] : 1x"
 
@@ -1563,7 +1546,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=web_green]Healing Bonus[/color] : 0"
 
@@ -1571,7 +1554,7 @@ text = " [color=web_green]Healing Bonus[/color] : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=web_green]Healing Mult[/color] : 0"
 
@@ -1579,7 +1562,7 @@ text = " [color=web_green]Healing Mult[/color] : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=saddle_brown]Shielding Bonus[/color] : 0"
 
@@ -1587,7 +1570,7 @@ text = " [color=saddle_brown]Shielding Bonus[/color] : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=saddle_brown]Shielding Mult[/color] : 1x"
 
@@ -1595,7 +1578,7 @@ text = " [color=saddle_brown]Shielding Mult[/color] : 1x"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Physical Damage Bonus : 0"
 
@@ -1603,7 +1586,7 @@ text = " Physical Damage Bonus : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Physical Damage Mult : 1x"
 
@@ -1611,7 +1594,7 @@ text = " Physical Damage Mult : 1x"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " All Damage Bonus : 0"
 
@@ -1619,7 +1602,7 @@ text = " All Damage Bonus : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " All Damage Mult : 0"
 
@@ -1627,7 +1610,7 @@ text = " All Damage Mult : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=yellow]Bonus Gold[/color] : 0"
 
@@ -1635,18 +1618,17 @@ text = " [color=yellow]Bonus Gold[/color] : 0"
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 53
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=yellow]Gold Mult[/color] : 0"
 
 [node name="StatsDisclaimer" type="Label" parent="."]
-visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-offset_left = 137.0
-offset_top = 456.0
-offset_right = 329.0
-offset_bottom = 698.0
+offset_left = 119.0
+offset_top = 454.0
+offset_right = 400.0
+offset_bottom = 726.0
 text = "Bonuses are
 applied before
 Mults when
@@ -1664,31 +1646,6 @@ text = "Reaction Guide"
 label_settings = SubResource("LabelSettings_gqkyi")
 horizontal_alignment = 1
 
-[node name="Disclaimer" type="Label" parent="."]
-layout_mode = 0
-offset_left = 114.0
-offset_top = 86.0
-offset_right = 528.0
-offset_bottom = 118.0
-text = "The order of elements doesn't matter
-EX: Fire + Water and Water + Fire are both Vaporize.
-However, the vaporize bonus damage is only applied 
-to the second element's damage"
-label_settings = SubResource("LabelSettings_5oal1")
-
-[node name="Disclaimer2" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1141.0
-offset_top = 86.0
-offset_right = 1713.0
-offset_bottom = 223.0
-text = "After a reaction is procced, the unit's element will
-become none, unless the reaction has bonus instances of damage.
-Example: The 3 instances of lightning damage from
-shocking will result in the unit's current element being Lightning."
-label_settings = SubResource("LabelSettings_osba5")
-horizontal_alignment = 2
-
 [node name="Hide" type="Button" parent="."]
 custom_minimum_size = Vector2(65, 50)
 layout_mode = 0
@@ -1702,60 +1659,60 @@ text = "x"
 [node name="FirePageButton" type="Button" parent="."]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
-offset_left = 433.0
-offset_top = 245.0
-offset_right = 608.0
-offset_bottom = 299.0
+offset_left = 364.0
+offset_top = 190.0
+offset_right = 539.0
+offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "Fire"
 
 [node name="WaterPageButton" type="Button" parent="."]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
-offset_left = 623.0
-offset_top = 245.0
-offset_right = 798.0
-offset_bottom = 299.0
+offset_left = 555.0
+offset_top = 190.0
+offset_right = 730.0
+offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "Water"
 
 [node name="LightningPageButton" type="Button" parent="."]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
-offset_left = 811.0
-offset_top = 245.0
-offset_right = 986.0
-offset_bottom = 299.0
+offset_left = 743.0
+offset_top = 190.0
+offset_right = 975.0
+offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "Lightning"
 
 [node name="GrassPageButton" type="Button" parent="."]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
-offset_left = 1000.0
-offset_top = 245.0
-offset_right = 1175.0
-offset_bottom = 299.0
+offset_left = 990.0
+offset_top = 190.0
+offset_right = 1165.0
+offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "Grass"
 
 [node name="EarthPageButton" type="Button" parent="."]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
-offset_left = 1190.0
-offset_top = 245.0
-offset_right = 1365.0
-offset_bottom = 299.0
+offset_left = 1183.0
+offset_top = 190.0
+offset_right = 1358.0
+offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "Earth"
 
 [node name="MoreStatsButton" type="Button" parent="."]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
-offset_left = 1488.0
-offset_top = 246.0
-offset_right = 1672.0
-offset_bottom = 300.0
+offset_left = 1420.0
+offset_top = 190.0
+offset_right = 1685.0
+offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "More Stats"
 

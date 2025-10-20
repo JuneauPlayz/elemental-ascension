@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cejatt12ddojf"]
+[gd_scene load_steps=15 format=3 uid="uid://cejatt12ddojf"]
 
 [ext_resource type="Script" uid="uid://i7ngkgvekba1" path="res://scripts/new_character_select.gd" id="1_c5uuy"]
 [ext_resource type="Texture2D" uid="uid://c7bn1gnx4b71v" path="res://assets/grassy pixelated.jpg" id="2_kjqh1"]
 [ext_resource type="Script" uid="uid://4eb43uwdg710" path="res://addons/tnowe_extra_controls/elements/draggable.gd" id="3_l2ywx"]
-[ext_resource type="Texture2D" uid="uid://4geq5yb7tf1u" path="res://assets/charizard.png" id="4_go2d0"]
+[ext_resource type="Texture2D" uid="uid://bmymytp4nutcm" path="res://assets/kent/fire.webp" id="4_p148i"]
 [ext_resource type="Texture2D" uid="uid://lusgwdgw1no1" path="res://assets/Blastoise.png" id="5_i4hyv"]
 [ext_resource type="Texture2D" uid="uid://dr5buhafiup2r" path="res://assets/venasaur (2).png" id="6_2gi26"]
 [ext_resource type="Texture2D" uid="uid://dmsixe7n4f266" path="res://assets/pikachu.png" id="7_0rorh"]
@@ -11,15 +11,20 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_tbrfe"]
 font_size = 42
-outline_size = 9
+outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g3rqs"]
 load_path = "res://.godot/imported/golem.png-4ecf06b627a0b206e6315fdbd8983774.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_ghnwa"]
-font_size = 86
-outline_size = 20
+font_size = 72
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p148i"]
+font_size = 41
+outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vlp3o"]
@@ -28,7 +33,7 @@ outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0i11v"]
-font_size = 136
+font_size = 120
 outline_size = 24
 outline_color = Color(0, 0, 0, 1)
 
@@ -55,11 +60,11 @@ layout_mode = 2
 
 [node name="Position" type="Label" parent="GridContainer/Ally1Spot"]
 layout_mode = 0
-offset_left = -9.0
-offset_top = -52.0
-offset_right = 117.0
-offset_bottom = -15.0
-text = "Back Ally
+offset_left = 2.0
+offset_top = -57.0
+offset_right = 101.0
+offset_bottom = 50.0
+text = "Back
 "
 label_settings = SubResource("LabelSettings_tbrfe")
 
@@ -69,11 +74,11 @@ layout_mode = 2
 
 [node name="Position" type="Label" parent="GridContainer/Ally2Spot"]
 layout_mode = 0
-offset_left = -13.0
-offset_top = -52.0
-offset_right = 118.0
-offset_bottom = -15.0
-text = "Middle Ally
+offset_left = -15.0
+offset_top = -56.0
+offset_right = 117.0
+offset_bottom = 51.0
+text = "Middle
 "
 label_settings = SubResource("LabelSettings_tbrfe")
 
@@ -84,10 +89,10 @@ layout_mode = 2
 [node name="Position" type="Label" parent="GridContainer/Ally3Spot"]
 layout_mode = 0
 offset_left = -13.0
-offset_top = -52.0
-offset_right = 118.0
-offset_bottom = -15.0
-text = "Middle Ally"
+offset_top = -57.0
+offset_right = 119.0
+offset_bottom = -5.0
+text = "Middle"
 label_settings = SubResource("LabelSettings_tbrfe")
 
 [node name="Ally4Spot" type="ColorRect" parent="GridContainer"]
@@ -96,11 +101,11 @@ layout_mode = 2
 
 [node name="Position" type="Label" parent="GridContainer/Ally4Spot"]
 layout_mode = 0
-offset_left = -9.0
-offset_top = -52.0
-offset_right = 117.0
-offset_bottom = -15.0
-text = "Front Ally"
+offset_left = -3.0
+offset_top = -57.0
+offset_right = 100.0
+offset_bottom = -5.0
+text = "Front"
 label_settings = SubResource("LabelSettings_tbrfe")
 
 [node name="Gap" type="Control" parent="GridContainer"]
@@ -123,16 +128,16 @@ layout_mode = 2
 [node name="Gap6" type="Control" parent="GridContainer"]
 layout_mode = 2
 
-[node name="Charizard" type="Container" parent="GridContainer"]
+[node name="FireGirl" type="Container" parent="GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 script = ExtResource("3_l2ywx")
 grid_snap = Vector2(100, 100)
 
-[node name="Sprite2D" type="Sprite2D" parent="GridContainer/Charizard"]
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/FireGirl"]
 position = Vector2(46, 51)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_go2d0")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_p148i")
 
 [node name="Blastoise" type="Container" parent="GridContainer"]
 custom_minimum_size = Vector2(100, 100)
@@ -178,43 +183,52 @@ scale = Vector2(0.35, 0.35)
 texture = SubResource("CompressedTexture2D_g3rqs")
 
 [node name="CharacterInfo" type="Label" parent="."]
-visible = false
-offset_left = 61.0
-offset_top = 254.0
-offset_right = 335.0
-offset_bottom = 331.0
-text = "Charizard"
+offset_left = 47.0
+offset_top = 260.0
+offset_right = 367.0
+offset_bottom = 347.0
+text = "Charizard
+"
 label_settings = SubResource("LabelSettings_ghnwa")
+
+[node name="Base_HP" type="Label" parent="CharacterInfo"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 90.0
+offset_right = 209.0
+offset_bottom = 141.0
+text = "Base HP: "
+label_settings = SubResource("LabelSettings_p148i")
 
 [node name="SkillInfo1" parent="CharacterInfo" instance=ExtResource("8_hnda8")]
 layout_mode = 1
-offset_left = 45.0
-offset_top = 129.0
-offset_right = 45.0
-offset_bottom = 129.0
+offset_left = 4.0
+offset_top = 218.0
+offset_right = 4.0
+offset_bottom = 218.0
 
 [node name="SkillInfo2" parent="CharacterInfo" instance=ExtResource("8_hnda8")]
 layout_mode = 1
-offset_left = 45.0
-offset_top = 350.0
-offset_right = 45.0
-offset_bottom = 350.0
+offset_left = 8.0
+offset_top = 416.0
+offset_right = 8.0
+offset_bottom = 416.0
 
 [node name="Label" type="Label" parent="CharacterInfo"]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 83.0
-offset_right = 244.0
-offset_bottom = 124.0
+offset_left = 12.0
+offset_top = 149.0
+offset_right = 305.0
+offset_bottom = 206.0
 text = "Starting Skills"
 label_settings = SubResource("LabelSettings_vlp3o")
 
 [node name="Begin Run" type="Button" parent="."]
-offset_left = 793.0
-offset_top = 811.0
-offset_right = 1127.0
-offset_bottom = 917.0
-theme_override_font_sizes/font_size = 111
+offset_left = 691.0
+offset_top = 850.0
+offset_right = 1235.0
+offset_bottom = 986.0
+theme_override_font_sizes/font_size = 100
 text = "Begin Run"
 
 [node name="Title" type="Label" parent="."]
@@ -226,8 +240,8 @@ text = "Choose Your Characters!"
 label_settings = SubResource("LabelSettings_0i11v")
 horizontal_alignment = 1
 
-[connection signal="drag_ended" from="GridContainer/Charizard" to="." method="_on_charizard_drag_ended"]
-[connection signal="mouse_entered" from="GridContainer/Charizard" to="." method="_on_charizard_mouse_entered"]
+[connection signal="drag_ended" from="GridContainer/FireGirl" to="." method="_on_charizard_drag_ended"]
+[connection signal="mouse_entered" from="GridContainer/FireGirl" to="." method="_on_charizard_mouse_entered"]
 [connection signal="drag_ended" from="GridContainer/Blastoise" to="." method="_on_blastoise_drag_ended"]
 [connection signal="mouse_entered" from="GridContainer/Blastoise" to="." method="_on_blastoise_mouse_entered"]
 [connection signal="drag_ended" from="GridContainer/Venasaur" to="." method="_on_venasaur_drag_ended"]
