@@ -11,8 +11,8 @@ border_width_bottom = 5
 border_color = Color(0.26111266, 0.26111263, 0.26111245, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pf6w8"]
-font_size = 20
-outline_size = 3
+font_size = 24
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pf6w8"]
@@ -26,6 +26,7 @@ offset_right = -1739.0
 offset_bottom = -921.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_pf6w8")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

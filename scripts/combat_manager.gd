@@ -6,6 +6,10 @@ extends Node
 @onready var tutorial_highlight: CanvasLayer = $"../Tutorial/TutorialHighlight"
 @onready var tutorial_highlight_dim: ColorRect = $"../Tutorial/TutorialHighlight/ColorRect"
 @onready var popup_1: Control = $"../Tutorial/Text/Popup1"
+@onready var popup_2: Control = $"../Tutorial/Text/Popup2"
+@onready var popup_3: Control = $"../Tutorial/Text/Popup3"
+@onready var text_popups: Node = $"../Tutorial/Text"
+
 
 const ENEMY = preload("res://resources/units/enemies/enemy.tscn")
 
@@ -76,6 +80,7 @@ signal enemy_turn_done
 signal new_spell_selected
 signal target_selected
 signal target_chosen
+signal skill_selected
 
 var combat_finished = false
 var first_turn = true
@@ -123,6 +128,7 @@ func combat_ready():
 	combat_currency.update()
 	run.hide_gold()
 	run.hide_xp()
+	
 
 
 
@@ -131,6 +137,8 @@ func start_combat():
 	reset_skill_select()
 	check_requirements()
 	show_skills()
+	for popup in text_popups.get_children():
+		popup.visible = false
 	for enemy in enemies:
 		enemy.change_skills()
 	while (!combat_finished):
@@ -507,7 +515,9 @@ func enemy_lose_shields():
 func _on_spell_select_ui_new_select(ally) -> void:
 	var spell_select_ui: Control = ally.get_spell_select()
 	var selected_index = spell_select_ui.selected
-	
+	# for tutorial
+	skill_selected.emit()
+		
 	hide_ui()
 	# If unselecting
 	if selected_index == 0:
@@ -531,13 +541,14 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	else:
 		var target = await choose_target(skill)
 		if target:
+			target_selected.emit()
 			ally.using_skill = true
 			await ally_skill_use(skill, target, ally)
 	
 	combat_currency.update()
 	check_requirements()
+	
 
-		
 
 func update_positions(cpos):
 	if ally1_pos > cpos:
@@ -598,7 +609,7 @@ func _on_end_turn_pressed() -> void:
 		AudioPlayer.play_FX("click",0)
 		await get_tree().create_timer(0.5).timeout
 		for enemy in enemies:
-			if enemy.skill_used == false:
+			if enemy.skill_used == false and enemy.can_attack:
 				enemy_skill_use(enemy)
 	
 		check_enemy_skills()
@@ -1024,10 +1035,33 @@ func start_tutorial():
 	hide_end_turn()
 	hide_reaction_guide_button()
 	hide_win()
+	enemy1.can_attack = false
+	enemy1.update_countdown_label()
+	ally1.hide_skills()
 	popup_1.visible = true
 	await next_popup
+	ally1.show_skills()
+	await get_tree().create_timer(0.3).timeout
+	popup_2.visible = true
 	tutorial_highlight.visible = true
-	tutorial_highlight_dim.highlight_node(ally1.spell_select_ui.ba_1)
+	tutorial_highlight_dim.highlight_nodes([ally1.spell_select_ui.ba_1, popup_2.get_child(0)], 1.5)
+	await skill_selected
+	popup_2.visible = false
+	tutorial_highlight.visible = false
+	await get_tree().create_timer(0.3).timeout
+	popup_3.visible = true
+	tutorial_highlight.visible = true
+	tutorial_highlight_dim.highlight_nodes([enemy1.sprite_spot, popup_3.get_child(0)], 1.5)
 	
+	await target_selected
+	popup_3.visible = false
+	tutorial_highlight.visible = false
+	await get_tree().create_timer(0.3).timeout
+	popup_4.visible = true
+	ally1.hide_skills()
+	enemy1.can_attack = true
+	enemy1.update_countdown_label()
+	enemy1.set_countdown()
+	tutorial_highlight_dim.highlight_nodes([enemy1.countdown_label, enemy1.skill_info, enemy1.next_skill_label, popup_4.get_child(0)])
 func pop_up_button_pressed():
 	next_popup.emit()

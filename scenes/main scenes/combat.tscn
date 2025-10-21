@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://do6gwn47eylu7"]
+[gd_scene load_steps=22 format=3 uid="uid://do6gwn47eylu7"]
 
 [ext_resource type="Script" uid="uid://sbmng0cirge2" path="res://scripts/combat_scene.gd" id="1_3ou8c"]
 [ext_resource type="FontFile" uid="uid://mmnf6x0iyi0y" path="res://assets/Gravity-Book.otf" id="3_cmui4"]
@@ -31,8 +31,9 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bsuy1"]
 shader = ExtResource("11_yh2m0")
-shader_parameter/rect_pos = Vector2(0.5, 0.5)
-shader_parameter/rect_size = Vector2(200, 80)
+shader_parameter/rect_count = 0
+shader_parameter/rect_positions = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/rect_sizes = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/softness = 15.0000007125
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43txg"]
@@ -45,10 +46,14 @@ border_color = Color(0.26111266, 0.26111263, 0.26111245, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pf6w8"]
 font_size = 20
-outline_size = 3
+font_color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pf6w8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0uf4x"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
 
 [node name="Combat" type="Node2D" groups=["combat"]]
 script = ExtResource("1_3ou8c")
@@ -56,6 +61,8 @@ script = ExtResource("1_3ou8c")
 [node name="CombatManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_ucgqt")
+allies = null
+enemies = null
 
 [node name="TurnText" type="Label" parent="CombatManager"]
 offset_left = 829.0
@@ -176,17 +183,17 @@ script = ExtResource("12_bsuy1")
 [node name="Text" type="Node" parent="Tutorial"]
 
 [node name="Popup1" type="Control" parent="Tutorial/Text"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 665.0
-offset_top = 469.0
-offset_right = -1059.0
-offset_bottom = -444.0
+offset_left = 363.0
+offset_top = 238.0
+offset_right = -1361.0
+offset_bottom = -675.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.6, 1.6)
 script = ExtResource("13_0uf4x")
 
 [node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup1"]
@@ -209,7 +216,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Welcome to Project Burg,
 A roguelike deckbuilder.
-First, we'll show you how
+First, I'll show you how
 to attack an enemy."
 label_settings = SubResource("LabelSettings_pf6w8")
 
@@ -223,6 +230,241 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
+[node name="Popup2" type="Control" parent="Tutorial/Text"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 587.0
+offset_top = 661.0
+offset_right = -1137.0
+offset_bottom = -252.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup2"]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup2/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Text/Popup2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click on \"Fire Bolt\"
+to attack the enemy"
+label_settings = SubResource("LabelSettings_pf6w8")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup2/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Popup3" type="Control" parent="Tutorial/Text"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 641.0
+offset_top = 141.0
+offset_right = -1083.0
+offset_bottom = -772.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup3"]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup3/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup3/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Text/Popup3/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "\"Fire Bolt\" is a skill
+that can target any
+enemy. Click on the
+enemy's sprite to use
+the skill."
+label_settings = SubResource("LabelSettings_pf6w8")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup3/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Popup4" type="Control" parent="Tutorial/Text"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1390.0
+offset_top = 327.0
+offset_right = -319.33325
+offset_bottom = -552.3333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup4"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup4/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup4/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Text/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "During combat, 
+enemies will 
+attack you
+too."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Text/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Popup5" type="Control" parent="Tutorial/Text"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 463.0
+offset_top = 193.0
+offset_right = -1246.3333
+offset_bottom = -686.3333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup5"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup5/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup5/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Text/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enemies have countdowns. 
+When an ally uses a skill,
+all enemies' countdowns
+will decrease by 1. When
+an enemy's countdown
+reaches 0, they will use
+their skill."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Text/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Popup6" type="Control" parent="Tutorial/Text"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 641.0
+offset_top = 141.0
+offset_right = -1083.0
+offset_bottom = -772.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup6"]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup6/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup6/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Text/Popup6/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "A new turn has begun,
+so you can use your skill
+again. Try using your skill
+again and watch the
+enemy's countdown."
+label_settings = SubResource("LabelSettings_pf6w8")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup6/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
 [connection signal="pressed" from="EndTurn" to="CombatManager" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Tutorial/Text/Popup1/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Text/Popup1" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Text/Popup4/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Text/Popup4" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Text/Popup5/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Text/Popup5" method="_on_button_pressed"]
