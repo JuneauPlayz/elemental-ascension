@@ -65,6 +65,8 @@ text = "1  or Z for Enemy 1
 label_settings = SubResource("LabelSettings_rfbdu")
 
 [node name="CombatCurrency" parent="CombatManager" instance=ExtResource("6_b6b3n")]
+offset_right = -1625.0
+offset_bottom = -714.0
 
 [node name="TargetingSkillInfo" parent="CombatManager" instance=ExtResource("5_2x1un")]
 visible = false
@@ -76,8 +78,8 @@ offset_bottom = 678.0
 [node name="EnemyCombatCurrency" parent="CombatManager" instance=ExtResource("6_uo10a")]
 offset_left = 1686.0
 offset_top = 2.0
-offset_right = 1686.0
-offset_bottom = 2.0
+offset_right = 39.0
+offset_bottom = -714.0
 
 [node name="Enemy 1 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -131,6 +133,7 @@ mouse_filter = 2
 combat_manager = NodePath("../CombatManager")
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0.411)
 z_index = -5
 position = Vector2(963, 539.5)

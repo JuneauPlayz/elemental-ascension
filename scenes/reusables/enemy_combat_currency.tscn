@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cb1kmohoelulf"]
 
-[ext_resource type="Script" path="res://scenes/reusables/enemy_combat_currency.gd" id="1_jdfjd"]
+[ext_resource type="Script" uid="uid://c13fetopibjic" path="res://scenes/reusables/enemy_combat_currency.gd" id="1_jdfjd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evy26"]
 bg_color = Color(0.449653, 0.548845, 0.58154, 1)
@@ -32,6 +32,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1605.0
+offset_bottom = -709.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
