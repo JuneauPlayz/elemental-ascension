@@ -3,6 +3,9 @@ extends Node
 @onready var turn_text: Label = $TurnText
 @onready var combat_currency: Control = $CombatCurrency
 @onready var enemy_combat_currency: Control = $EnemyCombatCurrency
+@onready var tutorial_highlight: CanvasLayer = $"../Tutorial/TutorialHighlight"
+@onready var tutorial_highlight_dim: ColorRect = $"../Tutorial/TutorialHighlight/ColorRect"
+@onready var popup_1: Control = $"../Tutorial/Text/Popup1"
 
 const ENEMY = preload("res://resources/units/enemies/enemy.tscn")
 
@@ -1012,10 +1015,19 @@ func hide_win():
 	win.visible = false
 
 #tutorial
+signal next_popup
+
+
 func start_tutorial():
 	run = get_tree().get_first_node_in_group("run")
 	hide_tokens()
 	hide_end_turn()
 	hide_reaction_guide_button()
 	hide_win()
+	popup_1.visible = true
+	await next_popup
+	tutorial_highlight.visible = true
+	tutorial_highlight_dim.highlight_node(ally1.spell_select_ui.ba_1)
 	
+func pop_up_button_pressed():
+	next_popup.emit()

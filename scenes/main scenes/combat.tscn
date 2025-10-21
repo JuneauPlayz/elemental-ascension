@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://do6gwn47eylu7"]
+[gd_scene load_steps=21 format=3 uid="uid://do6gwn47eylu7"]
 
 [ext_resource type="Script" uid="uid://sbmng0cirge2" path="res://scripts/combat_scene.gd" id="1_3ou8c"]
 [ext_resource type="FontFile" uid="uid://mmnf6x0iyi0y" path="res://assets/Gravity-Book.otf" id="3_cmui4"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bsae24ot6vmo6" path="res://assets/battle_bg.jpg" id="7_qh8p2"]
 [ext_resource type="PackedScene" uid="uid://ydkggenx6prk" path="res://scenes/reusables/result_screen.tscn" id="8_xw3f4"]
 [ext_resource type="Script" uid="uid://ywsxina60jdl" path="res://scripts/ReactionManager.gd" id="10_cmui4"]
+[ext_resource type="Shader" uid="uid://dqwydnoy0ofim" path="res://scenes/main scenes/tutorialdim.gdshader" id="11_yh2m0"]
+[ext_resource type="Script" uid="uid://ddsbx27ewm7tq" path="res://scenes/main scenes/highlight.gd" id="12_bsuy1"]
+[ext_resource type="Script" uid="uid://c01r60o6cfq78" path="res://text_popup.gd" id="13_0uf4x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mo5rj"]
 font = ExtResource("3_cmui4")
@@ -26,14 +29,33 @@ font_size = 61
 outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bsuy1"]
+shader = ExtResource("11_yh2m0")
+shader_parameter/rect_pos = Vector2(0.5, 0.5)
+shader_parameter/rect_size = Vector2(200, 80)
+shader_parameter/softness = 15.0000007125
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43txg"]
+bg_color = Color(0.6600366, 0.8392508, 0.7948633, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.26111266, 0.26111263, 0.26111245, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pf6w8"]
+font_size = 20
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pf6w8"]
+
 [node name="Combat" type="Node2D" groups=["combat"]]
 script = ExtResource("1_3ou8c")
 
 [node name="CombatManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_ucgqt")
-allies = null
-enemies = null
 
 [node name="TurnText" type="Label" parent="CombatManager"]
 offset_left = 829.0
@@ -46,9 +68,9 @@ label_settings = SubResource("LabelSettings_mo5rj")
 [node name="TargetingLabel" type="Label" parent="CombatManager"]
 visible = false
 offset_left = 39.0
-offset_top = 697.0
-offset_right = 439.0
-offset_bottom = 865.0
+offset_top = 736.0
+offset_right = 440.0
+offset_bottom = 904.0
 text = "Choosing target for :
 
 (click on the sprite)"
@@ -141,12 +163,66 @@ script = ExtResource("10_cmui4")
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Tutorial/TutorialHighlight"]
+material = SubResource("ShaderMaterial_bsuy1")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.5137255)
+mouse_filter = 2
+color = Color(0, 0, 0, 0.34509805)
+script = ExtResource("12_bsuy1")
+
+[node name="Text" type="Node" parent="Tutorial"]
+
+[node name="Popup1" type="Control" parent="Tutorial/Text"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 665.0
+offset_top = 469.0
+offset_right = -1059.0
+offset_bottom = -444.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup1"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup1/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup1/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Text/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Welcome to Project Burg,
+A roguelike deckbuilder.
+First, we'll show you how
+to attack an enemy."
+label_settings = SubResource("LabelSettings_pf6w8")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Text/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
 
 [connection signal="pressed" from="EndTurn" to="CombatManager" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
+[connection signal="pressed" from="Tutorial/Text/Popup1/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Text/Popup1" method="_on_button_pressed"]
