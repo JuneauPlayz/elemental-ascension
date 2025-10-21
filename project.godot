@@ -24,7 +24,7 @@ resources_spreadsheet_view/resource_cell_label_mode=1
 
 config/name="Project Burg"
 run/main_scene="uid://geispkaccrd1"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/icon.svg"
 
 [autoload]
@@ -60,10 +60,10 @@ game=""
 
 [gui]
 
-theme/custom_font="uid://mmnf6x0iyi0y"
 theme/default_font_antialiasing=0
 theme/default_font_subpixel_positioning=0
 theme/default_font_multichannel_signed_distance_field=true
+theme/custom_font="uid://mmnf6x0iyi0y"
 
 [input]
 

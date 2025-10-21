@@ -133,7 +133,6 @@ mouse_filter = 2
 combat_manager = NodePath("../CombatManager")
 
 [node name="Background" type="Sprite2D" parent="."]
-visible = false
 self_modulate = Color(1, 1, 1, 0.411)
 z_index = -5
 position = Vector2(963, 539.5)

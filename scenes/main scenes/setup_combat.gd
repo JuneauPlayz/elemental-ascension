@@ -99,10 +99,10 @@ func _ready() -> void:
 		if enemy is not PackedScene:
 			count += 1
 		for o_enemy in o_enemies:
-			o_enemy.get_popup().add_theme_font_size_override("font_size",  24)
+			o_enemy.get_popup().add_theme_font_size_override("font_size",  15)
 			if enemy is not PackedScene:
 				o_enemy.add_icon_item(enemy.sprite, enemy.name)
-				o_enemy.get_popup().set_item_icon_max_width(count, 50)
+				o_enemy.get_popup().set_item_icon_max_width(count, 25)
 				
 	var element = ""
 	var p_skills = []

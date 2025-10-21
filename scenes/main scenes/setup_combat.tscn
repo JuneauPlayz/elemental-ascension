@@ -174,7 +174,7 @@ offset_right = 1742.0
 offset_bottom = 366.0
 scale = Vector2(1.5, 1.5)
 theme_override_constants/icon_max_width = 100
-theme_override_font_sizes/font_size = 39
+theme_override_font_sizes/font_size = 36
 expand_icon = true
 
 [node name="Relics" type="OptionButton" parent="."]
@@ -204,7 +204,7 @@ offset_right = 1744.0
 offset_bottom = 462.0
 scale = Vector2(1.5, 1.5)
 theme_override_constants/icon_max_width = 100
-theme_override_font_sizes/font_size = 39
+theme_override_font_sizes/font_size = 36
 expand_icon = true
 
 [node name="Enemy3" type="OptionButton" parent="."]
@@ -215,7 +215,7 @@ offset_right = 1745.0
 offset_bottom = 557.0
 scale = Vector2(1.5, 1.5)
 theme_override_constants/icon_max_width = 100
-theme_override_font_sizes/font_size = 39
+theme_override_font_sizes/font_size = 36
 expand_icon = true
 
 [node name="Enemy4" type="OptionButton" parent="."]
@@ -226,7 +226,7 @@ offset_right = 1747.0
 offset_bottom = 647.0
 scale = Vector2(1.5, 1.5)
 theme_override_constants/icon_max_width = 100
-theme_override_font_sizes/font_size = 39
+theme_override_font_sizes/font_size = 36
 expand_icon = true
 
 [node name="StartCombat" type="Button" parent="."]
