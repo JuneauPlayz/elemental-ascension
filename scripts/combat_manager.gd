@@ -8,6 +8,12 @@ extends Node
 @onready var popup_1: Control = $"../Tutorial/Text/Popup1"
 @onready var popup_2: Control = $"../Tutorial/Text/Popup2"
 @onready var popup_3: Control = $"../Tutorial/Text/Popup3"
+@onready var popup_4: Control = $"../Tutorial/Text/Popup4"
+@onready var popup_5: Control = $"../Tutorial/Text/Popup5"
+@onready var popup_6: Control = $"../Tutorial/Text/Popup6"
+
+
+
 @onready var text_popups: Node = $"../Tutorial/Text"
 
 
@@ -1056,12 +1062,20 @@ func start_tutorial():
 	await target_selected
 	popup_3.visible = false
 	tutorial_highlight.visible = false
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(1.25).timeout
+	hide_end_turn()
 	popup_4.visible = true
 	ally1.hide_skills()
+	await next_popup
+	popup_5.visible = true
 	enemy1.can_attack = true
 	enemy1.update_countdown_label()
 	enemy1.set_countdown()
-	tutorial_highlight_dim.highlight_nodes([enemy1.countdown_label, enemy1.skill_info, enemy1.next_skill_label, popup_4.get_child(0)])
+	tutorial_highlight_dim.highlight_nodes([enemy1.countdown_label, enemy1.skill_info, enemy1.next_skill_label, popup_4.get_child(0)], 1.5)
+	await next_popup
+	ally1.show_skills()
+	popup_6.visible = true
+	tutorial_highlight_dim.highlight_nodes([ally1.spell_select_ui.ba_1, popup_6.get_child(0)], 1.5)
+	
 func pop_up_button_pressed():
 	next_popup.emit()

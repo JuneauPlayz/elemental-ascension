@@ -61,8 +61,6 @@ script = ExtResource("1_3ou8c")
 [node name="CombatManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_ucgqt")
-allies = null
-enemies = null
 
 [node name="TurnText" type="Label" parent="CombatManager"]
 offset_left = 829.0
@@ -183,6 +181,7 @@ script = ExtResource("12_bsuy1")
 [node name="Text" type="Node" parent="Tutorial"]
 
 [node name="Popup1" type="Control" parent="Tutorial/Text"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
