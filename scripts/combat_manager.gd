@@ -128,6 +128,8 @@ func start_combat():
 	reset_skill_select()
 	check_requirements()
 	show_skills()
+	for enemy in enemies:
+		enemy.change_skills()
 	while (!combat_finished):
 		start_ally_turn()
 		if tutorial == true:

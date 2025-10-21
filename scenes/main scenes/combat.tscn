@@ -32,6 +32,8 @@ script = ExtResource("1_3ou8c")
 [node name="CombatManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_ucgqt")
+allies = null
+enemies = null
 
 [node name="TurnText" type="Label" parent="CombatManager"]
 offset_left = 829.0
