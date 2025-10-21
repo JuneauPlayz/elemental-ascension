@@ -114,15 +114,6 @@ offset_bottom = 1074.0
 theme_override_font_sizes/font_size = 36
 text = "win"
 
-[node name="ResetChoices" type="Button" parent="."]
-offset_left = 450.0
-offset_top = 999.0
-offset_right = 703.0
-offset_bottom = 1057.0
-scale = Vector2(0.705, 0.705)
-theme_override_font_sizes/font_size = 56
-text = "Reset Choices"
-
 [node name="VictoryScreen" parent="." node_paths=PackedStringArray("combat_manager") instance=ExtResource("8_xw3f4")]
 visible = false
 offset_left = 1230.0
@@ -142,6 +133,18 @@ texture = ExtResource("7_qh8p2")
 [node name="ReactionManager" type="Node" parent="."]
 script = ExtResource("10_cmui4")
 
+[node name="Tutorial" type="Node2D" parent="."]
+
+[node name="TutorialHighlight" type="CanvasLayer" parent="Tutorial"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial/TutorialHighlight"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5137255)
+
 [connection signal="pressed" from="EndTurn" to="CombatManager" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
-[connection signal="pressed" from="ResetChoices" to="CombatManager" method="_on_reset_choices_pressed"]

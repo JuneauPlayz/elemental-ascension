@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://tlvpop5rp1x6"]
+[gd_scene load_steps=18 format=3 uid="uid://tlvpop5rp1x6"]
 
 [ext_resource type="Script" uid="uid://4ll72j38iaw" path="res://scripts/spell_select_ui.gd" id="1_6jhhb"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="2_ae65f"]
@@ -16,60 +16,46 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 expand_margin_top = 17.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rghh4"]
-bg_color = Color(0.255, 0.311, 0.287, 0.87)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ur654"]
+bg_color = Color(0.2484, 0.2484, 0.2484, 0.470588)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1dgm8"]
 content_margin_right = 0.0
 bg_color = Color(0.246653, 0.378583, 0.631853, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ur654"]
-bg_color = Color(0.2484, 0.2484, 0.2484, 0.470588)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rghh4"]
+bg_color = Color(0.255, 0.311, 0.287, 0.87)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8eds"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_667es"]
-bg_color = Color(0.254902, 0.309804, 0.286275, 0.870588)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ni84r"]
-bg_color = Color(0.247059, 0.380392, 0.631373, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sleic"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edv3q"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ni84r"]
+bg_color = Color(0.247059, 0.380392, 0.631373, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfass"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_667es"]
 bg_color = Color(0.254902, 0.309804, 0.286275, 0.870588)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q85v1"]
-bg_color = Color(0.247059, 0.380392, 0.631373, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edv3q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lt1l8"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4ccb"]
-bg_color = Color(0.254902, 0.309804, 0.286275, 0.870588)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2ev1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q85v1"]
 bg_color = Color(0.247059, 0.380392, 0.631373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfass"]
+bg_color = Color(0.254902, 0.309804, 0.286275, 0.870588)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2255"]
 bg_color = Color(0.223103, 0.223103, 0.223103, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6v8fa"]
-shadow_size = 8
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2ev1"]
+bg_color = Color(0.247059, 0.380392, 0.631373, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_1aora"]
-font_size = 28
-font_color = Color(0.878646, 0.868238, 0.89352, 1)
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_1vgtr"]
-font_size = 90
-outline_size = 20
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4ccb"]
+bg_color = Color(0.254902, 0.309804, 0.286275, 0.870588)
 
 [node name="SpellSelectUi" type="Control"]
 layout_mode = 3
@@ -108,9 +94,9 @@ size_flags_horizontal = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 38
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rghh4")
-theme_override_styles/hover = SubResource("StyleBoxFlat_1dgm8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ur654")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1dgm8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rghh4")
 text = "test"
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -129,9 +115,9 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 38
-theme_override_styles/disabled = SubResource("StyleBoxFlat_667es")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ni84r")
 theme_override_styles/normal = SubResource("StyleBoxFlat_sleic")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ni84r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_667es")
 text = "test"
 
 [node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -151,9 +137,9 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 38
-theme_override_styles/disabled = SubResource("StyleBoxFlat_pfass")
-theme_override_styles/hover = SubResource("StyleBoxFlat_q85v1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lt1l8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q85v1")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_pfass")
 text = "test"
 
 [node name="VSeparator3" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -173,14 +159,14 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 38
-theme_override_styles/disabled = SubResource("StyleBoxFlat_v4ccb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_i2ev1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_s2255")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2ev1")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_v4ccb")
 text = "test"
 
 [node name="SkillInfo" parent="." instance=ExtResource("2_ae65f")]
 visible = false
-layout_mode = 2
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -191,7 +177,7 @@ offset_bottom = 48.0
 
 [node name="SkillInfo2" parent="." instance=ExtResource("2_ae65f")]
 visible = false
-layout_mode = 2
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -202,7 +188,7 @@ offset_bottom = 79.0
 
 [node name="SkillInfo3" parent="." instance=ExtResource("2_ae65f")]
 visible = false
-layout_mode = 2
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -213,7 +199,7 @@ offset_bottom = 110.0
 
 [node name="SkillInfo4" parent="." instance=ExtResource("2_ae65f")]
 visible = false
-layout_mode = 2
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -222,45 +208,10 @@ offset_top = 119.0
 offset_right = 534.0
 offset_bottom = 142.0
 
-[node name="PositionUI" type="Control" parent="."]
-anchors_preset = 0
-offset_top = 30.0
-offset_right = 40.0
-offset_bottom = 70.0
-mouse_filter = 2
-
-[node name="PositionContainer" type="PanelContainer" parent="PositionUI"]
-layout_mode = 0
-offset_left = 73.0
-offset_top = 246.0
-offset_right = 219.0
-offset_bottom = 368.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_6v8fa")
-
-[node name="Position" type="Label" parent="PositionUI"]
-layout_mode = 0
-offset_left = 74.0
-offset_top = 245.0
-offset_right = 219.0
-offset_bottom = 282.0
-theme_override_font_sizes/font_size = 0
-text = "POSITION"
-label_settings = SubResource("LabelSettings_1aora")
-horizontal_alignment = 1
-
-[node name="PosNumber" type="Label" parent="PositionUI"]
-layout_mode = 0
-offset_left = 127.0
-offset_top = 290.0
-offset_right = 167.0
-offset_bottom = 373.0
-label_settings = SubResource("LabelSettings_1vgtr")
-
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_mouse_exited"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/SP1Panel/S1" to="." method="_on_s_1_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/SP1Panel/S1" to="." method="_on_s_1_mouse_exited"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/SP1Panel/S1" to="." method="_on_s_1_pressed"]

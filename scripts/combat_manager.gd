@@ -2,6 +2,7 @@ extends Node
 
 @onready var turn_text: Label = $TurnText
 @onready var combat_currency: Control = $CombatCurrency
+@onready var enemy_combat_currency: Control = $EnemyCombatCurrency
 
 const ENEMY = preload("res://resources/units/enemies/enemy.tscn")
 
@@ -37,7 +38,6 @@ var targeting_skill : Skill
 
 
 @onready var end_turn: Button = $"../EndTurn"
-@onready var reset_choices: Button = $"../ResetChoices"
 @onready var targeting_label: Label = $TargetingLabel
 @onready var targeting_skill_info: Control = $TargetingSkillInfo
 @onready var relics : RelicHandler
@@ -63,7 +63,7 @@ var lightning_tokens = 0
 var grass_tokens = 0
 var earth_tokens = 0
 
-
+var tutorial = false
 
 const TARGET_CURSOR = preload("res://assets/target cursor.png")
 const DEFAULT_CURSOR = preload("res://assets/defaultcursor.png")
@@ -130,6 +130,9 @@ func start_combat():
 	show_skills()
 	while (!combat_finished):
 		start_ally_turn()
+		if tutorial == true:
+			start_tutorial()
+			tutorial = false
 		await ally_turn_done
 
 func end_battle():
@@ -544,38 +547,31 @@ func update_positions(cpos):
 func update_skill_positions():
 	if ally1 != null:
 		var spell_select_ui1 = ally1.get_spell_select()
-		spell_select_ui1.update_pos(ally1_pos + 1)
 	if ally2 != null:
 		var spell_select_ui2 = ally2.get_spell_select()
-		spell_select_ui2.update_pos(ally2_pos + 1)
 	if ally3 != null:
 		var spell_select_ui3 = ally3.get_spell_select()
-		spell_select_ui3.update_pos(ally3_pos + 1)
 	if ally4 != null:
 		var spell_select_ui4 = ally4.get_spell_select()
-		spell_select_ui4.update_pos(ally4_pos + 1)
+
 
 func reset_skill_select():
 	set_unit_pos()
 	if ally1 != null:
 		var spell_select_ui1 = ally1.get_spell_select()
 		spell_select_ui1.reset()
-		spell_select_ui1.update_pos(ally1_pos + 1)
 		ally1.using_skill = false
 	if ally2 != null:
 		var spell_select_ui2 = ally2.get_spell_select()
 		spell_select_ui2.reset()
-		spell_select_ui2.update_pos(ally2_pos + 1)
 		ally2.using_skill = false
 	if ally3 != null:
 		var spell_select_ui3 = ally3.get_spell_select()
 		spell_select_ui3.reset()
-		spell_select_ui3.update_pos(ally3_pos + 1)
 		ally3.using_skill = false
 	if ally4 != null:
 		var spell_select_ui4 = ally4.get_spell_select()
 		spell_select_ui4.reset()
-		spell_select_ui4.update_pos(ally4_pos + 1)
 		ally4.using_skill = false
 	next_pos = 0
 	ally1_pos = -1
@@ -610,18 +606,6 @@ func _on_end_turn_pressed() -> void:
 		for enemy in enemies:
 			enemy.change_skills()
 
-func _on_reset_choices_pressed() -> void:
-	AudioPlayer.play_FX("click",0)
-	next_pos = 0
-	ally1_pos = -1
-	ally2_pos = -1
-	ally3_pos = -1
-	ally4_pos = -1
-	reset_skill_select()
-	update_skill_positions()
-	combat_currency.update()
-	check_requirements()
-
 func show_skills():
 	if ally1 != null:
 		ally1.show_skills()
@@ -644,12 +628,10 @@ func hide_skills():
 	
 func hide_ui():
 	end_turn.visible = false
-	reset_choices.visible = false
 	
 func show_ui():
 	if (not run.UIManager.reaction_guide_open):
 		end_turn.visible = true
-	reset_choices.visible = true
 	
 	
 func choose_target(skill : Skill): 
@@ -1013,3 +995,25 @@ func reset_tokens():
 	lightning_tokens = 0
 	earth_tokens = 0
 	grass_tokens = 0
+
+func hide_tokens():
+	combat_currency.visible = false
+	enemy_combat_currency.visible = false
+	
+func hide_end_turn():
+	end_turn.visible = false
+	
+func hide_reaction_guide_button():
+	run.reaction_guide_button.visible = false
+	
+func hide_win():
+	win.visible = false
+
+#tutorial
+func start_tutorial():
+	run = get_tree().get_first_node_in_group("run")
+	hide_tokens()
+	hide_end_turn()
+	hide_reaction_guide_button()
+	hide_win()
+	

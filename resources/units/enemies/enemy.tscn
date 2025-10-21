@@ -6,26 +6,26 @@
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="5_gim1t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hiluv"]
-font_size = 42
+font_size = 34
 outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebmkq"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6w0c8"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76n2e"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xp1kw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysnwy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pkpw"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysnwy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xp1kw"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76n2e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6w0c8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebmkq"]
 
 [node name="Enemy" type="Node2D"]
 scale = Vector2(0.75, 0.75)
@@ -95,10 +95,10 @@ metadata/_edit_use_anchors_ = true
 [node name="SkillInfo" parent="ShowNextSkill" instance=ExtResource("5_gim1t")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -28.5
-anchor_top = -1.15
-anchor_right = -27.5
-anchor_bottom = -0.15
+anchor_left = -28.49999
+anchor_top = -0.8583349
+anchor_right = -27.49999
+anchor_bottom = 0.14166512
 offset_left = 1496.0
 offset_top = 41.0
 offset_right = 1496.0
@@ -111,11 +111,11 @@ offset_left = 45.0
 offset_top = 217.0
 offset_right = 288.0
 offset_bottom = 576.0
-theme_override_styles/focus = SubResource("StyleBoxFlat_ebmkq")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_6w0c8")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_76n2e")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xp1kw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_6pkpw")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ysnwy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6pkpw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xp1kw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_76n2e")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6w0c8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ebmkq")
 
 [connection signal="pressed" from="TargetingArea" to="." method="_on_targeting_area_pressed"]

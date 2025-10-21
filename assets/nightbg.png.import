@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddhiy727e28nv"
-path="res://.godot/imported/ieatplastic.jpg-1438df082f5ae1e9931751a9a99d02c3.ctex"
+uid="uid://ci3grqu6c8y71"
+path="res://.godot/imported/nightbg.png-c6871a4e6b851dcbbaa4dad8cb9dace3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ieatplastic.jpg"
-dest_files=["res://.godot/imported/ieatplastic.jpg-1438df082f5ae1e9931751a9a99d02c3.ctex"]
+source_file="res://assets/nightbg.png"
+dest_files=["res://.godot/imported/nightbg.png-c6871a4e6b851dcbbaa4dad8cb9dace3.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

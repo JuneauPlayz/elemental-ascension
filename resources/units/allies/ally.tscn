@@ -23,26 +23,26 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 expand_margin_top = 17.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rghh4"]
-bg_color = Color(0.255, 0.311, 0.287, 0.87)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ur654"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 0.470588)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1dgm8"]
 content_margin_right = 0.0
 bg_color = Color(0.246653, 0.378583, 0.631853, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ur654"]
-bg_color = Color(0.180392, 0.180392, 0.180392, 0.470588)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rghh4"]
+bg_color = Color(0.255, 0.311, 0.287, 0.87)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8eds"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_667es"]
-bg_color = Color(0.254902, 0.309804, 0.286275, 0.870588)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sleic"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ni84r"]
 bg_color = Color(0.247059, 0.380392, 0.631373, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sleic"]
-bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_667es"]
+bg_color = Color(0.254902, 0.309804, 0.286275, 0.870588)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0maum"]
 font_size = 32
@@ -54,22 +54,22 @@ font_size = 28
 outline_size = 9
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqkb2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7wpu"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6cuy"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_857xx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipxiy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25kx1"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipxiy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_857xx"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6cuy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7wpu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqkb2"]
 
 [node name="Ally" type="Node2D"]
 position = Vector2(85, 185)
@@ -82,18 +82,18 @@ max_health = 100
 title = "QiqiFallen"
 
 [node name="SpellSelectUi" parent="." instance=ExtResource("2_pcgfv")]
-offset_left = -95.9091
-offset_top = 160.545
-offset_right = -95.9091
-offset_bottom = 160.545
+offset_left = -96.36363
+offset_top = 259.09094
+offset_right = -96.36363
+offset_bottom = 259.09094
 scale = Vector2(0.705, 0.705)
 metadata/_edit_use_anchors_ = true
 
 [node name="HP Bar" parent="." instance=ExtResource("3_urihg")]
-offset_left = -89.0909
-offset_top = 67.2727
-offset_right = -89.0909
-offset_bottom = 67.2727
+offset_left = -89.09089
+offset_top = 147.27274
+offset_right = -89.09089
+offset_bottom = 147.27274
 scale = Vector2(0.65, 0.65)
 metadata/_edit_use_anchors_ = true
 
@@ -105,6 +105,7 @@ position = Vector2(1.81818, -66.3636)
 scale = Vector2(0.7, 0.7)
 
 [node name="Core" parent="." instance=ExtResource("6_ww2sg")]
+visible = false
 position = Vector2(-151.818, -130.909)
 
 [node name="LevelUpReward" type="Control" parent="."]
@@ -149,9 +150,9 @@ size_flags_horizontal = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.705882)
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 36
-theme_override_styles/disabled = SubResource("StyleBoxFlat_rghh4")
-theme_override_styles/hover = SubResource("StyleBoxFlat_1dgm8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ur654")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1dgm8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rghh4")
 text = "Option 1"
 
 [node name="VSeparator" type="VSeparator" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer"]
@@ -170,15 +171,15 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.705882)
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 36
-theme_override_styles/disabled = SubResource("StyleBoxFlat_667es")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ni84r")
 theme_override_styles/normal = SubResource("StyleBoxFlat_sleic")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ni84r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_667es")
 text = "Option 2
 "
 
 [node name="SkillInfo" parent="LevelUpReward" instance=ExtResource("9_6y37o")]
 visible = false
-layout_mode = 2
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -186,10 +187,12 @@ offset_left = -78.7881
 offset_top = 185.455
 offset_right = 182.212
 offset_bottom = 208.455
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="SkillInfo2" parent="LevelUpReward" instance=ExtResource("9_6y37o")]
 visible = false
-layout_mode = 2
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -197,6 +200,8 @@ offset_left = -80.0002
 offset_top = 267.879
 offset_right = 181.0
 offset_bottom = 290.879
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Avaliable" type="Label" parent="LevelUpReward"]
 layout_mode = 0
@@ -250,19 +255,19 @@ offset_left = -114.545
 offset_top = -228.182
 offset_right = 128.455
 offset_bottom = 130.818
-theme_override_styles/focus = SubResource("StyleBoxFlat_fqkb2")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_k7wpu")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_u6cuy")
-theme_override_styles/hover = SubResource("StyleBoxFlat_857xx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_25kx1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ipxiy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_25kx1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_857xx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_u6cuy")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_k7wpu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fqkb2")
 
 [connection signal="new_select" from="SpellSelectUi" to="." method="_on_spell_select_ui_new_select"]
 [connection signal="new_select" from="LevelUpReward" to="." method="_on_level_up_reward_new_select"]
 [connection signal="mouse_entered" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_ba_1_mouse_entered"]
 [connection signal="mouse_exited" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_ba_1_mouse_exited"]
-[connection signal="pressed" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_button_pressed"]
 [connection signal="pressed" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_ba_1_pressed"]
+[connection signal="pressed" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_button_pressed"]
 [connection signal="mouse_entered" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/SP1Panel/option2" to="LevelUpReward" method="_on_s_1_mouse_entered"]
 [connection signal="mouse_exited" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/SP1Panel/option2" to="LevelUpReward" method="_on_s_1_mouse_exited"]
 [connection signal="pressed" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/SP1Panel/option2" to="LevelUpReward" method="_on_s_1_pressed"]

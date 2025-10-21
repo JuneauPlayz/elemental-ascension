@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="UnitRes" load_steps=8 format=3 uid="uid://ct8pg6i13eoib"]
+
+[ext_resource type="Resource" uid="uid://dnhsg7q58rjph" path="res://resources/core/WaterStart.tres" id="1_u0ftr"]
+[ext_resource type="Resource" uid="uid://b5mw6bnrwcso" path="res://resources/level_up_relics/Water Boost.tres" id="2_y1iqw"]
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="3_8rq2k"]
+[ext_resource type="Resource" uid="uid://dooqfwlwxly5w" path="res://resources/Skills/water/Water_Bolt.tres" id="4_7pll6"]
+[ext_resource type="Resource" uid="uid://dgisgofailnf2" path="res://resources/Skills/water/Water Splash.tres" id="5_bwi7l"]
+[ext_resource type="Texture2D" uid="uid://q57bj44h63ue" path="res://assets/water.png" id="6_16vcf"]
+[ext_resource type="Resource" uid="uid://tww5brtgt8kk" path="res://resources/Skills/boss_skills/Water Bomb.tres" id="7_6le6d"]
+
+[resource]
+script = ExtResource("3_8rq2k")
+starting_health = 60
+skill1 = ExtResource("4_7pll6")
+skill2 = ExtResource("5_bwi7l")
+relic_1 = ExtResource("2_y1iqw")
+relic_2 = ExtResource("2_y1iqw")
+ult_1 = ExtResource("7_6le6d")
+ult_2 = ExtResource("7_6le6d")
+relic_3 = ExtResource("2_y1iqw")
+relic_4 = ExtResource("2_y1iqw")
+sprite = ExtResource("6_16vcf")
+sprite_scale = 0.13
+name = "Water Girl"
+core_main_stat = ExtResource("1_u0ftr")
+metadata/_custom_type_script = "uid://bpkpxp60hx4da"

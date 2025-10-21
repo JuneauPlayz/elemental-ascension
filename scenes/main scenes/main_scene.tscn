@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpqr8d1v3tlcf"]
 
 [ext_resource type="Script" uid="uid://b53ec2n06gu4g" path="res://scripts/main_scene.gd" id="1_3n5v6"]
-[ext_resource type="Texture2D" uid="uid://dvsv0kwugnhrm" path="res://assets/blue sky clouds bg.jpg" id="2_6dk50"]
+[ext_resource type="Texture2D" uid="uid://cvuae61vimnfv" path="res://assets/daybg.png" id="2_vck2s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k0nup"]
 font_size = 178
@@ -11,10 +11,11 @@ outline_color = Color(0, 0, 0, 1)
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_3n5v6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(944, 511)
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.94509804)
+position = Vector2(1540, 741.00006)
 scale = Vector2(1.305, 1.305)
-texture = ExtResource("2_6dk50")
+texture = ExtResource("2_vck2s")
 
 [node name="Title" type="Label" parent="."]
 offset_left = -8.0
@@ -35,11 +36,19 @@ text = "Start Run"
 
 [node name="ExitGame" type="Button" parent="."]
 offset_left = 712.0
-offset_top = 479.0
+offset_top = 678.0
 offset_right = 1204.0
-offset_bottom = 532.0
+offset_bottom = 776.0
 theme_override_font_sizes/font_size = 74
 text = "Exit"
+
+[node name="Tutorial" type="Button" parent="."]
+offset_left = 712.0
+offset_top = 514.0
+offset_right = 1204.0
+offset_bottom = 612.0
+theme_override_font_sizes/font_size = 74
+text = "Tutorial"
 
 [node name="CombatTesting" type="Button" parent="."]
 offset_left = 690.0
@@ -51,4 +60,5 @@ text = "Combat Testing"
 
 [connection signal="pressed" from="StartB" to="." method="_on_start_b_pressed"]
 [connection signal="pressed" from="ExitGame" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="CombatTesting" to="." method="_on_combat_testing_pressed"]
