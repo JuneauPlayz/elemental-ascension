@@ -9,21 +9,16 @@ uniform float softness : hint_range(0.0, 100.0) = 10.0;
 
 void fragment() {
 	vec2 viewport_size = vec2(1.0) / SCREEN_PIXEL_SIZE;
-	vec2 frag_pos = FRAGCOORD.xy;
-
-	float alpha = 1.0; // start fully dark
+	vec2 frag_pos = FRAGCOORD.xy / viewport_size; // normalize frag coords to 0–1
+	float alpha = 0.75; // start fully dark; smaller = more transparent hole
 
 	for (int i = 0; i < rect_count; i++) {
-		if (i >= MAX_RECTS) break;
-
-		vec2 rect_center = rect_positions[i] * viewport_size;
+		vec2 rect_center = rect_positions[i];
 		vec2 half_size = rect_sizes[i] * 0.5;
 
 		vec2 d = abs(frag_pos - rect_center) - half_size;
 		float outside_dist = length(max(d, vec2(0.0)));
-		float rect_alpha = smoothstep(0.0, softness, outside_dist);
-
-		// Combine highlights: minimum alpha keeps bright holes
+		float rect_alpha = smoothstep(0.0, softness / viewport_size.x, outside_dist);
 		alpha = min(alpha, rect_alpha);
 	}
 

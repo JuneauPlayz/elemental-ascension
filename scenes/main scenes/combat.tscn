@@ -178,9 +178,9 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0.34509805)
 script = ExtResource("12_bsuy1")
 
-[node name="Text" type="Node" parent="Tutorial"]
+[node name="Tutorial1" type="Node" parent="Tutorial"]
 
-[node name="Popup1" type="Control" parent="Tutorial/Text"]
+[node name="Popup1" type="Control" parent="Tutorial/Tutorial1"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -195,23 +195,23 @@ grow_vertical = 2
 scale = Vector2(1.6, 1.6)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup1"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup1"]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup1/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup1/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup1/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Text/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Welcome to Project Burg,
 A roguelike deckbuilder.
@@ -219,17 +219,17 @@ First, I'll show you how
 to attack an enemy."
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Text/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup2" type="Control" parent="Tutorial/Text"]
+[node name="Popup2" type="Control" parent="Tutorial/Tutorial1"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -244,34 +244,34 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup2"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup2"]
 layout_mode = 0
 offset_right = 209.0
 offset_bottom = 97.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup2/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup2/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup2/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup2/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Text/Popup2/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup2/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Click on \"Fire Bolt\"
 to attack the enemy"
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup2/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup2/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Popup3" type="Control" parent="Tutorial/Text"]
+[node name="Popup3" type="Control" parent="Tutorial/Tutorial1"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -286,23 +286,23 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup3"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3"]
 layout_mode = 0
 offset_right = 209.0
 offset_bottom = 97.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup3/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup3/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Text/Popup3/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "\"Fire Bolt\" is a skill
 that can target any
@@ -311,12 +311,151 @@ enemy's sprite to use
 the skill."
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup3/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Popup4" type="Control" parent="Tutorial/Text"]
+[node name="Popup3_2_5" type="Control" parent="Tutorial/Tutorial1"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1451.9999
+offset_top = 416.0
+offset_right = -219.875
+offset_bottom = -497.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.6, 1.6)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3_2_5"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You dealt 14 fire damage
+and applied Fire to the
+enemy!"
+label_settings = SubResource("LabelSettings_pf6w8")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "awesome sauce"
+
+[node name="Popup3_2_6" type="Control" parent="Tutorial/Tutorial1"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 450.0
+offset_top = 575.0
+offset_right = -1248.75
+offset_bottom = -338.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.6, 1.6)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3_2_6"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Allies can (normally)
+only use one skill per
+turn."
+label_settings = SubResource("LabelSettings_pf6w8")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Popup3_5" type="Control" parent="Tutorial/Tutorial1"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1534.0
+offset_top = 486.0
+offset_right = -169.33337
+offset_bottom = -469.3333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3_5"]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click End Turn to
+move on to the
+next turn."
+label_settings = SubResource("LabelSettings_pf6w8")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Popup4" type="Control" parent="Tutorial/Tutorial1"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -331,23 +470,23 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup4"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup4"]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup4/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup4/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup4/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Text/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "During combat, 
 enemies will 
@@ -355,17 +494,17 @@ attack you
 too."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Text/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup5" type="Control" parent="Tutorial/Text"]
+[node name="Popup5" type="Control" parent="Tutorial/Tutorial1"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -380,23 +519,23 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup5"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup5"]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup5/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup5/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup5/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Text/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Enemies have countdowns. 
 When an ally uses a skill,
@@ -407,17 +546,17 @@ reaches 0, they will use
 their skill."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Text/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup6" type="Control" parent="Tutorial/Text"]
+[node name="Popup6" type="Control" parent="Tutorial/Tutorial1"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -432,23 +571,23 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Text/Popup6"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup6"]
 layout_mode = 0
 offset_right = 209.0
 offset_bottom = 97.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Text/Popup6/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup6/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Text/Popup6/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup6/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Text/Popup6/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup6/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "A new turn has begun,
 so you can use your skill
@@ -457,13 +596,119 @@ again and watch the
 enemy's countdown."
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Text/Popup6/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup6/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
+[node name="Popup7" type="Control" parent="Tutorial/Tutorial1"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 430.0
+offset_top = 481.00003
+offset_right = -1246.6667
+offset_bottom = -323.1667
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup7"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup7/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "The enemy used
+their skill and you 
+took damage. When
+an ally's health is 
+reduced to 0, they
+are out for the fight."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Popup8" type="Control" parent="Tutorial/Tutorial1"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 492.00003
+offset_top = 385.00003
+offset_right = -1059.6667
+offset_bottom = -419.16675
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup8"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup8/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "That's the main combat loop.
+When ending your turn, any
+enemies who haven't used their
+skill yet will use their skill.
+Now, let's add another unit on
+each side."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
 [connection signal="pressed" from="EndTurn" to="CombatManager" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
-[connection signal="pressed" from="Tutorial/Text/Popup1/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Text/Popup1" method="_on_button_pressed"]
-[connection signal="pressed" from="Tutorial/Text/Popup4/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Text/Popup4" method="_on_button_pressed"]
-[connection signal="pressed" from="Tutorial/Text/Popup5/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Text/Popup5" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup1" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup3_2_5" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup3_2_6" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup4" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup5" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup7" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup8" method="_on_button_pressed"]

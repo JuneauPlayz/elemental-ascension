@@ -21,6 +21,14 @@ func _ready() -> void:
 	combat_manager.tutorial = true
 
 
+func tutorial_2():
+	current_scene.queue_free()
+	await get_tree().create_timer(0.1).timeout
+	GC.load_run_combat_test(ally1, null, null, null, enemy1, null, null, null, [])
+	new_scene(RUN)
+	combat_manager = current_scene.combat_manager
+	combat_manager.tutorial2 = true
+	
 var current_scene
 # Called when the node enters the scene tree for the first time.
 

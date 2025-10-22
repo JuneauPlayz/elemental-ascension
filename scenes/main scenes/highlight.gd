@@ -19,10 +19,13 @@ func highlight_nodes(nodes: Array, scale := 1.0):
 	for node in nodes:
 		if not node or not node.is_visible_in_tree():
 			continue
+
 		var rect = node.get_global_rect()
 		var center = rect.get_center() / viewport_size
+		var normalized_size = (rect.size / viewport_size) * scale
+
 		rect_positions.append(center)
-		rect_sizes.append(rect.size * scale)
+		rect_sizes.append(normalized_size)
 
 	mat.set_shader_parameter("rect_count", rect_positions.size())
 	mat.set_shader_parameter("rect_positions", rect_positions)

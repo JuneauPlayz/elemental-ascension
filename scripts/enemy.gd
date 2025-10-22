@@ -198,6 +198,8 @@ func set_countdown():
 
 func update_countdown_label():
 	if can_attack:
+		countdown_label.visible = true
+		show_next_skill.visible = true
 		if countdown > 0:
 			countdown_label.text = "Countdown: " + str(countdown)
 		elif countdown <= 0:

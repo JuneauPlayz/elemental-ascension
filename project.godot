@@ -57,6 +57,7 @@ run=""
 combat_sim=""
 choose_reward=""
 game=""
+tutorial=""
 
 [gui]
 
