@@ -5,12 +5,11 @@ const RUN = preload("res://scenes/main scenes/run.tscn")
 var game
 
 var ally1 = preload("uid://btrtrqusgest0")
+var ally2 = preload("uid://ct8pg6i13eoib")
 
 var enemy1 = preload("uid://crtmf4u70jof5")
+var enemy2 = preload("uid://crtmf4u70jof5")
 
-var enemy2 : UnitRes
-var enemy3 : UnitRes
-var enemy4 : UnitRes
 
 var combat_manager
 
@@ -24,7 +23,7 @@ func _ready() -> void:
 func tutorial_2():
 	current_scene.queue_free()
 	await get_tree().create_timer(0.1).timeout
-	GC.load_run_combat_test(ally1, null, null, null, enemy1, null, null, null, [])
+	GC.load_run_combat_test(ally1, ally2, null, null, enemy1, null, null, null, [])
 	new_scene(RUN)
 	combat_manager = current_scene.combat_manager
 	combat_manager.tutorial2 = true
