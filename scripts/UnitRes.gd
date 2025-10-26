@@ -12,10 +12,10 @@ var level = 0
 var level_up = false
 
 # only for enemies
-@export var skill_1_cd : int
-@export var skill_2_cd : int
-@export var skill_3_cd : int
-@export var skill_4_cd : int
+@export var skill_1_cd : int = 2
+@export var skill_2_cd : int = 3
+@export var skill_3_cd : int = 1
+@export var skill_4_cd : int = 2
 
 # only for allies
 @export_category("Level Up Reward 1")

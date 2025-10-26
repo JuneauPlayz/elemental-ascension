@@ -72,7 +72,6 @@ func _ready() -> void:
 		allies.append(run.ally4)
 	for ally in allies:
 		ally.spell_select_ui.enable_all()
-		ally.spell_select_ui.hide_position()
 		ally.spell_select_ui.visible = true
 	await get_tree().create_timer(0.3).timeout
 	load_items(type)

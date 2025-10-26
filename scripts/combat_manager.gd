@@ -2,6 +2,13 @@ extends Node
 
 @onready var turn_text: Label = $TurnText
 @onready var combat_currency: Control = $CombatCurrency
+@onready var enemy_combat_currency: Control = $EnemyCombatCurrency
+
+
+
+
+@onready var text_popups: Node = $"../Tutorial/Tutorial1"
+
 
 const ENEMY = preload("res://resources/units/enemies/enemy.tscn")
 
@@ -35,9 +42,11 @@ var targeting = false
 
 var targeting_skill : Skill
 
+var auto_end_turn = true
+var tutorial_no_end_turn = false
+var tutorial_no_ally_skill = false
 
 @onready var end_turn: Button = $"../EndTurn"
-@onready var reset_choices: Button = $"../ResetChoices"
 @onready var targeting_label: Label = $TargetingLabel
 @onready var targeting_skill_info: Control = $TargetingSkillInfo
 @onready var relics : RelicHandler
@@ -63,7 +72,8 @@ var lightning_tokens = 0
 var grass_tokens = 0
 var earth_tokens = 0
 
-
+var tutorial = false
+var tutorial2 = false
 
 const TARGET_CURSOR = preload("res://assets/target cursor.png")
 const DEFAULT_CURSOR = preload("res://assets/defaultcursor.png")
@@ -73,6 +83,8 @@ signal enemy_turn_done
 signal new_spell_selected
 signal target_selected
 signal target_chosen
+signal skill_selected
+signal end_turn_pressed
 
 var combat_finished = false
 var first_turn = true
@@ -120,6 +132,7 @@ func combat_ready():
 	combat_currency.update()
 	run.hide_gold()
 	run.hide_xp()
+	
 
 
 
@@ -128,8 +141,18 @@ func start_combat():
 	reset_skill_select()
 	check_requirements()
 	show_skills()
+	for popup in text_popups.get_children():
+		popup.visible = false
+	for enemy in enemies:
+		enemy.change_skills()
 	while (!combat_finished):
 		start_ally_turn()
+		if tutorial == true:
+			start_tutorial()
+			tutorial = false
+		elif tutorial2 == true:
+			start_tutorial2()
+			tutorial2 = false
 		await ally_turn_done
 
 func end_battle():
@@ -162,6 +185,7 @@ func ally_skill_use(skill, target, ally):
 	ally.spell_select_ui.disable_all()
 	for enemy in enemies:
 		enemy.decrease_countdown(1)
+	await get_tree().create_timer(0.5).timeout
 	check_ally_turn_done()
 	run.relic_handler.activate_relics_by_type(Relic.Type.POST_ALLY_SKILL)
 	await get_tree().create_timer(0.1).timeout
@@ -245,7 +269,8 @@ func check_ally_turn_done():
 	for ally in allies:
 		if ally.spell_select_ui.disabled_all == false:
 			return
-	_on_end_turn_pressed()
+	if auto_end_turn:
+		_on_end_turn_pressed()
 
 func check_event_relics(skill,unit,value_multiplier,target):
 	if (run.ghostfire and unit is Ally and skill.element == "fire"):
@@ -499,7 +524,9 @@ func enemy_lose_shields():
 func _on_spell_select_ui_new_select(ally) -> void:
 	var spell_select_ui: Control = ally.get_spell_select()
 	var selected_index = spell_select_ui.selected
-	
+	# for tutorial
+	skill_selected.emit()
+		
 	hide_ui()
 	# If unselecting
 	if selected_index == 0:
@@ -523,13 +550,14 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	else:
 		var target = await choose_target(skill)
 		if target:
+			target_selected.emit()
 			ally.using_skill = true
 			await ally_skill_use(skill, target, ally)
 	
 	combat_currency.update()
 	check_requirements()
+	
 
-		
 
 func update_positions(cpos):
 	if ally1_pos > cpos:
@@ -544,38 +572,31 @@ func update_positions(cpos):
 func update_skill_positions():
 	if ally1 != null:
 		var spell_select_ui1 = ally1.get_spell_select()
-		spell_select_ui1.update_pos(ally1_pos + 1)
 	if ally2 != null:
 		var spell_select_ui2 = ally2.get_spell_select()
-		spell_select_ui2.update_pos(ally2_pos + 1)
 	if ally3 != null:
 		var spell_select_ui3 = ally3.get_spell_select()
-		spell_select_ui3.update_pos(ally3_pos + 1)
 	if ally4 != null:
 		var spell_select_ui4 = ally4.get_spell_select()
-		spell_select_ui4.update_pos(ally4_pos + 1)
+
 
 func reset_skill_select():
 	set_unit_pos()
 	if ally1 != null:
 		var spell_select_ui1 = ally1.get_spell_select()
 		spell_select_ui1.reset()
-		spell_select_ui1.update_pos(ally1_pos + 1)
 		ally1.using_skill = false
 	if ally2 != null:
 		var spell_select_ui2 = ally2.get_spell_select()
 		spell_select_ui2.reset()
-		spell_select_ui2.update_pos(ally2_pos + 1)
 		ally2.using_skill = false
 	if ally3 != null:
 		var spell_select_ui3 = ally3.get_spell_select()
 		spell_select_ui3.reset()
-		spell_select_ui3.update_pos(ally3_pos + 1)
 		ally3.using_skill = false
 	if ally4 != null:
 		var spell_select_ui4 = ally4.get_spell_select()
 		spell_select_ui4.reset()
-		spell_select_ui4.update_pos(ally4_pos + 1)
 		ally4.using_skill = false
 	next_pos = 0
 	ally1_pos = -1
@@ -595,9 +616,10 @@ func _on_end_turn_pressed() -> void:
 	if (!targeting and choosing_skills):
 		hide_ui()
 		AudioPlayer.play_FX("click",0)
+		end_turn_pressed.emit()
 		await get_tree().create_timer(0.5).timeout
 		for enemy in enemies:
-			if enemy.skill_used == false:
+			if enemy.skill_used == false and enemy.can_attack:
 				enemy_skill_use(enemy)
 	
 		check_enemy_skills()
@@ -610,27 +632,16 @@ func _on_end_turn_pressed() -> void:
 		for enemy in enemies:
 			enemy.change_skills()
 
-func _on_reset_choices_pressed() -> void:
-	AudioPlayer.play_FX("click",0)
-	next_pos = 0
-	ally1_pos = -1
-	ally2_pos = -1
-	ally3_pos = -1
-	ally4_pos = -1
-	reset_skill_select()
-	update_skill_positions()
-	combat_currency.update()
-	check_requirements()
-
 func show_skills():
-	if ally1 != null:
-		ally1.show_skills()
-	if ally2 != null:
-		ally2.show_skills()
-	if ally3 != null:
-		ally3.show_skills()
-	if ally4 != null:
-		ally4.show_skills()
+	if not tutorial_no_ally_skill:
+		if ally1 != null:
+			ally1.show_skills()
+		if ally2 != null:
+			ally2.show_skills()
+		if ally3 != null:
+			ally3.show_skills()
+		if ally4 != null:
+			ally4.show_skills()
 	
 func hide_skills():
 	if ally1 != null:
@@ -644,12 +655,10 @@ func hide_skills():
 	
 func hide_ui():
 	end_turn.visible = false
-	reset_choices.visible = false
 	
 func show_ui():
-	if (not run.UIManager.reaction_guide_open):
+	if (not run.UIManager.reaction_guide_open and not tutorial_no_end_turn):
 		end_turn.visible = true
-	reset_choices.visible = true
 	
 	
 func choose_target(skill : Skill): 
@@ -1013,3 +1022,113 @@ func reset_tokens():
 	lightning_tokens = 0
 	earth_tokens = 0
 	grass_tokens = 0
+
+func hide_tokens():
+	combat_currency.visible = false
+	enemy_combat_currency.visible = false
+	
+func hide_end_turn():
+	end_turn.visible = false
+	
+func hide_reaction_guide_button():
+	run.reaction_guide_button.visible = false
+	
+func hide_win():
+	win.visible = false
+
+func show_end_turn():
+	end_turn.visible = true
+
+#tutorial
+signal next_popup
+@onready var tutorial_highlight: CanvasLayer = $"../Tutorial/TutorialHighlight"
+@onready var tutorial_highlight_dim: ColorRect = $"../Tutorial/TutorialHighlight/ColorRect"
+
+@onready var popup_1: Control = $"../Tutorial/Tutorial1/Popup1"
+@onready var popup_2: Control = $"../Tutorial/Tutorial1/Popup2"
+@onready var popup_3: Control = $"../Tutorial/Tutorial1/Popup3"
+@onready var popup_3_2_5: Control = $"../Tutorial/Tutorial1/Popup3_2_5"
+@onready var popup_3_2_6: Control = $"../Tutorial/Tutorial1/Popup3_2_6"
+@onready var popup_3_5: Control = $"../Tutorial/Tutorial1/Popup3_5"
+@onready var popup_4: Control = $"../Tutorial/Tutorial1/Popup4"
+@onready var popup_5: Control = $"../Tutorial/Tutorial1/Popup5"
+@onready var popup_6: Control = $"../Tutorial/Tutorial1/Popup6"
+@onready var popup_7: Control = $"../Tutorial/Tutorial1/Popup7"
+@onready var popup_8: Control = $"../Tutorial/Tutorial1/Popup8"
+
+
+
+func start_tutorial():
+	run = get_tree().get_first_node_in_group("run")
+	hide_tokens()
+	hide_end_turn()
+	hide_reaction_guide_button()
+	hide_win()
+	tutorial_no_end_turn = true
+	auto_end_turn = false
+	enemy1.can_attack = false
+	enemy1.update_countdown_label()
+	ally1.hide_skills()
+	popup_1.visible = true
+	await next_popup
+	ally1.show_skills()
+	await get_tree().create_timer(0.1).timeout
+	popup_2.visible = true
+	tutorial_highlight.visible = true
+	tutorial_highlight_dim.highlight_nodes([ally1.spell_select_ui.ba_1, popup_2.get_child(0)], 1.0)
+	await skill_selected
+	popup_2.visible = false
+	tutorial_highlight.visible = false
+	await get_tree().create_timer(0.1).timeout
+	popup_3.visible = true
+	tutorial_highlight.visible = true
+	
+	tutorial_highlight_dim.highlight_nodes([enemy1.sprite_spot, popup_3.get_child(0)], 1.0)
+	await target_selected
+	tutorial_highlight.visible = false
+	popup_3.visible = false
+	popup_3_2_5.visible = true
+	await next_popup
+	popup_3_2_5.visible = false
+	popup_3_2_6.visible = true
+	await next_popup
+	popup_3_5.visible = true
+	tutorial_highlight.visible = true
+	show_end_turn()
+	tutorial_highlight_dim.highlight_nodes([popup_3_5.get_child(0), end_turn], 1.0)
+	tutorial_no_ally_skill = true
+	await end_turn_pressed
+	popup_3_5.visible = false
+	tutorial_highlight.visible = false
+	popup_4.visible = true
+	ally1.hide_skills()
+	await next_popup
+	popup_5.visible = true
+	enemy1.can_attack = true
+	enemy1.set_countdown()
+	tutorial_highlight.visible = true
+	tutorial_highlight_dim.highlight_nodes([enemy1.countdown_label, enemy1.skill_info.get_child(0), enemy1.next_skill_label, popup_5.get_child(0)], 1.0)
+	await next_popup
+	ally1.show_skills()
+	tutorial_no_ally_skill = false
+	popup_6.visible = true
+	tutorial_highlight_dim.highlight_nodes([ally1.spell_select_ui.ba_1, popup_6.get_child(0)], 1.0)
+	await skill_selected
+	tutorial_highlight_dim.highlight_nodes([popup_6.get_child(0), enemy1.sprite_spot], 1.0)
+	await target_selected
+	popup_6.visible = false
+	popup_7.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_7.get_child(0)], 1.0)
+	await next_popup
+	popup_7.visible = false
+	popup_8.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_8.get_child(0)], 1.0)
+	await next_popup
+	var tutorial_node = get_tree().get_first_node_in_group("tutorial")
+	tutorial_node.tutorial_2()
+
+func start_tutorial2():
+	pass
+	
+func pop_up_button_pressed():
+	next_popup.emit()

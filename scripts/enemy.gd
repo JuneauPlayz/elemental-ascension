@@ -24,8 +24,11 @@ var animation = false
 @onready var sprite_spot: TextureRect = $SpriteSpot
 @onready var show_next_skill: Control = $ShowNextSkill
 @onready var countdown_label: Label = $CountdownLabel
+@onready var next_skill_label: Label = $ShowNextSkill/NextSkillLabel
 
 var sow_just_applied = false
+
+var can_attack = true
 
 signal use_skill
 
@@ -176,7 +179,7 @@ func _on_targeting_area_pressed() -> void:
 	
 func decrease_countdown(num):
 	countdown -= num
-	if countdown <= 0 and skill_used == false:
+	if countdown <= 0 and skill_used == false and can_attack:
 		skill_used = true
 		combat_manager.enemy_skill_use(self)
 	update_countdown_label()
@@ -194,7 +197,13 @@ func set_countdown():
 	update_countdown_label()
 
 func update_countdown_label():
-	if countdown > 0:
-		countdown_label.text = "Countdown: " + str(countdown)
-	elif countdown <= 0:
-		countdown_label.text = "Skill Used This Turn"
+	if can_attack:
+		countdown_label.visible = true
+		show_next_skill.visible = true
+		if countdown > 0:
+			countdown_label.text = "Countdown: " + str(countdown)
+		elif countdown <= 0:
+			countdown_label.text = "Skill Used This Turn"
+	else:
+		countdown_label.visible = false
+		show_next_skill.visible = false

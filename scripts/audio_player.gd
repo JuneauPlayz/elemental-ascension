@@ -37,36 +37,35 @@ func play_music(song, volume):
 	
 func play_FX(sound, volume = 0.0):
 	# timer so the same sound doesnt happen at once
-	if not timer_going:
-		var soundfx : AudioStream
-		match sound:
-			"click":
-				soundfx = CLIACK
-			"fire_hit":
-				soundfx = FIRE_HIT
-			"lightning_hit":
-				soundfx = LIGHTNING_HIT
-			"water_hit":
-				soundfx = WATER_HIT
-			"earth_hit":
-				soundfx = EARTH_HIT
-			"grass_hit":
-				soundfx = GRASS_HIT
-			"healing":
-				soundfx = HEALING_EFFECT
-		var fx_player = AudioStreamPlayer.new()
-		fx_player.pitch_scale = randf_range(0.9,1.1)
-		fx_player.stream = soundfx
-		fx_player.name = "FX_PLAYER"
-		fx_player.volume_db = volume-5
-		add_child(fx_player)
-		fx_player.play()
-		timer.start()
-		timer_going = true
-		await fx_player.finished
-		
-		fx_player.queue_free()
+	var soundfx : AudioStream
+	match sound:
+		"click":
+			soundfx = CLIACK
+		"fire_hit":
+			soundfx = FIRE_HIT
+		"lightning_hit":
+			soundfx = LIGHTNING_HIT
+		"water_hit":
+			soundfx = WATER_HIT
+		"earth_hit":
+			soundfx = EARTH_HIT
+		"grass_hit":
+			soundfx = GRASS_HIT
+		"healing":
+			soundfx = HEALING_EFFECT
+	var fx_player = AudioStreamPlayer.new()
+	fx_player.pitch_scale = randf_range(0.9,1.1)
+	fx_player.stream = soundfx
+	fx_player.name = "FX_PLAYER"
+	fx_player.volume_db = volume-5
+	add_child(fx_player)
+	fx_player.play()
+	timer.start()
+	timer_going = true
+	await fx_player.finished
 	
+	fx_player.queue_free()
+
 
 
 func _on_timer_timeout() -> void:

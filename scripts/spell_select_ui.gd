@@ -10,10 +10,6 @@ signal new_select
 @onready var s_2: Button = $PanelContainer/MarginContainer/VBoxContainer/SP2Panel/S2
 @onready var ult: Button = $PanelContainer/MarginContainer/VBoxContainer/ULTPanel/ULT
 
-@onready var positionL: Label = $PositionUI/Position
-@onready var pos_number: Label = $PositionUI/PosNumber
-
-@onready var position_ui: Control = $PositionUI
 
 var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.PURPLE, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
 
@@ -161,12 +157,7 @@ func update_font_color(button, color):
 	button.add_theme_color_override("font_color", color)
 	button.add_theme_color_override("font_hover_color", color)
 
-	
-func update_pos(pos):
-	if pos > 0:
-		pos_number.text = str(pos)
-	else:
-		pos_number.text = ""
+
 	
 func reset():
 	update_color(ba_1, gray)
@@ -176,11 +167,6 @@ func reset():
 	selected = 0
 	disabled_all = false
 
-func hide_position():
-	position_ui.visible = false
-	
-func show_position():
-	position_ui.visible = true
 
 func enable(num):
 	match num:

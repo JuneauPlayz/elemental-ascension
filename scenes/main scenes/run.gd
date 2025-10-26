@@ -14,6 +14,8 @@ extends Node
 @onready var next_level: Label = $XPBar/NextLevel
 @onready var xp_number: Label = $XPBar/XPNumber
 @onready var xp_gain_position: Node2D = $XPBar/XPGainPosition
+@onready var reaction_guide_button: Button = $ReactionGuide
+
 
 const RELIC_HANDLER = preload("res://scenes/relic handler/relic_handler.tscn")
 const COMBAT = preload("res://scenes/main scenes/combat.tscn")
@@ -464,8 +466,6 @@ func _ready() -> void:
 			relic_handler.purchase_relic(relic)
 		loading_screen(0.5)
 		combat = true
-		for ally in allies:
-			ally.spell_select_ui.show_position()
 		load_combat(GC.enemy1, GC.enemy2, GC.enemy3, GC.enemy4)
 		
 func get_all_files_from_directory(path : String, file_ext:= "", files := []):

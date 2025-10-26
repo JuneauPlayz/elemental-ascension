@@ -56,6 +56,7 @@ func _ready() -> void:
 	id = run.id
 	run.id += 1
 	await get_tree().create_timer(0.0001).timeout
+	run = get_tree().get_first_node_in_group("run")
 	# spell select ui first child, hp bar ui second child
 	if run.combat == true and not run_starting:
 		if not copy:

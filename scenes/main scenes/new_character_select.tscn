@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=3 uid="uid://cejatt12ddojf"]
 
 [ext_resource type="Script" uid="uid://i7ngkgvekba1" path="res://scripts/new_character_select.gd" id="1_c5uuy"]
-[ext_resource type="Texture2D" uid="uid://c7bn1gnx4b71v" path="res://assets/grassy pixelated.jpg" id="2_kjqh1"]
+[ext_resource type="Texture2D" uid="uid://ci3grqu6c8y71" path="res://assets/nightbg.png" id="2_p148i"]
 [ext_resource type="Script" uid="uid://4eb43uwdg710" path="res://addons/tnowe_extra_controls/elements/draggable.gd" id="3_l2ywx"]
 [ext_resource type="Texture2D" uid="uid://bmymytp4nutcm" path="res://assets/kent/fire.webp" id="4_p148i"]
-[ext_resource type="Texture2D" uid="uid://lusgwdgw1no1" path="res://assets/Blastoise.png" id="5_i4hyv"]
+[ext_resource type="Texture2D" uid="uid://q57bj44h63ue" path="res://assets/water.png" id="5_p148i"]
 [ext_resource type="Texture2D" uid="uid://dr5buhafiup2r" path="res://assets/venasaur (2).png" id="6_2gi26"]
 [ext_resource type="Texture2D" uid="uid://dmsixe7n4f266" path="res://assets/pikachu.png" id="7_0rorh"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="8_hnda8"]
@@ -41,10 +41,10 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_c5uuy")
 
 [node name="Background" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.74902)
-position = Vector2(1168, 552)
-scale = Vector2(3.2, 3.2)
-texture = ExtResource("2_kjqh1")
+self_modulate = Color(1.3167266, 1.3167266, 1.3167266, 0.50980395)
+position = Vector2(1176.5, 234.5)
+scale = Vector2(1.0213568, 1.0413669)
+texture = ExtResource("2_p148i")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_left = 610.0
@@ -139,15 +139,16 @@ position = Vector2(46, 51)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_p148i")
 
-[node name="Blastoise" type="Container" parent="GridContainer"]
+[node name="WaterGirl" type="Container" parent="GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 script = ExtResource("3_l2ywx")
 grid_snap = Vector2(100, 100)
 
-[node name="Sprite2D" type="Sprite2D" parent="GridContainer/Blastoise"]
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/WaterGirl"]
 position = Vector2(46, 51)
-texture = ExtResource("5_i4hyv")
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("5_p148i")
 
 [node name="Venasaur" type="Container" parent="GridContainer"]
 custom_minimum_size = Vector2(100, 100)
@@ -240,10 +241,11 @@ text = "Choose Your Characters!"
 label_settings = SubResource("LabelSettings_0i11v")
 horizontal_alignment = 1
 
-[connection signal="drag_ended" from="GridContainer/FireGirl" to="." method="_on_charizard_drag_ended"]
+[connection signal="drag_ended" from="GridContainer/FireGirl" to="." method="_on_fire_girl_drag_ended"]
 [connection signal="mouse_entered" from="GridContainer/FireGirl" to="." method="_on_charizard_mouse_entered"]
-[connection signal="drag_ended" from="GridContainer/Blastoise" to="." method="_on_blastoise_drag_ended"]
-[connection signal="mouse_entered" from="GridContainer/Blastoise" to="." method="_on_blastoise_mouse_entered"]
+[connection signal="mouse_entered" from="GridContainer/FireGirl" to="." method="_on_fire_girl_mouse_entered"]
+[connection signal="drag_ended" from="GridContainer/WaterGirl" to="." method="_on_water_girl_drag_ended"]
+[connection signal="mouse_entered" from="GridContainer/WaterGirl" to="." method="_on_water_girl_mouse_entered"]
 [connection signal="drag_ended" from="GridContainer/Venasaur" to="." method="_on_venasaur_drag_ended"]
 [connection signal="mouse_entered" from="GridContainer/Venasaur" to="." method="_on_venasaur_mouse_entered"]
 [connection signal="drag_ended" from="GridContainer/Pikachu" to="." method="_on_pikachu_drag_ended"]

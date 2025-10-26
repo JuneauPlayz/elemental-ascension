@@ -1,6 +1,6 @@
 extends Node2D
 @onready var fire_girl: Draggable = $GridContainer/FireGirl
-@onready var blastoise: Draggable = $GridContainer/Blastoise
+@onready var water_girl: Draggable = $GridContainer/WaterGirl
 @onready var venasaur: Draggable = $GridContainer/Venasaur
 @onready var pikachu: Draggable = $GridContainer/Pikachu
 @onready var golem: Draggable = $GridContainer/Golem
@@ -11,13 +11,13 @@ var game
 const RUN = preload("res://scenes/main scenes/run.tscn")
 
 const FIRE_GIRL = preload("res://resources/units/allies/FireGirl.tres")
-const BLASTOISE = preload("res://resources/units/allies/Blastoise.tres")
 const VENASAUR = preload("res://resources/units/allies/Venasaur.tres")
 const PIKACHU = preload("res://resources/units/allies/Pikachu.tres")
 const GOLEM = preload("res://resources/units/allies/Golem.tres")
+const WATER_GIRL = preload("uid://ct8pg6i13eoib")
 
 var fire_girl_spot
-var blastoise_spot
+var water_girl_spot
 var venasaur_spot
 var pikachu_spot
 var golem_spot
@@ -50,20 +50,20 @@ func _ready() -> void:
 	game = get_tree().get_first_node_in_group("game")
 	
 	characters.append(fire_girl)
-	characters.append(blastoise)
+	characters.append(water_girl)
 	characters.append(venasaur)
 	characters.append(pikachu)
 	characters.append(golem)
 	
 	character_res_list.append(FIRE_GIRL)
-	character_res_list.append(BLASTOISE)
+	character_res_list.append(WATER_GIRL)
 	character_res_list.append(VENASAUR)
 	character_res_list.append(PIKACHU)
 	character_res_list.append(GOLEM)
 	
 	update_positions()
-	_on_charizard_drag_ended()
-	_on_blastoise_drag_ended()
+	_on_fire_girl_drag_ended()
+	_on_water_girl_drag_ended()
 	_on_venasaur_drag_ended()
 	_on_pikachu_drag_ended()
 	_on_golem_drag_ended()
@@ -73,8 +73,8 @@ func _ready() -> void:
 func update_positions():
 	if fire_girl:
 		fire_girl_spot = fire_girl.global_position
-	if blastoise:
-		blastoise_spot = blastoise.global_position
+	if water_girl:
+		water_girl_spot = water_girl.global_position
 	if venasaur:
 		venasaur_spot = venasaur.global_position
 	if pikachu:
@@ -116,12 +116,12 @@ func check_spot(char, og_spot):
 				char.global_position = og_spot
 				update_positions()
 
-func _on_charizard_drag_ended() -> void:
+func _on_fire_girl_drag_ended() -> void:
 	check_spot(fire_girl, fire_girl_spot)
 
 
-func _on_blastoise_drag_ended() -> void:
-	check_spot(blastoise, blastoise_spot)
+func _on_water_girl_drag_ended() -> void:
+	check_spot(water_girl, water_girl_spot)
 
 
 func _on_venasaur_drag_ended() -> void:
@@ -144,12 +144,12 @@ func display_character_info(character):
 	skill_info_1.update_skill_info()
 	skill_info_2.update_skill_info()
 	
-func _on_charizard_mouse_entered() -> void:
+func _on_fire_girl_mouse_entered() -> void:
 	display_character_info(FIRE_GIRL)	
 
 
-func _on_blastoise_mouse_entered() -> void:
-	display_character_info(BLASTOISE)
+func _on_water_girl_mouse_entered() -> void:
+	display_character_info(WATER_GIRL)
 
 
 func _on_venasaur_mouse_entered() -> void:
