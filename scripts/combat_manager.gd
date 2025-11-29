@@ -302,6 +302,7 @@ func victory():
 	hide_ui()
 	run.show_gold()
 	run.show_xp()
+	# already connected !
 	victory_screen.continue_pressed.connect(self.finish_battle)
 
 func defeat():
@@ -339,10 +340,6 @@ func reset_combat():
 	victory_screen.visible = false
 	
 func use_skill(skill,target,unit,event,spend_tokens):
-	if allies == []:
-		defeat()
-	if enemies == []:
-		victory()
 	skill.update()
 	if skill.summon != null:
 		var new_summon = ENEMY.instantiate()
