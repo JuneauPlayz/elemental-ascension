@@ -144,27 +144,27 @@ func _on_golem_drag_ended() -> void:
 	
 func _on_fire_girl_drag_started() -> void:
 	if sound_allowed:
-		AudioPlayer.play_FX("deeper_new_click")
+		AudioPlayer.play_FX("click")
 
 
 func _on_water_girl_drag_started() -> void:
 	if sound_allowed:
-		AudioPlayer.play_FX("deeper_new_click")
+		AudioPlayer.play_FX("click")
 
 
 func _on_venasaur_drag_started() -> void:
 	if sound_allowed:
-		AudioPlayer.play_FX("deeper_new_click")
+		AudioPlayer.play_FX("click")
 
 
 func _on_lightning_girl_drag_started() -> void:
 	if sound_allowed:
-		AudioPlayer.play_FX("deeper_new_click")
+		AudioPlayer.play_FX("click")
 
 
 func _on_golem_drag_started() -> void:
 	if sound_allowed:
-		AudioPlayer.play_FX("deeper_new_click")
+		AudioPlayer.play_FX("click")
 	
 func display_character_info(character):
 	character_info.visible = true

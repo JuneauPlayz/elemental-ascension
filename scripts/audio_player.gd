@@ -10,6 +10,8 @@ const wii_shop_music = preload("res://assets/Wii Shop Channel Main Theme (HQ).mp
 const CLIACK = preload("res://assets/cliack.mp3")
 const NEW_CLICK = preload("uid://crkpw4yokvcoh")
 const DEEPER_NEW_CLICK = preload("uid://f36igp8pl5qe")
+const CLICK_4 = preload("uid://dwkv7lr6enn71")
+
 
 const FIRE_SINGLE_HIT = preload("uid://btiqxx1cvyctf")
 const FIRE_SINGLE_HIT_2 = preload("uid://bauggnsebqcq2")
@@ -47,11 +49,13 @@ func play_FX(sound, volume = 0.0):
 	var soundfx : AudioStream
 	match sound:
 		"click":
-			soundfx = CLIACK
+			soundfx = CLICK_4
 		"new_click":
 			soundfx = NEW_CLICK
 		"deeper_new_click":
 			soundfx = DEEPER_NEW_CLICK
+		"click_4":
+			soundfx = CLIACK
 		"fire_hit":
 			soundfx = FIRE_SINGLE_HIT_3
 		"fire_aoe_hit":
@@ -70,7 +74,7 @@ func play_FX(sound, volume = 0.0):
 			soundfx = HEALING_EFFECT
 	var fx_player = AudioStreamPlayer.new()
 	if sound == "click":
-		fx_player.pitch_scale = randf_range(0.9,1.1)
+		fx_player.pitch_scale = randf_range(1,1.15)
 	fx_player.stream = soundfx
 	fx_player.name = "FX_PLAYER"
 	fx_player.volume_db = volume-5

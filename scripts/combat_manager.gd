@@ -594,18 +594,17 @@ func _on_end_turn_pressed() -> void:
 func end_turn_process():
 	if (!targeting and choosing_skills):
 		hide_ui()
+		hide_skills()
 		end_turn_pressed.emit()
 		await get_tree().create_timer(END_TURN_DELAY).timeout
 		for enemy in enemies:
 			if enemy.skill_used == false and enemy.can_attack:
 				enemy_skill_use(enemy)
 	
-		check_enemy_skills()
+		await check_enemy_skills()
 		# end of turn relics
 		choosing_skills = false
 		set_unit_pos()
-		hide_skills()
-		await get_tree().create_timer(END_TURN_DELAY).timeout
 		ally_turn_done.emit()
 		for enemy in enemies:
 			enemy.change_skills()

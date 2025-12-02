@@ -26,5 +26,5 @@ func _on_combat_testing_pressed() -> void:
 
 
 func _on_tutorial_pressed() -> void:
-	AudioPlayer.play_FX("click",0)
+	AudioPlayer.play_FX("deeper_new_click",0)
 	game.new_scene(TUTORIAL)
