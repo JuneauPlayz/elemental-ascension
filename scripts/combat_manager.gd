@@ -5,7 +5,8 @@ extends Node
 @onready var enemy_combat_currency: Control = $EnemyCombatCurrency
 
 
-
+const AFTER_SKILL_DELAY = 0.35
+const END_TURN_DELAY = 0.5
 
 @onready var text_popups: Node = $"../Tutorial/Tutorial1"
 
@@ -79,7 +80,7 @@ const TARGET_CURSOR = preload("res://assets/target cursor.png")
 const DEFAULT_CURSOR = preload("res://assets/defaultcursor.png")
 
 signal ally_turn_done
-signal enemy_turn_done
+signal enemy_skills_done
 signal new_spell_selected
 signal target_selected
 signal target_chosen
@@ -171,82 +172,63 @@ func start_ally_turn():
 	update_skill_positions()
 	choosing_skills = true
 
-# rework
-func ally_skill_use(skill, target, ally):
-	var new_target = use_skill(skill,target,ally,true,true)
-	check_post_skill(skill)
-	combat_currency.update()
-	# checks if target is dead, currently skips the rest of the loop (wont print landed)
-	await reaction_finished
-	print(str(skill.name) + " landed!")
-	hit.emit()
-	# for sow only
-	enemy_status_check()
+
+func ally_skill_use_wrapper(skill, target, ally):
+	hide_ui()
+	hide_skills()
 	ally.spell_select_ui.disable_all()
-	for enemy in enemies:
-		enemy.decrease_countdown(1)
-	await get_tree().create_timer(0.5).timeout
-	check_ally_turn_done()
-	run.relic_handler.activate_relics_by_type(Relic.Type.POST_ALLY_SKILL)
-	await get_tree().create_timer(0.1).timeout
-	if enemy_skill_queue != []:
-		await check_enemy_skills()
+
+	await ally_skill_use(skill, target, ally)
+	await get_tree().create_timer(AFTER_SKILL_DELAY).timeout
 	
+	if enemy_skill_queue.size() > 0:
+		await check_enemy_skills()
+
 	show_ui()
-	ally_post_status()
+	show_skills()
+
 	if enemies.is_empty():
 		victory()
-	
-	
+
+	ally_post_status()
+	check_ally_turn_done()
+
+func ally_skill_use(skill, target, ally):
+	use_skill(skill, target, ally, true, true)
+	check_post_skill(skill)
+	combat_currency.update()
+
+	await reaction_finished
+
+	print(str(skill.name) + " landed!")
+	hit.emit()
+
+	enemy_status_check()
+
+	run.relic_handler.activate_relics_by_type(Relic.Type.POST_ALLY_SKILL)
+
+	await get_tree().create_timer(0.1).timeout
+	for enemy in enemies:
+		enemy.decrease_countdown(1)
+
+
 	
 
 func enemy_skill_use(enemy):
-	
-	run.relic_handler.activate_relics_by_type(Relic.Type.PRE_ENEMY_SKILL)
-	match enemy.position:
-		1:
-			enemy_skill_queue.append(enemy1)
-		2:
-			enemy_skill_queue.append(enemy2)
-		3:
-			enemy_skill_queue.append(enemy3)
-		4:
-			enemy_skill_queue.append(enemy4)
+	enemy_skill_queue.append(enemy)
 
 func check_enemy_skills():
 	for enemy in enemy_skill_queue:
-		use_skill(enemy.current_skill,null,enemy,true,false)
-		await get_tree().create_timer(0.1).timeout
-	enemy_skill_queue = []
+		await enemy_skill_use_wrapper(enemy)
+		await get_tree().create_timer(AFTER_SKILL_DELAY).timeout
+	enemy_skill_queue.clear()
+	enemy_skills_done.emit()
 
-# rework
-func enemy_turn():
-	await get_tree().create_timer(0.25).timeout
-	enemy_pre_status()
-	await get_tree().create_timer(0.15).timeout
-	enemy_lose_shields()
-	if enemies != []:
-		enemies[0].attack_animation()
-	await get_tree().create_timer(0.15).timeout
-	for i in range(enemies.size()):
-		var enemy = enemies[i]
-		print("using enemy skill")
-		set_unit_pos()
-		check_post_skill(enemy.current_skill)
-		hit.emit()
-		if enemies.size() > i+1:
-			if not enemies[i+1].animation:
-				enemies[i+1].attack_animation()
-		await get_tree().create_timer(GC.GLOBAL_INTERVAL+0.05).timeout
-	await get_tree().create_timer(0.1).timeout
-	enemy_post_status()
-	await get_tree().create_timer(0.3).timeout
-	if allies.is_empty():
-		defeat()
-	if enemies.is_empty():
-		victory()
-	else:
-		enemy_turn_done.emit()
+
+func enemy_skill_use_wrapper(enemy):
+	run.relic_handler.activate_relics_by_type(Relic.Type.PRE_ENEMY_SKILL)
+	use_skill(enemy.current_skill, null, enemy, true, false)
+	await reaction_finished
 
 func enemy_status_check():
 	for enemy in enemies:
@@ -463,7 +445,7 @@ func use_skill(skill,target,unit,event,spend_tokens):
 						set_unit_pos()
 	if (skill.lifesteal):
 		unit.receive_healing(roundi(skill.damage * skill.lifesteal_rate), "grass", false)
-
+	
 func spend_skill_cost(skill):
 	var tokens1 = 0
 	var tokens2 = 0
@@ -504,9 +486,6 @@ func _on_relics_activated(type : Relic.Type) -> void:
 		
 			
 func reaction_signal():
-	print("reaction_signal")
-	await get_tree().create_timer(0.01).timeout
-	# update currency ui
 	combat_currency.update()
 	reaction_finished.emit()
 	
@@ -528,7 +507,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	# If unselecting
 	if selected_index == 0:
 		ally.using_skill = false
-		spell_select_ui.update_pos(0)
 		combat_currency.update()
 		return
 	
@@ -543,13 +521,13 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	if skill == null:
 		return
 	if skill.target_type != "single_enemy" and skill.target_type != "single_ally":
-		await ally_skill_use(skill, null, ally)
+		await ally_skill_use_wrapper(skill, null, ally)
 	else:
 		var target = await choose_target(skill)
 		if target:
 			target_selected.emit()
 			ally.using_skill = true
-			await ally_skill_use(skill, target, ally)
+			await ally_skill_use_wrapper(skill, target, ally)
 	
 	combat_currency.update()
 	check_requirements()
@@ -614,7 +592,7 @@ func _on_end_turn_pressed() -> void:
 		hide_ui()
 		AudioPlayer.play_FX("click",0)
 		end_turn_pressed.emit()
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(END_TURN_DELAY).timeout
 		for enemy in enemies:
 			if enemy.skill_used == false and enemy.can_attack:
 				enemy_skill_use(enemy)
@@ -624,7 +602,7 @@ func _on_end_turn_pressed() -> void:
 		choosing_skills = false
 		set_unit_pos()
 		hide_skills()
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(END_TURN_DELAY).timeout
 		ally_turn_done.emit()
 		for enemy in enemies:
 			enemy.change_skills()

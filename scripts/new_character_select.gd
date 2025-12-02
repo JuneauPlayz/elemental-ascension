@@ -2,7 +2,7 @@ extends Node2D
 @onready var fire_girl: Draggable = $GridContainer/FireGirl
 @onready var water_girl: Draggable = $GridContainer/WaterGirl
 @onready var venasaur: Draggable = $GridContainer/Venasaur
-@onready var pikachu: Draggable = $GridContainer/Pikachu
+@onready var lightning_girl: Draggable = $GridContainer/LightningGirl
 @onready var golem: Draggable = $GridContainer/Golem
 
 
@@ -12,14 +12,14 @@ const RUN = preload("res://scenes/main scenes/run.tscn")
 
 const FIRE_GIRL = preload("res://resources/units/allies/FireGirl.tres")
 const VENASAUR = preload("res://resources/units/allies/Venasaur.tres")
-const PIKACHU = preload("res://resources/units/allies/Pikachu.tres")
+const LIGHTNING_GIRL = preload("res://resources/units/allies/LightningGirl.tres")
 const GOLEM = preload("res://resources/units/allies/Golem.tres")
 const WATER_GIRL = preload("uid://ct8pg6i13eoib")
 
 var fire_girl_spot
 var water_girl_spot
 var venasaur_spot
-var pikachu_spot
+var lightning_girl_spot
 var golem_spot
 
 var empty_team = true
@@ -52,20 +52,20 @@ func _ready() -> void:
 	characters.append(fire_girl)
 	characters.append(water_girl)
 	characters.append(venasaur)
-	characters.append(pikachu)
+	characters.append(lightning_girl)
 	characters.append(golem)
 	
 	character_res_list.append(FIRE_GIRL)
 	character_res_list.append(WATER_GIRL)
 	character_res_list.append(VENASAUR)
-	character_res_list.append(PIKACHU)
+	character_res_list.append(LIGHTNING_GIRL)
 	character_res_list.append(GOLEM)
 	
 	update_positions()
 	_on_fire_girl_drag_ended()
 	_on_water_girl_drag_ended()
 	_on_venasaur_drag_ended()
-	_on_pikachu_drag_ended()
+	_on_lightning_girl_drag_ended()
 	_on_golem_drag_ended()
 	
 	character_info.visible = false
@@ -77,8 +77,8 @@ func update_positions():
 		water_girl_spot = water_girl.global_position
 	if venasaur:
 		venasaur_spot = venasaur.global_position
-	if pikachu:
-		pikachu_spot = pikachu.global_position
+	if lightning_girl:
+		lightning_girl_spot = lightning_girl.global_position
 	if golem:
 		golem_spot = golem.global_position
 
@@ -128,8 +128,8 @@ func _on_venasaur_drag_ended() -> void:
 	check_spot(venasaur, venasaur_spot)
 
 
-func _on_pikachu_drag_ended() -> void:
-	check_spot(pikachu, pikachu_spot)
+func _on_lightning_girl_drag_ended() -> void:
+	check_spot(lightning_girl, lightning_girl_spot)
 
 
 func _on_golem_drag_ended() -> void:
@@ -156,8 +156,8 @@ func _on_venasaur_mouse_entered() -> void:
 	display_character_info(VENASAUR)
 
 
-func _on_pikachu_mouse_entered() -> void:
-	display_character_info(PIKACHU)
+func _on_lightning_girl_mouse_entered() -> void:
+	display_character_info(lightning_girl)
 
 
 func _on_golem_mouse_entered() -> void:

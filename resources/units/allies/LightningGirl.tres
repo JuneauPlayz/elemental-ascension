@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="UnitRes" load_steps=12 format=3 uid="uid://coik84dyxxr16"]
+
+[ext_resource type="Resource" uid="uid://04pr4j5rw8lb" path="res://resources/core/LightningStart.tres" id="1_g82qp"]
+[ext_resource type="Resource" uid="uid://cwwj3sjm5m7cf" path="res://resources/level_up_relics/Storm Starter.tres" id="2_iwd75"]
+[ext_resource type="Resource" uid="uid://bfx3wmxqlew4d" path="res://resources/level_up_relics/mini lightning boost.tres" id="3_lh4e1"]
+[ext_resource type="Resource" uid="uid://btlvmcjcva5fu" path="res://resources/level_up_relics/Storm Starter+.tres" id="4_qcw2u"]
+[ext_resource type="Resource" uid="uid://b8ljfrydbv3bn" path="res://resources/level_up_relics/Lightning Boost.tres" id="5_5ggtw"]
+[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="6_cj0ho"]
+[ext_resource type="Resource" uid="uid://60omj8j38mfk" path="res://resources/Skills/lightning/Thunder Bolt.tres" id="7_6bgcc"]
+[ext_resource type="Resource" uid="uid://cnw2l4om8k28e" path="res://resources/Skills/lightning/Thunder Punch.tres" id="8_k8kw7"]
+[ext_resource type="Resource" uid="uid://ddrvp77dd5ima" path="res://resources/Skills/lightning/Electro Ball.tres" id="10_vee57"]
+[ext_resource type="Resource" uid="uid://bfvyaecgwi1s6" path="res://resources/Skills/lightning/Thunder.tres" id="11_8xhm1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j23s5"]
+
+[resource]
+script = ExtResource("6_cj0ho")
+starting_health = 60
+skill1 = ExtResource("7_6bgcc")
+skill2 = ExtResource("8_k8kw7")
+skill_1_cd = 0
+skill_2_cd = 0
+skill_3_cd = 0
+skill_4_cd = 0
+relic_1 = ExtResource("2_iwd75")
+relic_2 = ExtResource("3_lh4e1")
+ult_1 = ExtResource("10_vee57")
+ult_2 = ExtResource("11_8xhm1")
+relic_3 = ExtResource("4_qcw2u")
+relic_4 = ExtResource("5_5ggtw")
+sprite = SubResource("CompressedTexture2D_j23s5")
+sprite_scale = 0.39
+name = "Lightning Girl"
+core_main_stat = ExtResource("1_g82qp")

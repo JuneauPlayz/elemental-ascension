@@ -161,13 +161,13 @@ position = Vector2(46, 51)
 scale = Vector2(0.39, 0.39)
 texture = ExtResource("6_2gi26")
 
-[node name="Pikachu" type="Container" parent="GridContainer"]
+[node name="LightningGirl" type="Container" parent="GridContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 script = ExtResource("3_l2ywx")
 grid_snap = Vector2(100, 100)
 
-[node name="Sprite2D" type="Sprite2D" parent="GridContainer/Pikachu"]
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/LightningGirl"]
 position = Vector2(46, 51)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("7_0rorh")
@@ -188,7 +188,7 @@ offset_left = 47.0
 offset_top = 260.0
 offset_right = 367.0
 offset_bottom = 347.0
-text = "Charizard
+text = "CharName
 "
 label_settings = SubResource("LabelSettings_ghnwa")
 
@@ -242,14 +242,14 @@ label_settings = SubResource("LabelSettings_0i11v")
 horizontal_alignment = 1
 
 [connection signal="drag_ended" from="GridContainer/FireGirl" to="." method="_on_fire_girl_drag_ended"]
-[connection signal="mouse_entered" from="GridContainer/FireGirl" to="." method="_on_charizard_mouse_entered"]
 [connection signal="mouse_entered" from="GridContainer/FireGirl" to="." method="_on_fire_girl_mouse_entered"]
+[connection signal="mouse_entered" from="GridContainer/FireGirl" to="." method="_on_charizard_mouse_entered"]
 [connection signal="drag_ended" from="GridContainer/WaterGirl" to="." method="_on_water_girl_drag_ended"]
 [connection signal="mouse_entered" from="GridContainer/WaterGirl" to="." method="_on_water_girl_mouse_entered"]
 [connection signal="drag_ended" from="GridContainer/Venasaur" to="." method="_on_venasaur_drag_ended"]
 [connection signal="mouse_entered" from="GridContainer/Venasaur" to="." method="_on_venasaur_mouse_entered"]
-[connection signal="drag_ended" from="GridContainer/Pikachu" to="." method="_on_pikachu_drag_ended"]
-[connection signal="mouse_entered" from="GridContainer/Pikachu" to="." method="_on_pikachu_mouse_entered"]
+[connection signal="drag_ended" from="GridContainer/LightningGirl" to="." method="_on_pikachu_drag_ended"]
+[connection signal="mouse_entered" from="GridContainer/LightningGirl" to="." method="_on_pikachu_mouse_entered"]
 [connection signal="drag_ended" from="GridContainer/Golem" to="." method="_on_golem_drag_ended"]
 [connection signal="mouse_entered" from="GridContainer/Golem" to="." method="_on_golem_mouse_entered"]
 [connection signal="pressed" from="Begin Run" to="." method="_on_begin_run_pressed"]

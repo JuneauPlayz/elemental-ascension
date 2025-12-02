@@ -28,6 +28,7 @@ var allies = []
 const ALLY = preload("res://resources/units/allies/ally.tscn")
 const ENEMY = preload("res://resources/units/enemies/enemy.tscn")
 
+
 var run
 var combat_sim
 
