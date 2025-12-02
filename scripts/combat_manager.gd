@@ -252,7 +252,7 @@ func check_ally_turn_done():
 		if ally.spell_select_ui.disabled_all == false:
 			return
 	if auto_end_turn:
-		_on_end_turn_pressed()
+		end_turn_process()
 
 func check_event_relics(skill,unit,value_multiplier,target):
 	if (run.ghostfire and unit is Ally and skill.element == "fire"):
@@ -588,9 +588,12 @@ func reset_skill_select():
 	update_skill_positions()
 	
 func _on_end_turn_pressed() -> void:
+	AudioPlayer.play_FX("deeper_new_click",0)
+	end_turn_process()
+
+func end_turn_process():
 	if (!targeting and choosing_skills):
 		hide_ui()
-		AudioPlayer.play_FX("click",0)
 		end_turn_pressed.emit()
 		await get_tree().create_timer(END_TURN_DELAY).timeout
 		for enemy in enemies:
@@ -663,7 +666,6 @@ func choose_target(skill : Skill):
 		show_skills()
 		show_ui()
 		toggle_targeting_ui(skill)
-		AudioPlayer.play_FX("click",0)
 		Input.set_custom_mouse_cursor(DEFAULT_CURSOR, 0)
 		targeting = false
 		return target

@@ -85,7 +85,7 @@ func choosing_skill():
 	continue_button.visible = true
 
 func _on_confirm_swap_pressed() -> void:
-	AudioPlayer.play_FX("click",-10)
+	AudioPlayer.play_FX("deeper_new_click",-10)
 	if (new_skill_ally):
 		new_skill_ally.skill_swap_2 = new_skill
 		new_skill_ally._on_confirm_swap_pressed()

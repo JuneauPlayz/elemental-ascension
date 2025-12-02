@@ -228,7 +228,7 @@ func take_damage(damage : int, element : String, change_element : bool):
 	if not copy:
 		match element:
 			"fire":
-				AudioPlayer.play_FX("fire_hit", -18)
+				AudioPlayer.play_FX("fire_hit", -8)
 			"water":
 				AudioPlayer.play_FX("water_hit", -18)
 			"lightning":
@@ -236,7 +236,7 @@ func take_damage(damage : int, element : String, change_element : bool):
 			"earth":
 				AudioPlayer.play_FX("earth_hit", -25)
 			"grass":
-				AudioPlayer.play_FX("grass_hit", -18)
+				AudioPlayer.play_FX("grass_hit", -10)
 			_:
 				AudioPlayer.play_FX("fire_hit", -18)
 

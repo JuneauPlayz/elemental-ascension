@@ -9,6 +9,7 @@ extends Container
 
 ## Emitted when the mouse button is released after the node is moved or resized.
 signal drag_ended()
+signal drag_started()
 
 ## Enable so the node can be dragged and resized horizontally (X axis)
 @export var can_drag_horizontal := true
@@ -238,7 +239,10 @@ func _universal_input(input_resize_direction : Vector2, drag_amount : Vector2):
 
 func _handle_click(button_pressed : bool):
 	_mouse_dragging = button_pressed
-	if !_mouse_dragging:
+
+	if _mouse_dragging:
+		drag_started.emit()       # NEW LINE
+	else:
 		var result_rect := get_rect_after_drop()
 		if _affected_by_free_container == null:
 			position = result_rect.position

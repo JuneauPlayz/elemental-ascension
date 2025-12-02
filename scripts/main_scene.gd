@@ -11,17 +11,17 @@ func _ready():
 	AudioPlayer.play_music("lake", -35)
 	
 func _on_exit_game_pressed() -> void:
-	AudioPlayer.play_FX("click",0)
+	AudioPlayer.play_FX("deeper_new_click",0)
 	get_tree().quit()
 
 
 func _on_start_b_pressed() -> void:
-	AudioPlayer.play_FX("click",0)
+	AudioPlayer.play_FX("deeper_new_click",0)
 	game.new_scene(NEW_CHARACTER_SELECT)
 
 
 func _on_combat_testing_pressed() -> void:
-	AudioPlayer.play_FX("click",0)
+	AudioPlayer.play_FX("deeper_new_click",0)
 	game.new_scene(SETUP_COMBAT)
 
 

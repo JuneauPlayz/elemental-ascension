@@ -171,7 +171,7 @@ func hide_level_up():
 	level_up_reward.reset()
 
 func _on_spell_select_ui_new_select(ally) -> void:
-	AudioPlayer.play_FX("click",-10)
+	AudioPlayer.play_FX("click",-3)
 	skill_swap_1_spot = spell_select_ui.selected
 	if skill_swap_2 != null:
 		confirm_swap.visible = true
@@ -186,7 +186,7 @@ func _on_spell_select_ui_new_select(ally) -> void:
 
 func _on_level_up_reward_new_select(skill) -> void:
 	if level_up_reward.choosing_skills:
-		AudioPlayer.play_FX("click",-10)
+		AudioPlayer.play_FX("new_click",-10)
 		skill_swap_2 = skill
 		swap_tutorial.visible = true
 		if (skill_swap_1_spot > 0):
@@ -204,7 +204,7 @@ func _on_targeting_area_pressed() -> void:
 
 
 func _on_confirm_swap_pressed() -> void:
-	AudioPlayer.play_FX("click",-10)
+	AudioPlayer.play_FX("new_click",-10)
 	match skill_swap_1_spot:
 		1:
 			skill_1 = skill_swap_2
@@ -229,7 +229,7 @@ func update_spell_select():
 	
 
 func _on_confirm_swap_level_pressed() -> void:
-	AudioPlayer.play_FX("click",-10)
+	AudioPlayer.play_FX("new_click",-10)
 	if level_up_reward.choosing_skills:
 		match skill_swap_1_spot:
 			1:

@@ -39,6 +39,8 @@ var ally2
 var ally3
 var ally4
 
+var sound_allowed = false
+
 @onready var character_info: Label = $CharacterInfo
 @onready var skill_info_1: Control = $CharacterInfo/SkillInfo1
 @onready var skill_info_2: Control = $CharacterInfo/SkillInfo2
@@ -62,13 +64,11 @@ func _ready() -> void:
 	character_res_list.append(GOLEM)
 	
 	update_positions()
-	_on_fire_girl_drag_ended()
-	_on_water_girl_drag_ended()
-	_on_venasaur_drag_ended()
-	_on_lightning_girl_drag_ended()
-	_on_golem_drag_ended()
+
 	
 	character_info.visible = false
+	await get_tree().process_frame
+	sound_allowed = true
 	
 func update_positions():
 	if fire_girl:
@@ -104,6 +104,7 @@ func _on_begin_run_pressed() -> void:
 		elif characters[i].global_position == ally_4_spot.global_position:
 			ally4 = character_res_list[i]
 			empty_team = false
+	AudioPlayer.play_FX("deeper_new_click")
 	if empty_team == false:
 		GC.load_run(ally1,ally2,ally3,ally4)
 		game.new_scene(RUN)
@@ -118,23 +119,53 @@ func check_spot(char, og_spot):
 
 func _on_fire_girl_drag_ended() -> void:
 	check_spot(fire_girl, fire_girl_spot)
-
+	if sound_allowed:
+		AudioPlayer.play_FX("new_click")
 
 func _on_water_girl_drag_ended() -> void:
 	check_spot(water_girl, water_girl_spot)
-
+	if sound_allowed:
+		AudioPlayer.play_FX("new_click")
 
 func _on_venasaur_drag_ended() -> void:
 	check_spot(venasaur, venasaur_spot)
-
+	if sound_allowed:
+		AudioPlayer.play_FX("new_click")
 
 func _on_lightning_girl_drag_ended() -> void:
 	check_spot(lightning_girl, lightning_girl_spot)
-
+	if sound_allowed:
+		AudioPlayer.play_FX("new_click")
 
 func _on_golem_drag_ended() -> void:
 	check_spot(golem, golem_spot)
+	if sound_allowed:
+		AudioPlayer.play_FX("new_click")
+	
+func _on_fire_girl_drag_started() -> void:
+	if sound_allowed:
+		AudioPlayer.play_FX("deeper_new_click")
 
+
+func _on_water_girl_drag_started() -> void:
+	if sound_allowed:
+		AudioPlayer.play_FX("deeper_new_click")
+
+
+func _on_venasaur_drag_started() -> void:
+	if sound_allowed:
+		AudioPlayer.play_FX("deeper_new_click")
+
+
+func _on_lightning_girl_drag_started() -> void:
+	if sound_allowed:
+		AudioPlayer.play_FX("deeper_new_click")
+
+
+func _on_golem_drag_started() -> void:
+	if sound_allowed:
+		AudioPlayer.play_FX("deeper_new_click")
+	
 func display_character_info(character):
 	character_info.visible = true
 	character_info.text = character.name

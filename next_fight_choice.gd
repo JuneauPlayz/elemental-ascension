@@ -250,6 +250,7 @@ func _on_easy_fight_pressed() -> void:
 		run.current_reward = easy_reward
 		check_boss(easy_fight)
 		choice_ended.emit("")
+		AudioPlayer.play_FX("deeper_new_click")
 
 func _on_medium_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
@@ -258,6 +259,7 @@ func _on_medium_fight_pressed() -> void:
 		run.current_reward = medium_reward
 		check_boss(medium_fight)
 		choice_ended.emit("")
+		AudioPlayer.play_FX("deeper_new_click")
 
 func _on_hard_fight_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
@@ -266,6 +268,7 @@ func _on_hard_fight_pressed() -> void:
 		run.current_reward = hard_reward
 		check_boss(hard_fight)
 		choice_ended.emit("")
+		AudioPlayer.play_FX("deeper_new_click")
 
 func update_color(button, color):
 	var new_stylebox_normal = button.get_theme_stylebox("panel").duplicate()

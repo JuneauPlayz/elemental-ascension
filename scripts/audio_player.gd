@@ -8,9 +8,16 @@ const iris_music = preload("res://assets/Pokémon B2W2 - Champion Iris Battle Mu
 const wii_shop_music = preload("res://assets/Wii Shop Channel Main Theme (HQ).mp3")
 #sound fx
 const CLIACK = preload("res://assets/cliack.mp3")
-const FIRE_HIT = preload("res://assets/fire hit.mp3")
+const NEW_CLICK = preload("uid://crkpw4yokvcoh")
+const DEEPER_NEW_CLICK = preload("uid://f36igp8pl5qe")
+
+const FIRE_SINGLE_HIT = preload("uid://btiqxx1cvyctf")
+const FIRE_SINGLE_HIT_2 = preload("uid://bauggnsebqcq2")
+const FIRE_SINGLE_HIT_3 = preload("uid://b057max80q80j")
+const FIRE_AOE_HIT = preload("uid://bny48lbijrx4l")
 const LIGHTNING_HIT = preload("res://assets/lightning_hit.mp3")
-const WATER_HIT = preload("res://assets/water_hit.mp3")
+const WATER_SINGLE_HIT = preload("uid://65tbpoeptp4x")
+const WATER_AOE_HIT = preload("res://assets/water_hit.mp3")
 const EARTH_HIT = preload("res://assets/earth_hit.mp3")
 const GRASS_HIT = preload("res://assets/grass_hit.mp3")
 const HEALING_EFFECT = preload("res://assets/healing_effect.mp3")
@@ -41,12 +48,20 @@ func play_FX(sound, volume = 0.0):
 	match sound:
 		"click":
 			soundfx = CLIACK
+		"new_click":
+			soundfx = NEW_CLICK
+		"deeper_new_click":
+			soundfx = DEEPER_NEW_CLICK
 		"fire_hit":
-			soundfx = FIRE_HIT
+			soundfx = FIRE_SINGLE_HIT_3
+		"fire_aoe_hit":
+			soundfx = FIRE_AOE_HIT
 		"lightning_hit":
 			soundfx = LIGHTNING_HIT
 		"water_hit":
-			soundfx = WATER_HIT
+			soundfx = WATER_SINGLE_HIT
+		"water_aoe_hit":
+			soundfx = WATER_AOE_HIT
 		"earth_hit":
 			soundfx = EARTH_HIT
 		"grass_hit":
@@ -54,7 +69,8 @@ func play_FX(sound, volume = 0.0):
 		"healing":
 			soundfx = HEALING_EFFECT
 	var fx_player = AudioStreamPlayer.new()
-	fx_player.pitch_scale = randf_range(0.9,1.1)
+	if sound == "click":
+		fx_player.pitch_scale = randf_range(0.9,1.1)
 	fx_player.stream = soundfx
 	fx_player.name = "FX_PLAYER"
 	fx_player.volume_db = volume-5
