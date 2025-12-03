@@ -156,6 +156,7 @@ func burn(elem1,elem2,unit,value,friendly,caster):
 		unit.take_damage(roundi(value), elem2, false)
 	else:
 		unit.receive_healing(roundi(value), elem2, false)
+	unit.check_statuses()
 	await get_tree().process_frame
 
 func shock(elem1,elem2,unit,value,friendly,caster):
@@ -189,11 +190,13 @@ func bloom(elem1,elem2,unit,value,friendly,caster):
 		unit.take_damage(roundi(value), elem2, false)
 	else:
 		unit.receive_healing(roundi(value), elem2, false)
+	unit.check_statuses()
 	await get_tree().process_frame
 
 func nitro(elem1,elem2,unit,value,friendly,caster):
 	var nitro_effect = NITRO.duplicate()
 	unit.status.append(nitro_effect)
+	unit.check_statuses()
 	unit.hp_bar.update_statuses(unit.status)
 	unit.current_element = "none"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Nitro!", 38)
@@ -201,6 +204,7 @@ func nitro(elem1,elem2,unit,value,friendly,caster):
 		unit.take_damage(roundi(value), elem2, false)
 	else:
 		unit.receive_healing(roundi(value), elem2, false)
+	unit.check_statuses()
 	await get_tree().process_frame
 
 func discharge(elem1,elem2,unit,value,friendly,caster):
@@ -232,6 +236,7 @@ func sow(elem1,elem2,unit,value,friendly,caster):
 		unit.receive_healing(roundi(value), elem2, false)
 	elif friendly and elem2 == "earth":
 		unit.receive_shielding(roundi(value), elem2, false)
+	unit.check_statuses()
 	await get_tree().process_frame
 
 func muck(elem1,elem2,unit,value,friendly,caster):
@@ -244,6 +249,7 @@ func muck(elem1,elem2,unit,value,friendly,caster):
 		unit.take_damage(roundi(value), elem2, false)
 	elif friendly and elem2 == "earth":
 		unit.receive_shielding(roundi(value), elem2, false)
+	unit.check_statuses()
 	await get_tree().process_frame
 
 func reaction_finished_signal():

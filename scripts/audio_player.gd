@@ -13,7 +13,6 @@ const DEEPER_NEW_CLICK = preload("uid://f36igp8pl5qe")
 const CLICK_4 = preload("uid://dwkv7lr6enn71")
 
 
-const FIRE_SINGLE_HIT = preload("uid://btiqxx1cvyctf")
 const FIRE_SINGLE_HIT_2 = preload("uid://bauggnsebqcq2")
 const FIRE_SINGLE_HIT_3 = preload("uid://b057max80q80j")
 const FIRE_AOE_HIT = preload("uid://bny48lbijrx4l")
@@ -42,6 +41,7 @@ func play_music(song, volume):
 			stream = wii_shop_music
 	stream.set_loop(true)
 	volume_db = volume-5
+	self.bus = "Music"
 	play()
 	
 func play_FX(sound, volume = 0.0):
@@ -75,6 +75,9 @@ func play_FX(sound, volume = 0.0):
 	var fx_player = AudioStreamPlayer.new()
 	if sound == "click":
 		fx_player.pitch_scale = randf_range(1,1.15)
+	else:
+		fx_player.pitch_scale = randf_range(0.95,1.05)
+	fx_player.bus = "SFX"
 	fx_player.stream = soundfx
 	fx_player.name = "FX_PLAYER"
 	fx_player.volume_db = volume-5

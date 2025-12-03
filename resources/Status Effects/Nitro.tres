@@ -6,10 +6,7 @@
 [resource]
 script = ExtResource("1_eqlsr")
 name = "Nitro"
+type = "countdown"
 pre_turn = true
-damage = 0
-element = ""
-turns_remaining = 99
-event_based = true
-unique_type = "nitro"
+turns_remaining = 2
 icon = ExtResource("1_0lu7k")

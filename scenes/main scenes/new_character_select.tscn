@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bmymytp4nutcm" path="res://assets/kent/fire.webp" id="4_p148i"]
 [ext_resource type="Texture2D" uid="uid://q57bj44h63ue" path="res://assets/water.png" id="5_p148i"]
 [ext_resource type="Texture2D" uid="uid://dr5buhafiup2r" path="res://assets/venasaur (2).png" id="6_2gi26"]
-[ext_resource type="Texture2D" uid="uid://dmsixe7n4f266" path="res://assets/pikachu.png" id="7_0rorh"]
+[ext_resource type="Texture2D" uid="uid://ywjs42tcf0r5" path="res://assets/lightning jpg.png" id="7_p148i"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="8_hnda8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tbrfe"]
@@ -169,8 +169,8 @@ grid_snap = Vector2(100, 100)
 
 [node name="Sprite2D" type="Sprite2D" parent="GridContainer/LightningGirl"]
 position = Vector2(46, 51)
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("7_0rorh")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_p148i")
 
 [node name="Golem" type="Container" parent="GridContainer"]
 custom_minimum_size = Vector2(100, 100)

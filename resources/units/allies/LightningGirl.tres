@@ -8,10 +8,9 @@
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="6_cj0ho"]
 [ext_resource type="Resource" uid="uid://60omj8j38mfk" path="res://resources/Skills/lightning/Thunder Bolt.tres" id="7_6bgcc"]
 [ext_resource type="Resource" uid="uid://cnw2l4om8k28e" path="res://resources/Skills/lightning/Thunder Punch.tres" id="8_k8kw7"]
+[ext_resource type="Texture2D" uid="uid://ywjs42tcf0r5" path="res://assets/lightning jpg.png" id="9_g82qp"]
 [ext_resource type="Resource" uid="uid://ddrvp77dd5ima" path="res://resources/Skills/lightning/Electro Ball.tres" id="10_vee57"]
 [ext_resource type="Resource" uid="uid://bfvyaecgwi1s6" path="res://resources/Skills/lightning/Thunder.tres" id="11_8xhm1"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j23s5"]
 
 [resource]
 script = ExtResource("6_cj0ho")
@@ -28,7 +27,7 @@ ult_1 = ExtResource("10_vee57")
 ult_2 = ExtResource("11_8xhm1")
 relic_3 = ExtResource("4_qcw2u")
 relic_4 = ExtResource("5_5ggtw")
-sprite = SubResource("CompressedTexture2D_j23s5")
-sprite_scale = 0.39
+sprite = ExtResource("9_g82qp")
+sprite_scale = 0.5
 name = "Lightning Girl"
 core_main_stat = ExtResource("1_g82qp")

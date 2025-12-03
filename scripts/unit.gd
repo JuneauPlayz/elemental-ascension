@@ -8,10 +8,6 @@ class_name Unit
 @export var fire_damage_block = 0
 @export var status : Array = []
 @export var current_element : String = "none"
-@export var bubble : bool = false
-@export var muck : bool = false
-@export var nitro : bool = false
-@export var sow : bool = false
 @export var res : UnitRes
 @export var connected = false
 @export var left : Unit
@@ -24,7 +20,6 @@ var position : int
 @export var status_resistance: float
 @export var title : String
 
-#stats
 # Damage and stat-related variables
 var fire_skill_damage_bonus: float = 0.0
 var water_skill_damage_bonus: float = 0.0
@@ -55,8 +50,7 @@ var lightning_token_bonus: float = 0.0
 var grass_token_bonus: float = 0.0
 var earth_token_bonus: float = 0.0
 
-
-# Status Effect Constants
+# Status Effect Constants (templates if you still use them anywhere else)
 const BLEED = preload("res://resources/Status Effects/Bleed.tres")
 const BUBBLE = preload("res://resources/Status Effects/Bubble.tres")
 const BURN = preload("res://resources/Status Effects/Burn.tres")
@@ -76,52 +70,48 @@ var copy = false
 signal reaction_ended
 signal target_chosen
 signal died
-# Common Methods
 
+# =========================
+# Core skill / damage logic
+# =========================
 
 func receive_skill(skill, unit, value_multiplier):
 	if skill.friendly == true:
 		receive_skill_friendly(skill, unit, value_multiplier)
 		return
+
 	var rounded : int
 	var reaction = ""
 	var value = skill.damage * value_multiplier
 	var value2 = skill.damage2 * value_multiplier
-	if (!connected):
+
+	if not connected:
 		ReactionManager.reaction_finished.connect(self.reaction_signal)
 		connected = true
+
 	var r = await ReactionManager.reaction(current_element, skill.element, self, value, skill.friendly, unit)
-	if (r): 
-		await reaction_ended 
+	if r:
+		await reaction_ended
 		if skill.double_hit == true:
 			await get_tree().create_timer(0.1).timeout
 			var r2 = await ReactionManager.reaction(current_element, skill.element2, self, value2, skill.friendly, unit)
-			if (r2):
-				await reaction_ended 
-			if (!r2):
+			if r2:
+				await reaction_ended
+			if not r2:
 				self.take_damage(value2, skill.element2, true)
-	if (!r):
+	else:
 		self.take_damage(value, skill.element, true)
-		if (skill.element != "none"):
+		if skill.element != "none":
 			self.current_element = skill.element
 		if skill.double_hit == true:
 			await get_tree().create_timer(0.1).timeout
-			var r2 = await ReactionManager.reaction(current_element, skill.element2, self, value2, skill.friendly, unit)
-			if (r2):
-				await reaction_ended 
-			if (!r2):
+			var r2b = await ReactionManager.reaction(current_element, skill.element2, self, value2, skill.friendly, unit)
+			if r2b:
+				await reaction_ended
+			if not r2b:
 				self.take_damage(value2, skill.element2, true)
-	if sow:
-		unit.receive_healing(roundi(run.sow_healing * run.sow_healing_mult), "grass", false)
-		unit.receive_shielding(roundi(run.sow_shielding * run.sow_shielding_mult), "earth", false)
-		sow = false
-		for stati in status:
-			if stati.name == "Sow":
-				status.erase(stati)
-				if not copy:
-					hp_bar.update_statuses(status)
-				if not copy:
-					DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Harvest!", 32)
+
+	# Blast logic
 	if skill.blast == true:
 		if hasLeft():
 			if left.current_element == "none":
@@ -130,84 +120,63 @@ func receive_skill(skill, unit, value_multiplier):
 				await combat_manager.ReactionManager.reaction(left.current_element, skill.element, left, skill.blast_damage, false, unit)
 		if hasRight():
 			if right.current_element == "none":
-				right.take_damage(skill.blast_damage,skill.element, true)
+				right.take_damage(skill.blast_damage, skill.element, true)
 			else:
-				await combat_manager.ReactionManager.reaction(right.current_element,skill.element, right, skill.blast_damage, false, unit)
+				await combat_manager.ReactionManager.reaction(right.current_element, skill.element, right, skill.blast_damage, false, unit)
+
+	# Status effects application (generic with stacking/countdown)
 	if skill.status_effects != []:
 		for x in skill.status_effects:
-			if x.name == "Bleed":
-				var new_bleed = BLEED.duplicate()
-				status.append(new_bleed)
-			if x.name == "Burn":
-				for stati in status:
-					if stati.name == "Burn":
-						status.erase(stati)
-				if not copy:
-					hp_bar.update_statuses(status)
-				var new_burn = BURN.duplicate()
-				new_burn.damage = run.burn_damage
-				new_burn.turns_remaining = run.burn_length
-				status.append(new_burn)
-			if x.name == "Bubble":
-				var new_bubble = BUBBLE.duplicate()
-				status.append(new_bubble)
-			if x.name == "Muck":
-				var new_muck = MUCK.duplicate()
-				status.append(new_muck)
-			if x.name == "Nitro":
-				var new_nitro = NITRO.duplicate()
-				status.append(new_nitro)
-			if x.name == "Sow":
-				var new_sow = SOW.duplicate()
-				status.append(new_sow)
-				sow = true
+			apply_status(x)
 		if not copy:
 			hp_bar.update_statuses(status)
+
 	if not copy:
 		hp_bar.update_element(current_element)
-	
+
 
 func receive_skill_friendly(skill, unit, value_multiplier):
 	var rounded : int
 	var reaction = ""
 	var number = skill.damage * value_multiplier
 	var value = skill.damage * value_multiplier
+
 	if skill.buff == true:
 		increase_skill_damage(skill.buff_value)
 	else:
 		var r = await ReactionManager.reaction(current_element, skill.element, self, value, skill.friendly, unit)
-		if (!r):
+		if not r:
 			if skill.shielding == true:
 				self.receive_shielding(value, skill.element, true)
 			if skill.healing == true:
 				if (health + number >= max_health):
 					number = max_health - health
 				self.receive_healing(value, skill.element, true)
+
 		if skill.status_effects != []:
 			for x in skill.status_effects:
-				status.append(x)
+				apply_status(x)
+
 		if not copy:
 			hp_bar.update_element(current_element)
 			hp_bar.update_statuses(status)
+
 
 func receive_damage(damage: int, element: String, unit) -> void:
 	var r = false
 	if not connected:
 		ReactionManager.reaction_finished.connect(self.reaction_signal)
 		connected = true
-	
-	# Attempt reaction
+
 	r = await ReactionManager.reaction(current_element, element, self, damage, false, unit)
-	
+
 	if r:
 		await reaction_ended
 	else:
-		# No reaction, take the damage
 		self.take_damage(damage, element, true)
 		if element != "none":
 			self.current_element = element
-	
-	# Update UI if not copy
+
 	if not copy:
 		hp_bar.update_element(current_element)
 
@@ -223,7 +192,8 @@ func increase_skill_damage(value):
 		self.skill4.damage += value
 	if self is Enemy:
 		self.skill_info.update_skill_info()
-	
+
+
 func take_damage(damage : int, element : String, change_element : bool):
 	if not copy:
 		match element:
@@ -241,6 +211,8 @@ func take_damage(damage : int, element : String, change_element : bool):
 				AudioPlayer.play_FX("fire_hit", -18)
 
 	var damage_left = roundi(damage)
+
+	# Enemy damage modifiers based on run + element
 	if self is Enemy:
 		damage_left += run.all_damage_bonus
 		match element:
@@ -263,51 +235,41 @@ func take_damage(damage : int, element : String, change_element : bool):
 				damage_left += run.physical_damage_bonus
 				damage_left += run.physical_damage_mult
 		damage_left *= run.all_damage_mult
+
 	var total_dmg = damage_left
-	if bubble:
-		damage_left = roundi(damage * run.bubble_mult)
-		total_dmg = damage_left
-		bubble = false
-		if not copy:
-			DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Pop!", 32)
-		for stati in status:
-			if stati.name == "Bubble":
-				status.erase(stati)
-				if not copy:
-					hp_bar.update_statuses(status)
-				self.receive_healing(run.ally_bloom_healing * run.bloom_mult, "grass", false)
-	if nitro:
-		nitro = false
-		for stati in status:
-			if stati.name == "Nitro":
-				status.erase(stati)
-				if not copy:
-					hp_bar.update_statuses(status)
-				damage_left = roundi(damage_left * run.nitro_mult)
-				if not copy:
-					DamageNumbers.display_text(self.damage_number_origin.global_position, "none", "Nitrate!", 32)
-	if (element == "fire"):
+
+
+	# Fire damage block
+	if element == "fire":
 		damage_left -= self.fire_damage_block
+
 	if not copy:
 		DamageNumbers.display_number(damage_left, damage_number_origin.global_position, element, "")
+
 	total_dmg = damage_left
-	if (shield > 0):
-		if (shield <= damage_left):
+
+	# Shield interaction
+	if shield > 0:
+		if shield <= damage_left:
 			damage_left -= shield
 			shield = 0
-		elif (shield > damage_left):
+		elif shield > damage_left:
 			shield -= damage_left
 			damage_left = 0
 		if not copy:
 			hp_bar.set_shield(shield)
+
 	health -= damage_left
 	health = roundi(health)
 	check_if_dead()
 	if not copy:
 		hp_bar.set_hp(roundi(health))
+
 	if change_element:
 		change_element(element)
+
 	return total_dmg
+
 
 func change_element(element):
 	await get_tree().create_timer(0.00001).timeout
@@ -315,49 +277,66 @@ func change_element(element):
 	if not copy:
 		hp_bar.update_element(current_element)
 
+
 func receive_healing(healing: int, element : String, change_element):
-	var healing_reduction = 1
+	var healing_reduction = 1.0
 	for stati in status:
 		if stati.name == "Burn":
 			healing_reduction = 0.5
+
 	if not copy:
 		AudioPlayer.play_FX("healing",-21)
+
 	var new_healing = healing
 	if self is Ally:
 		new_healing = ((healing + run.healing_bonus) * run.healing_mult * healing_reduction)
 	if self is Enemy:
 		new_healing = healing * healing_reduction
+
 	if not copy:
 		DamageNumbers.display_number_plus(new_healing, damage_number_origin.global_position, element, "")
+
 	if change_element:
 		self.current_element = element
+
 	health += new_healing
 	if health >= max_health:
 		health = max_health
 	health = roundi(health)
+
 	if not copy:
 		hp_bar.set_hp(roundi(health))
+
 	return new_healing
+
 
 func receive_shielding(shielding: int, element : String, change_element : bool):
 	if not copy:
 		AudioPlayer.play_FX("earth_hit",-25)
-	var new_shielding =shielding
+
+	var new_shielding = shielding
 	if self is Ally:
 		new_shielding = ((shielding + run.shielding_bonus) * run.shielding_mult)
+
 	if not copy:
 		DamageNumbers.display_number_plus(new_shielding, damage_number_origin.global_position, element, "")
+
 	if change_element:
 		self.current_element = element
+
 	shield += new_shielding
 	shield = roundi(shield)
+
 	if not copy:
 		hp_bar.set_shield(roundi(shield))
+
 	return new_shielding
+
 
 func check_if_dead():
 	if health <= 0:
 		die()
+
 
 func die():
 	print("ded")
@@ -386,48 +365,135 @@ func die():
 				combat_manager.enemy3 = null
 			4:
 				combat_manager.enemy4 = null
+
 	combat_manager.set_unit_pos()
+
 
 func hasLeft():
 	return left != null
 
+
 func hasRight():
 	return right != null
+
 
 func enable_targeting_area():
 	targeting_area.visible = true
 
+
 func disable_targeting_area():
 	targeting_area.visible = false
-	
+
+
 func reaction_signal():
 	reaction_ended.emit()
 
-func execute_status(status_effect):
-	if status_effect.event_based == false:
-		take_damage(status_effect.damage, status_effect.element, true)
-		status_effect.turns_remaining -= 1
+
+# Apply a status with stacking/countdown rules.
+# - If stackable and already present: increase stacks (up to max_stacks) and refresh turns_remaining.
+# - If not stackable and already present: overwrite duration (and damage).
+# - If new: duplicate resource, set stacks to 1 if stackable.
+func apply_status(incoming: Status) -> void:
+
+	var new_s: Status = incoming.duplicate()
+
+	# Example: Burn uses run-based damage and duration
+	match new_s.name:
+		"Burn":
+			new_s.turns_remaining = run.burn_length
+			new_s.damage = run.burn_damage
+
+	# Ensure at least 1 stack if stackable and not set
+	if new_s.stack and new_s.stacks <= 0:
+		new_s.stacks = 1
+
+	# Try to merge with existing
+	for s in status:
+		if s.name == new_s.name:
+			if s.stack:
+				s.stacks = min(s.stacks + 1, new_s.max_stacks)
+				s.turns_remaining = new_s.turns_remaining
+				s.damage = new_s.damage
+			else:
+				s.turns_remaining = new_s.turns_remaining
+				s.damage = new_s.damage
+			if not copy:
+				hp_bar.update_statuses(status)
+			return
+
+	# No existing, append
+	status.append(new_s)
+	if not copy:
 		hp_bar.update_statuses(status)
-	else:
-		if status_effect.name == "Bubble":
-			bubble = true
-		elif status_effect.name == "Muck":
-			muck = true
-		elif status_effect.name == "Nitro":
-			nitro = true
-		elif status_effect.name == "Sow":
-			sow = true
+
+func remove_status(stati):
+	status.erase(stati)
+
+# Called by CombatManager pre-/post-turn wrappers:
+# - pre_turn == true  → ally_pre_status / enemy_pre_status
+# - pre_turn == false → ally_post_status / enemy_post_status
+func tick_statuses(pre_turn_tick: bool) -> void:
+	var to_remove: Array = []
+
+	for s in status:
+		if s.pre_turn != pre_turn_tick:
+			continue
+
+		# Execute effect every relevant turn (both countdown and event_based)
+		execute_status(s)
+
+		# Only countdown types lose duration
+		if s.type == "countdown":
+			s.turns_remaining -= 1
+			if s.turns_remaining <= 0:
+				to_remove.append(s)
+
+	for r in to_remove:
+		remove_status(r)
+
+	if not copy:
+		hp_bar.update_statuses(status)
+
+
+# Executes the logic of a single status.
+# - event_based: sets flags like Bubble/Muck/Nitro/Sow.
+# - countdown: deals damage or other per-turn effect.
+func execute_status(s: Status) -> void:
+	if s.type == "event_based":
+		if s.name == "Bubble":
+			pass
+		elif s.name == "Muck":
+			pass
+		elif s.name == "Nitro":
+			pass
+		elif s.name == "Sow":
+			pass
+		return
+
+	# countdown type
+	var dmg = s.damage
+	if s.stack:
+		dmg *= max(1, s.stacks)
+
+	if dmg > 0:
+		take_damage(dmg, s.element, true)
+
 		
+func check_statuses():
+	pass
+
+
 func set_shield(shield):
 	self.shield = shield
 	hp_bar.set_shield(shield)
-	
+
+
 func increase_max_hp(count, changehp):
 	max_health += count
 	if max_health < 1:
 		max_health = 1
 	hp_bar.set_maxhp(max_health)
-	hp_bar.set_hp(health+count)
+	hp_bar.set_hp(health + count)
 	if changehp:
 		health = max_health
 		hp_bar.set_hp(max_health)

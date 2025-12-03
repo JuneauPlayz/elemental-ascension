@@ -203,7 +203,6 @@ func ally_skill_use(skill, target, ally):
 	print(str(skill.name) + " landed!")
 	hit.emit()
 
-	enemy_status_check()
 
 	run.relic_handler.activate_relics_by_type(Relic.Type.POST_ALLY_SKILL)
 
@@ -230,11 +229,7 @@ func enemy_skill_use_wrapper(enemy):
 	use_skill(enemy.current_skill, null, enemy, true, false)
 	await reaction_finished
 
-func enemy_status_check():
-	for enemy in enemies:
-		for stati in enemy.status:
-			if stati.unique_type == "sow":
-				enemy.sow = true
+
 
 func check_post_skill(skill):
 	if skill.decay == true:
@@ -348,7 +343,7 @@ func use_skill(skill,target,unit,event,spend_tokens):
 		value_multiplier = run.muck_mult
 		for stati in unit.status:
 			if stati.name == "Muck":
-				unit.status.erase(stati)
+				unit.remove_status(stati)
 				unit.hp_bar.update_statuses(unit.status)
 				DamageNumbers.display_text(unit.damage_number_origin.global_position, "none", "wash", 32)
 	if event:
@@ -733,58 +728,24 @@ func toggle_targeting_ui(skill):
 	
 	
 #activate statuses
+
+
 func enemy_pre_status():
 	for enemy in enemies:
-		if enemy.status != []:
-			for status in enemy.status:
-				if status.pre_turn == true:
-					enemy.execute_status(status)
-		for i in range (len(enemy.status)): 
-			if i < len(enemy.status):
-				if enemy.status[i].turns_remaining <= 0:
-					enemy.status.remove_at(i)
-					i -= 1
-		enemy.hp_bar.update_statuses(enemy.status)
-	
+		enemy.tick_statuses(true)
 
 func enemy_post_status():
 	for enemy in enemies:
-		if enemy.status != []:
-			for status in enemy.status:
-				if status.pre_turn == false:
-					enemy.execute_status(status)
-		#remove any statuses with duration 0
-		for i in range (len(enemy.status)): 
-			if i < len(enemy.status):
-				if enemy.status[i].turns_remaining <= 0:
-					enemy.status.remove_at(i)
-					i -= 1
-		enemy.hp_bar.update_statuses(enemy.status)
-	
+		enemy.tick_statuses(false)
+
 func ally_pre_status():
 	for ally in allies:
-		if ally.status != []:
-			for status in ally.status:
-				if status.pre_turn == true:
-					ally.execute_status(status)
-		for i in range (len(ally.status)): 
-			if i < len(ally.status):
-				if ally.status[i].turns_remaining <= 0:
-					ally.status.remove_at(i)
-					i -= 1
-		ally.hp_bar.update_statuses(ally.status)
+		ally.tick_statuses(true)
+
 func ally_post_status():
 	for ally in allies:
-		if ally.status != []:
-			for status in ally.status:
-				if status.pre_turn == false:
-					ally.execute_status(status)
-		for i in range (len(ally.status)): 
-			if i < len(ally.status):
-				if ally.status[i].turns_remaining <= 0:
-					ally.status.remove_at(i)
-					i -= 1
-		ally.hp_bar.update_statuses(ally.status)
+		ally.tick_statuses(false)
+
 					
 func check_requirements():
 	var check = false
