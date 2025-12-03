@@ -5,6 +5,9 @@ class_name Unit
 @export var health = 0
 @export var max_health = 0
 @export var shield = 0
+
+@export var damage_reduction : float = 0.0
+
 @export var fire_damage_block = 0
 @export var status : Array = []
 @export var current_element : String = "none"
@@ -16,8 +19,6 @@ class_name Unit
 var run
 
 var position : int
-@export var defense : float
-@export var status_resistance: float
 @export var title : String
 
 # Damage and stat-related variables
@@ -202,7 +203,7 @@ func take_damage(damage : int, element : String, change_element : bool):
 			"water":
 				AudioPlayer.play_FX("water_hit", -18)
 			"lightning":
-				AudioPlayer.play_FX("lightning_hit", -27)
+				AudioPlayer.play_FX("lightning_hit", -20)
 			"earth":
 				AudioPlayer.play_FX("earth_hit", -25)
 			"grass":
@@ -236,17 +237,18 @@ func take_damage(damage : int, element : String, change_element : bool):
 				damage_left += run.physical_damage_mult
 		damage_left *= run.all_damage_mult
 
+	# calc damage reduction
+	damage_left *= (1 - damage_reduction)
+	
 	var total_dmg = damage_left
 
 
 	# Fire damage block
 	if element == "fire":
 		damage_left -= self.fire_damage_block
+	
+	DamageNumbers.display_number(damage_left, damage_number_origin.global_position, element, "")
 
-	if not copy:
-		DamageNumbers.display_number(damage_left, damage_number_origin.global_position, element, "")
-
-	total_dmg = damage_left
 
 	# Shield interaction
 	if shield > 0:
@@ -406,6 +408,7 @@ func apply_status(incoming: Status) -> void:
 	# Ensure at least 1 stack if stackable and not set
 	if new_s.stack and new_s.stacks <= 0:
 		new_s.stacks = 1
+	
 
 	# Try to merge with existing
 	for s in status:
@@ -420,14 +423,40 @@ func apply_status(incoming: Status) -> void:
 			if not copy:
 				hp_bar.update_statuses(status)
 			return
-
+	
+				
 	# No existing, append
 	status.append(new_s)
+	apply_status_buff(new_s)
 	if not copy:
 		hp_bar.update_statuses(status)
 
 func remove_status(stati):
 	status.erase(stati)
+	
+	remove_status_buff(stati)
+
+
+func apply_status_buff(s: Status) -> void:
+	match s.name:
+		"Nitro":
+			self.damage_reduction -= run.nitro_mult
+		"Muck":
+			set_all_skill_damage_mult(self.all_skill_damage_mult - run.muck_mult)
+		"Thorn":
+			self.damage_reduction += run.thorn_mult
+			self.thorn_damage += run.thorn_damage
+
+func remove_status_buff(s: Status) -> void:
+	match s.name:
+		"Nitro":
+			self.damage_reduction += run.nitro_mult
+		"Muck":
+			set_all_skill_damage_mult(self.all_skill_damage_mult + run.muck_mult)
+		"Thorn":
+			self.damage_reduction -= run.thorn_mult
+			self.thorn_damage -= run.thorn_damage
+
 
 # Called by CombatManager pre-/post-turn wrappers:
 # - pre_turn == true  → ally_pre_status / enemy_pre_status
@@ -451,8 +480,7 @@ func tick_statuses(pre_turn_tick: bool) -> void:
 	for r in to_remove:
 		remove_status(r)
 
-	if not copy:
-		hp_bar.update_statuses(status)
+	hp_bar.update_statuses(status)
 
 
 # Executes the logic of a single status.
@@ -497,3 +525,10 @@ func increase_max_hp(count, changehp):
 	if changehp:
 		health = max_health
 		hp_bar.set_hp(max_health)
+
+func set_all_skill_damage_mult(num):
+	all_skill_damage_mult = num
+	update_skills()
+	
+func update_skills():
+	pass

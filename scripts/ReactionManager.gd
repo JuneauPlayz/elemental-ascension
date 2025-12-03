@@ -149,7 +149,7 @@ func burn(elem1,elem2,unit,value,friendly,caster):
 	if unit is Enemy:
 		new_burn.damage = run.burn_damage
 	unit.current_element = "none"
-	unit.status.append(new_burn)
+	unit.apply_status(new_burn)
 	unit.hp_bar.update_statuses(unit.status)
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Burn!", 38)
 	if not friendly:
@@ -182,7 +182,7 @@ func shock(elem1,elem2,unit,value,friendly,caster):
 
 func bloom(elem1,elem2,unit,value,friendly,caster):
 	var bubble_effect = BUBBLE.duplicate()
-	unit.status.append(bubble_effect)
+	unit.apply_status(bubble_effect)
 	unit.hp_bar.update_statuses(unit.status)
 	unit.current_element = "none"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Bloom!", 38)
@@ -195,7 +195,7 @@ func bloom(elem1,elem2,unit,value,friendly,caster):
 
 func nitro(elem1,elem2,unit,value,friendly,caster):
 	var nitro_effect = NITRO.duplicate()
-	unit.status.append(nitro_effect)
+	unit.apply_status(nitro_effect)
 	unit.check_statuses()
 	unit.hp_bar.update_statuses(unit.status)
 	unit.current_element = "none"
@@ -226,7 +226,7 @@ func discharge(elem1,elem2,unit,value,friendly,caster):
 
 func sow(elem1,elem2,unit,value,friendly,caster):
 	var sow_effect = SOW.duplicate()
-	unit.status.append(sow_effect)
+	unit.apply_status(sow_effect)
 	unit.hp_bar.update_statuses(unit.status)
 	unit.current_element = "none"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Sow!", 38)
@@ -241,7 +241,7 @@ func sow(elem1,elem2,unit,value,friendly,caster):
 
 func muck(elem1,elem2,unit,value,friendly,caster):
 	var muck_effect = MUCK.duplicate()
-	unit.status.append(muck_effect)
+	unit.apply_status(muck_effect)
 	unit.hp_bar.update_statuses(unit.status)
 	unit.current_element = "none"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Muck!", 38)

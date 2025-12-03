@@ -12,6 +12,11 @@ var skill2_cd : int
 var skill3_cd : int
 var skill4_cd : int
 
+var skill1_base_damage : int
+var skill2_base_damage : int
+var skill3_base_damage : int
+var skill4_base_damage : int
+
 @export var countdown : int
 var skill_used : bool
 var current_skill : Skill
@@ -55,12 +60,16 @@ func _ready() -> void:
 	if res.skill1 != null:
 		skill1 = res.skill1.duplicate()
 		current_skill = skill1
+		skill1_base_damage = skill1.damage
 	if res.skill2 != null:
 		skill2 = res.skill2.duplicate()
+		skill2_base_damage = skill2.damage
 	if res.skill3 != null:
 		skill3 = res.skill3.duplicate()
+		skill3_base_damage = skill3.damage
 	if res.skill4 != null:
 		skill4 = res.skill4.duplicate()
+		skill4_base_damage = skill4.damage
 	if res.name != null:
 		title = res.name
 	if res.skill_1_cd != null:
@@ -207,3 +216,33 @@ func update_countdown_label():
 	else:
 		countdown_label.visible = false
 		show_next_skill.visible = false
+
+
+func update_skills():
+	update_skill_damage(skill1)
+	update_skill_damage(skill2)
+	update_skill_damage(skill3)
+	update_skill_damage(skill4)
+	skill_info.update_skill_info()
+
+func update_skill_damage(skill):
+	if skill != null:
+		skill.update()
+		if skill.damaging:
+			match skill.element:
+				"fire":
+					skill.damage = (skill.starting_damage + fire_skill_damage_bonus + all_skill_damage_bonus) * fire_skill_damage_mult * all_skill_damage_mult
+				"water":
+					skill.damage = (skill.starting_damage + water_skill_damage_bonus + all_skill_damage_bonus) * water_skill_damage_mult * all_skill_damage_mult
+				"lightning":
+					skill.damage = (skill.starting_damage + lightning_skill_damage_bonus + all_skill_damage_bonus) * lightning_skill_damage_mult  * all_skill_damage_mult
+				"grass":
+					skill.damage = (skill.starting_damage + grass_skill_damage_bonus + all_skill_damage_bonus) * grass_skill_damage_mult * all_skill_damage_mult
+				"earth":
+					skill.damage = (skill.starting_damage + earth_skill_damage_bonus + all_skill_damage_bonus) * earth_skill_damage_mult * all_skill_damage_mult
+				"none":
+					skill.damage = (skill.starting_damage + physical_skill_damage_bonus + all_skill_damage_bonus) * physical_skill_damage_mult * all_skill_damage_mult
+		elif skill.healing:
+			skill.damage = (skill.starting_damage + healing_skill_bonus) * healing_skill_mult
+		elif skill.shielding:
+			skill.damage = (skill.starting_damage + shielding_skill_bonus) * shielding_skill_mult

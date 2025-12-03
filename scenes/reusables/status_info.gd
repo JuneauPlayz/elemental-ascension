@@ -12,11 +12,15 @@ func update(status):
 			description.text = "This unit takes " + str(status.damage) + " " + status.element + " damage at the start of their turn"
 			turns_remaining.text = " Turns Remaining : " + str(status.turns_remaining)
 		"Nitro":
+			var percent := int(run.nitro_mult * 100)
 			status_name.text = "Nitro (Does not stack)"
-			description.text = "This unit takes " + str(run.nitro_mult) + "x damage, consumed when taking an instance of damage"
+			description.text = "-" + str(percent) + "% Damage Reduction"
+			turns_remaining.text = " Turns Remaining : " + str(status.turns_remaining)
 		"Muck":
+			var percent := int(run.muck_mult * 100)
 			status_name.text = "Muck (Does not stack)"
-			description.text = "This unit's next skill does 0.75x less damage"
+			description.text = "All Skill Damage Mult -" + str(percent) + "%"
+			turns_remaining.text = " Turns Remaining : " + str(status.turns_remaining)
 		"Sow":
 			status_name.text = "Sow (Can stack)"
 			description.text = "When a skill hits this unit, the caster of the skill heals " + str(run.sow_healing) + " and gains " + str(run.sow_shielding) + " shield"

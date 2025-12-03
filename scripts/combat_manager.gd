@@ -165,6 +165,7 @@ func start_ally_turn():
 	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_TURN)
 	turn_text.text = "Ally Turn"
 	ally_pre_status()
+	enemy_pre_status()
 	lose_shields()
 	show_skills()
 	reset_skill_select()
@@ -190,7 +191,7 @@ func ally_skill_use_wrapper(skill, target, ally):
 	if enemies.is_empty():
 		victory()
 
-	ally_post_status()
+
 	check_ally_turn_done()
 
 func ally_skill_use(skill, target, ally):
@@ -338,14 +339,6 @@ func use_skill(skill,target,unit,event,spend_tokens):
 		return
 	var value_multiplier = 1
 	# token spending
-	if unit.muck == true:
-		unit.muck = false
-		value_multiplier = run.muck_mult
-		for stati in unit.status:
-			if stati.name == "Muck":
-				unit.remove_status(stati)
-				unit.hp_bar.update_statuses(unit.status)
-				DamageNumbers.display_text(unit.damage_number_origin.global_position, "none", "wash", 32)
 	if event:
 		check_event_relics(skill,unit,value_multiplier,target)
 	if (skill.cost > 0 or skill.cost2 > 0) and spend_tokens == true:
@@ -600,6 +593,8 @@ func end_turn_process():
 		# end of turn relics
 		choosing_skills = false
 		set_unit_pos()
+		ally_post_status()
+		enemy_post_status()
 		ally_turn_done.emit()
 		for enemy in enemies:
 			enemy.change_skills()

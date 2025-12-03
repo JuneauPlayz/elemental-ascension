@@ -356,8 +356,8 @@ func update_core():
 	earth_token_bonus = run.get("earth_token_bonus") + total_earth_token_bonus
 				
 func update_skill_damage(skill):
-	skill.update()
 	if skill != null:
+		skill.update()
 		if skill.damaging:
 			match skill.element:
 				"fire":
