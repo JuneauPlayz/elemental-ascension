@@ -7,8 +7,8 @@
 [ext_resource type="FontFile" uid="uid://ca0ii6rndnaqf" path="res://assets/pokemon_pixel_font.ttf" id="5_wtw4i"]
 [ext_resource type="PackedScene" uid="uid://rtk527cyr7kb" path="res://scenes/reusables/combat_currency.tscn" id="6_b6b3n"]
 [ext_resource type="PackedScene" uid="uid://cb1kmohoelulf" path="res://scenes/reusables/enemy_combat_currency.tscn" id="6_uo10a"]
-[ext_resource type="Texture2D" uid="uid://bsae24ot6vmo6" path="res://assets/battle_bg.jpg" id="7_qh8p2"]
 [ext_resource type="PackedScene" uid="uid://ydkggenx6prk" path="res://scenes/reusables/result_screen.tscn" id="8_xw3f4"]
+[ext_resource type="Texture2D" uid="uid://dnp2y4b3r2d8a" path="res://assets/chloe/chloe_bg.png" id="9_0uf4x"]
 [ext_resource type="Script" uid="uid://ywsxina60jdl" path="res://scripts/ReactionManager.gd" id="10_cmui4"]
 [ext_resource type="Shader" uid="uid://dqwydnoy0ofim" path="res://scenes/main scenes/tutorialdim.gdshader" id="11_yh2m0"]
 [ext_resource type="Script" uid="uid://ddsbx27ewm7tq" path="res://scenes/main scenes/highlight.gd" id="12_bsuy1"]
@@ -17,6 +17,8 @@
 [sub_resource type="LabelSettings" id="LabelSettings_mo5rj"]
 font = ExtResource("3_cmui4")
 font_size = 90
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g8qlp"]
 font = ExtResource("5_wtw4i")
@@ -67,7 +69,7 @@ offset_left = 829.0
 offset_top = 25.0
 offset_right = 1035.0
 offset_bottom = 92.0
-text = "Ally Turn"
+text = "Turn 1"
 label_settings = SubResource("LabelSettings_mo5rj")
 
 [node name="TargetingLabel" type="Label" parent="CombatManager"]
@@ -112,19 +114,19 @@ offset_bottom = -714.0
 
 [node name="Enemy 1 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1020, 244)
+position = Vector2(1020, 242)
 
 [node name="Enemy 2 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1243, 244)
+position = Vector2(1243, 242)
 
 [node name="Enemy 3 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1468, 244)
+position = Vector2(1468, 242)
 
 [node name="Enemy 4 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1691, 244)
+position = Vector2(1691, 242)
 
 [node name="EndTurn" type="Button" parent="."]
 offset_left = 1521.0
@@ -153,11 +155,10 @@ mouse_filter = 2
 combat_manager = NodePath("../CombatManager")
 
 [node name="Background" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.411)
 z_index = -5
-position = Vector2(963, 539.5)
-scale = Vector2(1.6798, 1.703)
-texture = ExtResource("7_qh8p2")
+position = Vector2(960, 415)
+scale = Vector2(0.81, 0.81)
+texture = ExtResource("9_0uf4x")
 
 [node name="ReactionManager" type="Node" parent="."]
 script = ExtResource("10_cmui4")

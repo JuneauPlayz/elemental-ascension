@@ -36,22 +36,22 @@ script = ExtResource("1_e7k3u")
 [node name="Ally 1 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
 z_index = 3
-position = Vector2(94, 304)
+position = Vector2(94, 306)
 
 [node name="Ally 2 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
 z_index = 3
-position = Vector2(329, 304)
+position = Vector2(329, 306)
 
 [node name="Ally 3 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
 z_index = 3
-position = Vector2(564, 304)
+position = Vector2(564, 306)
 
 [node name="Ally 4 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
 z_index = 3
-position = Vector2(799, 304)
+position = Vector2(799, 306)
 
 [node name="RelicHandlerSpot" type="Node2D" parent="."]
 z_index = 3

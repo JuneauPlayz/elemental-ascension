@@ -15,8 +15,8 @@ var member_var = 0
 @export var sow_healing : float
 @export var sow_healing_mult : float
 @export var sow_shielding_mult : float
-@export var bloom_mult : float
-@export var bubble_mult : float
+@export var bloom_heal : float
+@export var bloom_shield : float
 @export var ally_bloom_healing : float
 @export var enemy_bloom_healing : float
 
@@ -36,9 +36,9 @@ func initialize_relic(owner : RelicUI) -> void:
 	run.sow_healing += self.sow_healing
 	run.sow_healing_mult += self.sow_healing_mult
 	run.sow_shielding_mult += self.sow_shielding_mult
-	run.bloom_mult += self.bloom_mult
-	run.bubble_mult += self.bubble_mult
-	run.ally_bloom_healing += self.ally_bloom_healing
+	run.bloom_heal += self.bloom_heal
+	run.bloom_shield += self.bloom_shield
+
 	
 func activate_relic(owner: RelicUI) -> void:
 	print("this happens at specific times based on the Relic.Type property")

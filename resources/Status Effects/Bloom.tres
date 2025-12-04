@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://cc71su8bmjhdj"]
+
+[ext_resource type="Texture2D" uid="uid://8e5ds4w7v41l" path="res://assets/bubble orb.png" id="1_sh7kr"]
+[ext_resource type="Script" uid="uid://5lu86r10cr8o" path="res://scripts/DoT_Status.gd" id="2_eqfn5"]
+
+[resource]
+script = ExtResource("2_eqfn5")
+name = "Bloom"
+type = "event_based"
+stack = true
+pre_turn = true
+max_stacks = 3
+icon = ExtResource("1_sh7kr")

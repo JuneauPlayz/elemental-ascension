@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bkkh4bxq8cu7n"]
+[gd_scene load_steps=27 format=3 uid="uid://bkkh4bxq8cu7n"]
 
 [ext_resource type="Script" uid="uid://bgugsa6ep270d" path="res://scripts/ally.gd" id="1_fu3qc"]
 [ext_resource type="PackedScene" uid="uid://tlvpop5rp1x6" path="res://scenes/reusables/spell_select_ui.tscn" id="2_pcgfv"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://kn2ixd2foerq" path="res://core.tscn" id="6_ww2sg"]
 [ext_resource type="Script" uid="uid://dgg1h20h2f62p" path="res://scripts/level_up_reward.gd" id="8_4ut3l"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="9_6y37o"]
+[ext_resource type="Texture2D" uid="uid://dkf53etd24pjd" path="res://assets/white circle.png" id="10_qfy0u"]
 [ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="10_ttrjn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvmj8"]
@@ -73,13 +74,9 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="Ally" type="Node2D"]
 position = Vector2(85, 185)
-scale = Vector2(1.1, 1.1)
 script = ExtResource("1_fu3qc")
 skill_1 = ExtResource("3_oopdj")
 skill_2 = ExtResource("4_7yskb")
-health = 100
-max_health = 100
-title = "QiqiFallen"
 
 [node name="SpellSelectUi" parent="." instance=ExtResource("2_pcgfv")]
 offset_left = -96.36363
@@ -101,7 +98,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-27, 42)
 
 [node name="SpriteSpot" type="Sprite2D" parent="."]
-position = Vector2(1.81818, -66.3636)
+position = Vector2(1.8181801, -32.727234)
 scale = Vector2(0.7, 0.7)
 
 [node name="Core" parent="." instance=ExtResource("6_ww2sg")]
@@ -261,6 +258,13 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_857xx")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_u6cuy")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_k7wpu")
 theme_override_styles/focus = SubResource("StyleBoxFlat_fqkb2")
+
+[node name="WhiteCircle" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.39215687)
+z_index = -1
+position = Vector2(-2, 80)
+scale = Vector2(0.226, 0.06)
+texture = ExtResource("10_qfy0u")
 
 [connection signal="new_select" from="SpellSelectUi" to="." method="_on_spell_select_ui_new_select"]
 [connection signal="new_select" from="LevelUpReward" to="." method="_on_level_up_reward_new_select"]

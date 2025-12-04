@@ -40,6 +40,7 @@ var enemy_skill_queue = []
 var choosing_skills = false
 # parallel array for targets
 var targeting = false
+var input_allowed = false
 
 var targeting_skill : Skill
 
@@ -164,6 +165,7 @@ func start_ally_turn():
 	show_ui()
 	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_TURN)
 	turn_text.text = "Ally Turn"
+	input_allowed = true
 	ally_pre_status()
 	enemy_pre_status()
 	lose_shields()
@@ -195,6 +197,7 @@ func ally_skill_use_wrapper(skill, target, ally):
 	check_ally_turn_done()
 
 func ally_skill_use(skill, target, ally):
+	input_allowed = false
 	use_skill(skill, target, ally, true, true)
 	check_post_skill(skill)
 	combat_currency.update()
@@ -210,6 +213,7 @@ func ally_skill_use(skill, target, ally):
 	await get_tree().create_timer(0.1).timeout
 	for enemy in enemies:
 		enemy.decrease_countdown(1)
+	input_allowed = true
 
 
 	
@@ -218,11 +222,13 @@ func enemy_skill_use(enemy):
 	enemy_skill_queue.append(enemy)
 
 func check_enemy_skills():
+	input_allowed = false
 	for enemy in enemy_skill_queue:
 		await enemy_skill_use_wrapper(enemy)
 		await get_tree().create_timer(AFTER_SKILL_DELAY).timeout
 	enemy_skill_queue.clear()
 	enemy_skills_done.emit()
+	input_allowed = true
 
 
 func enemy_skill_use_wrapper(enemy):
@@ -576,11 +582,12 @@ func reset_skill_select():
 	update_skill_positions()
 	
 func _on_end_turn_pressed() -> void:
-	AudioPlayer.play_FX("deeper_new_click",0)
 	end_turn_process()
 
 func end_turn_process():
 	if (!targeting and choosing_skills):
+		AudioPlayer.play_FX("deeper_new_click",0)
+		input_allowed = false
 		hide_ui()
 		hide_skills()
 		end_turn_pressed.emit()
@@ -595,6 +602,7 @@ func end_turn_process():
 		set_unit_pos()
 		ally_post_status()
 		enemy_post_status()
+		input_allowed = true
 		ally_turn_done.emit()
 		for enemy in enemies:
 			enemy.change_skills()
@@ -710,7 +718,8 @@ func _input(event):
 					if (allies[3] != null):
 						target_chosen.emit(allies[3])
 	if event.is_action_pressed("end_turn"):
-		_on_end_turn_pressed()
+		if (input_allowed):
+			_on_end_turn_pressed()
 			
 	
 func toggle_targeting_ui(skill):
@@ -933,6 +942,13 @@ func sow(unit, caster):
 	add_token("earth", (run.sow_earth_token_base + run.sow_earth_token_bonus + caster.earth_token_bonus) * run.sow_earth_token_mult)
 	add_token("grass", (run.sow_grass_token_base + run.sow_grass_token_bonus + caster.grass_token_bonus) * run.sow_grass_token_mult)
 
+func ally_bloom_burst():
+	for ally in allies:
+		ally.receive_healing(run.ally_bloom_healing, "grass", false)
+
+func enemy_bloom_burst():
+	for enemy in enemies:
+		enemy.receive_healing(run.enemy_bloom_healing, "grass", false)
 	
 func add_token(element, count):
 	match element:

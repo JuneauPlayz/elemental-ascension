@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://didsupfyw66ha"]
+[gd_scene load_steps=13 format=3 uid="uid://didsupfyw66ha"]
 
 [ext_resource type="Script" uid="uid://cbx1ktct7lanb" path="res://scripts/enemy.gd" id="1_ml356"]
 [ext_resource type="Texture2D" uid="uid://b6ifsg6s13c55" path="res://assets/waterswordsman.jpg" id="2_7vn7i"]
 [ext_resource type="PackedScene" uid="uid://5spa5amgsxfm" path="res://scenes/reusables/hp_bar.tscn" id="4_8i2d0"]
+[ext_resource type="Texture2D" uid="uid://dkf53etd24pjd" path="res://assets/white circle.png" id="4_nfeyx"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="5_gim1t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hiluv"]
@@ -28,18 +29,15 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebmkq"]
 
 [node name="Enemy" type="Node2D"]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.83, 0.83)
 script = ExtResource("1_ml356")
-health = 100
-max_health = 100
-title = "Baguette"
 
 [node name="SpriteSpot" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(300, 300)
-offset_left = 46.6667
-offset_top = 186.667
-offset_right = 307.667
-offset_bottom = 436.667
+custom_minimum_size = Vector2(250, 250)
+offset_left = 55.0
+offset_top = 215.0
+offset_right = 316.0003
+offset_bottom = 465.0
 scale = Vector2(0.938, 0.809)
 texture = ExtResource("2_7vn7i")
 expand_mode = 1
@@ -60,30 +58,37 @@ anchor_left = -25.2
 anchor_top = -2.21667
 anchor_right = -23.975
 anchor_bottom = -1.86667
-offset_left = 65.3333
-offset_top = -130.667
-offset_right = 218.333
-offset_bottom = -93.9167
+offset_left = 34.93976
+offset_top = -56.626507
+offset_right = 237.93976
+offset_bottom = -14.626507
 text = "Countdown : "
 label_settings = SubResource("LabelSettings_hiluv")
 metadata/_edit_use_anchors_ = true
 
+[node name="WhiteCircle" type="Sprite2D" parent="CountdownLabel"]
+self_modulate = Color(0, 0, 0, 0.39215687)
+z_index = -1
+position = Vector2(139.75905, 466.2649)
+scale = Vector2(0.226, 0.06)
+texture = ExtResource("4_nfeyx")
+
 [node name="ShowNextSkill" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -314.667
-offset_top = -33.3333
-offset_right = -274.667
-offset_bottom = 6.66666
+offset_left = -322.89157
+offset_top = 12.0482
+offset_right = -282.89157
+offset_bottom = 52.04816
 metadata/_edit_use_anchors_ = true
 
 [node name="NextSkillLabel" type="Label" parent="ShowNextSkill"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -25.1917
-anchor_top = -2.21667
-anchor_right = -23.7667
-anchor_bottom = -1.86667
+anchor_left = -25.79411
+anchor_top = -1.7648622
+anchor_right = -23.61911
+anchor_bottom = -1.2898619
 offset_left = 1393.0
 offset_top = 46.0
 offset_right = 1470.0
@@ -95,14 +100,15 @@ metadata/_edit_use_anchors_ = true
 [node name="SkillInfo" parent="ShowNextSkill" instance=ExtResource("5_gim1t")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -28.49999
-anchor_top = -0.8583349
-anchor_right = -27.49999
-anchor_bottom = 0.14166512
+anchor_left = -28.454214
+anchor_top = -0.33222917
+anchor_right = -27.454214
+anchor_bottom = 0.6677708
 offset_left = 1496.0
 offset_top = 41.0
 offset_right = 1496.0
 offset_bottom = 41.0
+scale = Vector2(1, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="TargetingArea" type="Button" parent="."]

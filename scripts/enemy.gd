@@ -212,7 +212,7 @@ func update_countdown_label():
 		if countdown > 0:
 			countdown_label.text = "Countdown: " + str(countdown)
 		elif countdown <= 0:
-			countdown_label.text = "Skill Used This Turn"
+			countdown_label.text = "Skill Used"
 	else:
 		countdown_label.visible = false
 		show_next_skill.visible = false

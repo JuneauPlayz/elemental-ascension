@@ -19,5 +19,6 @@ func update_statuses(statuses):
 		grid_container.add_child(new_status)
 		new_status.status = status
 		new_status.get_child(0).texture = status.icon
+		new_status.update_stacks()
 		
 	

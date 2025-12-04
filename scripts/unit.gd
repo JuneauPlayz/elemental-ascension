@@ -52,8 +52,7 @@ var grass_token_bonus: float = 0.0
 var earth_token_bonus: float = 0.0
 
 # Status Effect Constants (templates if you still use them anywhere else)
-const BLEED = preload("res://resources/Status Effects/Bleed.tres")
-const BUBBLE = preload("res://resources/Status Effects/Bubble.tres")
+const BLOOM = preload("res://resources/Status Effects/Bloom.tres")
 const BURN = preload("res://resources/Status Effects/Burn.tres")
 const MUCK = preload("res://resources/Status Effects/Muck.tres")
 const NITRO = preload("res://resources/Status Effects/Nitro.tres")
@@ -435,8 +434,8 @@ func remove_status(stati):
 	status.erase(stati)
 	
 	remove_status_buff(stati)
-
-
+	hp_bar.update_statuses(status)
+	
 func apply_status_buff(s: Status) -> void:
 	match s.name:
 		"Nitro":
@@ -508,8 +507,14 @@ func execute_status(s: Status) -> void:
 
 		
 func check_statuses():
-	pass
-
+	for s in status:
+		if s.name == "Bloom":
+			if s.stacks == s.max_stacks:
+				if self is Enemy:
+					combat_manager.ally_bloom_burst()
+				elif self is Ally:
+					combat_manager.enemy_bloom_burst()
+				remove_status(s)
 
 func set_shield(shield):
 	self.shield = shield

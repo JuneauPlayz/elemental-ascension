@@ -6,10 +6,11 @@ var status
 var info
 
 @onready var icon: TextureRect = $Icon
+@onready var stack_count: Label = $StackCount
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	stack_count.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,6 +24,10 @@ func _on_texture_rect_mouse_entered() -> void:
 	info.update(status)
 	info.global_position = self.global_position + Vector2(0,-96)
 
-
 func _on_texture_rect_mouse_exited() -> void:
 	info.queue_free()
+
+func update_stacks():
+	if status.stack == true:
+		stack_count.visible = true
+		stack_count.text = str(status.stacks)

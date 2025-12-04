@@ -163,7 +163,6 @@ var erupt_mult = 3
 var detonate_main_mult = 1.5
 var detonate_side_mult = 0.5
 var nitro_mult = 0.5
-var bubble_mult = 0.5
 var burn_damage = 10
 var burn_length = 2
 var muck_mult = 0.25
@@ -175,7 +174,9 @@ var sow_shielding_mult = 1
 
 var bloom_mult = 1
 var ally_bloom_healing = 5
+var ally_bloom_shielding
 var enemy_bloom_healing = 5
+var enemy_bloom_shielding = 5
 
 # token bonus and mults
 
@@ -760,7 +761,6 @@ func reset() -> void:
 		detonate_main_mult = 1.5
 		detonate_side_mult = 0.5
 		nitro_mult = 1.5
-		bubble_mult = 0.5
 		burn_damage = 10
 		burn_length = 2
 		muck_mult = 0.75
@@ -770,9 +770,10 @@ func reset() -> void:
 		sow_healing_mult = 1
 		sow_shielding_mult = 1
 
-		bloom_mult = 1
 		ally_bloom_healing = 5
+		ally_bloom_shielding = 5
 		enemy_bloom_healing = 5
+		enemy_bloom_shielding = 5
 
 		# Reset token bonuses and multipliers for reactions
 		vaporize_fire_token_base = 1

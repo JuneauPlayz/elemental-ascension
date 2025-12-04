@@ -2,8 +2,8 @@ extends Node
 
 signal reaction_finished
 
-const BLEED = preload("res://resources/Status Effects/Bleed.tres")
-const BUBBLE = preload("res://resources/Status Effects/Bubble.tres")
+
+const BLOOM = preload("res://resources/Status Effects/Bloom.tres")
 const BURN = preload("res://resources/Status Effects/Burn.tres")
 const MUCK = preload("res://resources/Status Effects/Muck.tres")
 const NITRO = preload("res://resources/Status Effects/Nitro.tres")
@@ -181,8 +181,8 @@ func shock(elem1,elem2,unit,value,friendly,caster):
 	await get_tree().process_frame
 
 func bloom(elem1,elem2,unit,value,friendly,caster):
-	var bubble_effect = BUBBLE.duplicate()
-	unit.apply_status(bubble_effect)
+	var bloom_stack = BLOOM.duplicate()
+	unit.apply_status(bloom_stack)
 	unit.hp_bar.update_statuses(unit.status)
 	unit.current_element = "none"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Bloom!", 38)

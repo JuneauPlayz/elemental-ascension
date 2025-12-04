@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="Status" load_steps=2 format=3 uid="uid://b0apobbcdvpno"]
-
-[ext_resource type="Script" uid="uid://5lu86r10cr8o" path="res://scripts/DoT_Status.gd" id="1_wsnvj"]
-
-[resource]
-script = ExtResource("1_wsnvj")
-metadata/_custom_type_script = "uid://5lu86r10cr8o"

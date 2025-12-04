@@ -176,7 +176,7 @@ func update_mult_labels() -> void:
 	earth_erupt_tokens.text = erupt_tokens_text
 
 	# Update bloom labels
-	var bloom_healing_text = "Bloom Healing: " + str(run.ally_bloom_healing) + "\nBubble Mult: " + str(run.bubble_mult)
+	var bloom_healing_text = "Bloom Healing: " + str(run.ally_bloom_healing)
 	water_bloom_healing.text = bloom_healing_text
 	grass_bloom_healing.text = bloom_healing_text
 
