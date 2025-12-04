@@ -16,7 +16,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_mo5rj"]
 font = ExtResource("3_cmui4")
-font_size = 90
+font_size = 60
 outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
@@ -65,12 +65,14 @@ unique_name_in_owner = true
 script = ExtResource("4_ucgqt")
 
 [node name="TurnText" type="Label" parent="CombatManager"]
-offset_left = 829.0
+visible = false
+offset_left = -2.0
 offset_top = 25.0
-offset_right = 1035.0
-offset_bottom = 92.0
+offset_right = 1912.0
+offset_bottom = 134.0
 text = "Turn 1"
 label_settings = SubResource("LabelSettings_mo5rj")
+horizontal_alignment = 1
 
 [node name="TargetingLabel" type="Label" parent="CombatManager"]
 visible = false
@@ -98,6 +100,7 @@ label_settings = SubResource("LabelSettings_rfbdu")
 [node name="CombatCurrency" parent="CombatManager" instance=ExtResource("6_b6b3n")]
 offset_right = -1625.0
 offset_bottom = -714.0
+scale = Vector2(0.7, 0.7)
 
 [node name="TargetingSkillInfo" parent="CombatManager" instance=ExtResource("5_2x1un")]
 visible = false
@@ -107,10 +110,11 @@ offset_right = 491.0
 offset_bottom = 678.0
 
 [node name="EnemyCombatCurrency" parent="CombatManager" instance=ExtResource("6_uo10a")]
-offset_left = 1686.0
-offset_top = 2.0
-offset_right = 39.0
-offset_bottom = -714.0
+offset_left = 1091.0
+offset_top = 4.0
+offset_right = -556.0
+offset_bottom = -712.0
+scale = Vector2(0.7, 0.7)
 
 [node name="Enemy 1 Spot" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -156,7 +160,7 @@ combat_manager = NodePath("../CombatManager")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -5
-position = Vector2(960, 415)
+position = Vector2(959, 414.99997)
 scale = Vector2(0.81, 0.81)
 texture = ExtResource("9_0uf4x")
 

@@ -9,6 +9,14 @@ var shield = 0
 @onready var shield_spr: Sprite2D = $Shield
 @onready var shield_label: Label = $ShieldLabel
 @onready var status_bar: Control = $"Status Bar"
+@onready var element_symbol: TextureRect = $ElementSymbol
+
+const EARTH_SYMBOL = preload("uid://dgkpabaj1kl5r")
+const FIRE_SYMBOL = preload("uid://ega8yf10nrw")
+const GRASS_SYMBOL = preload("uid://6wem028prmhu")
+const LIGHTNING_SYMBOL = preload("uid://c2a810t6sstxx")
+const WATER_SYMBOL = preload("uid://b7ctbguy8vt4q")
+const WHITE_CIRCLE = preload("uid://dkf53etd24pjd")
 
 
 var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.PURPLE, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
@@ -51,18 +59,25 @@ func update_element(element):
 	match element:
 		"":
 			current_element.text = " Element : None"
+			element_symbol.texture = WHITE_CIRCLE
 		"none":
-			current_element.text = " Element : None"
+			current_element.text = " Element : "
+			element_symbol.texture = WHITE_CIRCLE
 		"fire":
-			current_element.text = " Element : [color=coral]Fire[/color]"
+			current_element.text = " [color=coral]Element[/color] :"
+			element_symbol.texture = FIRE_SYMBOL
 		"water":
-			current_element.text = " Element : [color=dark_cyan]Water[/color]"
+			current_element.text = " [color=dark_cyan]Element[/color] :"
+			element_symbol.texture = WATER_SYMBOL
 		"lightning":
-			current_element.text = " Element : [color=purple]Lightning[/color]"
+			current_element.text = " [color=purple]Element[/color] :"
+			element_symbol.texture = LIGHTNING_SYMBOL
 		"earth":
-			current_element.text = " Element : [color=saddle_brown]Earth[/color]"
+			current_element.text = " [color=saddle_brown]Element[/color] :"
+			element_symbol.texture = EARTH_SYMBOL
 		"grass":
-			current_element.text = " Element : [color=web_green]Grass[/color]"
-			
+			current_element.text = " [color=web_green]Element[/color] :"
+			element_symbol.texture = GRASS_SYMBOL
+		
 func update_statuses(statuses):
 	status_bar.update_statuses(statuses)

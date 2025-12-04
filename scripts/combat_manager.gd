@@ -147,6 +147,9 @@ func start_combat():
 		popup.visible = false
 	for enemy in enemies:
 		enemy.change_skills()
+		enemy.change_element("none")
+	for ally in allies:
+		ally.change_element("none")
 	while (!combat_finished):
 		start_ally_turn()
 		if tutorial == true:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://5spa5amgsxfm"]
+[gd_scene load_steps=11 format=3 uid="uid://5spa5amgsxfm"]
 
 [ext_resource type="Script" uid="uid://bada5mi2dlugm" path="res://scripts/hp_bar.gd" id="1_orq1w"]
 [ext_resource type="Texture2D" uid="uid://cfus0jnjm26vl" path="res://assets/shield.png" id="2_0hkbf"]
+[ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="2_kdpnr"]
 [ext_resource type="PackedScene" uid="uid://b5c6pngktpoun" path="res://status_bar.tscn" id="3_76eju"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgu82"]
@@ -82,13 +83,23 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " Element : None"
+text = " Element : "
+
+[node name="ElementSymbol" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 0
+offset_left = 167.5
+offset_top = -66.25
+offset_right = 237.5
+offset_bottom = 3.75
+texture = ExtResource("2_kdpnr")
+expand_mode = 2
 
 [node name="ShieldBar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 11.0
+offset_left = 11.25
 offset_top = 10.0
-offset_right = 272.0
+offset_right = 272.25
 offset_bottom = 42.0
 theme_override_styles/background = SubResource("StyleBoxFlat_cq0p4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0vx8s")

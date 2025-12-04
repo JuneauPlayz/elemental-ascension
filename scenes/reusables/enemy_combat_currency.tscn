@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb1kmohoelulf"]
+[gd_scene load_steps=11 format=3 uid="uid://cb1kmohoelulf"]
 
-[ext_resource type="Script" uid="uid://c13fetopibjic" path="res://scenes/reusables/enemy_combat_currency.gd" id="1_jdfjd"]
+[ext_resource type="Script" path="res://scenes/reusables/enemy_combat_currency.gd" id="1_jdfjd"]
+[ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="2_3q5pp"]
+[ext_resource type="Texture2D" uid="uid://b7ctbguy8vt4q" path="res://assets/Water_symbol.png" id="3_bhpgx"]
+[ext_resource type="Texture2D" uid="uid://c2a810t6sstxx" path="res://assets/Lightning_Symbol.png" id="4_fvo2n"]
+[ext_resource type="Texture2D" uid="uid://6wem028prmhu" path="res://assets/Grass_symbol.png" id="5_cvq7h"]
+[ext_resource type="Texture2D" uid="uid://dgkpabaj1kl5r" path="res://assets/Earth_symbol.png" id="6_hwlma"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evy26"]
-bg_color = Color(0.449653, 0.548845, 0.58154, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m3jh"]
+bg_color = Color(0.90957385, 0.7414305, 0.7009061, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -11,20 +16,22 @@ border_width_bottom = 5
 corner_radius_bottom_left = 25
 shadow_size = 7
 
-[sub_resource type="LabelSettings" id="LabelSettings_a672k"]
-font_size = 38
-outline_size = 8
+[sub_resource type="LabelSettings" id="LabelSettings_g53tl"]
+font_size = 48
+outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0ro6"]
-content_margin_top = 3.0
-bg_color = Color(0.207843, 0.0745098, 0.0901961, 0.717647)
-expand_margin_left = 6.0
-expand_margin_right = 5.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5ebm"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 11
+border_color = Color(0.33474356, 0.3347436, 0.33474332, 1)
+expand_margin_top = 12.0
+expand_margin_bottom = 12.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_pyo7b"]
-font_size = 36
-outline_size = 6
+[sub_resource type="LabelSettings" id="LabelSettings_dclff"]
+font_size = 28
+outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [node name="CombatCurrency" type="Control"]
@@ -41,9 +48,9 @@ script = ExtResource("1_jdfjd")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_right = 263.0
-offset_bottom = 247.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_evy26")
+offset_right = 1184.0
+offset_bottom = 97.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0m3jh")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -52,121 +59,124 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 15
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Control" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
-text = "Enemy Tokens:"
-label_settings = SubResource("LabelSettings_a672k")
+size_flags_vertical = 0
+
+[node name="FireSymbol" type="TextureRect" parent="PanelContainer/MarginContainer/HBox/Control"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("2_3q5pp")
+expand_mode = 2
+
+[node name="FireCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_g53tl")
+horizontal_alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+theme_override_styles/separator = SubResource("StyleBoxFlat_j5ebm")
+
+[node name="Control2" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBox"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="WaterSymbol" type="TextureRect" parent="PanelContainer/MarginContainer/HBox/Control2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("3_bhpgx")
+expand_mode = 2
+
+[node name="WaterCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control2"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_g53tl")
+horizontal_alignment = 2
+
+[node name="VSeparator4" type="VSeparator" parent="PanelContainer/MarginContainer/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+theme_override_styles/separator = SubResource("StyleBoxFlat_j5ebm")
+
+[node name="Control3" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBox"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="LightningSymbol" type="TextureRect" parent="PanelContainer/MarginContainer/HBox/Control3"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("4_fvo2n")
+expand_mode = 2
+
+[node name="LightningCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control3"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_g53tl")
+horizontal_alignment = 2
+
+[node name="VSeparator3" type="VSeparator" parent="PanelContainer/MarginContainer/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+theme_override_styles/separator = SubResource("StyleBoxFlat_j5ebm")
+
+[node name="Control5" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBox"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="GrassSymbol" type="TextureRect" parent="PanelContainer/MarginContainer/HBox/Control5"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("5_cvq7h")
+expand_mode = 2
+
+[node name="EarthCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control5"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_g53tl")
+horizontal_alignment = 2
+
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+theme_override_styles/separator = SubResource("StyleBoxFlat_j5ebm")
+
+[node name="Control4" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBox"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="EarthSymbol" type="TextureRect" parent="PanelContainer/MarginContainer/HBox/Control4"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("6_hwlma")
+expand_mode = 2
+
+[node name="GrassCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control4"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_g53tl")
+horizontal_alignment = 2
+
+[node name="VSeparator5" type="VSeparator" parent="PanelContainer/MarginContainer/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+theme_override_styles/separator = SubResource("StyleBoxFlat_j5ebm")
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/HBox"]
+layout_mode = 2
+text = "Enemy
+Tokens"
+label_settings = SubResource("LabelSettings_dclff")
 horizontal_alignment = 1
-
-[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_t0ro6")
-
-[node name="Control" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 41
-
-[node name="Fire" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Control"]
-clip_contents = false
-custom_minimum_size = Vector2(200, 45)
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 36
-bbcode_enabled = true
-text = " [color=coral]Fire[/color]:"
-
-[node name="FireCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control"]
-custom_minimum_size = Vector2(25, 0)
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_pyo7b")
-horizontal_alignment = 2
-
-[node name="Control2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 41
-
-[node name="Water" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Control2"]
-clip_contents = false
-custom_minimum_size = Vector2(200, 45)
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 36
-bbcode_enabled = true
-text = " [color=dark_cyan]Water[/color]:"
-
-[node name="WaterCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control2"]
-custom_minimum_size = Vector2(25, 0)
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_pyo7b")
-horizontal_alignment = 2
-
-[node name="Control3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 41
-
-[node name="Lightning" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Control3"]
-clip_contents = false
-custom_minimum_size = Vector2(200, 45)
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 36
-bbcode_enabled = true
-text = " [color=purple]Lightning[/color]:"
-
-[node name="LightningCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control3"]
-custom_minimum_size = Vector2(25, 0)
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_pyo7b")
-horizontal_alignment = 2
-
-[node name="Control5" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 41
-
-[node name="Earth" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Control5"]
-clip_contents = false
-custom_minimum_size = Vector2(200, 45)
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 36
-bbcode_enabled = true
-text = " [color=saddle_brown]Earth[/color]:"
-
-[node name="EarthCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control5"]
-custom_minimum_size = Vector2(25, 0)
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_pyo7b")
-horizontal_alignment = 2
-
-[node name="Control4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 41
-
-[node name="Grass" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Control4"]
-clip_contents = false
-custom_minimum_size = Vector2(200, 45)
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/normal_font_size = 36
-bbcode_enabled = true
-text = " [color=web_green]Grass[/color]:
-"
-
-[node name="GrassCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Control4"]
-custom_minimum_size = Vector2(25, 0)
-layout_mode = 2
-text = "0"
-label_settings = SubResource("LabelSettings_pyo7b")
-horizontal_alignment = 2
