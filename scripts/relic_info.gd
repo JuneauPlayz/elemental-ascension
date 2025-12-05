@@ -23,7 +23,7 @@ func update_relic_info(relic):
 				"Water":
 					added_text = " [color=dark_cyan]Water[/color]"
 				"Lightning":
-					added_text = " [color=purple]Lightning[/color]"
+					added_text = " [color=yellow]Lightning[/color]"
 				"Grass":
 					added_text = " [color=web_green]Grass[/color]"
 				"Earth":

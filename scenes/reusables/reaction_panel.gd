@@ -149,7 +149,7 @@ func update_mult_labels() -> void:
 
 	var shock_water_tokens = (run.shock_water_token_base + run.shock_water_token_bonus) * run.shock_water_token_mult
 	var shock_lightning_tokens = (run.shock_lightning_token_base + run.shock_lightning_token_bonus) * run.shock_lightning_token_mult
-	var shock_tokens_text = "        +" + str(shock_water_tokens) + " [color=darkcyan] Water[/color]" + (" Tokens" if shock_water_tokens >= 2 else " Token") + "  +" + str(shock_lightning_tokens) + " [color=purple] Lightning[/color]" + (" Tokens" if shock_lightning_tokens >= 2 else " Token")
+	var shock_tokens_text = "        +" + str(shock_water_tokens) + " [color=darkcyan] Water[/color]" + (" Tokens" if shock_water_tokens >= 2 else " Token") + "  +" + str(shock_lightning_tokens) + " [color=yellow] Lightning[/color]" + (" Tokens" if shock_lightning_tokens >= 2 else " Token")
 	water_shock_tokens.text = shock_tokens_text
 	lightning_shock_tokens.text = shock_tokens_text
 
@@ -160,7 +160,7 @@ func update_mult_labels() -> void:
 
 	var detonate_fire_tokens = (run.detonate_fire_token_base + run.detonate_fire_token_bonus) * run.detonate_fire_token_mult
 	var detonate_lightning_tokens = (run.detonate_lightning_token_base + run.detonate_lightning_token_bonus) * run.detonate_lightning_token_mult
-	var detonate_tokens_text = "        +" + str(detonate_fire_tokens) + " [color=coral] Fire[/color]" + (" Tokens" if detonate_fire_tokens >= 2 else " Token") + "  +" + str(detonate_lightning_tokens) + " [color=purple] Lightning[/color]" + (" Tokens" if detonate_lightning_tokens >= 2 else " Token")
+	var detonate_tokens_text = "        +" + str(detonate_fire_tokens) + " [color=coral] Fire[/color]" + (" Tokens" if detonate_fire_tokens >= 2 else " Token") + "  +" + str(detonate_lightning_tokens) + " [color=yellow] Lightning[/color]" + (" Tokens" if detonate_lightning_tokens >= 2 else " Token")
 	fire_detonate_tokens.text = detonate_tokens_text
 	lightning_detonate_tokens.text = detonate_tokens_text
 
@@ -193,7 +193,7 @@ func update_mult_labels() -> void:
 
 	var nitro_lightning_tokens = (run.nitro_lightning_token_base + run.nitro_lightning_token_bonus) * run.nitro_lightning_token_mult
 	var nitro_grass_tokens = (run.nitro_grass_token_base + run.nitro_grass_token_bonus) * run.nitro_grass_token_mult
-	var nitro_tokens_text = "        +" + str(nitro_lightning_tokens) + " [color=purple] Lightning[/color]" + (" Tokens" if nitro_lightning_tokens >= 2 else " Token") + "  +" + str(nitro_grass_tokens) + " [color=webgreen] Grass[/color]" + (" Tokens" if nitro_grass_tokens >= 2 else " Token")
+	var nitro_tokens_text = "        +" + str(nitro_lightning_tokens) + " [color=yellow] Lightning[/color]" + (" Tokens" if nitro_lightning_tokens >= 2 else " Token") + "  +" + str(nitro_grass_tokens) + " [color=webgreen] Grass[/color]" + (" Tokens" if nitro_grass_tokens >= 2 else " Token")
 	lightning_nitro_tokens.text = nitro_tokens_text
 	grass_nitro_tokens.text = nitro_tokens_text
 
@@ -226,7 +226,7 @@ func update_mult_labels() -> void:
 
 	var discharge_earth_tokens = (run.discharge_earth_token_base + run.discharge_earth_token_bonus) * run.discharge_earth_token_mult
 	var discharge_lightning_tokens = (run.discharge_lightning_token_base + run.discharge_lightning_token_bonus) * run.discharge_lightning_token_mult
-	var discharge_tokens_text = "        +" + str(discharge_earth_tokens) + " [color=saddlebrown] Earth[/color]" + (" Tokens" if discharge_earth_tokens >= 2 else " Token") + "  +" + str(discharge_lightning_tokens) + " [color=purple] Lightning[/color]" + (" Tokens" if discharge_lightning_tokens >= 2 else " Token")
+	var discharge_tokens_text = "        +" + str(discharge_earth_tokens) + " [color=saddlebrown] Earth[/color]" + (" Tokens" if discharge_earth_tokens >= 2 else " Token") + "  +" + str(discharge_lightning_tokens) + " [color=yellow] Lightning[/color]" + (" Tokens" if discharge_lightning_tokens >= 2 else " Token")
 	lightning_discharge_tokens.text = discharge_tokens_text
 	earth_discharge_tokens.text = discharge_tokens_text
 
@@ -254,8 +254,8 @@ func update_mult_labels() -> void:
 	water_damage_mult_2.text = water_damage_mult.text
 
 	# Lightning Damage
-	lightning_damage_bonus.text = " [color=purple]Lightning Damage Bonus[/color]  :  " + str(run.lightning_damage_bonus)
-	lightning_damage_mult.text = " [color=purple]Lightning Damage Multiplier[/color]  :  " + str(run.lightning_damage_mult)
+	lightning_damage_bonus.text = " [color=yellow]Lightning Damage Bonus[/color]  :  " + str(run.lightning_damage_bonus)
+	lightning_damage_mult.text = " [color=yellow]Lightning Damage Multiplier[/color]  :  " + str(run.lightning_damage_mult)
 	lightning_damage_bonus_2.text = lightning_damage_bonus.text
 	lightning_damage_mult_2.text = lightning_damage_mult.text
 

@@ -6,5 +6,4 @@
 script = ExtResource("1_pm8sy")
 element = "earth"
 type = "token_bonus"
-amount = 1
 metadata/_custom_type_script = "uid://b5qk4bg7v0gmv"

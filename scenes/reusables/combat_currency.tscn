@@ -151,7 +151,7 @@ layout_mode = 2
 texture = ExtResource("5_ghax0")
 expand_mode = 2
 
-[node name="EarthCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control5"]
+[node name="GrassCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control5"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "100"
@@ -173,7 +173,7 @@ layout_mode = 2
 texture = ExtResource("6_1f4h4")
 expand_mode = 2
 
-[node name="GrassCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control4"]
+[node name="EarthCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control4"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "100"

@@ -3,8 +3,8 @@ extends Control
 @onready var fire_count: Label = $PanelContainer/MarginContainer/HBox/Control/FireCount
 @onready var water_count: Label = $PanelContainer/MarginContainer/HBox/Control2/WaterCount
 @onready var lightning_count: Label = $PanelContainer/MarginContainer/HBox/Control3/LightningCount
-@onready var earth_count: Label = $PanelContainer/MarginContainer/HBox/Control5/EarthCount
-@onready var grass_count: Label = $PanelContainer/MarginContainer/HBox/Control4/GrassCount
+@onready var grass_count: Label = $PanelContainer/MarginContainer/HBox/Control5/GrassCount
+@onready var earth_count: Label = $PanelContainer/MarginContainer/HBox/Control4/EarthCount
 
 
 

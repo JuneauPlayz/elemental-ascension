@@ -26,7 +26,7 @@ func update_skill_info():
 		"water":
 			element_text = " [color=dark_cyan]Water[/color]"
 		"lightning":
-			element_text = " [color=purple]Lightning[/color]"
+			element_text = " [color=yellow]Lightning[/color]"
 		"grass":
 			element_text = " [color=web_green]Grass[/color]"
 		"earth":
@@ -119,7 +119,7 @@ func update_skill_info():
 				"Water":
 					added_text = " [color=dark_cyan]Water[/color]"
 				"Lightning":
-					added_text = " [color=purple]Lightning[/color]"
+					added_text = " [color=yellow]Lightning[/color]"
 				"Grass":
 					added_text = " [color=web_green]Grass[/color]"
 				"Earth":

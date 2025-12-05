@@ -11,6 +11,7 @@ const CLIACK = preload("res://assets/cliack.mp3")
 const NEW_CLICK = preload("uid://crkpw4yokvcoh")
 const DEEPER_NEW_CLICK = preload("uid://f36igp8pl5qe")
 const CLICK_4 = preload("uid://dwkv7lr6enn71")
+const COIN = preload("uid://dceqrh3bqbtgd")
 
 
 const FIRE_SINGLE_HIT_2 = preload("uid://bauggnsebqcq2")
@@ -72,6 +73,8 @@ func play_FX(sound, volume = 0.0):
 			soundfx = GRASS_HIT
 		"healing":
 			soundfx = HEALING_EFFECT
+		"coin":
+			soundfx = COIN
 	var fx_player = AudioStreamPlayer.new()
 	if sound == "click":
 		fx_player.pitch_scale = randf_range(1,1.15)

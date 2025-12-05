@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://bu5s8nmkdj2ey" path="res://resources/level_up_relics/Healing Boost.tres" id="4_qshh3"]
 [ext_resource type="Resource" uid="uid://bcnlggyd75qmg" path="res://resources/Skills/grass/Mega Drain.tres" id="4_stegg"]
 [ext_resource type="Resource" uid="uid://y0pcbe6fmy6m" path="res://resources/Skills/grass/Sow Storm.tres" id="5_besxd"]
-[ext_resource type="Texture2D" uid="uid://dr5buhafiup2r" path="res://assets/venasaur (2).png" id="6_rlwy5"]
+[ext_resource type="Texture2D" uid="uid://cxiij475owot2" path="res://addons/plant_lady.png" id="9_cr2bb"]
 
 [resource]
 script = ExtResource("1_5s5xv")
@@ -27,8 +27,7 @@ ult_1 = ExtResource("5_besxd")
 ult_2 = ExtResource("4_stegg")
 relic_3 = ExtResource("3_qshh3")
 relic_4 = ExtResource("4_qshh3")
-sprite = ExtResource("6_rlwy5")
-sprite_scale = 0.39
+sprite = ExtResource("9_cr2bb")
+sprite_scale = 0.35
 name = "Venasaur"
 core_main_stat = ExtResource("1_cr2bb")
-fire_damage_block = 0

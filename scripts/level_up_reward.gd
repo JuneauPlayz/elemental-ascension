@@ -10,7 +10,7 @@ signal new_select
 @onready var confirm_swap: Button = $ConfirmSwap
 
 
-var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.PURPLE, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
+var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.YELLOW, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
 
 var skill1 : Skill
 var skill2 : Skill

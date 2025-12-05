@@ -9,7 +9,7 @@ var rewards = []
 var fights = []
 var type = ""
 signal choice_ended
-var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.PURPLE, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
+var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.YELLOW, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
 var easy_color = "86a18c"
 var hard_color = "b0797b"
 

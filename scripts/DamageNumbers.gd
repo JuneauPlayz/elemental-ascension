@@ -1,5 +1,5 @@
 extends Node
-var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.PURPLE, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
+var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.YELLOW, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
 func display_number(value: int, position: Vector2, element : String, reaction : String):
 	var rng = RandomNumberGenerator.new()
 	var random_num = Vector2(rng.randf_range(-25,25), rng.randf_range(-25,25))
@@ -107,12 +107,14 @@ func display_number_plus(value: int, position: Vector2, element : String, reacti
 	await tween.finished
 	number.queue_free()
 	
-func display_text(position: Vector2, element : String, text : String, size : int):
-	var rng = RandomNumberGenerator.new()
-	var random_num = Vector2(rng.randf_range(15,30), rng.randf_range(-50,-25))
+func display_text(position: Vector2, element : String, text : String, size : int, random := true):
+	var random_offset = Vector2(0,0)
+	if random:
+		var rng = RandomNumberGenerator.new()
+		random_offset = Vector2(rng.randf_range(15,30), rng.randf_range(-50,-25))
 	var number = Label.new()
 	number.text = text
-	number.global_position = position + random_num
+	number.global_position = position + random_offset
 	number.z_index = 5
 	number.label_settings = LabelSettings.new()
 	

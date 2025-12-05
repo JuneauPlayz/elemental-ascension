@@ -189,7 +189,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " Detonate = [color=coral]Fire[/color] + [color=purple]Lightning[/color]"
+text = " Detonate = [color=coral]Fire[/color] + [color=yellow]Lightning[/color]"
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Detonate"]
 layout_mode = 2
@@ -222,7 +222,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "       +1  [color=coral]Fire[/color] Token  +1  [color=purple]Lightning[/color] Token"
+text = "       +1  [color=coral]Fire[/color] Token  +1  [color=yellow]Lightning[/color] Token"
 scroll_active = false
 
 [node name="VSeparator4" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage"]
@@ -439,7 +439,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " Shock = [color=dark_cyan]Water[/color] + [color=purple]Lightning[/color]"
+text = " Shock = [color=dark_cyan]Water[/color] + [color=yellow]Lightning[/color]"
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Shock"]
 layout_mode = 2
@@ -471,7 +471,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "        +1  [color=dark_cyan]Water[/color] Token  +1  [color=purple]Lightning[/color] Token"
+text = "        +1  [color=dark_cyan]Water[/color] Token  +1  [color=yellow]Lightning[/color] Token"
 scroll_active = false
 
 [node name="VSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage"]
@@ -637,7 +637,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " Detonate = [color=purple]Lightning[/color] + [color=coral]Fire[/color]"
+text = " Detonate = [color=yellow]Lightning[/color] + [color=coral]Fire[/color]"
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Detonate2"]
 layout_mode = 2
@@ -670,7 +670,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "      +1  [color=purple]Lightning[/color] Token  +1  [color=coral]Fire[/color] Token"
+text = "      +1  [color=yellow]Lightning[/color] Token  +1  [color=coral]Fire[/color] Token"
 scroll_active = false
 
 [node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage"]
@@ -689,7 +689,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " Shock = [color=purple]Lightning[/color] + [color=dark_cyan]Water[/color]"
+text = " Shock = [color=yellow]Lightning[/color] + [color=dark_cyan]Water[/color]"
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Shock"]
 layout_mode = 2
@@ -721,7 +721,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "        +1  [color=purple]Lightning[/color] Token  +1  [color=dark_cyan]Water[/color] Token  "
+text = "        +1  [color=yellow]Lightning[/color] Token  +1  [color=dark_cyan]Water[/color] Token  "
 scroll_active = false
 
 [node name="VSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage"]
@@ -740,7 +740,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " Nitro = [color=purple]Lightning[/color] + [color=web_green]Grass[/color]"
+text = " Nitro = [color=yellow]Lightning[/color] + [color=web_green]Grass[/color]"
 scroll_active = false
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Nitro"]
@@ -773,7 +773,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "        +1  [color=purple]Lightning[/color] Token  +1  [color=web_green]Grass[/color] Token
+text = "        +1  [color=yellow]Lightning[/color] Token  +1  [color=web_green]Grass[/color] Token
 "
 scroll_active = false
 
@@ -793,7 +793,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " Discharge = [color=purple]Lightning[/color] + [color=saddle_brown]Earth[/color]"
+text = " Discharge = [color=yellow]Lightning[/color] + [color=saddle_brown]Earth[/color]"
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Discharge"]
 layout_mode = 2
@@ -825,7 +825,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "      +1  [color=purple]Lightning[/color] Token  +1  [color=saddle_brown]Earth[/color] Token  "
+text = "      +1  [color=yellow]Lightning[/color] Token  +1  [color=saddle_brown]Earth[/color] Token  "
 scroll_active = false
 
 [node name="VSeparator5" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage"]
@@ -844,7 +844,7 @@ layout_mode = 2
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 53
 bbcode_enabled = true
-text = " [color=purple]Lightning Damage Bonus[/color] : 0"
+text = " [color=yellow]Lightning Damage Bonus[/color] : 0"
 horizontal_alignment = 1
 
 [node name="LightningDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
@@ -853,7 +853,7 @@ layout_mode = 2
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 53
 bbcode_enabled = true
-text = " [color=purple]Lightning Damage Mult[/color] : 1x"
+text = " [color=yellow]Lightning Damage Mult[/color] : 1x"
 horizontal_alignment = 1
 
 [node name="GrassPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
@@ -992,7 +992,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " Nitro = [color=web_green]Grass[/color] + [color=purple]Lightning[/color]"
+text = " Nitro = [color=web_green]Grass[/color] + [color=yellow]Lightning[/color]"
 scroll_active = false
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Nitro"]
@@ -1271,7 +1271,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " Discharge = [color=saddle_brown]Earth[/color] + [color=purple]Lightning[/color]"
+text = " Discharge = [color=saddle_brown]Earth[/color] + [color=yellow]Lightning[/color]"
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Discharge"]
 layout_mode = 2
@@ -1303,7 +1303,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "      +1  [color=saddle_brown]Earth[/color] Token  +1  [color=purple]Lightning[/color] Token"
+text = "      +1  [color=saddle_brown]Earth[/color] Token  +1  [color=yellow]Lightning[/color] Token"
 scroll_active = false
 
 [node name="VSeparator5" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage"]
@@ -1496,7 +1496,7 @@ layout_mode = 2
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " [color=purple]Lightning Damage Bonus[/color] : 0"
+text = " [color=yellow]Lightning Damage Bonus[/color] : 0"
 
 [node name="LightningDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
 custom_minimum_size = Vector2(600, 60)
@@ -1504,7 +1504,7 @@ layout_mode = 2
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = " [color=purple]Lightning Damage Mult[/color] : 1x"
+text = " [color=yellow]Lightning Damage Mult[/color] : 1x"
 
 [node name="GrassDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
 custom_minimum_size = Vector2(600, 60)
@@ -1624,7 +1624,7 @@ text = " [color=yellow]Gold Mult[/color] : 0"
 
 [node name="StatsDisclaimer" type="Label" parent="."]
 custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
+layout_mode = 0
 offset_left = 119.0
 offset_top = 454.0
 offset_right = 400.0
@@ -1637,7 +1637,7 @@ damage"
 label_settings = SubResource("LabelSettings_ku7jd")
 
 [node name="Title" type="Label" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 117.0
 offset_top = 87.0
 offset_right = 1715.0

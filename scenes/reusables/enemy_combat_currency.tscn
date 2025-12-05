@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://cb1kmohoelulf"]
 
-[ext_resource type="Script" path="res://scenes/reusables/enemy_combat_currency.gd" id="1_jdfjd"]
+[ext_resource type="Script" uid="uid://c13fetopibjic" path="res://scenes/reusables/enemy_combat_currency.gd" id="1_jdfjd"]
 [ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="2_3q5pp"]
 [ext_resource type="Texture2D" uid="uid://b7ctbguy8vt4q" path="res://assets/Water_symbol.png" id="3_bhpgx"]
 [ext_resource type="Texture2D" uid="uid://c2a810t6sstxx" path="res://assets/Lightning_Symbol.png" id="4_fvo2n"]
 [ext_resource type="Texture2D" uid="uid://6wem028prmhu" path="res://assets/Grass_symbol.png" id="5_cvq7h"]
 [ext_resource type="Texture2D" uid="uid://dgkpabaj1kl5r" path="res://assets/Earth_symbol.png" id="6_hwlma"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m3jh"]
-bg_color = Color(0.90957385, 0.7414305, 0.7009061, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3q5pp"]
+bg_color = Color(0.9159206, 0.7353501, 0.72169596, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -16,12 +16,12 @@ border_width_bottom = 5
 corner_radius_bottom_left = 25
 shadow_size = 7
 
-[sub_resource type="LabelSettings" id="LabelSettings_g53tl"]
+[sub_resource type="LabelSettings" id="LabelSettings_bhpgx"]
 font_size = 48
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5ebm"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvo2n"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 5
 border_width_top = 11
@@ -29,7 +29,7 @@ border_color = Color(0.33474356, 0.3347436, 0.33474332, 1)
 expand_margin_top = 12.0
 expand_margin_bottom = 12.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_dclff"]
+[sub_resource type="LabelSettings" id="LabelSettings_cvq7h"]
 font_size = 28
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
@@ -47,10 +47,16 @@ scale = Vector2(0.8, 0.8)
 script = ExtResource("1_jdfjd")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_right = 1184.0
-offset_bottom = 97.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0m3jh")
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1191.25
+offset_top = 2.5
+offset_right = -315.24994
+offset_bottom = 99.5
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3q5pp")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -77,14 +83,14 @@ expand_mode = 2
 [node name="FireCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
-text = "100"
-label_settings = SubResource("LabelSettings_g53tl")
+text = "0"
+label_settings = SubResource("LabelSettings_bhpgx")
 horizontal_alignment = 2
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
 theme_override_constants/separation = 14
-theme_override_styles/separator = SubResource("StyleBoxFlat_j5ebm")
+theme_override_styles/separator = SubResource("StyleBoxFlat_fvo2n")
 
 [node name="Control2" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
@@ -99,14 +105,14 @@ expand_mode = 2
 [node name="WaterCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control2"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
-text = "100"
-label_settings = SubResource("LabelSettings_g53tl")
+text = "0"
+label_settings = SubResource("LabelSettings_bhpgx")
 horizontal_alignment = 2
 
 [node name="VSeparator4" type="VSeparator" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
 theme_override_constants/separation = 14
-theme_override_styles/separator = SubResource("StyleBoxFlat_j5ebm")
+theme_override_styles/separator = SubResource("StyleBoxFlat_fvo2n")
 
 [node name="Control3" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
@@ -121,14 +127,14 @@ expand_mode = 2
 [node name="LightningCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control3"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
-text = "100"
-label_settings = SubResource("LabelSettings_g53tl")
+text = "0"
+label_settings = SubResource("LabelSettings_bhpgx")
 horizontal_alignment = 2
 
 [node name="VSeparator3" type="VSeparator" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
 theme_override_constants/separation = 14
-theme_override_styles/separator = SubResource("StyleBoxFlat_j5ebm")
+theme_override_styles/separator = SubResource("StyleBoxFlat_fvo2n")
 
 [node name="Control5" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
@@ -140,17 +146,16 @@ layout_mode = 2
 texture = ExtResource("5_cvq7h")
 expand_mode = 2
 
-[node name="EarthCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control5"]
+[node name="GrassCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control5"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
-text = "100"
-label_settings = SubResource("LabelSettings_g53tl")
-horizontal_alignment = 2
+text = "0"
+label_settings = SubResource("LabelSettings_bhpgx")
 
 [node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
 theme_override_constants/separation = 14
-theme_override_styles/separator = SubResource("StyleBoxFlat_j5ebm")
+theme_override_styles/separator = SubResource("StyleBoxFlat_fvo2n")
 
 [node name="Control4" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
@@ -162,21 +167,21 @@ layout_mode = 2
 texture = ExtResource("6_hwlma")
 expand_mode = 2
 
-[node name="GrassCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control4"]
+[node name="EarthCount" type="Label" parent="PanelContainer/MarginContainer/HBox/Control4"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
-text = "100"
-label_settings = SubResource("LabelSettings_g53tl")
+text = "0"
+label_settings = SubResource("LabelSettings_bhpgx")
 horizontal_alignment = 2
 
 [node name="VSeparator5" type="VSeparator" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
 theme_override_constants/separation = 14
-theme_override_styles/separator = SubResource("StyleBoxFlat_j5ebm")
+theme_override_styles/separator = SubResource("StyleBoxFlat_fvo2n")
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/HBox"]
 layout_mode = 2
 text = "Enemy
 Tokens"
-label_settings = SubResource("LabelSettings_dclff")
+label_settings = SubResource("LabelSettings_cvq7h")
 horizontal_alignment = 1

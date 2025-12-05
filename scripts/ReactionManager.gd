@@ -59,34 +59,39 @@ func _run_reaction(elem1, elem2, unit, value, friendly, caster):
 	match elem1:
 		"fire":
 			match elem2:
-				"water": await vaporize(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.vaporize(unit,caster,elem2)
-				"lightning": await detonate(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.detonate(unit,caster)
-				"earth": await erupt(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.erupt(unit,caster)
-				"grass": await burn(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.burn(unit,caster)
+				"water": await vaporize(elem1,elem2,unit,value,friendly,caster); combat.vaporize(unit,caster,elem2)
+				"lightning": await detonate(elem1,elem2,unit,value,friendly,caster); combat.detonate(unit,caster)
+				"earth": await erupt(elem1,elem2,unit,value,friendly,caster); combat.erupt(unit,caster)
+				"grass": await burn(elem1,elem2,unit,value,friendly,caster); combat.burn(unit,caster)
+
 		"water":
 			match elem2:
-				"fire": await vaporize(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.vaporize(unit,caster,elem2)
-				"lightning": await shock(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.shock(unit,caster)
-				"earth": await muck(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.muck(unit,caster)
-				"grass": await bloom(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.bloom(unit,caster)
+				"fire": await vaporize(elem1,elem2,unit,value,friendly,caster); combat.vaporize(unit,caster,elem2)
+				"lightning": await shock(elem1,elem2,unit,value,friendly,caster); combat.shock(unit,caster)
+				"earth": await muck(elem1,elem2,unit,value,friendly,caster); combat.muck(unit,caster)
+				"grass": await bloom(elem1,elem2,unit,value,friendly,caster); combat.bloom(unit,caster)
+
 		"lightning":
 			match elem2:
-				"fire": await detonate(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.detonate(unit,caster)
-				"water": await shock(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.shock(unit,caster)
-				"earth": await discharge(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.discharge(unit,caster)
-				"grass": await nitro(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.nitro(unit,caster)
+				"fire": await detonate(elem1,elem2,unit,value,friendly,caster); combat.detonate(unit,caster)
+				"water": await shock(elem1,elem2,unit,value,friendly,caster); combat.shock(unit,caster)
+				"earth": await discharge(elem1,elem2,unit,value,friendly,caster); combat.discharge(unit,caster)
+				"grass": await nitro(elem1,elem2,unit,value,friendly,caster); combat.nitro(unit,caster)
+
 		"earth":
 			match elem2:
-				"fire": await erupt(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.erupt(unit,caster)
-				"water": await muck(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.muck(unit,caster)
-				"lightning": await discharge(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.discharge(unit,caster)
-				"grass": await sow(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.sow(unit,caster)
+				"fire": await erupt(elem1,elem2,unit,value,friendly,caster); combat.erupt(unit,caster)
+				"water": await muck(elem1,elem2,unit,value,friendly,caster); combat.muck(unit,caster)
+				"lightning": await discharge(elem1,elem2,unit,value,friendly,caster); combat.discharge(unit,caster)
+				"grass": await sow(elem1,elem2,unit,value,friendly,caster); combat.sow(unit,caster)
+
 		"grass":
 			match elem2:
-				"earth": await sow(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.sow(unit,caster)
-				"fire": await burn(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.burn(unit,caster)
-				"water": await bloom(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.bloom(unit,caster)
-				"lightning": await nitro(elem1,elem2,unit,value,friendly,caster); if caster is Ally: combat.nitro(unit,caster)
+				"earth": await sow(elem1,elem2,unit,value,friendly,caster); combat.sow(unit,caster)
+				"fire": await burn(elem1,elem2,unit,value,friendly,caster); combat.burn(unit,caster)
+				"water": await bloom(elem1,elem2,unit,value,friendly,caster); combat.bloom(unit,caster)
+				"lightning": await nitro(elem1,elem2,unit,value,friendly,caster); combat.nitro(unit,caster)
+
 
 func vaporize(elem1,elem2,unit,value,friendly,caster):
 	var res_value = roundi(value)

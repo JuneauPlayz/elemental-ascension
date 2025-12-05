@@ -188,7 +188,7 @@ func _on_venasaur_mouse_entered() -> void:
 
 
 func _on_lightning_girl_mouse_entered() -> void:
-	display_character_info(lightning_girl)
+	display_character_info(LIGHTNING_GIRL)
 
 
 func _on_golem_mouse_entered() -> void:

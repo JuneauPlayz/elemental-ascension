@@ -55,7 +55,7 @@ position = Vector2(799, 306)
 
 [node name="RelicHandlerSpot" type="Node2D" parent="."]
 z_index = 3
-position = Vector2(716, 38)
+position = Vector2(763, 4)
 
 [node name="RelicInfo" parent="RelicHandlerSpot" instance=ExtResource("2_fgc7h")]
 unique_name_in_owner = true

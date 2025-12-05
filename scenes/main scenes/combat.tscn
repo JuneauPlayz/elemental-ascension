@@ -110,10 +110,10 @@ offset_right = 491.0
 offset_bottom = 678.0
 
 [node name="EnemyCombatCurrency" parent="CombatManager" instance=ExtResource("6_uo10a")]
-offset_left = 1091.0
-offset_top = 4.0
-offset_right = -556.0
-offset_bottom = -712.0
+offset_left = 1949.0
+offset_top = -0.99999976
+offset_right = 302.0
+offset_bottom = -717.0
 scale = Vector2(0.7, 0.7)
 
 [node name="Enemy 1 Spot" type="Node2D" parent="."]

@@ -98,7 +98,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-27, 42)
 
 [node name="SpriteSpot" type="Sprite2D" parent="."]
-position = Vector2(1.8181801, -32.727234)
+position = Vector2(1.8181801, -27.727234)
 scale = Vector2(0.7, 0.7)
 
 [node name="Core" parent="." instance=ExtResource("6_ww2sg")]

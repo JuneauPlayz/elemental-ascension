@@ -19,10 +19,11 @@ const WATER_SYMBOL = preload("uid://b7ctbguy8vt4q")
 const WHITE_CIRCLE = preload("uid://dkf53etd24pjd")
 
 
-var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.PURPLE, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
+var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.YELLOW, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
 
 func _ready():
 	update_statuses([])
+	update_element("none")
 
 func set_hp(newhp):
 	hp = newhp
@@ -70,7 +71,7 @@ func update_element(element):
 			current_element.text = " [color=dark_cyan]Element[/color] :"
 			element_symbol.texture = WATER_SYMBOL
 		"lightning":
-			current_element.text = " [color=purple]Element[/color] :"
+			current_element.text = " [color=yellow]Element[/color] :"
 			element_symbol.texture = LIGHTNING_SYMBOL
 		"earth":
 			current_element.text = " [color=saddle_brown]Element[/color] :"

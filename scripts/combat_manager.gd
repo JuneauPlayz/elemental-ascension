@@ -74,6 +74,12 @@ var lightning_tokens = 0
 var grass_tokens = 0
 var earth_tokens = 0
 
+var enemy_fire_tokens = 0
+var enemy_water_tokens = 0
+var enemy_lightning_tokens = 0
+var enemy_grass_tokens = 0
+var enemy_earth_tokens = 0
+
 var tutorial = false
 var tutorial2 = false
 
@@ -140,6 +146,7 @@ func combat_ready():
 
 func start_combat():
 	combat_currency.update()
+	enemy_combat_currency.update()
 	reset_skill_select()
 	check_requirements()
 	show_skills()
@@ -232,6 +239,7 @@ func check_enemy_skills():
 	enemy_skill_queue.clear()
 	enemy_skills_done.emit()
 	input_allowed = true
+	combat_currency.update()
 
 
 func enemy_skill_use_wrapper(enemy):
@@ -471,7 +479,6 @@ func spend_skill_cost(skill):
 				grass_tokens -= skill.cost2
 			"earth":
 				earth_tokens -= skill.cost2
-	combat_currency.update()
 
 
 func _on_relics_activated(type : Relic.Type) -> void:
@@ -484,6 +491,7 @@ func _on_relics_activated(type : Relic.Type) -> void:
 			
 func reaction_signal():
 	combat_currency.update()
+	enemy_combat_currency.update()
 	reaction_finished.emit()
 	
 func lose_shields():
@@ -504,7 +512,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	# If unselecting
 	if selected_index == 0:
 		ally.using_skill = false
-		combat_currency.update()
 		return
 	
 	# Pick the correct skill
@@ -526,7 +533,6 @@ func _on_spell_select_ui_new_select(ally) -> void:
 			ally.using_skill = true
 			await ally_skill_use_wrapper(skill, target, ally)
 	
-	combat_currency.update()
 	check_requirements()
 	
 
@@ -585,11 +591,11 @@ func reset_skill_select():
 	update_skill_positions()
 	
 func _on_end_turn_pressed() -> void:
+	AudioPlayer.play_FX("deeper_new_click",0)
 	end_turn_process()
 
 func end_turn_process():
 	if (!targeting and choosing_skills):
-		AudioPlayer.play_FX("deeper_new_click",0)
 		input_allowed = false
 		hide_ui()
 		hide_skills()
@@ -669,10 +675,8 @@ func choose_target(skill : Skill):
 		Input.set_custom_mouse_cursor(DEFAULT_CURSOR, 0)
 		targeting = false
 		return target
-		combat_currency.update()
 		check_requirements()
 	else:
-		combat_currency.update()
 		check_requirements()
 		return null
 	
@@ -896,54 +900,261 @@ func link_units(units):
 		else:
 			units[i].right = null
 
-		
+func compute_token_amount(base, bonus, caster_bonus, mult, caster):
+	if caster is Enemy:
+		return 1 + caster_bonus
+	return (base + bonus + caster_bonus) * mult
+
+
 func vaporize(unit, caster, element):
-	add_token("fire", (run.vaporize_fire_token_base + run.vaporize_fire_token_bonus + caster.fire_token_bonus) * run.vaporize_fire_token_mult)
-	add_token("water", (run.vaporize_water_token_base + run.vaporize_water_token_bonus + caster.water_token_bonus) * run.vaporize_water_token_mult)
-	if run.steamer == true:
+	add_token("fire",
+		compute_token_amount(
+			run.vaporize_fire_token_base,
+			run.vaporize_fire_token_bonus,
+			caster.fire_token_bonus,
+			run.vaporize_fire_token_mult,
+			caster
+		),
+		caster
+	)
+
+	add_token("water",
+		compute_token_amount(
+			run.vaporize_water_token_base,
+			run.vaporize_water_token_bonus,
+			caster.water_token_bonus,
+			run.vaporize_water_token_mult,
+			caster
+		),
+		caster
+	)
+
+	if run.steamer:
 		if element == "fire":
 			unit.current_element = "water"
 		elif element == "water":
 			unit.current_element = "fire"
 
+
 func shock(unit, caster):
-	add_token("lightning", (run.shock_lightning_token_base + run.shock_lightning_token_bonus + caster.lightning_token_bonus) * run.shock_lightning_token_mult)
-	add_token("water", (run.shock_water_token_base + run.shock_water_token_bonus + caster.water_token_bonus) * run.shock_water_token_mult)
+	add_token("lightning",
+		compute_token_amount(
+			run.shock_lightning_token_base,
+			run.shock_lightning_token_bonus,
+			caster.lightning_token_bonus,
+			run.shock_lightning_token_mult,
+			caster
+		),
+		caster
+	)
+
+	add_token("water",
+		compute_token_amount(
+			run.shock_water_token_base,
+			run.shock_water_token_bonus,
+			caster.water_token_bonus,
+			run.shock_water_token_mult,
+			caster
+		),
+		caster
+	)
+
 
 func detonate(unit, caster):
-	add_token("fire", (run.detonate_fire_token_base + run.detonate_fire_token_bonus + caster.fire_token_bonus) * run.detonate_fire_token_mult)
-	add_token("lightning", (run.detonate_lightning_token_base + run.detonate_lightning_token_bonus + caster.lightning_token_bonus) * run.detonate_lightning_token_mult)
+	add_token("fire",
+		compute_token_amount(
+			run.detonate_fire_token_base,
+			run.detonate_fire_token_bonus,
+			caster.fire_token_bonus,
+			run.detonate_fire_token_mult,
+			caster
+		),
+		caster
+	)
+
+	add_token("lightning",
+		compute_token_amount(
+			run.detonate_lightning_token_base,
+			run.detonate_lightning_token_bonus,
+			caster.lightning_token_bonus,
+			run.detonate_lightning_token_mult,
+			caster
+		),
+		caster
+	)
+
 
 func erupt(unit, caster):
-	add_token("fire", (run.erupt_fire_token_base + run.erupt_fire_token_bonus + caster.fire_token_bonus) * run.erupt_fire_token_mult)
-	add_token("earth", (run.erupt_earth_token_base + run.erupt_earth_token_bonus + caster.earth_token_bonus) * run.erupt_earth_token_mult)
+	add_token("fire",
+		compute_token_amount(
+			run.erupt_fire_token_base,
+			run.erupt_fire_token_bonus,
+			caster.fire_token_bonus,
+			run.erupt_fire_token_mult,
+			caster
+		),
+		caster
+	)
+
+	add_token("earth",
+		compute_token_amount(
+			run.erupt_earth_token_base,
+			run.erupt_earth_token_bonus,
+			caster.earth_token_bonus,
+			run.erupt_earth_token_mult,
+			caster
+		),
+		caster
+	)
+
 
 func bloom(unit, caster):
-	add_token("water", (run.bloom_water_token_base + run.bloom_water_token_bonus + caster.water_token_bonus) * run.bloom_water_token_mult)
-	add_token("grass", (run.bloom_grass_token_base + run.bloom_grass_token_bonus + caster.grass_token_bonus) * run.bloom_grass_token_mult)
+	add_token("water",
+		compute_token_amount(
+			run.bloom_water_token_base,
+			run.bloom_water_token_bonus,
+			caster.water_token_bonus,
+			run.bloom_water_token_mult,
+			caster
+		),
+		caster
+	)
+
+	add_token("grass",
+		compute_token_amount(
+			run.bloom_grass_token_base,
+			run.bloom_grass_token_bonus,
+			caster.grass_token_bonus,
+			run.bloom_grass_token_mult,
+			caster
+		),
+		caster
+	)
+
 
 func burn(unit, caster):
-	add_token("fire", (run.burn_fire_token_base + run.burn_fire_token_bonus + caster.fire_token_bonus) * run.burn_fire_token_mult)
-	add_token("grass", (run.burn_grass_token_base + run.burn_grass_token_bonus + caster.grass_token_bonus) * run.burn_grass_token_mult)
+	add_token("fire",
+		compute_token_amount(
+			run.burn_fire_token_base,
+			run.burn_fire_token_bonus,
+			caster.fire_token_bonus,
+			run.burn_fire_token_mult,
+			caster
+		),
+		caster
+	)
+
+	add_token("grass",
+		compute_token_amount(
+			run.burn_grass_token_base,
+			run.burn_grass_token_bonus,
+			caster.grass_token_bonus,
+			run.burn_grass_token_mult,
+			caster
+		),
+		caster
+	)
+
 
 func nitro(unit, caster):
-	add_token("grass", (run.nitro_grass_token_base + run.nitro_grass_token_bonus + caster.grass_token_bonus) * run.nitro_grass_token_mult)
-	add_token("lightning", (run.nitro_lightning_token_base + run.nitro_lightning_token_bonus + caster.lightning_token_bonus) * run.nitro_lightning_token_mult)
-	
+	add_token("grass",
+		compute_token_amount(
+			run.nitro_grass_token_base,
+			run.nitro_grass_token_bonus,
+			caster.grass_token_bonus,
+			run.nitro_grass_token_mult,
+			caster
+		),
+		caster
+	)
+
+	add_token("lightning",
+		compute_token_amount(
+			run.nitro_lightning_token_base,
+			run.nitro_lightning_token_bonus,
+			caster.lightning_token_bonus,
+			run.nitro_lightning_token_mult,
+			caster
+		),
+		caster
+	)
+
+
 func muck(unit, caster):
-	add_token("water", (run.muck_water_token_base + run.muck_water_token_bonus + caster.water_token_bonus) * run.muck_water_token_mult)
-	add_token("earth", (run.muck_earth_token_base + run.muck_earth_token_bonus + caster.earth_token_bonus) * run.muck_earth_token_mult)
+	add_token("water",
+		compute_token_amount(
+			run.muck_water_token_base,
+			run.muck_water_token_bonus,
+			caster.water_token_bonus,
+			run.muck_water_token_mult,
+			caster
+		),
+		caster
+	)
+
+	add_token("earth",
+		compute_token_amount(
+			run.muck_earth_token_base,
+			run.muck_earth_token_bonus,
+			caster.earth_token_bonus,
+			run.muck_earth_token_mult,
+			caster
+		),
+		caster
+	)
+
 
 func discharge(unit, caster):
-	add_token("earth", (run.discharge_earth_token_base + run.discharge_earth_token_bonus + caster.earth_token_bonus) * run.discharge_earth_token_mult)
-	add_token("lightning", (run.discharge_lightning_token_base + run.discharge_lightning_token_bonus + caster.lightning_token_bonus) * run.discharge_lightning_token_mult)
-	if run.discharge_destruction == true:
+	add_token("earth",
+		compute_token_amount(
+			run.discharge_earth_token_base,
+			run.discharge_earth_token_bonus,
+			caster.earth_token_bonus,
+			run.discharge_earth_token_mult,
+			caster
+		),
+		caster
+	)
+
+	add_token("lightning",
+		compute_token_amount(
+			run.discharge_lightning_token_base,
+			run.discharge_lightning_token_bonus,
+			caster.lightning_token_bonus,
+			run.discharge_lightning_token_mult,
+			caster
+		),
+		caster
+	)
+
+	if run.discharge_destruction:
 		for enemy in enemies:
 			enemy.take_damage(5 * run.discharge_mult, "none", false)
 
+
 func sow(unit, caster):
-	add_token("earth", (run.sow_earth_token_base + run.sow_earth_token_bonus + caster.earth_token_bonus) * run.sow_earth_token_mult)
-	add_token("grass", (run.sow_grass_token_base + run.sow_grass_token_bonus + caster.grass_token_bonus) * run.sow_grass_token_mult)
+	add_token("earth",
+		compute_token_amount(
+			run.sow_earth_token_base,
+			run.sow_earth_token_bonus,
+			caster.earth_token_bonus,
+			run.sow_earth_token_mult,
+			caster
+		),
+		caster
+	)
+
+	add_token("grass",
+		compute_token_amount(
+			run.sow_grass_token_base,
+			run.sow_grass_token_bonus,
+			caster.grass_token_bonus,
+			run.sow_grass_token_mult,
+			caster
+		),
+		caster
+	)
+
 
 func ally_bloom_burst():
 	for ally in allies:
@@ -953,18 +1164,121 @@ func enemy_bloom_burst():
 	for enemy in enemies:
 		enemy.receive_healing(run.enemy_bloom_healing, "grass", false)
 	
-func add_token(element, count):
+func add_token(element, count, caster):
+	var is_enemy = caster is Enemy
+	var tokens_gained = 0
+	var offset = Vector2(-30, 80)
+	AudioPlayer.play_FX("coin", -8)
 	match element:
+
 		"fire":
-			fire_tokens += int((count + run.fire_token_bonus) * run.fire_token_multiplier)
+			tokens_gained = (count + run.fire_token_bonus) * run.fire_token_multiplier
+			if is_enemy:
+				enemy_fire_tokens += int(tokens_gained)
+				DamageNumbers.display_text(
+					enemy_combat_currency.fire_count.global_position + offset,
+					"fire",
+					"+" + str(int(tokens_gained)),
+					24,
+					false
+				)
+			else:
+				fire_tokens += int(tokens_gained)
+				print(str(combat_currency.fire_count.global_position + offset))
+				DamageNumbers.display_text(
+					combat_currency.fire_count.global_position + offset,
+					"fire",
+					"+" + str(int(tokens_gained)),
+					24,
+					false
+				)
+
 		"water":
-			water_tokens += int((count + run.water_token_bonus) * run.water_token_multiplier)
+			tokens_gained = (count + run.water_token_bonus) * run.water_token_multiplier
+			if is_enemy:
+				enemy_water_tokens += int(tokens_gained)
+				DamageNumbers.display_text(
+					enemy_combat_currency.water_count.global_position + offset,
+					"water",
+					"+" + str(int(tokens_gained)),
+					24,
+					false
+				)
+			else:
+				water_tokens += int(tokens_gained)
+				print(str(combat_currency.water_count.global_position + offset) )
+				DamageNumbers.display_text(
+					combat_currency.water_count.global_position + offset,
+					"water",
+					"+" + str(int(tokens_gained)),
+					24,
+					false
+				)
+
 		"lightning":
-			lightning_tokens += int((count + run.lightning_token_bonus) * run.lightning_token_multiplier)
+			tokens_gained = (count + run.lightning_token_bonus) * run.lightning_token_multiplier
+			if is_enemy:
+				enemy_lightning_tokens += int(tokens_gained)
+				DamageNumbers.display_text(
+					enemy_combat_currency.lightning_count.global_position + offset,
+					"lightning",
+					"+" + str(int(tokens_gained)),
+					24,
+					false
+				)
+			else:
+				lightning_tokens += int(tokens_gained)
+				DamageNumbers.display_text(
+					combat_currency.lightning_count.global_position + offset,
+					"lightning",
+					"+" + str(int(tokens_gained)),
+					24,
+					false
+				)
+
 		"grass":
-			grass_tokens += int((count + run.grass_token_bonus) * run.grass_token_multiplier)
+			tokens_gained = (count + run.grass_token_bonus) * run.grass_token_multiplier
+			if is_enemy:
+				enemy_grass_tokens += int(tokens_gained)
+				DamageNumbers.display_text(
+					enemy_combat_currency.grass_count.global_position + offset,
+					"grass",
+					"+" + str(int(tokens_gained)),
+					24,
+					false
+				)
+			else:
+				grass_tokens += int(tokens_gained)
+				DamageNumbers.display_text(
+					combat_currency.grass_count.global_position + offset,
+					"grass",
+					"+" + str(int(tokens_gained)),
+					24,
+					false
+				)
+
 		"earth":
-			earth_tokens += int((count + run.earth_token_bonus) * run.earth_token_multiplier)
+			tokens_gained = (count + run.earth_token_bonus) * run.earth_token_multiplier
+			if is_enemy:
+				enemy_earth_tokens += int(tokens_gained)
+				DamageNumbers.display_text(
+					enemy_combat_currency.earth_count.global_position + offset,
+					"earth",
+					"+" + str(int(tokens_gained)),
+					24,
+					false
+				)
+			else:
+				earth_tokens += int(tokens_gained)
+				DamageNumbers.display_text(
+					combat_currency.earth_count.global_position + offset,
+					"earth",
+					"+" + str(int(tokens_gained)),
+					24,
+					false
+				)
+
+
 
 
 func reset_tokens():

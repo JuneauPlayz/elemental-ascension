@@ -7,9 +7,9 @@
 [ext_resource type="Resource" uid="uid://dykdesfmc1oo8" path="res://resources/Skills/earth/Rock Throw.tres" id="2_famig"]
 [ext_resource type="Resource" uid="uid://bya4jpai0ygj5" path="res://resources/Skills/earth/Rock Shield.tres" id="3_3j15h"]
 [ext_resource type="Resource" uid="uid://ds5k3rm8e48r6" path="res://resources/level_up_relics/Rock Starter+.tres" id="3_akhwl"]
-[ext_resource type="Texture2D" uid="uid://pnpb0odeh88v" path="res://assets/golem.png" id="4_a2f0g"]
 [ext_resource type="Resource" uid="uid://csv227wkcqdev" path="res://resources/level_up_relics/Shield Boost.tres" id="4_hc7ce"]
 [ext_resource type="Resource" uid="uid://i3q5vd6ou4km" path="res://resources/Skills/earth/Rock Barrier.tres" id="5_06fex"]
+[ext_resource type="Texture2D" uid="uid://btixrb51742n2" path="res://assets/toph (2).png" id="9_hc7ce"]
 [ext_resource type="Resource" uid="uid://b5cvbcitp58fx" path="res://resources/Skills/earth/Rock Guardian.tres" id="10_akhwl"]
 
 [resource]
@@ -27,8 +27,7 @@ ult_1 = ExtResource("5_06fex")
 ult_2 = ExtResource("10_akhwl")
 relic_3 = ExtResource("3_akhwl")
 relic_4 = ExtResource("4_hc7ce")
-sprite = ExtResource("4_a2f0g")
-sprite_scale = 0.45
+sprite = ExtResource("9_hc7ce")
+sprite_scale = 0.5
 name = "Golem"
 core_main_stat = ExtResource("1_hc7ce")
-fire_damage_block = 0

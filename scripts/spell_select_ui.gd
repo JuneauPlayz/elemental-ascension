@@ -11,7 +11,7 @@ signal new_select
 @onready var ult: Button = $PanelContainer/MarginContainer/VBoxContainer/ULTPanel/ULT
 
 
-var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.PURPLE, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
+var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.YELLOW, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
 
 var run
 
