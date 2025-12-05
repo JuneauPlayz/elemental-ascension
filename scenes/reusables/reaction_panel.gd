@@ -88,6 +88,10 @@ var current_page = "fire"
 @onready var grass_page: VBoxContainer = $PanelContainer/MarginContainer/GrassPage
 @onready var earth_page: VBoxContainer = $PanelContainer/MarginContainer/EarthPage
 @onready var stats_page: VBoxContainer = $PanelContainer/MarginContainer/StatsPage
+
+@onready var vaporize_row: HBoxContainer = $PanelContainer/MarginContainer/FirePage/Vaporize
+
+
 var run
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

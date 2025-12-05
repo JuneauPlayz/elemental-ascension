@@ -106,7 +106,6 @@ theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 6
 
 [node name="FirePage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-visible = false
 layout_mode = 2
 mouse_filter = 0
 
@@ -1416,6 +1415,7 @@ text = " [color=saddle_brown]Shielding Mult[/color] : 1x"
 horizontal_alignment = 1
 
 [node name="StatsPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 0
 theme_override_constants/separation = 5
@@ -1623,6 +1623,7 @@ bbcode_enabled = true
 text = " [color=yellow]Gold Mult[/color] : 0"
 
 [node name="StatsDisclaimer" type="Label" parent="."]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 119.0

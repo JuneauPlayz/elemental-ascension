@@ -174,7 +174,7 @@ var sow_shielding_mult = 1
 
 var bloom_mult = 1
 var ally_bloom_healing = 5
-var ally_bloom_shielding
+var ally_bloom_shielding = 5
 var enemy_bloom_healing = 5
 var enemy_bloom_shielding = 5
 
@@ -925,3 +925,7 @@ func hide_xp():
 
 func show_xp():
 	xp_bar.visible = true
+
+
+func _on_ui_manager_reaction_guide_button_pressed() -> void:
+	combat_manager.reaction_guide_opened()

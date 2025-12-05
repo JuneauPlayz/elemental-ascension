@@ -114,33 +114,34 @@ func _on_ult_pressed() -> void:
 	update()
 	
 func update():
-	new_select.emit(get_parent())
-	match selected:
-		0:
-			update_color(ba_1, gray)
-			update_color(s_1, gray)
-			update_color(s_2, gray)
-			update_color(ult, gray)
-		1:
-			update_color(ba_1, blue)
-			update_color(s_1, gray)
-			update_color(s_2, gray)
-			update_color(ult, gray)
-		2:
-			update_color(ba_1, gray)
-			update_color(s_1, blue)
-			update_color(s_2, gray)
-			update_color(ult, gray)
-		3:
-			update_color(ba_1, gray)
-			update_color(s_1, gray)
-			update_color(s_2, blue)
-			update_color(ult, gray)
-		4:
-			update_color(ba_1, gray)
-			update_color(s_1, gray)
-			update_color(s_2, gray)
-			update_color(ult, blue)
+	if run.combat_manager.skills_castable == true:
+		new_select.emit(get_parent())
+		match selected:
+			0:
+				update_color(ba_1, gray)
+				update_color(s_1, gray)
+				update_color(s_2, gray)
+				update_color(ult, gray)
+			1:
+				update_color(ba_1, blue)
+				update_color(s_1, gray)
+				update_color(s_2, gray)
+				update_color(ult, gray)
+			2:
+				update_color(ba_1, gray)
+				update_color(s_1, blue)
+				update_color(s_2, gray)
+				update_color(ult, gray)
+			3:
+				update_color(ba_1, gray)
+				update_color(s_1, gray)
+				update_color(s_2, blue)
+				update_color(ult, gray)
+			4:
+				update_color(ba_1, gray)
+				update_color(s_1, gray)
+				update_color(s_2, gray)
+				update_color(ult, blue)
 	
 func update_color(button, color):
 	var new_stylebox_normal = button.get_theme_stylebox("normal").duplicate()

@@ -8,7 +8,7 @@ const TUTORIAL = preload("uid://xir7bryx68b8")
 
 func _ready():
 	game = get_tree().get_first_node_in_group("game")
-	AudioPlayer.play_music("lake", -35)
+
 	
 func _on_exit_game_pressed() -> void:
 	AudioPlayer.play_FX("deeper_new_click",0)

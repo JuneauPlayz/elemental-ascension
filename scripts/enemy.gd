@@ -184,7 +184,8 @@ func attack_animation():
 	animation = false
 	
 func _on_targeting_area_pressed() -> void:
-	target_chosen.emit(self)
+	if targetable == true:
+		target_chosen.emit(self)
 	
 func decrease_countdown(num):
 	countdown -= num

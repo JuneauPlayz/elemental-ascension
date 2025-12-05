@@ -37,17 +37,11 @@ func _ready() -> void:
 	# loading
 	run = get_tree().get_first_node_in_group("run")
 	# bg music
-	var rng = RandomNumberGenerator.new()
-	var random_num = rng.randi_range(1,4)
-	match random_num:
-		1:
-			AudioPlayer.play_music("og", -32)
-		2:
-			AudioPlayer.play_music("zinnia", -32)
-		3:
-			AudioPlayer.play_music("crimson", -32)
-		4:
-			AudioPlayer.play_music("iris", -32)
+	#var rng = RandomNumberGenerator.new()
+	#var random_num = rng.randi_range(1,4)
+	#match random_num: 
+		#1:
+	AudioPlayer.play_music("1", -15)
 	
 	combat_manager = get_child(0)
 	await get_tree().create_timer(0.15).timeout

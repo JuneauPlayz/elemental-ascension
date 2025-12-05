@@ -8,7 +8,7 @@ var ally1 = preload("uid://btrtrqusgest0")
 var ally2 = preload("uid://ct8pg6i13eoib")
 
 var enemy1 = preload("uid://crtmf4u70jof5")
-var enemy2 = preload("uid://crtmf4u70jof5")
+var enemy2 = preload("uid://b5l7jj7bo38qm")
 
 
 var combat_manager
@@ -18,12 +18,12 @@ func _ready() -> void:
 	new_scene(RUN)
 	combat_manager = current_scene.combat_manager
 	combat_manager.tutorial = true
-
+	game = get_tree().get_first_node_in_group("game")
 
 func tutorial_2():
 	current_scene.queue_free()
 	await get_tree().create_timer(0.1).timeout
-	GC.load_run_combat_test(ally1, ally2, null, null, enemy1, null, null, null, [])
+	GC.load_run_combat_test(ally1, ally2, null, null, enemy1, enemy2, null, null, [])
 	new_scene(RUN)
 	combat_manager = current_scene.combat_manager
 	combat_manager.tutorial2 = true

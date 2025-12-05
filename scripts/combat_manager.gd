@@ -47,6 +47,7 @@ var targeting_skill : Skill
 var auto_end_turn = true
 var tutorial_no_end_turn = false
 var tutorial_no_ally_skill = false
+var skills_castable = true
 
 @onready var end_turn: Button = $"../EndTurn"
 @onready var targeting_label: Label = $TargetingLabel
@@ -689,41 +690,49 @@ func _input(event):
 			if (not targeting_skill.friendly):
 				if enemies.size() >= 1:
 					if (enemies[0] != null):
-						target_chosen.emit(enemies[0])
+						if enemies[0].targetable == true:
+							target_chosen.emit(enemies[0])
 			elif (targeting_skill.friendly and targeting):
 				if allies.size() >= 1:
 					if (allies[0] != null):
-						target_chosen.emit(allies[0])
+						if allies[0].targetable == true:
+							target_chosen.emit(allies[0])
 	if event.is_action_pressed("2"):
 		if (targeting):
 			if (not targeting_skill.friendly and targeting):
 				if enemies.size() >= 2:
 					if (enemies[1] != null):
-						target_chosen.emit(enemies[1])
+						if enemies[1].targetable == true:
+							target_chosen.emit(enemies[1])
 			elif (targeting_skill.friendly and targeting):
 				if allies.size() >= 2:
 					if (allies[1] != null):
-						target_chosen.emit(allies[1])
+						if allies[1].targetable == true:
+							target_chosen.emit(allies[1])
 	if event.is_action_pressed("3"):
 		if (targeting):
 			if (not targeting_skill.friendly and targeting):
 				if enemies.size() >= 3:
 					if (enemies[2] != null):
-						target_chosen.emit(enemies[2])
+						if enemies[2].targetable == true:
+							target_chosen.emit(enemies[2])
 			elif (targeting_skill.friendly and targeting):
 				if allies.size() >= 3:
 					if (allies[2] != null):
-						target_chosen.emit(allies[2])
+						if allies[2].targetable == true:
+							target_chosen.emit(allies[2])
 	if event.is_action_pressed("4"):
 		if (targeting):
 			if (not targeting_skill.friendly and targeting):
 				if enemies.size() >= 4:
 					if (enemies[3] != null):
-						target_chosen.emit(enemies[3])
+						if enemies[3].targetable == true:
+							target_chosen.emit(enemies[3])
 			elif (targeting_skill.friendly and targeting):
 				if allies.size() >= 4:
 					if (allies[3] != null):
-						target_chosen.emit(allies[3])
+						if allies[3].targetable == true:
+							target_chosen.emit(allies[3])
 	if event.is_action_pressed("end_turn"):
 		if (input_allowed):
 			_on_end_turn_pressed()
@@ -1306,6 +1315,7 @@ func show_end_turn():
 
 #tutorial
 signal next_popup
+signal reaction_guide_button_pressed
 @onready var tutorial_highlight: CanvasLayer = $"../Tutorial/TutorialHighlight"
 @onready var tutorial_highlight_dim: ColorRect = $"../Tutorial/TutorialHighlight/ColorRect"
 
@@ -1320,6 +1330,22 @@ signal next_popup
 @onready var popup_6: Control = $"../Tutorial/Tutorial1/Popup6"
 @onready var popup_7: Control = $"../Tutorial/Tutorial1/Popup7"
 @onready var popup_8: Control = $"../Tutorial/Tutorial1/Popup8"
+
+@onready var popup_9: Control = $"../Tutorial/Tutorial2/Popup9"
+@onready var popup_10: Control = $"../Tutorial/Tutorial2/Popup10"
+@onready var popup_11: Control = $"../Tutorial/Tutorial2/Popup11"
+@onready var popup_13: Control = $"../Tutorial/Tutorial2/Popup13"
+@onready var popup_14: Control = $"../Tutorial/Tutorial2/Popup14"
+@onready var popup_15: Control = $"../Tutorial/Tutorial2/Popup15"
+@onready var popup_16: Control = $"../Tutorial/Tutorial2/Popup16"
+@onready var popup_17: Control = $"../Tutorial/Tutorial2/Popup17"
+@onready var popup_18: Control = $"../Tutorial/Tutorial2/Popup18"
+@onready var popup_19: Control = $"../Tutorial/Tutorial2/Popup19"
+@onready var popup_20: Control = $"../Tutorial/Tutorial2/Popup20"
+@onready var popup_21: Control = $"../Tutorial/Tutorial2/Popup21"
+@onready var popup_22: Control = $"../Tutorial/Tutorial2/Popup22"
+@onready var popup_23: Control = $"../Tutorial/Tutorial2/Popup23"
+@onready var popup_24: Control = $"../Tutorial/Tutorial2/Popup24"
 
 
 
@@ -1391,9 +1417,100 @@ func start_tutorial():
 	await next_popup
 	var tutorial_node = get_tree().get_first_node_in_group("tutorial")
 	tutorial_node.tutorial_2()
-
-func start_tutorial2():
-	pass
 	
+	
+func start_tutorial2():
+	run = get_tree().get_first_node_in_group("run")
+	tutorial_no_end_turn = true
+	tutorial_highlight.visible = true
+	popup_9.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_9.get_child(0), ally1.spell_select_ui.ba_1], 1.0)
+	ally2.spell_select_ui.disable(1)
+	enemy2.targetable = false
+	await skill_selected
+	tutorial_highlight_dim.highlight_nodes([popup_9.get_child(0), enemy1.sprite_spot], 1.0)
+	await target_selected
+	skills_castable = false
+	ally2.spell_select_ui.disable(1)
+	popup_9.visible = false
+	popup_10.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_10.get_child(0), enemy1.hp_bar.current_element], 1.0)
+	await next_popup
+	ally2.spell_select_ui.disable(1)
+	popup_10.visible = false
+	popup_11.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_11.get_child(0), run.reaction_guide_button], 1.0)
+	await reaction_guide_button_pressed
+	await get_tree().create_timer(0.05).timeout
+	popup_11.visible = false
+	popup_13.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_13.get_child(0), run.reaction_panel.vaporize_row], 1.0)
+	await next_popup
+	popup_13.visible = false
+	popup_14.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_14.get_child(0), run.reaction_panel.fire_vaporize_tokens], 1.0)
+	await next_popup
+	popup_14.visible = false
+	popup_15.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_15.get_child(0), run.reaction_guide_button], 1.0)
+	await reaction_guide_button_pressed
+	skills_castable = true
+	ally2.spell_select_ui.enable(1)
+	enemy2.targetable = true
+	popup_15.visible = false
+	popup_16.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_16.get_child(0), ally2.spell_select_ui.ba_1], 1.0)
+	await skill_selected
+	tutorial_highlight_dim.highlight_nodes([popup_16.get_child(0), enemy1.sprite_spot], 1.0)
+	await target_selected
+	skills_castable = false
+	popup_16.visible = false
+	popup_17.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_17.get_child(0)], 1.0)
+	await next_popup
+	popup_17.visible = false
+	popup_18.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_18.get_child(0), combat_currency], 1.0)
+	await next_popup
+	popup_18.visible = false
+	popup_19.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_19.get_child(0), ally1.spell_select_ui.s_1], 1.0)
+	await next_popup
+	popup_19.visible = false
+	popup_20.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_20.get_child(0), ally1.spell_select_ui.s_1], 1.0)
+	await next_popup
+	popup_20.visible = false
+	popup_21.visible = true
+	skills_castable = true
+	ally1.spell_select_ui.disable(1)
+	ally1.spell_select_ui.disable(2)
+	enemy1.targetable = false
+	tutorial_highlight_dim.highlight_nodes([popup_21.get_child(0), ally2.spell_select_ui.ba_1], 1.0)
+	await skill_selected
+	tutorial_highlight_dim.highlight_nodes([popup_21.get_child(0), enemy2.sprite_spot], 1.0)
+	await target_selected
+	popup_21.visible = false
+	popup_22.visible = true
+	ally1.spell_select_ui.reset()
+	ally1.spell_select_ui.disable(1)
+	ally1.spell_select_ui.enable(2)
+	tutorial_highlight_dim.highlight_nodes([popup_22.get_child(0), ally1.spell_select_ui.s_1], 1.0)
+	await skill_selected
+	popup_22.visible = false
+	popup_23.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_23.get_child(0)], 1.0)
+	await next_popup
+	popup_23.visible = false
+	popup_24.visible = true
+	tutorial_highlight_dim.highlight_nodes([popup_24.get_child(0)], 1.0)
+	await next_popup
+	var tutorial_node = get_tree().get_first_node_in_group("tutorial")
+	tutorial_node.game.new_scene(tutorial_node.game.MAIN_SCENE)
+	
+
+func reaction_guide_opened():
+	reaction_guide_button_pressed.emit()
+
 func pop_up_button_pressed():
 	next_popup.emit()

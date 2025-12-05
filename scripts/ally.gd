@@ -200,7 +200,8 @@ func get_spell_select():
 
 
 func _on_targeting_area_pressed() -> void:
-	target_chosen.emit(self)
+	if targetable == true:
+		target_chosen.emit(self)
 
 
 func _on_confirm_swap_pressed() -> void:

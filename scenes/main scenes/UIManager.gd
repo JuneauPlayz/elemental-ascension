@@ -13,6 +13,8 @@ extends Node
 
 var reaction_guide_open = false
 
+signal reaction_guide_button_pressed
+
 func set_gold(gold):
 	gold_text.text = "[color=yellow]Gold[/color] : " + str(gold)
 	
@@ -25,6 +27,7 @@ func set_current_level(level):
 	next_level.text = str(level+1)
 
 func toggle_reaction_panel():
+	reaction_guide_button_pressed.emit()
 	reaction_panel.update_mult_labels()
 	if reaction_panel.visible:
 		reaction_panel.visible = false

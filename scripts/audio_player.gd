@@ -1,11 +1,8 @@
 extends AudioStreamPlayer
+
 # music
-const zinnia_music = preload("res://assets/Pokémon Omega Ruby & Alpha Sapphire - Vs Zinnia (Highest Quality).mp3")
-const og_music = preload("res://assets/Pokémon Red, Blue & Yellow - Trainer Battle Music (HQ).mp3")
-const crimson_highlands_music = preload("res://assets/Crimson Highlands - Zodiac Battle.mp3")
-const lake_music = preload("res://assets/Lake   Pokémon Diamond & Pearl Music Extended HD.mp3")
-const iris_music = preload("res://assets/Pokémon B2W2 - Champion Iris Battle Music (HQ).mp3")
-const wii_shop_music = preload("res://assets/Wii Shop Channel Main Theme (HQ).mp3")
+const BATTLE_THEME_1 = preload("uid://ctn4aquehugfy")
+
 #sound fx
 const CLIACK = preload("res://assets/cliack.mp3")
 const NEW_CLICK = preload("uid://crkpw4yokvcoh")
@@ -28,18 +25,8 @@ const HEALING_EFFECT = preload("res://assets/healing_effect.mp3")
 var timer_going = false
 func play_music(song, volume):
 	match song:
-		"og":
-			stream = og_music
-		"zinnia":
-			stream = zinnia_music
-		"crimson":
-			stream = crimson_highlands_music
-		"lake":
-			stream = lake_music
-		"iris":
-			stream = iris_music
-		"wii_shop":
-			stream = wii_shop_music
+		"1":
+			stream = BATTLE_THEME_1
 	stream.set_loop(true)
 	volume_db = volume-5
 	self.bus = "Music"

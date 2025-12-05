@@ -47,7 +47,7 @@ signal special_shop_ended
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	AudioPlayer.play_music("wii_shop", -30)
+
 	run = get_tree().get_first_node_in_group("run")
 	shop_ended.connect(run.special_scene_ended)
 	special_shop_ended.connect(run.special_scene_ended)

@@ -98,8 +98,8 @@ text = "1  or Z for Enemy 1
 label_settings = SubResource("LabelSettings_rfbdu")
 
 [node name="CombatCurrency" parent="CombatManager" instance=ExtResource("6_b6b3n")]
-offset_right = -1625.0
-offset_bottom = -714.0
+offset_right = -735.71436
+offset_bottom = -980.0
 scale = Vector2(0.7, 0.7)
 
 [node name="TargetingSkillInfo" parent="CombatManager" instance=ExtResource("5_2x1un")]
@@ -141,6 +141,7 @@ theme_override_font_sizes/font_size = 56
 text = "End Turn   (A)"
 
 [node name="Win" type="Button" parent="."]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 offset_left = 1131.0
 offset_top = 1024.0
@@ -708,6 +709,685 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
+[node name="Tutorial2" type="Node" parent="Tutorial"]
+
+[node name="Popup9" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 658.0
+offset_top = 410.00003
+offset_right = -942.0
+offset_bottom = -506.66663
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup9"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup9/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup9/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup9/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "With two units, you can
+create a reaction. First, use
+Fire Bolt on the enemy."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="Popup10" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 541.0
+offset_top = 380.0
+offset_right = 221.0
+offset_bottom = 216.66663
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup10"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup10/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Now, the enemy's
+current element is
+Fire."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Popup11" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1000.00006
+offset_top = 730.0
+offset_right = -159.16675
+offset_bottom = -168.33331
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup11"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup11/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup11/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup11/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Your other ally's
+attack deals Water
+damage. Check what
+the Fire + Water reaction
+does in the Reaction Guide."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="Popup13" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.00002
+offset_top = 84.0
+offset_right = -1568.6667
+offset_bottom = -826.8333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup13"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup13/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vaporize multiplies the 
+second element's damage by
+2x. In this case, Water will be
+the second element."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Popup14" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 935.00006
+offset_top = 107.0
+offset_right = -655.8334
+offset_bottom = -803.8333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup14"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup14/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You also get 1 Fire Token
+and 1 Water Token after
+creating a Vaporize reaction."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Popup15" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 979.00006
+offset_top = 833.0
+offset_right = -717.66675
+offset_bottom = -77.83331
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup15"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup15/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup15/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup15/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Close the reaction
+guide and continue
+the battle."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="Popup16" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 658.0
+offset_top = 410.00003
+offset_right = -942.0
+offset_bottom = -506.66663
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup16"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup16/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup16/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup16/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Now, use Water
+Bolt on the enemy
+to trigger a Vaporize
+reaction!"
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="Popup17" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 930.0
+offset_top = 779.0
+offset_right = -734.16675
+offset_bottom = -131.83331
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup17"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup17/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "big damage"
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 36
+text = "BIG DAMAGE"
+
+[node name="Popup18" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 108.0
+offset_top = 91.00001
+offset_right = -1482.8335
+offset_bottom = -819.8333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup18"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup18/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You also got 1 Fire Token
+and 1 Water Token!"
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Popup19" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 520.0
+offset_top = 683.0
+offset_right = -1050.0
+offset_bottom = -227.83331
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup19"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup19/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "A new turn has begun, so you can
+use skills again.
+At the cost of 1 Fire Token, you
+can cast Fire Snipe. Hover over
+the skill to read what it does
+  (don't use it yet)"
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Popup20" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 535.0
+offset_top = 767.0
+offset_right = -1055.8335
+offset_bottom = -143.83331
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup20"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup20/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fire Snipe can only target the
+furthest enemy, however it deals
+24 damage compared to Fire Bolt's 14."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Popup21" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 662.0
+offset_top = 759.0
+offset_right = -928.8335
+offset_bottom = -151.83331
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup21"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup21/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup21/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup21/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "In order to maximize damage in this
+scenario, you want to trigger a Vaporize reaction
+with Fire Snipe.  Therefore, you should use Water Bolt
+on the back enemy first."
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="Popup22" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 574.0
+offset_top = 755.0
+offset_right = -1016.8335
+offset_bottom = -155.83331
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup22"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup22/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup22/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup22/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Now that the back enemy's
+current element is Water,
+use Fire Snipe!"
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="Popup23" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1020.0
+offset_top = 697.0
+offset_right = -644.16675
+offset_bottom = -213.83331
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup23"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup23/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "BIGGER DAMAGE"
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 36
+text = "BIGGER DAMAGE"
+
+[node name="Popup24" type="Control" parent="Tutorial/Tutorial2"]
+visible = false
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 700.0
+offset_top = 101.0
+offset_right = -890.8335
+offset_bottom = -809.8333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+script = ExtResource("13_0uf4x")
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup24"]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup24/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Now you know how to use
+reactions, and about tokens.
+Use the reaction guide to maximize
+your potential!"
+label_settings = SubResource("LabelSettings_0uf4x")
+
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
+
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "OK"
+
 [connection signal="pressed" from="EndTurn" to="CombatManager" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup1" method="_on_button_pressed"]
@@ -717,3 +1397,12 @@ text = "OK"
 [connection signal="pressed" from="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup5" method="_on_button_pressed"]
 [connection signal="pressed" from="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup7" method="_on_button_pressed"]
 [connection signal="pressed" from="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup8" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup10" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup13" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup14" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup17" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup18" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup19" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup20" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup23" method="_on_button_pressed"]
+[connection signal="pressed" from="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup24" method="_on_button_pressed"]

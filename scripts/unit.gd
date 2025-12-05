@@ -16,6 +16,8 @@ class_name Unit
 @export var left : Unit
 @export var right : Unit
 @export var id : int
+var targetable = true
+
 var run
 
 var position : int

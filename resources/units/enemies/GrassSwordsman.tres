@@ -12,6 +12,7 @@ skill1 = ExtResource("2_447e6")
 skill2 = ExtResource("2_447e6")
 skill3 = ExtResource("3_1gx78")
 skill_1_cd = 1
+skill_2_cd = 1
 skill_4_cd = 0
 sprite = ExtResource("4_2qiuq")
 name = "Grass Swordsman"

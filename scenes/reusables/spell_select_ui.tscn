@@ -174,6 +174,9 @@ offset_left = 272.0
 offset_top = 25.0
 offset_right = 533.0
 offset_bottom = 48.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.8, 1.8)
 
 [node name="SkillInfo2" parent="." instance=ExtResource("2_ae65f")]
 visible = false
@@ -185,6 +188,9 @@ offset_left = 274.0
 offset_top = 56.0
 offset_right = 535.0
 offset_bottom = 79.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.8, 1.8)
 
 [node name="SkillInfo3" parent="." instance=ExtResource("2_ae65f")]
 visible = false
@@ -196,6 +202,9 @@ offset_left = 273.0
 offset_top = 87.0
 offset_right = 534.0
 offset_bottom = 110.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.8, 1.8)
 
 [node name="SkillInfo4" parent="." instance=ExtResource("2_ae65f")]
 visible = false
@@ -207,6 +216,9 @@ offset_left = 273.0
 offset_top = 119.0
 offset_right = 534.0
 offset_bottom = 142.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.8, 1.8)
 
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_mouse_exited"]

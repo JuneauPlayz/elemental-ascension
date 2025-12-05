@@ -205,3 +205,4 @@ script = ExtResource("14_yw6xj")
 
 [connection signal="pressed" from="ReactionGuide" to="." method="_on_reaction_guide_pressed"]
 [connection signal="pressed" from="ReactionGuide" to="UIManager" method="_on_reaction_guide_pressed"]
+[connection signal="reaction_guide_button_pressed" from="UIManager" to="." method="_on_ui_manager_reaction_guide_button_pressed"]
