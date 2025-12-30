@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AllyRes" format=3 uid="uid://rch61bky2ck8"]
+
+[ext_resource type="Resource" uid="uid://ckr8r3wq7e6eb" path="res://resources/core/GrassStart.tres" id="1_vesmu"]
+[ext_resource type="Script" uid="uid://c8vhu7w0epnis" path="res://scripts/AllyRes.gd" id="2_ldl8x"]
+[ext_resource type="Texture2D" uid="uid://d15hejgg3dtq5" path="res://assets/kent/grass.png" id="2_vesmu"]
+[ext_resource type="Resource" uid="uid://tjrsdrdx2xsa" path="res://resources/Skills/grass/Grass Needle.tres" id="3_w2hqt"]
+[ext_resource type="Resource" uid="uid://cjot7mdltdj0m" path="res://resources/Skills/grass/Healing Wish.tres" id="4_j0yij"]
+
+[resource]
+script = ExtResource("2_ldl8x")
+name = "Grass Girl"
+starting_health = 90
+sprite = ExtResource("2_vesmu")
+sprite_scale = 0.135
+cutin_portrait = ExtResource("2_vesmu")
+skill1 = ExtResource("3_w2hqt")
+skill2 = ExtResource("4_j0yij")
+core_main_stat = ExtResource("1_vesmu")

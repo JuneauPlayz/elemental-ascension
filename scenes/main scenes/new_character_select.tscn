@@ -1,14 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://cejatt12ddojf"]
+[gd_scene format=3 uid="uid://cejatt12ddojf"]
 
 [ext_resource type="Script" uid="uid://i7ngkgvekba1" path="res://scripts/new_character_select.gd" id="1_c5uuy"]
 [ext_resource type="Texture2D" uid="uid://ci3grqu6c8y71" path="res://assets/nightbg.png" id="2_p148i"]
 [ext_resource type="Script" uid="uid://4eb43uwdg710" path="res://addons/tnowe_extra_controls/elements/draggable.gd" id="3_l2ywx"]
 [ext_resource type="Texture2D" uid="uid://bmymytp4nutcm" path="res://assets/kent/fire.webp" id="4_p148i"]
-[ext_resource type="Texture2D" uid="uid://q57bj44h63ue" path="res://assets/water.png" id="5_p148i"]
-[ext_resource type="Texture2D" uid="uid://cxiij475owot2" path="res://addons/plant_lady.png" id="6_mtqjm"]
-[ext_resource type="Texture2D" uid="uid://ywjs42tcf0r5" path="res://assets/lightning jpg.png" id="7_p148i"]
-[ext_resource type="Texture2D" uid="uid://btixrb51742n2" path="res://assets/toph (2).png" id="8_fdldd"]
+[ext_resource type="Texture2D" uid="uid://q57bj44h63ue" path="res://assets/kent/water.png" id="5_p148i"]
+[ext_resource type="Texture2D" uid="uid://d15hejgg3dtq5" path="res://assets/kent/grass.png" id="6_mtqjm"]
+[ext_resource type="Texture2D" uid="uid://dqp1t1w47b7y5" path="res://assets/kent/lightning.png" id="7_fdldd"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="8_hnda8"]
+[ext_resource type="Texture2D" uid="uid://fcq4kfuudrbx" path="res://assets/kent/rock.webp" id="8_mtqjm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tbrfe"]
 font_size = 42
@@ -35,16 +35,16 @@ font_size = 120
 outline_size = 24
 outline_color = Color(0, 0, 0, 1)
 
-[node name="new_character_select" type="Node2D"]
+[node name="new_character_select" type="Node2D" unique_id=745305106]
 script = ExtResource("1_c5uuy")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=2131943514]
 self_modulate = Color(1.3167266, 1.3167266, 1.3167266, 0.50980395)
 position = Vector2(1176.5, 234.5)
 scale = Vector2(1.0213568, 1.0413669)
 texture = ExtResource("2_p148i")
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1801940752]
 offset_left = 610.0
 offset_top = 220.0
 offset_right = 1310.0
@@ -52,11 +52,11 @@ offset_bottom = 728.0
 theme_override_constants/h_separation = 100
 columns = 5
 
-[node name="Ally1Spot" type="ColorRect" parent="GridContainer"]
+[node name="Ally1Spot" type="ColorRect" parent="GridContainer" unique_id=1685324348]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Position" type="Label" parent="GridContainer/Ally1Spot"]
+[node name="Position" type="Label" parent="GridContainer/Ally1Spot" unique_id=759383129]
 layout_mode = 0
 offset_left = 2.0
 offset_top = -57.0
@@ -66,11 +66,11 @@ text = "Back
 "
 label_settings = SubResource("LabelSettings_tbrfe")
 
-[node name="Ally2Spot" type="ColorRect" parent="GridContainer"]
+[node name="Ally2Spot" type="ColorRect" parent="GridContainer" unique_id=632049580]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Position" type="Label" parent="GridContainer/Ally2Spot"]
+[node name="Position" type="Label" parent="GridContainer/Ally2Spot" unique_id=2087918161]
 layout_mode = 0
 offset_left = -15.0
 offset_top = -56.0
@@ -80,11 +80,11 @@ text = "Middle
 "
 label_settings = SubResource("LabelSettings_tbrfe")
 
-[node name="Ally3Spot" type="ColorRect" parent="GridContainer"]
+[node name="Ally3Spot" type="ColorRect" parent="GridContainer" unique_id=87886955]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Position" type="Label" parent="GridContainer/Ally3Spot"]
+[node name="Position" type="Label" parent="GridContainer/Ally3Spot" unique_id=395692449]
 layout_mode = 0
 offset_left = -13.0
 offset_top = -57.0
@@ -93,11 +93,11 @@ offset_bottom = -5.0
 text = "Middle"
 label_settings = SubResource("LabelSettings_tbrfe")
 
-[node name="Ally4Spot" type="ColorRect" parent="GridContainer"]
+[node name="Ally4Spot" type="ColorRect" parent="GridContainer" unique_id=2085429479]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Position" type="Label" parent="GridContainer/Ally4Spot"]
+[node name="Position" type="Label" parent="GridContainer/Ally4Spot" unique_id=854467115]
 layout_mode = 0
 offset_left = -3.0
 offset_top = -57.0
@@ -106,82 +106,82 @@ offset_bottom = -5.0
 text = "Front"
 label_settings = SubResource("LabelSettings_tbrfe")
 
-[node name="Gap" type="Control" parent="GridContainer"]
+[node name="Gap" type="Control" parent="GridContainer" unique_id=1322980825]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Gap5" type="Control" parent="GridContainer"]
+[node name="Gap5" type="Control" parent="GridContainer" unique_id=1967452759]
 custom_minimum_size = Vector2(100, 300)
 layout_mode = 2
 
-[node name="Gap2" type="Control" parent="GridContainer"]
+[node name="Gap2" type="Control" parent="GridContainer" unique_id=465495763]
 layout_mode = 2
 
-[node name="Gap3" type="Control" parent="GridContainer"]
+[node name="Gap3" type="Control" parent="GridContainer" unique_id=1855018104]
 layout_mode = 2
 
-[node name="Gap4" type="Control" parent="GridContainer"]
+[node name="Gap4" type="Control" parent="GridContainer" unique_id=881969904]
 layout_mode = 2
 
-[node name="Gap6" type="Control" parent="GridContainer"]
+[node name="Gap6" type="Control" parent="GridContainer" unique_id=864059955]
 layout_mode = 2
 
-[node name="FireGirl" type="Container" parent="GridContainer"]
+[node name="FireGirl" type="Container" parent="GridContainer" unique_id=247821669]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 script = ExtResource("3_l2ywx")
 grid_snap = Vector2(100, 100)
 
-[node name="Sprite2D" type="Sprite2D" parent="GridContainer/FireGirl"]
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/FireGirl" unique_id=478122657]
 position = Vector2(46, 51)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_p148i")
 
-[node name="WaterGirl" type="Container" parent="GridContainer"]
+[node name="WaterGirl" type="Container" parent="GridContainer" unique_id=2137014490]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 script = ExtResource("3_l2ywx")
 grid_snap = Vector2(100, 100)
 
-[node name="Sprite2D" type="Sprite2D" parent="GridContainer/WaterGirl"]
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/WaterGirl" unique_id=230081894]
 position = Vector2(46, 51)
 scale = Vector2(0.09, 0.09)
 texture = ExtResource("5_p148i")
 
-[node name="Venasaur" type="Container" parent="GridContainer"]
+[node name="GrassGirl" type="Container" parent="GridContainer" unique_id=309632296]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 script = ExtResource("3_l2ywx")
 grid_snap = Vector2(100, 100)
 
-[node name="Sprite2D" type="Sprite2D" parent="GridContainer/Venasaur"]
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/GrassGirl" unique_id=714081860]
 position = Vector2(46, 51)
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.085, 0.085)
 texture = ExtResource("6_mtqjm")
 
-[node name="LightningGirl" type="Container" parent="GridContainer"]
+[node name="LightningGirl" type="Container" parent="GridContainer" unique_id=679938363]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 script = ExtResource("3_l2ywx")
 grid_snap = Vector2(100, 100)
 
-[node name="Sprite2D" type="Sprite2D" parent="GridContainer/LightningGirl"]
-position = Vector2(46, 51)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("7_p148i")
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/LightningGirl" unique_id=1553047650]
+position = Vector2(46, 57)
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("7_fdldd")
 
-[node name="Golem" type="Container" parent="GridContainer"]
+[node name="EarthGirl" type="Container" parent="GridContainer" unique_id=662605510]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 script = ExtResource("3_l2ywx")
 grid_snap = Vector2(100, 100)
 
-[node name="Sprite2D" type="Sprite2D" parent="GridContainer/Golem"]
-position = Vector2(46, 51)
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("8_fdldd")
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/EarthGirl" unique_id=1300351971]
+position = Vector2(46, 53)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("8_mtqjm")
 
-[node name="CharacterInfo" type="Label" parent="."]
+[node name="CharacterInfo" type="Label" parent="." unique_id=1543914675]
 offset_left = 47.0
 offset_top = 260.0
 offset_right = 367.0
@@ -190,7 +190,7 @@ text = "CharName
 "
 label_settings = SubResource("LabelSettings_ghnwa")
 
-[node name="Base_HP" type="Label" parent="CharacterInfo"]
+[node name="Base_HP" type="Label" parent="CharacterInfo" unique_id=665416228]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 90.0
@@ -199,21 +199,21 @@ offset_bottom = 141.0
 text = "Base HP: "
 label_settings = SubResource("LabelSettings_p148i")
 
-[node name="SkillInfo1" parent="CharacterInfo" instance=ExtResource("8_hnda8")]
+[node name="SkillInfo1" parent="CharacterInfo" unique_id=1974004518 instance=ExtResource("8_hnda8")]
 layout_mode = 1
 offset_left = 4.0
 offset_top = 218.0
 offset_right = 4.0
 offset_bottom = 218.0
 
-[node name="SkillInfo2" parent="CharacterInfo" instance=ExtResource("8_hnda8")]
+[node name="SkillInfo2" parent="CharacterInfo" unique_id=1756335060 instance=ExtResource("8_hnda8")]
 layout_mode = 1
 offset_left = 8.0
 offset_top = 416.0
 offset_right = 8.0
 offset_bottom = 416.0
 
-[node name="Label" type="Label" parent="CharacterInfo"]
+[node name="Label" type="Label" parent="CharacterInfo" unique_id=1570810860]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 149.0
@@ -222,7 +222,7 @@ offset_bottom = 206.0
 text = "Starting Skills"
 label_settings = SubResource("LabelSettings_vlp3o")
 
-[node name="Begin Run" type="Button" parent="."]
+[node name="Begin Run" type="Button" parent="." unique_id=617417535]
 offset_left = 691.0
 offset_top = 850.0
 offset_right = 1235.0
@@ -230,7 +230,7 @@ offset_bottom = 986.0
 theme_override_font_sizes/font_size = 100
 text = "Begin Run"
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=1962679246]
 offset_left = 3.0
 offset_top = 20.0
 offset_right = 1920.0
@@ -246,13 +246,13 @@ horizontal_alignment = 1
 [connection signal="drag_ended" from="GridContainer/WaterGirl" to="." method="_on_water_girl_drag_ended"]
 [connection signal="drag_started" from="GridContainer/WaterGirl" to="." method="_on_water_girl_drag_started"]
 [connection signal="mouse_entered" from="GridContainer/WaterGirl" to="." method="_on_water_girl_mouse_entered"]
-[connection signal="drag_ended" from="GridContainer/Venasaur" to="." method="_on_venasaur_drag_ended"]
-[connection signal="drag_started" from="GridContainer/Venasaur" to="." method="_on_venasaur_drag_started"]
-[connection signal="mouse_entered" from="GridContainer/Venasaur" to="." method="_on_venasaur_mouse_entered"]
+[connection signal="drag_ended" from="GridContainer/GrassGirl" to="." method="_on_grass_girl_drag_ended"]
+[connection signal="drag_started" from="GridContainer/GrassGirl" to="." method="_on_grass_girl_drag_started"]
+[connection signal="mouse_entered" from="GridContainer/GrassGirl" to="." method="_on_grass_girl_mouse_entered"]
 [connection signal="drag_ended" from="GridContainer/LightningGirl" to="." method="_on_lightning_girl_drag_ended"]
 [connection signal="drag_started" from="GridContainer/LightningGirl" to="." method="_on_lightning_girl_drag_started"]
 [connection signal="mouse_entered" from="GridContainer/LightningGirl" to="." method="_on_lightning_girl_mouse_entered"]
-[connection signal="drag_ended" from="GridContainer/Golem" to="." method="_on_golem_drag_ended"]
-[connection signal="drag_started" from="GridContainer/Golem" to="." method="_on_golem_drag_started"]
-[connection signal="mouse_entered" from="GridContainer/Golem" to="." method="_on_golem_mouse_entered"]
+[connection signal="drag_ended" from="GridContainer/EarthGirl" to="." method="_on_earth_girl_drag_ended"]
+[connection signal="drag_started" from="GridContainer/EarthGirl" to="." method="_on_earth_girl_drag_started"]
+[connection signal="mouse_entered" from="GridContainer/EarthGirl" to="." method="_on_earth_girl_mouse_entered"]
 [connection signal="pressed" from="Begin Run" to="." method="_on_begin_run_pressed"]

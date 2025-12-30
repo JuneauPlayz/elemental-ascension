@@ -13,6 +13,7 @@ const END_TURN_DELAY = 0.5
 
 const ENEMY = preload("res://resources/units/enemies/enemy.tscn")
 
+
 @export var ally1 : Ally
 @export var ally2 : Ally
 @export var ally3 : Ally
@@ -55,6 +56,7 @@ var skills_castable = true
 @onready var relics : RelicHandler
 @onready var victory_screen: Control = $"../VictoryScreen"
 @onready var win: Button = $"../Win"
+@onready var character_ult_animation: Control = %CharacterUltAnimation
 
 
 var ally1skill : int
@@ -94,6 +96,7 @@ signal target_selected
 signal target_chosen
 signal skill_selected
 signal end_turn_pressed
+signal ult_anim_done
 
 var combat_finished = false
 var first_turn = true
@@ -337,6 +340,10 @@ func reset_combat():
 	
 func use_skill(skill,target,unit,event,spend_tokens):
 	skill.update()
+	if skill.ultimate == true:
+		character_ult_animation.play_ultimate(unit.sprite_spot.texture, skill.name)
+		await ult_anim_done
+		
 	if skill.summon != null:
 		var new_summon = ENEMY.instantiate()
 		new_summon.res = skill.summon.duplicate()
@@ -1514,3 +1521,7 @@ func reaction_guide_opened():
 
 func pop_up_button_pressed():
 	next_popup.emit()
+
+
+func _on_character_ult_animation_ult_anim_done() -> void:
+	ult_anim_done.emit()

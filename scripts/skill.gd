@@ -42,7 +42,7 @@ class_name Skill
  
 @export_category("Special")
 @export var summon : UnitRes = null
-
+@export var ultimate : bool = false
 @export_category("Tags")
 @export_enum("Fire","Water","Lightning","Grass","Earth","Single Target","AOE","Healing","Shielding","Damage") var tag1 : String
 @export_enum("Fire","Water","Lightning","Grass","Earth","Single Target","AOE","Healing","Shielding","Damage") var tag2 : String

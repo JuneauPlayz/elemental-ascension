@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpqr8d1v3tlcf"]
+[gd_scene format=3 uid="uid://cpqr8d1v3tlcf"]
 
 [ext_resource type="Script" uid="uid://b53ec2n06gu4g" path="res://scripts/main_scene.gd" id="1_3n5v6"]
 [ext_resource type="Texture2D" uid="uid://cvuae61vimnfv" path="res://assets/daybg.png" id="2_vck2s"]
@@ -8,16 +8,16 @@ font_size = 178
 outline_size = 36
 outline_color = Color(0, 0, 0, 1)
 
-[node name="MainScene" type="Node2D"]
+[node name="MainScene" type="Node2D" unique_id=637652746]
 script = ExtResource("1_3n5v6")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=1328995175]
 self_modulate = Color(1, 1, 1, 0.94509804)
 position = Vector2(1540, 741.00006)
 scale = Vector2(1.305, 1.305)
 texture = ExtResource("2_vck2s")
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=1288137240]
 offset_left = -8.0
 offset_top = 85.0
 offset_right = 1921.0
@@ -26,7 +26,7 @@ text = "project burg"
 label_settings = SubResource("LabelSettings_k0nup")
 horizontal_alignment = 1
 
-[node name="StartB" type="Button" parent="."]
+[node name="StartB" type="Button" parent="." unique_id=1980250853]
 offset_left = 712.0
 offset_top = 359.0
 offset_right = 1203.0
@@ -34,7 +34,7 @@ offset_bottom = 415.0
 theme_override_font_sizes/font_size = 74
 text = "Start Run"
 
-[node name="ExitGame" type="Button" parent="."]
+[node name="ExitGame" type="Button" parent="." unique_id=1847688049]
 offset_left = 712.0
 offset_top = 678.0
 offset_right = 1204.0
@@ -42,7 +42,7 @@ offset_bottom = 776.0
 theme_override_font_sizes/font_size = 74
 text = "Exit"
 
-[node name="Tutorial" type="Button" parent="."]
+[node name="Tutorial" type="Button" parent="." unique_id=85846616]
 offset_left = 712.0
 offset_top = 514.0
 offset_right = 1204.0
@@ -50,7 +50,7 @@ offset_bottom = 612.0
 theme_override_font_sizes/font_size = 74
 text = "Tutorial"
 
-[node name="CombatTesting" type="Button" parent="."]
+[node name="CombatTesting" type="Button" parent="." unique_id=1428076580]
 offset_left = 690.0
 offset_top = 892.0
 offset_right = 1235.0

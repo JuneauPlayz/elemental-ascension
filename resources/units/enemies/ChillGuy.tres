@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=6 format=3 uid="uid://2evgr167shxj"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://2evgr167shxj"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_t8ohi"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_6stg4"]
 [ext_resource type="Resource" uid="uid://bajou4oeggcpy" path="res://resources/enemy_skills/Punch.tres" id="2_vjpgg"]
 [ext_resource type="Resource" uid="uid://cp50svdfs8qpy" path="res://resources/enemy_skills/yeet.tres" id="3_ddoqd"]
 [ext_resource type="Texture2D" uid="uid://133h4yyl8s4l" path="res://assets/chillpyro.png" id="3_i7tmh"]
@@ -8,17 +8,11 @@
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_t8ohi")
+script = ExtResource("1_6stg4")
+name = "ChillGuy"
 starting_health = 100
+sprite = ExtResource("3_i7tmh")
 skill1 = ExtResource("2_vjpgg")
 skill2 = ExtResource("3_ddoqd")
 skill3 = ExtResource("4_prss2")
 skill4 = ExtResource("4_prss2")
-skill_1_cd = 0
-skill_2_cd = 0
-skill_3_cd = 0
-skill_4_cd = 0
-sprite = ExtResource("3_i7tmh")
-sprite_scale = 1.0
-name = "ChillGuy"
-fire_damage_block = 0

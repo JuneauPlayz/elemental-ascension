@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=6 format=3 uid="uid://dewwyiharccfo"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://dewwyiharccfo"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_wh2li"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_5jpak"]
 [ext_resource type="Resource" uid="uid://ck0yohfjasyyu" path="res://resources/enemy_skills/SummonFan.tres" id="2_cetji"]
 [ext_resource type="Resource" uid="uid://ccx36cyjmjt4x" path="res://resources/enemy_skills/MIKU FIREWORK.tres" id="3_tkt7y"]
 [ext_resource type="Resource" uid="uid://bhk7c70m0pn1l" path="res://resources/enemy_skills/MIKU CELERY SNACK.tres" id="4_knjn4"]
@@ -9,16 +9,10 @@
 [resource]
 resource_local_to_scene = true
 resource_name = "Miku"
-script = ExtResource("1_wh2li")
+script = ExtResource("1_5jpak")
+name = "MIKU"
 starting_health = 1500
+sprite = ExtResource("5_bfqbs")
 skill1 = ExtResource("2_cetji")
 skill2 = ExtResource("3_tkt7y")
 skill3 = ExtResource("4_knjn4")
-skill_1_cd = 0
-skill_2_cd = 0
-skill_3_cd = 0
-skill_4_cd = 0
-sprite = ExtResource("5_bfqbs")
-sprite_scale = 1.0
-name = "MIKU"
-fire_damage_block = 0

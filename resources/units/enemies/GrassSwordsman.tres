@@ -1,19 +1,16 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://crtmf4u70jof5"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://crtmf4u70jof5"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_25u44"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_447e6"]
 [ext_resource type="Resource" uid="uid://boy2elrjturch" path="res://resources/enemy_skills/Grass Slash.tres" id="2_447e6"]
 [ext_resource type="Resource" uid="uid://cjvfjh3025hjt" path="res://resources/enemy_skills/Grass Stab.tres" id="3_1gx78"]
 [ext_resource type="Texture2D" uid="uid://bu8rdiox1ko15" path="res://assets/grassswordsman.png" id="4_2qiuq"]
 
 [resource]
-script = ExtResource("1_25u44")
+script = ExtResource("1_447e6")
+name = "Grass Swordsman"
 starting_health = 150
+sprite = ExtResource("4_2qiuq")
 skill1 = ExtResource("2_447e6")
 skill2 = ExtResource("2_447e6")
 skill3 = ExtResource("3_1gx78")
-skill_1_cd = 1
-skill_2_cd = 1
-skill_4_cd = 0
-sprite = ExtResource("4_2qiuq")
-name = "Grass Swordsman"
 metadata/_custom_type_script = "uid://bpkpxp60hx4da"

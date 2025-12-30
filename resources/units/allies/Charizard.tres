@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=12 format=3 uid="uid://bchghb71yo8ln"]
+[gd_resource type="Resource" script_class="UnitRes" format=3 uid="uid://bchghb71yo8ln"]
 
 [ext_resource type="Resource" uid="uid://c812gom3pv4ae" path="res://resources/level_up_relics/Fire Starter.tres" id="1_1tw62"]
 [ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_5rsqq"]

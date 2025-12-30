@@ -40,22 +40,17 @@ signal use_skill
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(0.005).timeout
-	if not copy:
-		combat_manager = get_parent().get_parent().get_combat_manager()
-		ReactionManager = combat_manager.ReactionManager
-	elif copy:
-		combat_manager = get_tree().get_first_node_in_group("combat_sim")
-		ReactionManager = combat_manager.reaction_manager
+	combat_manager = get_parent().get_parent().get_combat_manager()
+	ReactionManager = combat_manager.ReactionManager
 	run = get_tree().get_first_node_in_group("run")
 	id = run.id
 	run.id += 1
 	hp_bar = $"HP Bar"
 	targeting_area = $TargetingArea
 	self.died.connect(combat_manager.reaction_signal)
-	if not copy:
-		health = res.starting_health
-		max_health = res.starting_health
-		shield = 0
+	health = res.starting_health
+	max_health = res.starting_health
+	shield = 0
 	title = res.name
 	if res.skill1 != null:
 		skill1 = res.skill1.duplicate()
@@ -83,29 +78,27 @@ func _ready() -> void:
 	print("title:" + title)
 	sprite_spot.texture = load(res.sprite.resource_path)
 	skill_used = false
-	if not copy:
-		if (run.hard == true):
-			if skill1 != null:
-				skill1.damage *= 2
-			if skill2 != null:
-				skill2.damage *= 2
-			if skill3 != null:
-				skill3.damage *= 2
-			if skill4 != null:
-				skill4.damage *= 2
-			max_health = roundi(max_health * 2.5)
-			health = max_health
+	if (run.hard == true):
+		if skill1 != null:
+			skill1.damage *= 2
+		if skill2 != null:
+			skill2.damage *= 2
+		if skill3 != null:
+			skill3.damage *= 2
+		if skill4 != null:
+			skill4.damage *= 2
+		max_health = roundi(max_health * 2.5)
+		health = max_health
 	skill_info.skill = current_skill
 	set_countdown()
 	skill_info.update_skill_info()
 	
-	fire_damage_block = res.fire_damage_block
-	if not copy:
-		hp_bar = get_child(1)
-		hp_bar.set_hp(health)
-		hp_bar.set_maxhp(health)
-		hp_bar.update_statuses(status)
-		self.target_chosen.connect(combat_manager.target_signal)
+
+	hp_bar = get_child(1)
+	hp_bar.set_hp(health)
+	hp_bar.set_maxhp(health)
+	hp_bar.update_statuses(status)
+	self.target_chosen.connect(combat_manager.target_signal)
 
 func change_skills():
 	skill_info.skill = current_skill

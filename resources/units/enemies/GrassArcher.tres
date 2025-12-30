@@ -1,17 +1,16 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://bhh5ia2t37efq"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://bhh5ia2t37efq"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_g8noy"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_pggbu"]
 [ext_resource type="Resource" uid="uid://cpjed87v1lrvc" path="res://resources/enemy_skills/Grass Barrage.tres" id="2_pggbu"]
 [ext_resource type="Resource" uid="uid://dcygr3uks1xp6" path="res://resources/enemy_skills/Grass Snipe.tres" id="3_he30o"]
 [ext_resource type="Texture2D" uid="uid://diikvkfaq7ty6" path="res://assets/grassarcher.png" id="4_6dpie"]
 
 [resource]
-script = ExtResource("1_g8noy")
+script = ExtResource("1_pggbu")
+name = "Grass Archer"
 starting_health = 90
+sprite = ExtResource("4_6dpie")
 skill1 = ExtResource("2_pggbu")
 skill2 = ExtResource("2_pggbu")
 skill3 = ExtResource("3_he30o")
-sprite = ExtResource("4_6dpie")
-sprite_scale = 1.0
-name = "Grass Archer"
-metadata/_custom_type_script = ExtResource("1_g8noy")
+metadata/_custom_type_script = "uid://bpkpxp60hx4da"

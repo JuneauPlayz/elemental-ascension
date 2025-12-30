@@ -1,17 +1,16 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://b5l7jj7bo38qm"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://b5l7jj7bo38qm"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_no7gg"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_c7elv"]
 [ext_resource type="Resource" uid="uid://c2qqaauqribn2" path="res://resources/enemy_skills/Water Barrage.tres" id="2_c7elv"]
 [ext_resource type="Resource" uid="uid://ci08v4rhdx6o1" path="res://resources/enemy_skills/Water Snipe.tres" id="3_mpni1"]
 [ext_resource type="Texture2D" uid="uid://d865a1nehy5u" path="res://assets/waterarcher.png" id="4_5rbj4"]
 
 [resource]
-script = ExtResource("1_no7gg")
+script = ExtResource("1_c7elv")
+name = "Water Archer"
 starting_health = 60
+sprite = ExtResource("4_5rbj4")
 skill1 = ExtResource("2_c7elv")
 skill2 = ExtResource("2_c7elv")
 skill3 = ExtResource("3_mpni1")
-sprite = ExtResource("4_5rbj4")
-sprite_scale = 1.0
-name = "Water Archer"
 metadata/_custom_type_script = "uid://bpkpxp60hx4da"

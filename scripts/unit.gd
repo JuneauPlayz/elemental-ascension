@@ -8,7 +8,6 @@ class_name Unit
 
 @export var damage_reduction : float = 0.0
 
-@export var fire_damage_block = 0
 @export var status : Array = []
 @export var current_element : String = "none"
 @export var res : UnitRes
@@ -244,9 +243,6 @@ func take_damage(damage : int, element : String, change_element : bool):
 	var total_dmg = damage_left
 
 
-	# Fire damage block
-	if element == "fire":
-		damage_left -= self.fire_damage_block
 	
 	DamageNumbers.display_number(damage_left, damage_number_origin.global_position, element, "")
 

@@ -1,22 +1,17 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=5 format=3 uid="uid://dc7fmxo37xr74"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://dc7fmxo37xr74"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_b5vp0"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_t3hum"]
 [ext_resource type="Resource" uid="uid://ccefdqss4okgl" path="res://resources/enemy_skills/Fire Barrage.tres" id="2_t3hum"]
 [ext_resource type="Resource" uid="uid://o4mj6tfgd54t" path="res://resources/enemy_skills/Fire Snipe.tres" id="3_4pvp1"]
 [ext_resource type="Texture2D" uid="uid://dyxdpwx08sxqa" path="res://assets/firearcher.png" id="4_j4dyx"]
 
 [resource]
-script = ExtResource("1_b5vp0")
+script = ExtResource("1_t3hum")
+name = "Fire Archer"
 starting_health = 60
+sprite = ExtResource("4_j4dyx")
+sprite_scale = 0.5
 skill1 = ExtResource("2_t3hum")
 skill2 = ExtResource("2_t3hum")
 skill3 = ExtResource("3_4pvp1")
-skill_1_cd = 0
-skill_2_cd = 0
-skill_3_cd = 0
-skill_4_cd = 0
-sprite = ExtResource("4_j4dyx")
-sprite_scale = 0.5
-name = "Fire Archer"
-fire_damage_block = 0
-metadata/_custom_type_script = ExtResource("1_b5vp0")
+metadata/_custom_type_script = "uid://bpkpxp60hx4da"

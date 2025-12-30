@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AllyRes" format=3 uid="uid://brb2gubx0hm1h"]
+
+[ext_resource type="Resource" uid="uid://dbaraetyxcvbx" path="res://resources/core/EarthStart.tres" id="1_x8rqk"]
+[ext_resource type="Script" uid="uid://c8vhu7w0epnis" path="res://scripts/AllyRes.gd" id="2_kh514"]
+[ext_resource type="Resource" uid="uid://dykdesfmc1oo8" path="res://resources/Skills/earth/Rock Throw.tres" id="3_a36lp"]
+[ext_resource type="Resource" uid="uid://bya4jpai0ygj5" path="res://resources/Skills/earth/Rock Shield.tres" id="4_6ii6a"]
+[ext_resource type="Texture2D" uid="uid://fcq4kfuudrbx" path="res://assets/kent/rock.webp" id="5_hr2np"]
+
+[resource]
+script = ExtResource("2_kh514")
+name = "Earth Girl"
+starting_health = 110
+sprite = ExtResource("5_hr2np")
+sprite_scale = 0.135
+skill1 = ExtResource("3_a36lp")
+skill2 = ExtResource("4_6ii6a")
+core_main_stat = ExtResource("1_x8rqk")

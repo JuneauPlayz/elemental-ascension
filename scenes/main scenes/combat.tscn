@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://do6gwn47eylu7"]
+[gd_scene format=3 uid="uid://do6gwn47eylu7"]
 
 [ext_resource type="Script" uid="uid://sbmng0cirge2" path="res://scripts/combat_scene.gd" id="1_3ou8c"]
 [ext_resource type="FontFile" uid="uid://mmnf6x0iyi0y" path="res://assets/Gravity-Book.otf" id="3_cmui4"]
@@ -13,6 +13,8 @@
 [ext_resource type="Shader" uid="uid://dqwydnoy0ofim" path="res://scenes/main scenes/tutorialdim.gdshader" id="11_yh2m0"]
 [ext_resource type="Script" uid="uid://ddsbx27ewm7tq" path="res://scenes/main scenes/highlight.gd" id="12_bsuy1"]
 [ext_resource type="Script" uid="uid://c01r60o6cfq78" path="res://text_popup.gd" id="13_0uf4x"]
+[ext_resource type="Script" uid="uid://cwt7r1fsul37y" path="res://scenes/main scenes/character_ult_animation.gd" id="14_k1xti"]
+[ext_resource type="Texture2D" uid="uid://q57bj44h63ue" path="res://assets/kent/water.png" id="15_v8i8s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mo5rj"]
 font = ExtResource("3_cmui4")
@@ -57,14 +59,128 @@ outline_color = Color(0, 0, 0, 1)
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
-[node name="Combat" type="Node2D" groups=["combat"]]
+[sub_resource type="LabelSettings" id="LabelSettings_28jgk"]
+font_size = 123
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_mec8r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2178, -669.00006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.09320182, 0.09320182, 0.09320182, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SkillName:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n3xuk"]
+resource_name = "Ultimate"
+length = 1.9333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 1.7666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.099999994, 0.36666667, 1.4333333, 1.5999999),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2178, -669.00006), Vector2(-1306.0002, -669.00006), Vector2(-1306.0002, -669.00006), Vector2(-2178, -669.00006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.13333334, 0.37, 0.96666664, 1.7666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.09320182, 0.09320182, 0.09320182, 0), Color(0.09320182, 0.09320182, 0.09320182, 0.85700005), Color(0.09320182, 0.09320182, 0.09320182, 0.85700005), Color(0.09320182, 0.09320182, 0.09320182, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SkillName:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.33333334, 0.96666664, 1.7666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qrs2m"]
+_data = {
+&"RESET": SubResource("Animation_mec8r"),
+&"Ultimate": SubResource("Animation_n3xuk")
+}
+
+[node name="Combat" type="Node2D" unique_id=86718550 groups=["combat"]]
 script = ExtResource("1_3ou8c")
 
-[node name="CombatManager" type="Node" parent="."]
+[node name="CombatManager" type="Node" parent="." unique_id=1493339723]
 unique_name_in_owner = true
 script = ExtResource("4_ucgqt")
 
-[node name="TurnText" type="Label" parent="CombatManager"]
+[node name="TurnText" type="Label" parent="CombatManager" unique_id=379666610]
 visible = false
 offset_left = -2.0
 offset_top = 25.0
@@ -74,7 +190,7 @@ text = "Turn 1"
 label_settings = SubResource("LabelSettings_mo5rj")
 horizontal_alignment = 1
 
-[node name="TargetingLabel" type="Label" parent="CombatManager"]
+[node name="TargetingLabel" type="Label" parent="CombatManager" unique_id=764208361]
 visible = false
 offset_left = 39.0
 offset_top = 736.0
@@ -85,7 +201,7 @@ text = "Choosing target for :
 (click on the sprite)"
 label_settings = SubResource("LabelSettings_g8qlp")
 
-[node name="TargetingControls" type="Label" parent="CombatManager/TargetingLabel"]
+[node name="TargetingControls" type="Label" parent="CombatManager/TargetingLabel" unique_id=1414453406]
 layout_mode = 0
 offset_left = 706.0
 offset_top = -14.0
@@ -97,42 +213,42 @@ text = "1  or Z for Enemy 1
 4  or V for Enemy 4"
 label_settings = SubResource("LabelSettings_rfbdu")
 
-[node name="CombatCurrency" parent="CombatManager" instance=ExtResource("6_b6b3n")]
+[node name="CombatCurrency" parent="CombatManager" unique_id=17423082 instance=ExtResource("6_b6b3n")]
 offset_right = -735.71436
 offset_bottom = -980.0
 scale = Vector2(0.7, 0.7)
 
-[node name="TargetingSkillInfo" parent="CombatManager" instance=ExtResource("5_2x1un")]
+[node name="TargetingSkillInfo" parent="CombatManager" unique_id=315414247 instance=ExtResource("5_2x1un")]
 visible = false
 offset_left = 491.0
 offset_top = 678.0
 offset_right = 491.0
 offset_bottom = 678.0
 
-[node name="EnemyCombatCurrency" parent="CombatManager" instance=ExtResource("6_uo10a")]
+[node name="EnemyCombatCurrency" parent="CombatManager" unique_id=1215750766 instance=ExtResource("6_uo10a")]
 offset_left = 1949.0
 offset_top = -0.99999976
 offset_right = 302.0
 offset_bottom = -717.0
 scale = Vector2(0.7, 0.7)
 
-[node name="Enemy 1 Spot" type="Node2D" parent="."]
+[node name="Enemy 1 Spot" type="Node2D" parent="." unique_id=1737601659]
 unique_name_in_owner = true
 position = Vector2(1020, 242)
 
-[node name="Enemy 2 Spot" type="Node2D" parent="."]
+[node name="Enemy 2 Spot" type="Node2D" parent="." unique_id=1451768666]
 unique_name_in_owner = true
 position = Vector2(1243, 242)
 
-[node name="Enemy 3 Spot" type="Node2D" parent="."]
+[node name="Enemy 3 Spot" type="Node2D" parent="." unique_id=168345751]
 unique_name_in_owner = true
 position = Vector2(1468, 242)
 
-[node name="Enemy 4 Spot" type="Node2D" parent="."]
+[node name="Enemy 4 Spot" type="Node2D" parent="." unique_id=297108078]
 unique_name_in_owner = true
 position = Vector2(1691, 242)
 
-[node name="EndTurn" type="Button" parent="."]
+[node name="EndTurn" type="Button" parent="." unique_id=345906638]
 offset_left = 1521.0
 offset_top = 800.0
 offset_right = 1681.0
@@ -140,7 +256,7 @@ offset_bottom = 837.0
 theme_override_font_sizes/font_size = 56
 text = "End Turn   (A)"
 
-[node name="Win" type="Button" parent="."]
+[node name="Win" type="Button" parent="." unique_id=1808256260]
 visible = false
 custom_minimum_size = Vector2(50, 50)
 offset_left = 1131.0
@@ -150,7 +266,7 @@ offset_bottom = 1074.0
 theme_override_font_sizes/font_size = 36
 text = "win"
 
-[node name="VictoryScreen" parent="." node_paths=PackedStringArray("combat_manager") instance=ExtResource("8_xw3f4")]
+[node name="VictoryScreen" parent="." unique_id=1536062562 node_paths=PackedStringArray("combat_manager") instance=ExtResource("8_xw3f4")]
 visible = false
 offset_left = 1230.0
 offset_top = 288.0
@@ -159,21 +275,21 @@ offset_bottom = 288.0
 mouse_filter = 2
 combat_manager = NodePath("../CombatManager")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=207321828]
 z_index = -5
 position = Vector2(959, 414.99997)
 scale = Vector2(0.81, 0.81)
 texture = ExtResource("9_0uf4x")
 
-[node name="ReactionManager" type="Node" parent="."]
+[node name="ReactionManager" type="Node" parent="." unique_id=846978404]
 script = ExtResource("10_cmui4")
 
-[node name="Tutorial" type="Node2D" parent="."]
+[node name="Tutorial" type="Node2D" parent="." unique_id=2030885789]
 
-[node name="TutorialHighlight" type="CanvasLayer" parent="Tutorial"]
+[node name="TutorialHighlight" type="CanvasLayer" parent="Tutorial" unique_id=798707242]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="Tutorial/TutorialHighlight"]
+[node name="ColorRect" type="ColorRect" parent="Tutorial/TutorialHighlight" unique_id=2098043802]
 material = SubResource("ShaderMaterial_bsuy1")
 anchors_preset = 15
 anchor_right = 1.0
@@ -184,9 +300,9 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0.34509805)
 script = ExtResource("12_bsuy1")
 
-[node name="Tutorial1" type="Node" parent="Tutorial"]
+[node name="Tutorial1" type="Node" parent="Tutorial" unique_id=1990633297]
 
-[node name="Popup1" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup1" type="Control" parent="Tutorial/Tutorial1" unique_id=1456343532]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -201,23 +317,23 @@ grow_vertical = 2
 scale = Vector2(1.6, 1.6)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup1"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup1" unique_id=631527010]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup1/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup1/PanelContainer" unique_id=448051758]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer" unique_id=590072811]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer" unique_id=1861734163]
 layout_mode = 2
 text = "Welcome to Project Burg,
 A roguelike deckbuilder.
@@ -225,17 +341,17 @@ First, I'll show you how
 to attack an enemy."
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer" unique_id=2106948745]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer" unique_id=262611147]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup2" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup2" type="Control" parent="Tutorial/Tutorial1" unique_id=1193280924]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -250,34 +366,34 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup2"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup2" unique_id=59288705]
 layout_mode = 0
 offset_right = 209.0
 offset_bottom = 97.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup2/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup2/PanelContainer" unique_id=2103341298]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup2/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup2/PanelContainer/MarginContainer" unique_id=241403285]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup2/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup2/PanelContainer/MarginContainer/VBoxContainer" unique_id=748374350]
 layout_mode = 2
 text = "Click on \"Fire Bolt\"
 to attack the enemy"
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup2/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup2/PanelContainer/MarginContainer/VBoxContainer" unique_id=775832214]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Popup3" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup3" type="Control" parent="Tutorial/Tutorial1" unique_id=1284926326]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -292,23 +408,23 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3" unique_id=1798429725]
 layout_mode = 0
 offset_right = 209.0
 offset_bottom = 97.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3/PanelContainer" unique_id=570899940]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3/PanelContainer/MarginContainer" unique_id=1759610330]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3/PanelContainer/MarginContainer/VBoxContainer" unique_id=999758473]
 layout_mode = 2
 text = "\"Fire Bolt\" is a skill
 that can target any
@@ -317,12 +433,12 @@ enemy's sprite to use
 the skill."
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3/PanelContainer/MarginContainer/VBoxContainer" unique_id=1077690950]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Popup3_2_5" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup3_2_5" type="Control" parent="Tutorial/Tutorial1" unique_id=1796097999]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -337,40 +453,40 @@ grow_vertical = 2
 scale = Vector2(1.6, 1.6)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3_2_5"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3_2_5" unique_id=263934180]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer" unique_id=1473541748]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer" unique_id=361089853]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer/VBoxContainer" unique_id=805581563]
 layout_mode = 2
 text = "You dealt 14 fire damage
 and applied Fire to the
 enemy!"
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer/VBoxContainer" unique_id=1521264910]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup3_2_5/PanelContainer/MarginContainer/VBoxContainer" unique_id=793260018]
 layout_mode = 2
 size_flags_vertical = 3
 text = "awesome sauce"
 
-[node name="Popup3_2_6" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup3_2_6" type="Control" parent="Tutorial/Tutorial1" unique_id=450448894]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -385,40 +501,40 @@ grow_vertical = 2
 scale = Vector2(1.6, 1.6)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3_2_6"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3_2_6" unique_id=19043760]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer" unique_id=1603234465]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer" unique_id=953375690]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer/VBoxContainer" unique_id=1037102673]
 layout_mode = 2
 text = "Allies can (normally)
 only use one skill per
 turn."
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer/VBoxContainer" unique_id=1007922207]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup3_2_6/PanelContainer/MarginContainer/VBoxContainer" unique_id=1242857729]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup3_5" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup3_5" type="Control" parent="Tutorial/Tutorial1" unique_id=1625813305]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -433,35 +549,35 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3_5"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup3_5" unique_id=1222355296]
 layout_mode = 0
 offset_right = 209.0
 offset_bottom = 97.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer" unique_id=1611016450]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer/MarginContainer" unique_id=1598473652]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer/MarginContainer/VBoxContainer" unique_id=399941964]
 layout_mode = 2
 text = "Click End Turn to
 move on to the
 next turn."
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup3_5/PanelContainer/MarginContainer/VBoxContainer" unique_id=829408843]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Popup4" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup4" type="Control" parent="Tutorial/Tutorial1" unique_id=1986206323]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -476,23 +592,23 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup4"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup4" unique_id=1360934997]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup4/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup4/PanelContainer" unique_id=2102859067]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer" unique_id=584573556]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer/VBoxContainer" unique_id=1061166212]
 layout_mode = 2
 text = "During combat, 
 enemies will 
@@ -500,17 +616,17 @@ attack you
 too."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer/VBoxContainer" unique_id=1357979870]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup4/PanelContainer/MarginContainer/VBoxContainer" unique_id=985129613]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup5" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup5" type="Control" parent="Tutorial/Tutorial1" unique_id=1587830527]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -525,23 +641,23 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup5"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup5" unique_id=1499457587]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup5/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup5/PanelContainer" unique_id=1213490879]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer" unique_id=974265684]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer" unique_id=1413585817]
 layout_mode = 2
 text = "Enemies have countdowns. 
 When an ally uses a skill,
@@ -552,17 +668,17 @@ reaches 0, they will use
 their skill."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer" unique_id=822567041]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup5/PanelContainer/MarginContainer/VBoxContainer" unique_id=310710258]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup6" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup6" type="Control" parent="Tutorial/Tutorial1" unique_id=417515210]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -577,23 +693,23 @@ grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup6"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup6" unique_id=1056664449]
 layout_mode = 0
 offset_right = 209.0
 offset_bottom = 97.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup6/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup6/PanelContainer" unique_id=490439253]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup6/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup6/PanelContainer/MarginContainer" unique_id=549589495]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup6/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup6/PanelContainer/MarginContainer/VBoxContainer" unique_id=151846808]
 layout_mode = 2
 text = "A new turn has begun,
 so you can use your skill
@@ -602,12 +718,12 @@ again and watch the
 enemy's countdown."
 label_settings = SubResource("LabelSettings_pf6w8")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup6/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup6/PanelContainer/MarginContainer/VBoxContainer" unique_id=262509046]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Popup7" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup7" type="Control" parent="Tutorial/Tutorial1" unique_id=1808245165]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -622,23 +738,23 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup7"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup7" unique_id=1544707772]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup7/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup7/PanelContainer" unique_id=872306917]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer" unique_id=720572711]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer" unique_id=265656846]
 layout_mode = 2
 text = "The enemy used
 their skill and you 
@@ -648,17 +764,17 @@ reduced to 0, they
 are out for the fight."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer" unique_id=842470639]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup7/PanelContainer/MarginContainer/VBoxContainer" unique_id=1229876070]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup8" type="Control" parent="Tutorial/Tutorial1"]
+[node name="Popup8" type="Control" parent="Tutorial/Tutorial1" unique_id=139209434]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -673,23 +789,23 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup8"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial1/Popup8" unique_id=95136892]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup8/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial1/Popup8/PanelContainer" unique_id=1783258980]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer" unique_id=133796066]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer" unique_id=1051448463]
 layout_mode = 2
 text = "That's the main combat loop.
 When ending your turn, any
@@ -699,19 +815,19 @@ Now, let's add another unit on
 each side."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer" unique_id=1165773597]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial1/Popup8/PanelContainer/MarginContainer/VBoxContainer" unique_id=458989673]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Tutorial2" type="Node" parent="Tutorial"]
+[node name="Tutorial2" type="Node" parent="Tutorial" unique_id=1315410215]
 
-[node name="Popup9" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup9" type="Control" parent="Tutorial/Tutorial2" unique_id=889091056]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -726,30 +842,30 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup9"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup9" unique_id=47048542]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup9/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup9/PanelContainer" unique_id=544844844]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup9/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup9/PanelContainer/MarginContainer" unique_id=1979126392]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup9/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup9/PanelContainer/MarginContainer/VBoxContainer" unique_id=996554917]
 layout_mode = 2
 text = "With two units, you can
 create a reaction. First, use
 Fire Bolt on the enemy."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="Popup10" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup10" type="Control" parent="Tutorial/Tutorial2" unique_id=308221359]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -764,40 +880,40 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup10"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup10" unique_id=1519030580]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup10/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup10/PanelContainer" unique_id=800026022]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer" unique_id=2079138459]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer/VBoxContainer" unique_id=446756592]
 layout_mode = 2
 text = "Now, the enemy's
 current element is
 Fire."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer/VBoxContainer" unique_id=2002106412]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup10/PanelContainer/MarginContainer/VBoxContainer" unique_id=1620833632]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup11" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup11" type="Control" parent="Tutorial/Tutorial2" unique_id=152486752]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -812,23 +928,23 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup11"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup11" unique_id=391892837]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup11/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup11/PanelContainer" unique_id=607047960]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup11/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup11/PanelContainer/MarginContainer" unique_id=1281866972]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup11/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup11/PanelContainer/MarginContainer/VBoxContainer" unique_id=512859217]
 layout_mode = 2
 text = "Your other ally's
 attack deals Water
@@ -837,7 +953,7 @@ the Fire + Water reaction
 does in the Reaction Guide."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="Popup13" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup13" type="Control" parent="Tutorial/Tutorial2" unique_id=1019368746]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -853,23 +969,23 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup13"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup13" unique_id=33819395]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup13/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup13/PanelContainer" unique_id=1571110346]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer" unique_id=1071664349]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer/VBoxContainer" unique_id=1898863603]
 layout_mode = 2
 text = "Vaporize multiplies the 
 second element's damage by
@@ -877,17 +993,17 @@ second element's damage by
 the second element."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer/VBoxContainer" unique_id=1075332506]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup13/PanelContainer/MarginContainer/VBoxContainer" unique_id=1513958176]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup14" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup14" type="Control" parent="Tutorial/Tutorial2" unique_id=1884064107]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -903,40 +1019,40 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup14"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup14" unique_id=1611990972]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup14/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup14/PanelContainer" unique_id=596475828]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer" unique_id=484420496]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer/VBoxContainer" unique_id=754450408]
 layout_mode = 2
 text = "You also get 1 Fire Token
 and 1 Water Token after
 creating a Vaporize reaction."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer/VBoxContainer" unique_id=1550407524]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup14/PanelContainer/MarginContainer/VBoxContainer" unique_id=379582840]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup15" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup15" type="Control" parent="Tutorial/Tutorial2" unique_id=100180032]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -952,30 +1068,30 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup15"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup15" unique_id=1684886630]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup15/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup15/PanelContainer" unique_id=768682902]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup15/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup15/PanelContainer/MarginContainer" unique_id=63823475]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup15/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup15/PanelContainer/MarginContainer/VBoxContainer" unique_id=1498904915]
 layout_mode = 2
 text = "Close the reaction
 guide and continue
 the battle."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="Popup16" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup16" type="Control" parent="Tutorial/Tutorial2" unique_id=1044325603]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -990,23 +1106,23 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup16"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup16" unique_id=1978099305]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup16/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup16/PanelContainer" unique_id=1409737434]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup16/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup16/PanelContainer/MarginContainer" unique_id=1601434790]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup16/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup16/PanelContainer/MarginContainer/VBoxContainer" unique_id=299089323]
 layout_mode = 2
 text = "Now, use Water
 Bolt on the enemy
@@ -1014,7 +1130,7 @@ to trigger a Vaporize
 reaction!"
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="Popup17" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup17" type="Control" parent="Tutorial/Tutorial2" unique_id=1083508060]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -1030,39 +1146,39 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup17"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup17" unique_id=730094973]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup17/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup17/PanelContainer" unique_id=1626483617]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer" unique_id=673729544]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer/VBoxContainer" unique_id=725127585]
 layout_mode = 2
 text = "big damage"
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer/VBoxContainer" unique_id=1924764595]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup17/PanelContainer/MarginContainer/VBoxContainer" unique_id=442728220]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
 text = "BIG DAMAGE"
 
-[node name="Popup18" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup18" type="Control" parent="Tutorial/Tutorial2" unique_id=1934160487]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -1078,39 +1194,39 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup18"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup18" unique_id=1126059432]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup18/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup18/PanelContainer" unique_id=1966822524]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer" unique_id=1732259544]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer/VBoxContainer" unique_id=1303093004]
 layout_mode = 2
 text = "You also got 1 Fire Token
 and 1 Water Token!"
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer/VBoxContainer" unique_id=1970886927]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup18/PanelContainer/MarginContainer/VBoxContainer" unique_id=1498831855]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup19" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup19" type="Control" parent="Tutorial/Tutorial2" unique_id=1695063499]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -1126,23 +1242,23 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup19"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup19" unique_id=97145518]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup19/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup19/PanelContainer" unique_id=254797013]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer" unique_id=1559253941]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer/VBoxContainer" unique_id=835005725]
 layout_mode = 2
 text = "A new turn has begun, so you can
 use skills again.
@@ -1152,17 +1268,17 @@ the skill to read what it does
   (don't use it yet)"
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer/VBoxContainer" unique_id=1236686611]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup19/PanelContainer/MarginContainer/VBoxContainer" unique_id=387400299]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup20" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup20" type="Control" parent="Tutorial/Tutorial2" unique_id=460987384]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -1178,40 +1294,40 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup20"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup20" unique_id=786102349]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup20/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup20/PanelContainer" unique_id=27099805]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer" unique_id=1403242624]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer" unique_id=1443391766]
 layout_mode = 2
 text = "Fire Snipe can only target the
 furthest enemy, however it deals
 24 damage compared to Fire Bolt's 14."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer" unique_id=1516065761]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer" unique_id=687023421]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
 
-[node name="Popup21" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup21" type="Control" parent="Tutorial/Tutorial2" unique_id=1135370249]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -1227,23 +1343,23 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup21"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup21" unique_id=1422551621]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup21/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup21/PanelContainer" unique_id=489838055]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup21/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup21/PanelContainer/MarginContainer" unique_id=251568738]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup21/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup21/PanelContainer/MarginContainer/VBoxContainer" unique_id=1118551777]
 layout_mode = 2
 text = "In order to maximize damage in this
 scenario, you want to trigger a Vaporize reaction
@@ -1251,7 +1367,7 @@ with Fire Snipe.  Therefore, you should use Water Bolt
 on the back enemy first."
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="Popup22" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup22" type="Control" parent="Tutorial/Tutorial2" unique_id=745321941]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -1267,30 +1383,30 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup22"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup22" unique_id=187381437]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup22/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup22/PanelContainer" unique_id=431860661]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup22/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup22/PanelContainer/MarginContainer" unique_id=283985895]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup22/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup22/PanelContainer/MarginContainer/VBoxContainer" unique_id=1401430002]
 layout_mode = 2
 text = "Now that the back enemy's
 current element is Water,
 use Fire Snipe!"
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="Popup23" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup23" type="Control" parent="Tutorial/Tutorial2" unique_id=1983910312]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -1306,39 +1422,39 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup23"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup23" unique_id=693103717]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup23/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup23/PanelContainer" unique_id=1866096506]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer" unique_id=2013005042]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer" unique_id=1405639323]
 layout_mode = 2
 text = "BIGGER DAMAGE"
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer" unique_id=43399734]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer" unique_id=1034829278]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 36
 text = "BIGGER DAMAGE"
 
-[node name="Popup24" type="Control" parent="Tutorial/Tutorial2"]
+[node name="Popup24" type="Control" parent="Tutorial/Tutorial2" unique_id=946750553]
 visible = false
 z_index = 20
 layout_mode = 3
@@ -1354,23 +1470,23 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 script = ExtResource("13_0uf4x")
 
-[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup24"]
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial/Tutorial2/Popup24" unique_id=990842221]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_43txg")
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup24/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial/Tutorial2/Popup24/PanelContainer" unique_id=114503937]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer" unique_id=1433763019]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer" unique_id=51771897]
 layout_mode = 2
 text = "Now you know how to use
 reactions, and about tokens.
@@ -1378,15 +1494,59 @@ Use the reaction guide to maximize
 your potential!"
 label_settings = SubResource("LabelSettings_0uf4x")
 
-[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer" unique_id=924871429]
 layout_mode = 2
 theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 
-[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer" unique_id=913983437]
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1496387889]
+
+[node name="CharacterUltAnimation" type="Control" parent="CanvasLayer" unique_id=1898858357]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1338.0
+offset_top = 750.0
+offset_right = 1378.0
+offset_bottom = 790.0
+script = ExtResource("14_k1xti")
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/CharacterUltAnimation" unique_id=1762416503]
+layout_mode = 0
+offset_left = -1342.0
+offset_top = -746.0
+offset_right = 586.0
+offset_bottom = 332.0
+color = Color(0.09320182, 0.09320182, 0.09320182, 0)
+
+[node name="SkillName" type="Label" parent="CanvasLayer/CharacterUltAnimation" unique_id=1343262989]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -1235.0
+offset_top = 131.0
+offset_right = -637.0
+offset_bottom = 280.0
+text = "Water Bolt"
+label_settings = SubResource("LabelSettings_28jgk")
+
+[node name="Sprite" type="TextureRect" parent="CanvasLayer/CharacterUltAnimation" unique_id=1323023768]
+layout_mode = 0
+offset_left = -2178.0
+offset_top = -669.00006
+offset_right = -1698.0
+offset_bottom = -189.00006
+scale = Vector2(1.745, 1.745)
+texture = ExtResource("15_v8i8s")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CharacterUltAnimation" unique_id=1900951727]
+libraries/ = SubResource("AnimationLibrary_qrs2m")
 
 [connection signal="pressed" from="EndTurn" to="CombatManager" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
@@ -1406,3 +1566,5 @@ text = "OK"
 [connection signal="pressed" from="Tutorial/Tutorial2/Popup20/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup20" method="_on_button_pressed"]
 [connection signal="pressed" from="Tutorial/Tutorial2/Popup23/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup23" method="_on_button_pressed"]
 [connection signal="pressed" from="Tutorial/Tutorial2/Popup24/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial2/Popup24" method="_on_button_pressed"]
+[connection signal="ult_anim_done" from="CanvasLayer/CharacterUltAnimation" to="CombatManager" method="_on_character_ult_animation_ult_anim_done"]
+[connection signal="animation_finished" from="CanvasLayer/CharacterUltAnimation/AnimationPlayer" to="CanvasLayer/CharacterUltAnimation" method="_on_animation_player_animation_finished"]

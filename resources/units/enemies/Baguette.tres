@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=6 format=3 uid="uid://5shsgidg58wn"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://5shsgidg58wn"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_5sxkx"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_p431m"]
 [ext_resource type="Resource" uid="uid://cp50svdfs8qpy" path="res://resources/enemy_skills/yeet.tres" id="2_tx7q3"]
 [ext_resource type="Texture2D" uid="uid://bljf8dm0b4fdy" path="res://assets/baguette.png" id="3_p0ip3"]
 [ext_resource type="Resource" uid="uid://dy48dueo5v5f" path="res://resources/enemy_skills/Baguette Slap.tres" id="3_tevog"]
@@ -8,17 +8,11 @@
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_5sxkx")
+script = ExtResource("1_p431m")
+name = "Baguette"
 starting_health = 100
+sprite = ExtResource("3_p0ip3")
 skill1 = ExtResource("2_tx7q3")
 skill2 = ExtResource("3_tevog")
 skill3 = ExtResource("3_tevog")
 skill4 = ExtResource("4_jvuqw")
-skill_1_cd = 0
-skill_2_cd = 0
-skill_3_cd = 0
-skill_4_cd = 0
-sprite = ExtResource("3_p0ip3")
-sprite_scale = 1.0
-name = "Baguette"
-fire_damage_block = 0

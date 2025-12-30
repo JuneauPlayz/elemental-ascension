@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bkkh4bxq8cu7n"]
+[gd_scene format=3 uid="uid://bkkh4bxq8cu7n"]
 
 [ext_resource type="Script" uid="uid://bgugsa6ep270d" path="res://scripts/ally.gd" id="1_fu3qc"]
 [ext_resource type="PackedScene" uid="uid://tlvpop5rp1x6" path="res://scenes/reusables/spell_select_ui.tscn" id="2_pcgfv"]
@@ -72,13 +72,13 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqkb2"]
 
-[node name="Ally" type="Node2D"]
+[node name="Ally" type="Node2D" unique_id=963149897]
 position = Vector2(85, 185)
 script = ExtResource("1_fu3qc")
 skill_1 = ExtResource("3_oopdj")
 skill_2 = ExtResource("4_7yskb")
 
-[node name="SpellSelectUi" parent="." instance=ExtResource("2_pcgfv")]
+[node name="SpellSelectUi" parent="." unique_id=416312703 instance=ExtResource("2_pcgfv")]
 offset_left = -96.36363
 offset_top = 259.09094
 offset_right = -96.36363
@@ -86,7 +86,7 @@ offset_bottom = 259.09094
 scale = Vector2(0.705, 0.705)
 metadata/_edit_use_anchors_ = true
 
-[node name="HP Bar" parent="." instance=ExtResource("3_urihg")]
+[node name="HP Bar" parent="." unique_id=152225163 instance=ExtResource("3_urihg")]
 offset_left = -89.09089
 offset_top = 147.27274
 offset_right = -89.09089
@@ -94,18 +94,18 @@ offset_bottom = 147.27274
 scale = Vector2(0.65, 0.65)
 metadata/_edit_use_anchors_ = true
 
-[node name="DamageNumberOrigin" type="Node2D" parent="."]
+[node name="DamageNumberOrigin" type="Node2D" parent="." unique_id=298554284]
 position = Vector2(-27, 42)
 
-[node name="SpriteSpot" type="Sprite2D" parent="."]
+[node name="SpriteSpot" type="Sprite2D" parent="." unique_id=338411399]
 position = Vector2(1.8181801, -27.727234)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.135, 0.135)
 
-[node name="Core" parent="." instance=ExtResource("6_ww2sg")]
+[node name="Core" parent="." unique_id=1195833404 instance=ExtResource("6_ww2sg")]
 visible = false
 position = Vector2(-151.818, -130.909)
 
-[node name="LevelUpReward" type="Control" parent="."]
+[node name="LevelUpReward" type="Control" parent="." unique_id=298648237]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -116,7 +116,7 @@ offset_bottom = 250.0
 scale = Vector2(0.75, 0.75)
 script = ExtResource("8_4ut3l")
 
-[node name="PanelContainer" type="PanelContainer" parent="LevelUpReward"]
+[node name="PanelContainer" type="PanelContainer" parent="LevelUpReward" unique_id=2091754085]
 layout_mode = 0
 offset_left = -375.455
 offset_top = 204.545
@@ -125,7 +125,7 @@ offset_bottom = 318.545
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_tvmj8")
 
-[node name="MarginContainer" type="MarginContainer" parent="LevelUpReward/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LevelUpReward/PanelContainer" unique_id=233173370]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -133,14 +133,14 @@ theme_override_constants/margin_left = 7
 theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelUpReward/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUpReward/PanelContainer/MarginContainer" unique_id=784072201]
 layout_mode = 2
 
-[node name="BA1Panel" type="PanelContainer" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="BA1Panel" type="PanelContainer" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer" unique_id=54144015]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="option1" type="Button" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel"]
+[node name="option1" type="Button" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel" unique_id=755760215]
 custom_minimum_size = Vector2(261, 39)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -152,17 +152,17 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_1dgm8")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_rghh4")
 text = "Option 1"
 
-[node name="VSeparator" type="VSeparator" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer" unique_id=228427039]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_c8eds")
 
-[node name="SP1Panel" type="PanelContainer" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SP1Panel" type="PanelContainer" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer" unique_id=804850625]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="option2" type="Button" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/SP1Panel"]
+[node name="option2" type="Button" parent="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/SP1Panel" unique_id=291650595]
 custom_minimum_size = Vector2(0, 39)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.705882)
@@ -174,7 +174,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_667es")
 text = "Option 2
 "
 
-[node name="SkillInfo" parent="LevelUpReward" instance=ExtResource("9_6y37o")]
+[node name="SkillInfo" parent="LevelUpReward" unique_id=1393946105 instance=ExtResource("9_6y37o")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
@@ -187,7 +187,7 @@ offset_bottom = 208.455
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="SkillInfo2" parent="LevelUpReward" instance=ExtResource("9_6y37o")]
+[node name="SkillInfo2" parent="LevelUpReward" unique_id=583268351 instance=ExtResource("9_6y37o")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
@@ -200,7 +200,7 @@ offset_bottom = 290.879
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Avaliable" type="Label" parent="LevelUpReward"]
+[node name="Avaliable" type="Label" parent="LevelUpReward" unique_id=2014964552]
 layout_mode = 0
 offset_left = -356.364
 offset_top = 335.758
@@ -209,7 +209,7 @@ offset_bottom = 377.758
 text = "Level Up Reward Avaliable!"
 label_settings = SubResource("LabelSettings_0maum")
 
-[node name="SwapTutorial" type="Label" parent="LevelUpReward"]
+[node name="SwapTutorial" type="Label" parent="LevelUpReward" unique_id=1779223624]
 layout_mode = 0
 offset_left = -410.909
 offset_top = 129.697
@@ -220,7 +220,7 @@ current spell to replace"
 label_settings = SubResource("LabelSettings_yqxn6")
 horizontal_alignment = 1
 
-[node name="ConfirmSwap" type="Button" parent="LevelUpReward"]
+[node name="ConfirmSwap" type="Button" parent="LevelUpReward" unique_id=318103109]
 visible = false
 layout_mode = 0
 offset_left = -309.091
@@ -230,7 +230,7 @@ offset_bottom = 413.333
 theme_override_font_sizes/font_size = 36
 text = "Confirm Swap"
 
-[node name="RelicInfo" parent="LevelUpReward" instance=ExtResource("10_ttrjn")]
+[node name="RelicInfo" parent="LevelUpReward" unique_id=883416799 instance=ExtResource("10_ttrjn")]
 visible = false
 layout_mode = 1
 offset_left = -84.8487
@@ -238,7 +238,7 @@ offset_top = 191.516
 offset_right = -84.8487
 offset_bottom = 191.516
 
-[node name="RelicInfo2" parent="LevelUpReward" instance=ExtResource("10_ttrjn")]
+[node name="RelicInfo2" parent="LevelUpReward" unique_id=1968378837 instance=ExtResource("10_ttrjn")]
 visible = false
 layout_mode = 1
 offset_left = -84.8487
@@ -246,7 +246,7 @@ offset_top = 269.091
 offset_right = -84.8487
 offset_bottom = 269.091
 
-[node name="TargetingArea" type="Button" parent="."]
+[node name="TargetingArea" type="Button" parent="." unique_id=1438589641]
 visible = false
 offset_left = -114.545
 offset_top = -228.182
@@ -259,7 +259,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_u6cuy")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_k7wpu")
 theme_override_styles/focus = SubResource("StyleBoxFlat_fqkb2")
 
-[node name="WhiteCircle" type="Sprite2D" parent="."]
+[node name="WhiteCircle" type="Sprite2D" parent="." unique_id=666456777]
 self_modulate = Color(0, 0, 0, 0.39215687)
 z_index = -1
 position = Vector2(-2, 80)

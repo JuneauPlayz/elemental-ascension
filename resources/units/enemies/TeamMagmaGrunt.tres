@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=6 format=3 uid="uid://c257wxx44lh3l"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://c257wxx44lh3l"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_ro0vw"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_7vwxe"]
 [ext_resource type="Resource" uid="uid://cap1r3pplmwmf" path="res://resources/enemy_skills/Magma Strike.tres" id="2_0wqnq"]
 [ext_resource type="Texture2D" uid="uid://c2kjpavfw7w8x" path="res://assets/teammagmagrunt.png" id="2_d75wh"]
 [ext_resource type="Resource" uid="uid://bajou4oeggcpy" path="res://resources/enemy_skills/Punch.tres" id="3_m1js0"]
@@ -9,16 +9,11 @@
 [resource]
 resource_local_to_scene = true
 resource_name = "MagmaGrunt"
-script = ExtResource("1_ro0vw")
+script = ExtResource("1_7vwxe")
+name = "MagmaGrunt"
 starting_health = 150
+sprite = ExtResource("2_d75wh")
+sprite_scale = 0.65
 skill1 = ExtResource("2_0wqnq")
 skill2 = ExtResource("3_m1js0")
 skill3 = ExtResource("4_tk1tv")
-skill_1_cd = 0
-skill_2_cd = 0
-skill_3_cd = 0
-skill_4_cd = 0
-sprite = ExtResource("2_d75wh")
-sprite_scale = 0.65
-name = "MagmaGrunt"
-fire_damage_block = 0

@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=4 format=3 uid="uid://dbw88mafclg2q"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://dbw88mafclg2q"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_gws53"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_ayn4n"]
 [ext_resource type="Resource" uid="uid://yknuwm2vbfly" path="res://resources/enemy_skills/Water Shield Bash.tres" id="2_ayn4n"]
 [ext_resource type="Texture2D" uid="uid://vp1u6fqb4jd" path="res://assets/icon.svg" id="3_3dk7a"]
 
 [resource]
-script = ExtResource("1_gws53")
-starting_health = 200
-skill1 = ExtResource("2_ayn4n")
-sprite = ExtResource("3_3dk7a")
-sprite_scale = 1.0
+script = ExtResource("1_ayn4n")
 name = "Water Tank"
+starting_health = 200
+sprite = ExtResource("3_3dk7a")
+skill1 = ExtResource("2_ayn4n")
 fire_damage_block = 5
 metadata/_custom_type_script = "uid://bpkpxp60hx4da"

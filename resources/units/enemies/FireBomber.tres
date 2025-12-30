@@ -1,19 +1,13 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=4 format=3 uid="uid://dni7jqr2vmyhx"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://dni7jqr2vmyhx"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_koms0"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_c3ksx"]
 [ext_resource type="Resource" uid="uid://d2txxhsgd2206" path="res://resources/enemy_skills/Fire Bomb.tres" id="2_c3ksx"]
 [ext_resource type="Texture2D" uid="uid://deq1sl2820tsr" path="res://assets/red bomber.png" id="3_tof2e"]
 
 [resource]
-script = ExtResource("1_koms0")
-starting_health = 150
-skill1 = ExtResource("2_c3ksx")
-skill_1_cd = 0
-skill_2_cd = 0
-skill_3_cd = 0
-skill_4_cd = 0
-sprite = ExtResource("3_tof2e")
-sprite_scale = 1.0
+script = ExtResource("1_c3ksx")
 name = "Fire Bomber"
-fire_damage_block = 0
+starting_health = 150
+sprite = ExtResource("3_tof2e")
+skill1 = ExtResource("2_c3ksx")
 metadata/_custom_type_script = "uid://bpkpxp60hx4da"

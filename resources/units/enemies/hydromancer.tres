@@ -1,20 +1,15 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=4 format=3 uid="uid://rccuvvqawkuw"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://rccuvvqawkuw"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_vfdnl"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_1p7f7"]
 [ext_resource type="Resource" uid="uid://bdhvjuo1cekdg" path="res://resources/enemy_skills/EnemyAOEWater.tres" id="2_af38f"]
 [ext_resource type="Texture2D" uid="uid://c3wn67rl0ods7" path="res://assets/hydromancer.jpg" id="3_3viei"]
 
 [resource]
 resource_local_to_scene = true
 resource_name = "Hydromancer"
-script = ExtResource("1_vfdnl")
+script = ExtResource("1_1p7f7")
+name = "Hydromancer"
 starting_health = 120
-skill1 = ExtResource("2_af38f")
-skill_1_cd = 0
-skill_2_cd = 0
-skill_3_cd = 0
-skill_4_cd = 0
 sprite = ExtResource("3_3viei")
 sprite_scale = 0.3
-name = "Hydromancer"
-fire_damage_block = 0
+skill1 = ExtResource("2_af38f")

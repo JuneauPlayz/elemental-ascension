@@ -1,16 +1,14 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=4 format=3 uid="uid://b0jtw0hy4pjt2"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://b0jtw0hy4pjt2"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_ktk7t"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_w8rhb"]
 [ext_resource type="Resource" uid="uid://cm4rnw5v8quf1" path="res://resources/enemy_skills/plastic attack.tres" id="2_w8rhb"]
 [ext_resource type="Texture2D" uid="uid://ddhiy727e28nv" path="res://assets/ieatplastic.jpg" id="3_72p4j"]
 
 [resource]
-script = ExtResource("1_ktk7t")
+script = ExtResource("1_w8rhb")
+name = "plasticMuncher"
 starting_health = 100
+sprite = ExtResource("3_72p4j")
 skill1 = ExtResource("2_w8rhb")
 skill2 = ExtResource("2_w8rhb")
-skill_1_cd = 2
-skill_2_cd = 2
-sprite = ExtResource("3_72p4j")
-name = "plasticMuncher"
 metadata/_custom_type_script = "uid://bpkpxp60hx4da"

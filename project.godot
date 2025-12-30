@@ -20,11 +20,15 @@ resources_spreadsheet_view/context_menu_on_leftclick=false
 resources_spreadsheet_view/fold_docks=true
 resources_spreadsheet_view/resource_cell_label_mode=1
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Project Burg"
 run/main_scene="uid://geispkaccrd1"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://assets/icon.svg"
 
 [autoload]

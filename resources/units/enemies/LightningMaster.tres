@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=6 format=3 uid="uid://dvcb13xmw6orb"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://dvcb13xmw6orb"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_8mrmj"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_k7tpp"]
 [ext_resource type="Resource" uid="uid://bpdn7san14clx" path="res://resources/enemy_skills/Lightning Punch.tres" id="2_bydnc"]
 [ext_resource type="Resource" uid="uid://2ymc28mkk5xq" path="res://resources/enemy_skills/EnemyAOELightning.tres" id="3_cvk14"]
 [ext_resource type="Resource" uid="uid://6rshatkdkcnk" path="res://resources/enemy_skills/Lightning Yeet.tres" id="4_wkxwl"]
@@ -8,16 +8,11 @@
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_8mrmj")
+script = ExtResource("1_k7tpp")
+name = "Lightning Master"
 starting_health = 250
+sprite = ExtResource("5_bqxr6")
+sprite_scale = 0.39
 skill1 = ExtResource("2_bydnc")
 skill2 = ExtResource("3_cvk14")
 skill3 = ExtResource("4_wkxwl")
-skill_1_cd = 0
-skill_2_cd = 0
-skill_3_cd = 0
-skill_4_cd = 0
-sprite = ExtResource("5_bqxr6")
-sprite_scale = 0.39
-name = "Lightning Master"
-fire_damage_block = 0

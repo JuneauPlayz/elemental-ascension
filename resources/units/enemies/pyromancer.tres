@@ -1,20 +1,15 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=4 format=3 uid="uid://difhbre5yysvi"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://difhbre5yysvi"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_2elhq"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_3jd0c"]
 [ext_resource type="Resource" uid="uid://cr3bbtfskjida" path="res://resources/enemy_skills/EnemyAOEFire.tres" id="2_m1i4n"]
 [ext_resource type="Texture2D" uid="uid://dspavikuf1db6" path="res://assets/leo-val-pyromancer-01-v001.jpg" id="3_f15hj"]
 
 [resource]
 resource_local_to_scene = true
 resource_name = "Pyromancer"
-script = ExtResource("1_2elhq")
+script = ExtResource("1_3jd0c")
+name = "Pyromancer"
 starting_health = 120
-skill1 = ExtResource("2_m1i4n")
-skill_1_cd = 0
-skill_2_cd = 0
-skill_3_cd = 0
-skill_4_cd = 0
 sprite = ExtResource("3_f15hj")
 sprite_scale = 0.3
-name = "Pyromancer"
-fire_damage_block = 0
+skill1 = ExtResource("2_m1i4n")

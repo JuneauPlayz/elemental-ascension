@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="UnitRes" load_steps=6 format=3 uid="uid://cxfm3xw7nk1gu"]
+[gd_resource type="Resource" script_class="EnemyRes" format=3 uid="uid://cxfm3xw7nk1gu"]
 
-[ext_resource type="Script" uid="uid://bpkpxp60hx4da" path="res://scripts/UnitRes.gd" id="1_uhb1h"]
+[ext_resource type="Script" uid="uid://bbahmkt62yu4d" path="res://scripts/EnemyRes.gd" id="1_bp20n"]
 [ext_resource type="Resource" uid="uid://bajou4oeggcpy" path="res://resources/enemy_skills/Punch.tres" id="2_kuxiv"]
 [ext_resource type="Resource" uid="uid://cr3bbtfskjida" path="res://resources/enemy_skills/EnemyAOEFire.tres" id="3_7wwsn"]
 [ext_resource type="Resource" uid="uid://d0sxdut8uscys" path="res://resources/enemy_skills/EnemyAOEEarth.tres" id="4_apcrc"]
@@ -8,16 +8,11 @@
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_uhb1h")
+script = ExtResource("1_bp20n")
+name = "Burger"
 starting_health = 100
+sprite = ExtResource("5_tfl7s")
+sprite_scale = 0.15
 skill1 = ExtResource("2_kuxiv")
 skill2 = ExtResource("3_7wwsn")
 skill3 = ExtResource("4_apcrc")
-skill_1_cd = 0
-skill_2_cd = 0
-skill_3_cd = 0
-skill_4_cd = 0
-sprite = ExtResource("5_tfl7s")
-sprite_scale = 0.15
-name = "Burger"
-fire_damage_block = 0
