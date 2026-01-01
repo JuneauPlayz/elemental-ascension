@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dgg1h20h2f62p" path="res://scripts/level_up_reward.gd" id="8_4ut3l"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="9_6y37o"]
 [ext_resource type="Texture2D" uid="uid://dkf53etd24pjd" path="res://assets/white circle.png" id="10_qfy0u"]
-[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="10_ttrjn"]
+[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/keystone_info.tscn" id="10_ttrjn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvmj8"]
 content_margin_left = 10.0

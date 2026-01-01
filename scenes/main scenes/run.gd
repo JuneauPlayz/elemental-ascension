@@ -5,9 +5,9 @@ extends Node
 @onready var ally_2_spot: Node2D = %"Ally 2 Spot"
 @onready var ally_3_spot: Node2D = %"Ally 3 Spot"
 @onready var ally_4_spot: Node2D = %"Ally 4 Spot"
-@onready var relic_handler_spot: Node2D = $RelicHandlerSpot
+@onready var keystone_handler_spot: Node2D = $KeystoneHandlerSpot
 @onready var reaction_panel: Control = $ReactionGuide/ReactionPanel
-@onready var relic_info: Control = %RelicInfo
+@onready var keystone_info: Control = %KeystoneInfo
 @onready var gold_text: RichTextLabel = $GoldText
 @onready var xp_bar: ProgressBar = $XPBar
 @onready var current_level: Label = $XPBar/CurrentLevel
@@ -17,7 +17,7 @@ extends Node
 @onready var reaction_guide_button: Button = $ReactionGuide
 
 
-const RELIC_HANDLER = preload("res://scenes/relic handler/relic_handler.tscn")
+const KEYSTONE_HANDLER = preload("res://scenes/keystone handler/keystone_handler.tscn")
 const COMBAT = preload("res://scenes/main scenes/combat.tscn")
 const SHOP = preload("res://scenes/main scenes/shop.tscn")
 const LEVEL_UP = preload("res://level_up_scene.tscn")
@@ -83,11 +83,10 @@ var max_fight_level = 20
 var boss_level = 0
 #checks
 
-var relics = []
-var obtainable_relics = []
-
-var relic_handler
-
+var keystone_handler
+var keystones: Array = []
+var occupied_element_slots: Array[String] = []
+var obtainable_keystones = []
 var skills = []
 var obtainable_skills = []
 
@@ -264,7 +263,7 @@ var current_fight = null
 var end = false
 var current_boss = null
 
-# event based relics
+# event based keystones
 var ghostfire = false
 var flow = false
 var lightning_strikes_twice = false
@@ -429,12 +428,12 @@ func _ready() -> void:
 	for ally in allies:
 		ally.run_starting = true
 	reaction_panel.visible = false
-	var dir = DirAccess.open("res://resources/relics")
-	var relics = []
-	get_all_files_from_directory("res://resources/relics", "", relics)
-	for filename in relics:
-		var relic = load(filename)
-		obtainable_relics.append(relic)
+	var dir = DirAccess.open("res://resources/keystones")
+	var keystones = []
+	get_all_files_from_directory("res://resources/keystones", "", keystones)
+	for filename in keystones:
+		var keystone = load(filename)
+		obtainable_keystones.append(keystone)
 	var element = ""
 	
 	for i in range(1,6):
@@ -458,13 +457,13 @@ func _ready() -> void:
 			var skill = load(filename)
 			if skill.purchaseable == true:
 				obtainable_skills.append(skill)
-	relic_handler = RELIC_HANDLER.instantiate()
-	relic_handler_spot.add_child(relic_handler)
+	keystone_handler = KEYSTONE_HANDLER.instantiate()
+	keystone_handler_spot.add_child(keystone_handler)
 	if GC.combat_test == false:
 		run_loop()
 	elif GC.combat_test == true:
-		for relic in GC.test_relics:
-			relic_handler.purchase_relic(relic)
+		for keystone in GC.test_keystones:
+			keystone_handler.purchase_keystone(keystone)
 		loading_screen(0.5)
 		combat = true
 		load_combat(GC.enemy1, GC.enemy2, GC.enemy3, GC.enemy4)
@@ -590,16 +589,16 @@ func level_up_allies():
 	UIManager.set_xp(xp, current_xp_goal)
 	
 		
-func get_random_relic():
-	if obtainable_relics == []:
+func get_random_keystone():
+	if obtainable_keystones == []:
 		return null
 	var rng = RandomNumberGenerator.new()
-	var random_num = rng.randi_range(0,obtainable_relics.size()-1)
-	var relic = obtainable_relics[random_num]
-	while relic in relics:
-		random_num = rng.randi_range(0,obtainable_relics.size()-1)
-		relic = obtainable_relics[random_num]
-	return relic
+	var random_num = rng.randi_range(0,obtainable_keystones.size()-1)
+	var keystone = obtainable_keystones[random_num]
+	while keystone in keystones:
+		random_num = rng.randi_range(0,obtainable_keystones.size()-1)
+		keystone = obtainable_keystones[random_num]
+	return keystone
 	
 func get_random_skill():
 	var rng = RandomNumberGenerator.new()
@@ -610,8 +609,8 @@ func get_random_skill():
 		skill = obtainable_skills[random_num]
 	return skill
 
-func toggle_relic_tooltip():
-	UIManager.toggle_relic_tooltip()
+func toggle_keystone_tooltip():
+	UIManager.toggle_keystone_tooltip()
 	
 func loading_screen(time):
 	UIManager.loading_screen(time)
@@ -659,9 +658,9 @@ func reset() -> void:
 		ally_2_spot = %"Ally 2 Spot"
 		ally_3_spot = %"Ally 3 Spot"
 		ally_4_spot = %"Ally 4 Spot"
-		relic_handler_spot = $RelicHandlerSpot
+		keystone_handler_spot = $KeystoneHandlerSpot
 		reaction_panel = $ReactionGuide/ReactionPanel
-		relic_info = %RelicInfo
+		keystone_info = %KeystoneInfo
 
 		# Reset scenes
 		combat_scene = null
@@ -708,9 +707,9 @@ func reset() -> void:
 		# Reset checks
 		UIManager.reset()
 
-		# Reset relics and skills
-		relics = []
-		obtainable_relics = []
+		# Reset keystones and skills
+		keystones = []
+		obtainable_keystones = []
 		skills = []
 		obtainable_skills = []
 
@@ -846,24 +845,24 @@ func reset() -> void:
 		sow_earth_token_bonus = 0
 		sow_grass_token_bonus = 0
 
-		# Reset event-based relics
+		# Reset event-based keystones
 		ghostfire = false
 		flow = false
 		lightning_strikes_twice = false
 		burn_stack = false
 		steamer = false
 
-		# Reset relic handler
-		if relic_handler:
-			relic_handler.queue_free()
-		relic_handler = RELIC_HANDLER.instantiate()
-		relic_handler_spot.add_child(relic_handler)
+		# Reset keystone handler
+		if keystone_handler:
+			keystone_handler.queue_free()
+		keystone_handler = KEYSTONE_HANDLER.instantiate()
+		keystone_handler_spot.add_child(keystone_handler)
 
 		# Reset reaction panel visibility
 		reaction_panel.visible = false
 
-		# Reset relic info visibility
-		relic_info.visible = false
+		# Reset keystone info visibility
+		keystone_info.visible = false
 
 		# Reset loading screen visibility
 		loading.visible = false
@@ -928,4 +927,5 @@ func show_xp():
 
 
 func _on_ui_manager_reaction_guide_button_pressed() -> void:
-	combat_manager.reaction_guide_opened()
+	if combat_manager != null:
+		combat_manager.reaction_guide_opened()

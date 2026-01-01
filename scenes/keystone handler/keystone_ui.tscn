@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dbmijg1lnjffl"]
+
+[ext_resource type="Script" uid="uid://bfe6k3osicht7" path="res://scenes/keystone handler/keystone_ui.gd" id="1_ayvix"]
+
+[sub_resource type="Animation" id="Animation_55se6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Icon:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_75n21"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_8yjh5"]
+resource_name = "flash"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Icon:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [null, SubResource("CanvasItemMaterial_75n21"), null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0donl"]
+_data = {
+&"RESET": SubResource("Animation_55se6"),
+&"flash": SubResource("Animation_8yjh5")
+}
+
+[node name="KeystoneUI" type="Control" unique_id=1367128366]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_right = 63.0
+offset_bottom = 64.0
+tooltip_text = "bello"
+script = ExtResource("1_ayvix")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1976414775]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+pivot_offset = Vector2(32, 32)
+tooltip_text = "hallo
+"
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=759655510]
+libraries/ = SubResource("AnimationLibrary_0donl")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Icon" to="." method="_on_icon_mouse_entered"]
+[connection signal="mouse_exited" from="Icon" to="." method="_on_icon_mouse_exited"]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://2fhbkw2l8y0t"]
+[gd_scene format=3 uid="uid://2fhbkw2l8y0t"]
 
 [ext_resource type="Script" uid="uid://b37yhcwrqieem" path="res://scripts/shop.gd" id="1_1no3t"]
 [ext_resource type="Texture2D" uid="uid://brhs8ke2bqbhj" path="res://assets/cafe shop background.png" id="2_cw3t7"]
-[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="3_4vncm"]
+[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/keystone_info.tscn" id="3_4vncm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k3r7d"]
 resource_local_to_scene = true

@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://dr6jeis04n42b"]
+
+[ext_resource type="Script" uid="uid://cjgfu2ffpwcds" path="res://scenes/keystone handler/keystone_handler.gd" id="1_wgfm0"]
+[ext_resource type="Script" uid="uid://beu4qcjiyynah" path="res://scenes/keystone handler/keystone_control.gd" id="2_cogcy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60phm"]
+bg_color = Color(0.19607843, 0.2, 0.23137255, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.64173126, 0.64846385, 0.6995223, 1)
+expand_margin_left = 15.0
+expand_margin_top = 10.0
+expand_margin_right = 15.0
+expand_margin_bottom = 12.0
+shadow_size = 1
+
+[node name="Keystone" type="Control" unique_id=1115336020 groups=["relic_handler"]]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -32.0
+offset_right = 176.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_wgfm0")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=19879452]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -29.0
+offset_right = 145.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_60phm")
+
+[node name="KeystonesControl" type="Control" parent="PanelContainer" unique_id=1558943582]
+clip_contents = true
+custom_minimum_size = Vector2(270, 50)
+layout_mode = 2
+script = ExtResource("2_cogcy")
+
+[node name="KeystonesContainer" type="HBoxContainer" parent="PanelContainer/KeystonesControl" unique_id=351848703]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 50)
+layout_mode = 0
+offset_right = 282.0
+offset_bottom = 50.0
+theme_override_constants/separation = 8
+
+[node name="FireSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=548525588]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(0.9999996, 0.62483245, 0.42566702, 1)
+
+[node name="WaterSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=1060050275]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(0, 0.7642523, 0.76487833, 1)
+
+[node name="LightningSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=256558067]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(1, 1, 0.60887164, 1)
+
+[node name="GrassSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=1111886946]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(0.5261259, 0.7718854, 0.51340413, 1)
+
+[node name="EarthSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=1179625387]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(0.7736383, 0.55324656, 0.41922274, 1)

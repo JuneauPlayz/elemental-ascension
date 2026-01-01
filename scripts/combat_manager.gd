@@ -53,7 +53,7 @@ var skills_castable = true
 @onready var end_turn: Button = $"../EndTurn"
 @onready var targeting_label: Label = $TargetingLabel
 @onready var targeting_skill_info: Control = $TargetingSkillInfo
-@onready var relics : RelicHandler
+@onready var keystones : KeystoneHandler
 @onready var victory_screen: Control = $"../VictoryScreen"
 @onready var win: Button = $"../Win"
 @onready var character_ult_animation: Control = %CharacterUltAnimation
@@ -137,10 +137,8 @@ func combat_ready():
 		allies[i].update_core()
 	# setting left and right for units
 	set_unit_pos()
-	# relic stuff
+	# keystone stuff
 	run.update_skills()
-	run.relic_handler.relics_activated.connect(_on_relics_activated)
-	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_COMBAT)
 	combat_currency.update()
 	run.hide_gold()
 	run.hide_xp()
@@ -177,7 +175,6 @@ func end_battle():
 func start_ally_turn():
 	set_unit_pos()
 	show_ui()
-	run.relic_handler.activate_relics_by_type(Relic.Type.START_OF_TURN)
 	turn_text.text = "Ally Turn"
 	input_allowed = true
 	ally_pre_status()
@@ -221,9 +218,6 @@ func ally_skill_use(skill, target, ally):
 	print(str(skill.name) + " landed!")
 	hit.emit()
 
-
-	run.relic_handler.activate_relics_by_type(Relic.Type.POST_ALLY_SKILL)
-
 	await get_tree().create_timer(0.1).timeout
 	for enemy in enemies:
 		enemy.decrease_countdown(1)
@@ -247,7 +241,6 @@ func check_enemy_skills():
 
 
 func enemy_skill_use_wrapper(enemy):
-	run.relic_handler.activate_relics_by_type(Relic.Type.PRE_ENEMY_SKILL)
 	use_skill(enemy.current_skill, null, enemy, true, false)
 	await reaction_finished
 
@@ -271,7 +264,7 @@ func check_ally_turn_done():
 	if auto_end_turn:
 		end_turn_process()
 
-func check_event_relics(skill,unit,value_multiplier,target):
+func check_event_keystones(skill,unit,value_multiplier,target):
 	if (run.ghostfire and unit is Ally and skill.element == "fire"):
 		if (skill.target_type == "single_enemy" or skill.target_type == "back_enemy" or skill.target_type == "front_enemy"):
 			await get_tree().create_timer(0.1).timeout
@@ -365,7 +358,7 @@ func use_skill(skill,target,unit,event,spend_tokens):
 	var value_multiplier = 1
 	# token spending
 	if event:
-		check_event_relics(skill,unit,value_multiplier,target)
+		check_event_keystones(skill,unit,value_multiplier,target)
 	if (skill.cost > 0 or skill.cost2 > 0) and spend_tokens == true:
 			spend_skill_cost(skill)
 	if target != null and not skill.friendly:
@@ -488,13 +481,6 @@ func spend_skill_cost(skill):
 			"earth":
 				earth_tokens -= skill.cost2
 
-
-func _on_relics_activated(type : Relic.Type) -> void:
-	match type:
-		Relic.Type.START_OF_COMBAT:
-			start_combat()
-		Relic.Type.END_OF_COMBAT:
-			victory()
 		
 			
 func reaction_signal():
@@ -614,7 +600,7 @@ func end_turn_process():
 				enemy_skill_use(enemy)
 	
 		await check_enemy_skills()
-		# end of turn relics
+		# end of turn keystones
 		choosing_skills = false
 		set_unit_pos()
 		ally_post_status()

@@ -1,10 +1,10 @@
 extends Control
 
-const RELIC_UI = preload("res://scenes/relic handler/relic_ui.tscn")
+const KEYSTONE_UI = preload("res://scenes/keystone handler/keystone_ui.tscn")
 
-@onready var relic_info: Control = $PanelContainer/MarginContainer/VBoxContainer/RelicInfo
+@onready var keystone_info: Control = $PanelContainer/MarginContainer/VBoxContainer/KeystoneInfo
 @onready var skill_info: Control = $PanelContainer/MarginContainer/VBoxContainer/SkillInfo
-@onready var relic_sprite: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/RelicInfo/RelicSprite
+@onready var keystone_sprite: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/KeystoneInfo/KeystoneSprite
 
 @onready var buy: Button = $PanelContainer/MarginContainer/VBoxContainer/Buy
 
@@ -15,7 +15,7 @@ signal purchased
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	relic_info.visible = false
+	keystone_info.visible = false
 	skill_info.visible = false
 	var shop = get_tree().get_first_node_in_group("shop")
 	self.purchased.connect(shop.item_bought)
@@ -26,12 +26,12 @@ func _process(delta: float) -> void:
 
 func update_item():
 	item.update()
-	if item is Relic:
-		relic_info.visible = true
-		relic_info.update_relic_info(item)
-		relic_sprite.texture = item.icon
-		#var new_relic_ui = RELIC_UI.instantiate()
-		#add_child(new_relic_ui)
+	if item is Keystone:
+		keystone_info.visible = true
+		keystone_info.update_keystone_info(item)
+		keystone_sprite.texture = item.icon
+		#var new_keystone_ui = KEYSTONE_UI.instantiate()
+		#add_child(new_keystone_ui)
 	elif item is Skill:
 		skill_info.visible = true
 		skill_info.skill = item

@@ -1,12 +1,12 @@
 extends Node
-@onready var relic_handler_spot: Node2D = $"../RelicHandlerSpot"
+@onready var keystone_handler_spot: Node2D = $"../KeystoneHandlerSpot"
 @onready var gold_text: RichTextLabel = $"../GoldText"
 @onready var xp_bar: ProgressBar = $"../XPBar"
 @onready var current_level: Label = $"../XPBar/CurrentLevel"
 @onready var next_level: Label = $"../XPBar/NextLevel"
 @onready var xp_number: Label = $"../XPBar/XPNumber"
 @onready var xp_gain_position: Node2D = $"../XPBar/XPGainPosition"
-@onready var relic_info: Control = %RelicInfo
+@onready var keystone_info: Control = %KeystoneInfo
 @onready var reaction_guide: Button = $"../ReactionGuide"
 @onready var reaction_panel: Control = $"../ReactionGuide/ReactionPanel"
 @onready var loading: Node2D = $"../Loading"
@@ -44,8 +44,8 @@ func toggle_reaction_panel():
 		#for ally in allies:
 			#ally.spell_select_ui.visible = false
 
-func toggle_relic_tooltip():
-	relic_info.visible = !relic_info.visible
+func toggle_keystone_tooltip():
+	keystone_info.visible = !keystone_info.visible
 
 func loading_screen(time):
 	loading.visible = true

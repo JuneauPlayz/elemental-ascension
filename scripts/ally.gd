@@ -9,10 +9,10 @@ class_name Ally
 @export var ult_choice_1 : Skill
 @export var ult_choice_2 : Skill
 
-@export var relic_choice_1 : Relic
-@export var relic_choice_2 : Relic
-@export var relic_choice_3 : Relic
-@export var relic_choice_4 : Relic
+@export var keystone_choice_1 : Keystone
+@export var keystone_choice_2 : Keystone
+@export var keystone_choice_3 : Keystone
+@export var keystone_choice_4 : Keystone
 
 var skill_swap_1 : Skill
 var skill_swap_1_spot : int
@@ -36,7 +36,7 @@ var level_up_complete = false
 var level
 var level_up
 
-var chosen_relic
+var chosen_keystone
 
 var run_starting
 signal loaded
@@ -91,21 +91,21 @@ func _ready() -> void:
 		if ult_choice_2 != null:
 			ult_choice_2.update()
 
-		relic_choice_1 = res.relic_1
-		if relic_choice_1 != null:
-			relic_choice_1.update()
+		keystone_choice_1 = res.keystone_1
+		if keystone_choice_1 != null:
+			keystone_choice_1.update()
 
-		relic_choice_2 = res.relic_2
-		if relic_choice_2 != null:
-			relic_choice_2.update()
+		keystone_choice_2 = res.keystone_2
+		if keystone_choice_2 != null:
+			keystone_choice_2.update()
 
-		relic_choice_3 = res.relic_3
-		if relic_choice_3 != null:
-			relic_choice_3.update()
+		keystone_choice_3 = res.keystone_3
+		if keystone_choice_3 != null:
+			keystone_choice_3.update()
 
-		relic_choice_4 = res.relic_4
-		if relic_choice_4 != null:
-			relic_choice_4.update()
+		keystone_choice_4 = res.keystone_4
+		if keystone_choice_4 != null:
+			keystone_choice_4.update()
 		sprite_spot.texture = load(res.sprite.resource_path)
 		sprite_spot.scale = Vector2(res.sprite_scale,res.sprite_scale)
 		run_starting = false
@@ -160,13 +160,13 @@ func show_level_up(level):
 	level_up_reward.reset()
 	match level:
 		1:
-			level_up_reward.load_options(relic_choice_1, relic_choice_2)
+			level_up_reward.load_options(keystone_choice_1, keystone_choice_2)
 		2:
 			level_up_reward.load_skills(ult_choice_1, ult_choice_2)
 		3:
-			level_up_reward.load_options(relic_choice_3, relic_choice_4)
+			level_up_reward.load_options(keystone_choice_3, keystone_choice_4)
 		_:
-			level_up_reward.load_options(relic_choice_3, relic_choice_4)
+			level_up_reward.load_options(keystone_choice_3, keystone_choice_4)
 
 func hide_level_up():
 	level_up_reward.visible = false
@@ -194,7 +194,7 @@ func _on_level_up_reward_new_select(skill) -> void:
 		if (skill_swap_1_spot > 0):
 			confirm_swap.visible = true
 	if level_up_reward.choosing_options:
-		chosen_relic = skill
+		chosen_keystone = skill
 		confirm_swap.visible = true
 
 func get_spell_select():
@@ -245,7 +245,7 @@ func _on_confirm_swap_level_pressed() -> void:
 				skill_4 = skill_swap_2
 		run.add_skill(skill_swap_2)
 	elif level_up_reward.choosing_options:
-		run.relic_handler.purchase_relic(chosen_relic)
+		run.keystone_handler.purchase_keystone(chosen_keystone)
 	level_up_reward.visible = false
 	level_up_reward.choosing_skills = false
 	level_up_reward.choosing_options = false

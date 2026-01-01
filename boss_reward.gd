@@ -16,16 +16,16 @@ var hard_color = "b0797b"
 const FIRE_BOMB = preload("res://resources/Skills/boss_skills/Fire Bomb.tres")
 const THUNDER_BOMB = preload("res://resources/Skills/boss_skills/Thunder Bomb.tres")
 const WATER_BOMB = preload("res://resources/Skills/boss_skills/Water Bomb.tres")
-const MIKU_AMULET = preload("res://resources/rewards/bossrewards/miku_amulet.tres")
+
 
 @onready var rewards_box: VBoxContainer = $Rewards
 @onready var confirm_swap: Button = $ConfirmSwap
 @onready var choice_skill_info: Control = $ChoiceSkillInfo
-@onready var relic_info_1: Control = $Rewards/Reward1/MarginContainer/HBoxContainer/VBoxContainer/RelicInfo
+@onready var keystone_info_1: Control = $Rewards/Reward1/MarginContainer/HBoxContainer/VBoxContainer/KeystoneInfo
 @onready var skill_info_1: Control = $Rewards/Reward1/MarginContainer/HBoxContainer/VBoxContainer/SkillInfo
-@onready var relic_info_2: Control = $Rewards/Reward2/MarginContainer/HBoxContainer/VBoxContainer/RelicInfo
+@onready var keystone_info_2: Control = $Rewards/Reward2/MarginContainer/HBoxContainer/VBoxContainer/KeystoneInfo
 @onready var skill_info_2: Control = $Rewards/Reward2/MarginContainer/HBoxContainer/VBoxContainer/SkillInfo
-@onready var relic_info_3: Control = $Rewards/Reward3/MarginContainer/HBoxContainer/VBoxContainer/RelicInfo
+@onready var keystone_info_3: Control = $Rewards/Reward3/MarginContainer/HBoxContainer/VBoxContainer/KeystoneInfo
 @onready var skill_info_3: Control = $Rewards/Reward3/MarginContainer/HBoxContainer/VBoxContainer/SkillInfo
 @onready var reward_1: PanelContainer = $Rewards/Reward1
 @onready var reward_2: PanelContainer = $Rewards/Reward2
@@ -59,10 +59,7 @@ func _ready() -> void:
 			update_color(reward_2,element_dict.get("water"))
 			set_reward(3, THUNDER_BOMB)
 			update_color(reward_3,element_dict.get("lightning"))
-		"miku":
-			set_reward(1, MIKU_AMULET)
-			set_reward(2, MIKU_AMULET)
-			set_reward(3, MIKU_AMULET)
+
 	
 func update_color(button, color):
 	var new_stylebox_normal = button.get_theme_stylebox("panel").duplicate()
@@ -97,9 +94,9 @@ func _on_choose1_pressed() -> void:
 		if reward_1_reward is Skill:
 			new_skill = reward_1_reward.duplicate()
 			skill_reward_chosen()
-		elif reward_1_reward is Relic:
-			run.relic_handler.purchase_relic(reward_1_reward)
-			relic_reward_chosen()
+		elif reward_1_reward is Keystone:
+			run.keystone_handler.purchase_keystone(reward_1_reward)
+			keystone_reward_chosen()
 
 func _on_choose2_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
@@ -107,9 +104,9 @@ func _on_choose2_pressed() -> void:
 		if reward_2_reward is Skill:
 			new_skill = reward_2_reward.duplicate()
 			skill_reward_chosen()
-		elif reward_2_reward is Relic:
-			run.relic_handler.purchase_relic(reward_2_reward)
-			relic_reward_chosen()
+		elif reward_2_reward is Keystone:
+			run.keystone_handler.purchase_keystone(reward_2_reward)
+			keystone_reward_chosen()
 		
 func _on_choose3_pressed() -> void:
 	run = get_tree().get_first_node_in_group("run")
@@ -117,15 +114,15 @@ func _on_choose3_pressed() -> void:
 		if reward_3_reward is Skill:
 			new_skill = reward_3_reward.duplicate()
 			skill_reward_chosen()
-		elif reward_3_reward is Relic:
-			run.relic_handler.purchase_relic(reward_3_reward)
-			relic_reward_chosen()
+		elif reward_3_reward is Keystone:
+			run.keystone_handler.purchase_keystone(reward_3_reward)
+			keystone_reward_chosen()
 
 func skill_reward_chosen():
 	rewards_box.visible = false
 	choosing_skill()
 
-func relic_reward_chosen():
+func keystone_reward_chosen():
 	rewards_box.visible = false
 	continue_button.visible = true
 	skip_reward.visible = false
@@ -138,27 +135,27 @@ func set_reward(num, reward):
 				skill_info_1.visible = true
 				skill_info_1.skill = reward
 				skill_info_1.update_skill_info()
-			elif reward is Relic:
-				relic_info_1.visible = true
-				relic_info_1.update_relic_info(reward)
+			elif reward is Keystone:
+				keystone_info_1.visible = true
+				keystone_info_1.update_keystone_info(reward)
 		2:
 			reward_2_reward = reward
 			if reward is Skill:
 				skill_info_2.visible = true
 				skill_info_2.skill = reward
 				skill_info_2.update_skill_info()
-			elif reward is Relic:
-				relic_info_2.visible = true
-				relic_info_2.update_relic_info(reward)
+			elif reward is Keystone:
+				keystone_info_2.visible = true
+				keystone_info_2.update_keystone_info(reward)
 		3:
 			reward_3_reward = reward
 			if reward is Skill:
 				skill_info_3.visible = true
 				skill_info_3.skill = reward
 				skill_info_3.update_skill_info()
-			elif reward is Relic: 
-				relic_info_3.visible = true
-				relic_info_3.update_relic_info(reward)
+			elif reward is Keystone: 
+				keystone_info_3.visible = true
+				keystone_info_3.update_keystone_info(reward)
 
 
 func _on_continue_pressed() -> void:

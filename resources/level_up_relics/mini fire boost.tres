@@ -1,7 +1,7 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://sxi1onrmugek"]
+[gd_resource type="Resource" format=3 uid="uid://sxi1onrmugek"]
 
-[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/relic handler/relic.gd" id="1_toilg"]
-[ext_resource type="Script" uid="uid://hgh6nfo6nphs" path="res://resources/relic scripts/skill_damage.gd" id="2_a312i"]
+[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/keystone handler/keystone.gd" id="1_toilg"]
+[ext_resource type="Script" path="res://resources/relic scripts/skill_damage.gd" id="2_a312i"]
 
 [resource]
 script = ExtResource("2_a312i")

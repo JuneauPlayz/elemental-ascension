@@ -15,16 +15,16 @@ var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DAR
 var skill1 : Skill
 var skill2 : Skill
 
-var relic1 : Relic
-var relic2 : Relic
+var keystone1 : Keystone
+var keystone2 : Keystone
 
 var choosing_skills = false
 var choosing_options = false
 
 @onready var skill_info_1: Control = $SkillInfo
 @onready var skill_info_2: Control = $SkillInfo2
-@onready var relic_info_1: Control = $RelicInfo
-@onready var relic_info_2: Control = $RelicInfo2
+@onready var keystone_info_1: Control = $KeystoneInfo
+@onready var keystone_info_2: Control = $KeystoneInfo2
 
 var blue = Color("3f61a1")
 var gray = Color("2e2e2e78")
@@ -47,15 +47,15 @@ func load_skills(s1,s2):
 
 func load_options(o1,o2):
 	choosing_options = true
-	confirm_swap.text = "Add Relic"
-	if o1 is Relic:
-		relic1 = o1
-		relic_info_1.update_relic_info(relic1)
-		ba_1.text = relic1.relic_name
-	if o2 is Relic:
-		relic2 = o2
-		relic_info_2.update_relic_info(relic2)
-		s_1.text = relic2.relic_name
+	confirm_swap.text = "Add Keystone"
+	if o1 is Keystone:
+		keystone1 = o1
+		keystone_info_1.update_keystone_info(keystone1)
+		ba_1.text = keystone1.keystone_name
+	if o2 is Keystone:
+		keystone2 = o2
+		keystone_info_2.update_keystone_info(keystone2)
+		s_1.text = keystone2.keystone_name
 	
 
 func _on_button_pressed() -> void:
@@ -66,7 +66,7 @@ func _on_button_pressed() -> void:
 	if choosing_skills:
 		update(skill1)
 	if choosing_options:
-		update(relic1)
+		update(keystone1)
 
 func _on_s_1_pressed() -> void:
 	if selected != 2:
@@ -76,7 +76,7 @@ func _on_s_1_pressed() -> void:
 	if choosing_skills:
 		update(skill2)
 	if choosing_options:
-		update(relic2)
+		update(keystone2)
 
 
 func update(skill):
@@ -131,14 +131,14 @@ func _on_ba_1_mouse_entered() -> void:
 	if choosing_skills:
 		skill_info_1.visible = true
 	if choosing_options:
-		relic_info_1.visible = true
+		keystone_info_1.visible = true
 
 
 func _on_s_1_mouse_entered() -> void:
 	if choosing_skills:
 		skill_info_2.visible = true
 	if choosing_options:
-		relic_info_2.visible = true
+		keystone_info_2.visible = true
 
 
 
@@ -146,14 +146,14 @@ func _on_ba_1_mouse_exited() -> void:
 	if choosing_skills:
 		skill_info_1.visible = false
 	if choosing_options:
-		relic_info_1.visible = false
+		keystone_info_1.visible = false
 
 
 func _on_s_1_mouse_exited() -> void:
 	if choosing_skills:
 		skill_info_2.visible = false
 	if choosing_options:
-		relic_info_2.visible = false
+		keystone_info_2.visible = false
 
 func reset_vars():
 	choosing_skills = false
@@ -161,5 +161,5 @@ func reset_vars():
 	confirm_swap.visible = false
 	skill_info_1.visible = false
 	skill_info_2.visible = false
-	relic_info_1.visible = false
-	relic_info_2.visible = false
+	keystone_info_1.visible = false
+	keystone_info_2.visible = false

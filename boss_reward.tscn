@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ftsffc4p4q0x"]
+[gd_scene format=3 uid="uid://ftsffc4p4q0x"]
 
 [ext_resource type="Script" uid="uid://dti37hgd31qgr" path="res://boss_reward.gd" id="1_wstjn"]
-[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="2_oc45t"]
+[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/keystone_info.tscn" id="2_oc45t"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="3_hd3cb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jcw1"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://o2oy1rvwobsh"]
+[gd_scene format=3 uid="uid://o2oy1rvwobsh"]
 
 [ext_resource type="Script" uid="uid://drftmrt3lasq0" path="res://scenes/main scenes/run.gd" id="1_e7k3u"]
-[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/relic_info.tscn" id="2_fgc7h"]
+[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/keystone_info.tscn" id="2_fgc7h"]
+[ext_resource type="PackedScene" uid="uid://dr6jeis04n42b" path="res://scenes/keystone handler/keystone_handler.tscn" id="3_84fnp"]
 [ext_resource type="Script" uid="uid://cinu2hdebvevd" path="res://scripts/StateMachine.gd" id="4_kj6k4"]
 [ext_resource type="Script" uid="uid://c77ooj0w5nd" path="res://scripts/States/CombatState.gd" id="4_tqy7d"]
 [ext_resource type="Script" uid="uid://cm6m2gxhv076j" path="res://scripts/States/ShopState.gd" id="5_kj6k4"]
@@ -30,34 +31,38 @@ font_size = 36
 outline_size = 9
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Run" type="Node" groups=["run"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84fnp"]
+bg_color = Color(0.1897483, 0.1897483, 0.1897483, 0.85700005)
+
+[node name="Run" type="Node" unique_id=1362492498 groups=["run"]]
 script = ExtResource("1_e7k3u")
 
-[node name="Ally 1 Spot" type="Node2D" parent="."]
+[node name="Ally 1 Spot" type="Node2D" parent="." unique_id=1661384751]
 unique_name_in_owner = true
 z_index = 3
 position = Vector2(94, 306)
 
-[node name="Ally 2 Spot" type="Node2D" parent="."]
+[node name="Ally 2 Spot" type="Node2D" parent="." unique_id=1574092334]
 unique_name_in_owner = true
 z_index = 3
 position = Vector2(329, 306)
 
-[node name="Ally 3 Spot" type="Node2D" parent="."]
+[node name="Ally 3 Spot" type="Node2D" parent="." unique_id=1439751725]
 unique_name_in_owner = true
 z_index = 3
 position = Vector2(564, 306)
 
-[node name="Ally 4 Spot" type="Node2D" parent="."]
+[node name="Ally 4 Spot" type="Node2D" parent="." unique_id=1890562475]
 unique_name_in_owner = true
 z_index = 3
 position = Vector2(799, 306)
 
-[node name="RelicHandlerSpot" type="Node2D" parent="."]
+[node name="KeystoneHandlerSpot" type="Node2D" parent="." unique_id=1793237023]
 z_index = 3
-position = Vector2(763, 4)
+position = Vector2(960, 33.905)
+scale = Vector2(0.86, 0.86)
 
-[node name="RelicInfo" parent="RelicHandlerSpot" instance=ExtResource("2_fgc7h")]
+[node name="KeystoneInfo" parent="KeystoneHandlerSpot" unique_id=229166406 instance=ExtResource("2_fgc7h")]
 unique_name_in_owner = true
 visible = false
 z_index = 3
@@ -68,7 +73,9 @@ offset_right = 123.0
 offset_bottom = 109.0
 scale = Vector2(0.7, 0.7)
 
-[node name="ReactionGuide" type="Button" parent="."]
+[node name="Keystone" parent="KeystoneHandlerSpot" unique_id=1115336020 instance=ExtResource("3_84fnp")]
+
+[node name="ReactionGuide" type="Button" parent="." unique_id=387121775]
 z_index = 3
 z_as_relative = false
 offset_left = 1423.0
@@ -78,7 +85,7 @@ offset_bottom = 1062.0
 theme_override_font_sizes/font_size = 48
 text = "Open Reaction Guide"
 
-[node name="ReactionPanel" parent="ReactionGuide" instance=ExtResource("10_prr82")]
+[node name="ReactionPanel" parent="ReactionGuide" unique_id=508350429 instance=ExtResource("10_prr82")]
 visible = false
 z_index = 3
 layout_mode = 1
@@ -88,10 +95,10 @@ offset_right = -1260.0
 offset_bottom = -952.125
 scale = Vector2(0.9, 0.9)
 
-[node name="Loading" type="Node2D" parent="."]
+[node name="Loading" type="Node2D" parent="." unique_id=1245045640]
 visible = false
 
-[node name="Label" type="Label" parent="Loading"]
+[node name="Label" type="Label" parent="Loading" unique_id=765433425]
 z_index = 11
 offset_left = 11.0
 offset_top = 393.0
@@ -102,7 +109,7 @@ text = "Loading...
 label_settings = SubResource("LabelSettings_dcmsy")
 horizontal_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="Loading"]
+[node name="ColorRect" type="ColorRect" parent="Loading" unique_id=1570268617]
 z_index = 10
 offset_left = -18.0
 offset_right = 1953.0
@@ -110,38 +117,38 @@ offset_bottom = 1091.0
 mouse_filter = 2
 color = Color(0.18359, 0.18359, 0.18359, 1)
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." unique_id=1194128707]
 script = ExtResource("4_kj6k4")
 
-[node name="Combat" type="Node" parent="StateMachine"]
+[node name="Combat" type="Node" parent="StateMachine" unique_id=2099351188]
 script = ExtResource("4_tqy7d")
 metadata/_custom_type_script = "uid://c77ooj0w5nd"
 
-[node name="Shop" type="Node" parent="StateMachine"]
+[node name="Shop" type="Node" parent="StateMachine" unique_id=714253987]
 script = ExtResource("5_kj6k4")
 metadata/_custom_type_script = "uid://cm6m2gxhv076j"
 
-[node name="Event" type="Node" parent="StateMachine"]
+[node name="Event" type="Node" parent="StateMachine" unique_id=193383393]
 script = ExtResource("6_vpwr2")
 metadata/_custom_type_script = "uid://bq1neyovm73vq"
 
-[node name="LevelUp" type="Node" parent="StateMachine"]
+[node name="LevelUp" type="Node" parent="StateMachine" unique_id=806737984]
 script = ExtResource("7_1crx1")
 metadata/_custom_type_script = "uid://c6pkihqpaueax"
 
-[node name="SpecialShop" type="Node" parent="StateMachine"]
+[node name="SpecialShop" type="Node" parent="StateMachine" unique_id=1440221728]
 script = ExtResource("9_vpwr2")
 metadata/_custom_type_script = "uid://b86ovwwhqlkcf"
 
-[node name="ChooseFight" type="Node" parent="StateMachine"]
+[node name="ChooseFight" type="Node" parent="StateMachine" unique_id=1601966261]
 script = ExtResource("10_1crx1")
 metadata/_custom_type_script = "uid://bxydft84qy3h2"
 
-[node name="ChooseReward" type="Node" parent="StateMachine"]
+[node name="ChooseReward" type="Node" parent="StateMachine" unique_id=1705088465]
 script = ExtResource("11_1cp5a")
 metadata/_custom_type_script = "uid://dkic5dc64l36y"
 
-[node name="GoldText" type="RichTextLabel" parent="."]
+[node name="GoldText" type="RichTextLabel" parent="." unique_id=352629663]
 z_index = 3
 offset_left = 1672.0
 offset_top = 95.0
@@ -155,7 +162,7 @@ bbcode_enabled = true
 text = "[color=yellow]Gold[/color] : 0"
 horizontal_alignment = 2
 
-[node name="XPBar" type="ProgressBar" parent="."]
+[node name="XPBar" type="ProgressBar" parent="." unique_id=429155734]
 z_index = 3
 offset_left = 1575.0
 offset_top = 9.0
@@ -163,7 +170,7 @@ offset_right = 1907.0
 offset_bottom = 42.0
 show_percentage = false
 
-[node name="CurrentLevel" type="Label" parent="XPBar"]
+[node name="CurrentLevel" type="Label" parent="XPBar" unique_id=1170490893]
 layout_mode = 0
 offset_left = -6.0
 offset_top = 37.0
@@ -172,7 +179,7 @@ offset_bottom = 78.0
 text = "0"
 label_settings = SubResource("LabelSettings_vpwr2")
 
-[node name="NextLevel" type="Label" parent="XPBar"]
+[node name="NextLevel" type="Label" parent="XPBar" unique_id=1590370564]
 layout_mode = 0
 offset_left = 314.0
 offset_top = 37.0
@@ -181,7 +188,7 @@ offset_bottom = 94.0
 text = "1"
 label_settings = SubResource("LabelSettings_vpwr2")
 
-[node name="XPNumber" type="Label" parent="XPBar"]
+[node name="XPNumber" type="Label" parent="XPBar" unique_id=2117894468]
 layout_mode = 0
 offset_left = 70.0
 offset_top = 37.0
@@ -191,17 +198,22 @@ text = "0 / 100 XP"
 label_settings = SubResource("LabelSettings_1crx1")
 horizontal_alignment = 1
 
-[node name="XPGainPosition" type="Node2D" parent="XPBar"]
+[node name="XPGainPosition" type="Node2D" parent="XPBar" unique_id=1009331668]
 position = Vector2(-103, 25)
 
-[node name="SkillsManager" type="Node" parent="."]
+[node name="SkillsManager" type="Node" parent="." unique_id=2091321960]
 script = ExtResource("12_mm7un")
 
-[node name="UIManager" type="Node" parent="."]
+[node name="UIManager" type="Node" parent="." unique_id=1981488917]
 script = ExtResource("13_84fnp")
 
-[node name="SceneManager" type="Node" parent="."]
+[node name="SceneManager" type="Node" parent="." unique_id=1967956949]
 script = ExtResource("14_yw6xj")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=819270118]
+offset_right = 1922.0
+offset_bottom = 70.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_84fnp")
 
 [connection signal="pressed" from="ReactionGuide" to="." method="_on_reaction_guide_pressed"]
 [connection signal="pressed" from="ReactionGuide" to="UIManager" method="_on_reaction_guide_pressed"]

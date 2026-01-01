@@ -4,7 +4,7 @@ const RUN = preload("res://scenes/main scenes/run.tscn")
 
 var p_allies = []
 var p_enemies = []
-var p_relics = []
+var p_keystones = []
 
 var game
 
@@ -17,17 +17,17 @@ var enemy2 : UnitRes
 var enemy3 : UnitRes
 var enemy4 : UnitRes
 
-var relics = []
-var relic_name : String
+var keystones = []
+var keystone_name : String
 
 var allies_dict : Dictionary
 var enemies_dict : Dictionary
 var skills_dict : Dictionary
 var skills_id_dict : Dictionary
-var relics_dict : Dictionary
+var keystones_dict : Dictionary
 var id = 0
 
-@onready var relics_p: OptionButton = $Relics
+@onready var keystones_p: OptionButton = $Keystones
 
 @onready var ally_1_p: OptionButton = $Ally1
 @onready var ally_2_p: OptionButton = $Ally2
@@ -138,16 +138,16 @@ func _ready() -> void:
 		for ally_skill in ally_skills:
 			ally_skill.get_popup().add_theme_font_size_override("font_size",  24)
 			ally_skill.add_item(skill.name, id)
-	relics_p.add_item("none")
-	relics_p.get_popup().add_theme_font_size_override("font_size",  20)
+	keystones_p.add_item("none")
+	keystones_p.get_popup().add_theme_font_size_override("font_size",  20)
 	
-	var file_relics = []
-	get_all_files_from_directory("res://resources/relics", "", file_relics)
-	for filename in file_relics:
-		var relic = load(filename)
-		p_relics.append(relic)
-		relics_p.add_icon_item(relic.icon, relic.relic_name)
-		relics_dict[relic.relic_name] = relic
+	var file_keystones = []
+	get_all_files_from_directory("res://resources/keystones", "", file_keystones)
+	for filename in file_keystones:
+		var keystone = load(filename)
+		p_keystones.append(keystone)
+		keystones_p.add_icon_item(keystone.icon, keystone.keystone_name)
+		keystones_dict[keystone.keystone_name] = keystone
 	
 			
 func get_all_files_from_directory(path : String, file_ext:= "", files := []):
@@ -190,7 +190,7 @@ func _on_ally_4_item_selected(index: int) -> void:
 	ally4 = allies_dict[ally]
 
 func _on_start_combat_pressed() -> void:
-	GC.load_run_combat_test(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, relics)
+	GC.load_run_combat_test(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, keystones)
 	game.new_scene(RUN)
 	
 
@@ -210,13 +210,13 @@ func _on_enemy_4_item_selected(index: int) -> void:
 	enemy4 = enemies_dict[enemy_4_p.get_item_text(index)]
 
 
-func _on_relics_item_selected(index: int) -> void:
-	relic_name = relics_p.get_item_text(index)
+func _on_keystones_item_selected(index: int) -> void:
+	keystone_name = keystones_p.get_item_text(index)
 
 
-func _on_add_relic_pressed() -> void:
-	if relic_name != "":
-		relics.append(relics_dict[relic_name])
-	relic_name = ""
-	relics_p.select(0)
-	DamageNumbers.display_text(relics_p.global_position + Vector2(350,150), "none", "Added!", 32)
+func _on_add_keystone_pressed() -> void:
+	if keystone_name != "":
+		keystones.append(keystones_dict[keystone_name])
+	keystone_name = ""
+	keystones_p.select(0)
+	DamageNumbers.display_text(keystones_p.global_position + Vector2(350,150), "none", "Added!", 32)

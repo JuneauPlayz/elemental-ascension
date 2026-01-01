@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://do6gwn47eylu7"]
 
 [ext_resource type="Script" uid="uid://sbmng0cirge2" path="res://scripts/combat_scene.gd" id="1_3ou8c"]
-[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/keystone_info.tscn" id="2_mec8r"]
 [ext_resource type="FontFile" uid="uid://mmnf6x0iyi0y" path="res://assets/Gravity-Book.otf" id="3_cmui4"]
-[ext_resource type="PackedScene" uid="uid://dr6jeis04n42b" path="res://scenes/keystone handler/keystone_handler.tscn" id="3_n3xuk"]
 [ext_resource type="Script" uid="uid://d0udq0kgc2102" path="res://scripts/combat_manager.gd" id="4_ucgqt"]
 [ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="5_2x1un"]
 [ext_resource type="FontFile" uid="uid://ca0ii6rndnaqf" path="res://assets/pokemon_pixel_font.ttf" id="5_wtw4i"]
@@ -1507,29 +1505,6 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_pf6w8")
 layout_mode = 2
 size_flags_vertical = 3
 text = "OK"
-
-[node name="KeystoneHandlerSpot" type="Node2D" parent="." unique_id=119651675]
-visible = false
-z_index = 3
-position = Vector2(960, 31.625)
-
-[node name="KeystoneInfo" parent="KeystoneHandlerSpot" unique_id=1155356350 instance=ExtResource("2_mec8r")]
-unique_name_in_owner = true
-visible = false
-z_index = 3
-custom_minimum_size = Vector2(50, 50)
-offset_left = 73.0
-offset_top = 59.0
-offset_right = 123.0
-offset_bottom = 109.0
-scale = Vector2(0.7, 0.7)
-
-[node name="Keystone" parent="KeystoneHandlerSpot" unique_id=1115336020 instance=ExtResource("3_n3xuk")]
-offset_left = -163.0
-offset_top = -25.625
-offset_right = 189.0
-offset_bottom = 38.375
-scale = Vector2(0.87, 0.87)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1496387889]
 

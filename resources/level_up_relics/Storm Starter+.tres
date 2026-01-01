@@ -1,8 +1,8 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://btlvmcjcva5fu"]
+[gd_resource type="Resource" format=3 uid="uid://btlvmcjcva5fu"]
 
 [ext_resource type="Texture2D" uid="uid://dmsixe7n4f266" path="res://assets/pikachu.png" id="1_7jh5l"]
-[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/relic handler/relic.gd" id="1_uxxb0"]
-[ext_resource type="Script" uid="uid://di7tjw3hxenl5" path="res://resources/relic scripts/token_bonus.gd" id="2_7jh5l"]
+[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/keystone handler/keystone.gd" id="1_uxxb0"]
+[ext_resource type="Script" path="res://resources/relic scripts/token_bonus.gd" id="2_7jh5l"]
 
 [resource]
 script = ExtResource("2_7jh5l")

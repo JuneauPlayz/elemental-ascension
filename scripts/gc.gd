@@ -129,7 +129,7 @@ var enemy2 : UnitRes
 var enemy3 : UnitRes
 var enemy4 : UnitRes
 
-var test_relics 
+var test_keystones 
 var combat_test = false
 
 var events = [REST_EVENT, SPECIAL_SHOP_EVENT]
@@ -144,7 +144,7 @@ func load_run(ally1, ally2, ally3, ally4):
 	self.ally3 = ally3
 	self.ally4 = ally4
 
-func load_run_combat_test(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, relics):
+func load_run_combat_test(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, enemy4, keystones):
 	self.ally1 = ally1
 	self.ally2 = ally2
 	self.ally3 = ally3
@@ -153,7 +153,7 @@ func load_run_combat_test(ally1, ally2, ally3, ally4, enemy1, enemy2, enemy3, en
 	self.enemy2 = enemy2
 	self.enemy3 = enemy3
 	self.enemy4 = enemy4
-	test_relics = relics
+	test_keystones = keystones
 	combat_test = true
 
 func get_random_event(rarity):
