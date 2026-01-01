@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://o2oy1rvwobsh"]
 
 [ext_resource type="Script" uid="uid://drftmrt3lasq0" path="res://scenes/main scenes/run.gd" id="1_e7k3u"]
-[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/keystone_info.tscn" id="2_fgc7h"]
-[ext_resource type="PackedScene" uid="uid://dr6jeis04n42b" path="res://scenes/keystone handler/keystone_handler.tscn" id="3_84fnp"]
 [ext_resource type="Script" uid="uid://cinu2hdebvevd" path="res://scripts/StateMachine.gd" id="4_kj6k4"]
 [ext_resource type="Script" uid="uid://c77ooj0w5nd" path="res://scripts/States/CombatState.gd" id="4_tqy7d"]
 [ext_resource type="Script" uid="uid://cm6m2gxhv076j" path="res://scripts/States/ShopState.gd" id="5_kj6k4"]
@@ -15,6 +13,7 @@
 [ext_resource type="Script" uid="uid://7f7tg7lmhjlt" path="res://scenes/main scenes/skills_manager.gd" id="12_mm7un"]
 [ext_resource type="Script" uid="uid://uwucmrhjdo26" path="res://scenes/main scenes/UIManager.gd" id="13_84fnp"]
 [ext_resource type="Script" uid="uid://d4m2rer4xpdld" path="res://scenes/main scenes/scene_manager.gd" id="14_yw6xj"]
+[ext_resource type="PackedScene" uid="uid://d086qw0hvodmm" path="res://scenes/reusables/universal_info_manager.tscn" id="15_84fnp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dcmsy"]
 font_size = 291
@@ -61,19 +60,6 @@ position = Vector2(799, 306)
 z_index = 3
 position = Vector2(960, 33.905)
 scale = Vector2(0.86, 0.86)
-
-[node name="KeystoneInfo" parent="KeystoneHandlerSpot" unique_id=229166406 instance=ExtResource("2_fgc7h")]
-unique_name_in_owner = true
-visible = false
-z_index = 3
-custom_minimum_size = Vector2(50, 50)
-offset_left = 73.0
-offset_top = 59.0
-offset_right = 123.0
-offset_bottom = 109.0
-scale = Vector2(0.7, 0.7)
-
-[node name="Keystone" parent="KeystoneHandlerSpot" unique_id=1115336020 instance=ExtResource("3_84fnp")]
 
 [node name="ReactionGuide" type="Button" parent="." unique_id=387121775]
 z_index = 3
@@ -150,24 +136,24 @@ metadata/_custom_type_script = "uid://dkic5dc64l36y"
 
 [node name="GoldText" type="RichTextLabel" parent="." unique_id=352629663]
 z_index = 3
-offset_left = 1672.0
-offset_top = 95.0
-offset_right = 1872.0
-offset_bottom = 156.0
+offset_left = 1515.0
+offset_top = 14.0
+offset_right = 1673.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[color=yellow]Gold[/color] : 0"
-horizontal_alignment = 2
+text = " [color=yellow]Gold[/color] : 0"
 
 [node name="XPBar" type="ProgressBar" parent="." unique_id=429155734]
 z_index = 3
-offset_left = 1575.0
-offset_top = 9.0
-offset_right = 1907.0
-offset_bottom = 42.0
+offset_left = 1719.0
+offset_top = 9.999998
+offset_right = 2051.0
+offset_bottom = 43.0
+scale = Vector2(0.565, 0.565)
 show_percentage = false
 
 [node name="CurrentLevel" type="Label" parent="XPBar" unique_id=1170490893]
@@ -210,10 +196,19 @@ script = ExtResource("13_84fnp")
 [node name="SceneManager" type="Node" parent="." unique_id=1967956949]
 script = ExtResource("14_yw6xj")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=819270118]
+[node name="TopBar" type="PanelContainer" parent="." unique_id=819270118]
 offset_right = 1922.0
 offset_bottom = 70.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_84fnp")
+
+[node name="UniversalInfoManager" parent="." unique_id=78698777 instance=ExtResource("15_84fnp")]
+offset_left = 19.0
+offset_top = 85.0
+offset_right = -1901.0
+offset_bottom = -981.0
+scale = Vector2(1.25, 1.25)
+mouse_filter = 2
 
 [connection signal="pressed" from="ReactionGuide" to="." method="_on_reaction_guide_pressed"]
 [connection signal="pressed" from="ReactionGuide" to="UIManager" method="_on_reaction_guide_pressed"]

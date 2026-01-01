@@ -27,10 +27,6 @@ var empty4 = false
 
 var disabled_all = false
 
-@onready var skill_info_1: Control = $SkillInfo
-@onready var skill_info_2: Control = $SkillInfo2
-@onready var skill_info_3: Control = $SkillInfo3
-@onready var skill_info_4: Control = $SkillInfo4
 
 var initial_load = false
 
@@ -42,32 +38,24 @@ func load_skills():
 	if (skill1 != null):
 		skill1.update()
 		update_font_color(ba_1,element_dict.get(skill1.element))
-		skill_info_1.skill = skill1
-		skill_info_1.update_skill_info()
 		ba_1.text = skill1.name
 	else:
 		empty(1)
 	if (skill2 != null):
 		skill2.update()
 		update_font_color(s_1,element_dict.get(skill2.element))
-		skill_info_2.skill = skill2
-		skill_info_2.update_skill_info()
 		s_1.text = skill2.name
 	else:
 		empty(2)
 	if (skill3 != null):
 		skill3.update()
 		update_font_color(s_2,element_dict.get(skill3.element))
-		skill_info_3.skill = skill3
-		skill_info_3.update_skill_info()
 		s_2.text = skill3.name
 	else:
 		empty(3)
 	if (skill4 != null):
 		skill4.update()
 		update_font_color(ult,element_dict.get(skill4.element))
-		skill_info_4.skill = skill4
-		skill_info_4.update_skill_info()
 		ult.text = skill4.name
 	else:
 		empty(4)
@@ -114,34 +102,35 @@ func _on_ult_pressed() -> void:
 	update()
 	
 func update():
-	if run.combat_manager.skills_castable == true:
-		new_select.emit(get_parent())
-		match selected:
-			0:
-				update_color(ba_1, gray)
-				update_color(s_1, gray)
-				update_color(s_2, gray)
-				update_color(ult, gray)
-			1:
-				update_color(ba_1, blue)
-				update_color(s_1, gray)
-				update_color(s_2, gray)
-				update_color(ult, gray)
-			2:
-				update_color(ba_1, gray)
-				update_color(s_1, blue)
-				update_color(s_2, gray)
-				update_color(ult, gray)
-			3:
-				update_color(ba_1, gray)
-				update_color(s_1, gray)
-				update_color(s_2, blue)
-				update_color(ult, gray)
-			4:
-				update_color(ba_1, gray)
-				update_color(s_1, gray)
-				update_color(s_2, gray)
-				update_color(ult, blue)
+	if run.combat_manager != null:
+		if run.combat_manager.skills_castable == true:
+			new_select.emit(get_parent())
+			match selected:
+				0:
+					update_color(ba_1, gray)
+					update_color(s_1, gray)
+					update_color(s_2, gray)
+					update_color(ult, gray)
+				1:
+					update_color(ba_1, blue)
+					update_color(s_1, gray)
+					update_color(s_2, gray)
+					update_color(ult, gray)
+				2:
+					update_color(ba_1, gray)
+					update_color(s_1, blue)
+					update_color(s_2, gray)
+					update_color(ult, gray)
+				3:
+					update_color(ba_1, gray)
+					update_color(s_1, gray)
+					update_color(s_2, blue)
+					update_color(ult, gray)
+				4:
+					update_color(ba_1, gray)
+					update_color(s_1, gray)
+					update_color(s_2, gray)
+					update_color(ult, blue)
 	
 func update_color(button, color):
 	var new_stylebox_normal = button.get_theme_stylebox("normal").duplicate()
@@ -238,39 +227,38 @@ func empty(num):
 	
 func _on_ba_1_mouse_entered() -> void:
 	if (not empty1 and skill1):
-		skill_info_1.visible = true
+		run.UIManager.display(skill1)
 
 
 func _on_s_1_mouse_entered() -> void:
 	if (not empty2 and skill2):
-		skill_info_2.visible = true
+		run.UIManager.display(skill2)
 
 
 func _on_s_2_mouse_entered() -> void:
 	if (not empty3 and skill3):
-		skill_info_3.visible = true
+		run.UIManager.display(skill3)
 
 
 func _on_ult_mouse_entered() -> void:
 	if (not empty4 and skill4):
-		skill_info_4.visible = true
+		run.UIManager.display(skill4)
 
 
 func _on_ba_1_mouse_exited() -> void:
 	if (not empty1 and skill1):
-		skill_info_1.visible = false
+		run.UIManager.hide_display()
 
 
 func _on_s_1_mouse_exited() -> void:
 	if (not empty2 and skill2):
-		skill_info_2.visible = false
+		run.UIManager.hide_display()
 
 
 func _on_s_2_mouse_exited() -> void:
 	if (not empty3 and skill3):
-		skill_info_3.visible = false
-
+		run.UIManager.hide_display()
 
 func _on_ult_mouse_exited() -> void:
 	if (not empty4 and skill4):
-		skill_info_4.visible = false
+		run.UIManager.hide_display()

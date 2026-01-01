@@ -19,3 +19,6 @@ extends Resource
 @export_category("Visual")
 @export var icon: Texture
 @export_multiline var tooltip: String
+
+func initialize_keystone(ui):
+	pass

@@ -2,7 +2,6 @@ extends Control
 
 const KEYSTONE_UI = preload("res://scenes/keystone handler/keystone_ui.tscn")
 
-@onready var keystone_info: Control = $PanelContainer/MarginContainer/VBoxContainer/KeystoneInfo
 @onready var skill_info: Control = $PanelContainer/MarginContainer/VBoxContainer/SkillInfo
 @onready var keystone_sprite: TextureRect = $PanelContainer/MarginContainer/VBoxContainer/KeystoneInfo/KeystoneSprite
 
@@ -15,7 +14,6 @@ signal purchased
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	run = get_tree().get_first_node_in_group("run")
-	keystone_info.visible = false
 	skill_info.visible = false
 	var shop = get_tree().get_first_node_in_group("shop")
 	self.purchased.connect(shop.item_bought)
@@ -27,8 +25,6 @@ func _process(delta: float) -> void:
 func update_item():
 	item.update()
 	if item is Keystone:
-		keystone_info.visible = true
-		keystone_info.update_keystone_info(item)
 		keystone_sprite.texture = item.icon
 		#var new_keystone_ui = KEYSTONE_UI.instantiate()
 		#add_child(new_keystone_ui)

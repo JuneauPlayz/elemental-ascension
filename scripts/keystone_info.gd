@@ -1,17 +1,19 @@
 extends Control
 
-@onready var keystone_name: Label = $PanelContainer/PanelContainer/MarginContainer/VBoxContainer/KeystoneName
-@onready var description: Label = $PanelContainer/PanelContainer/MarginContainer/VBoxContainer/Description
-@onready var tags: RichTextLabel = $PanelContainer/PanelContainer/MarginContainer/VBoxContainer/Tags
+
+@onready var keystone_name: Label = %KeystoneName
+@onready var tags: RichTextLabel = %Tags
+@onready var description: Label = %Description
+
 
 #@export var keystone : Keystone
 func _ready() -> void:
 	keystone_name.text = ""
 	description.text = ""
-	tags.text = " Tags : "
+	tags.text = " "
 
 func update_keystone_info(keystone):
-	tags.text = " Tags : "
+	tags.text = " "
 	if keystone != null:
 		keystone_name.text = keystone.keystone_name
 		description.text = keystone.tooltip

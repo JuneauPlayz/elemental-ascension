@@ -75,7 +75,6 @@ anchors_preset = 0
 offset_left = -1.0
 offset_right = 63.0
 offset_bottom = 64.0
-tooltip_text = "bello"
 script = ExtResource("1_ayvix")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1976414775]
@@ -84,8 +83,6 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 pivot_offset = Vector2(32, 32)
-tooltip_text = "hallo
-"
 expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=759655510]

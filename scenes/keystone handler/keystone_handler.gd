@@ -16,11 +16,11 @@ const BASIC_FIRE_KEYSTONE = preload("uid://c60xpmx3c7h44")
 
 
 @onready var slot_map := {
-	"Fire": fire_slot,
-	"Water": water_slot,
-	"Lightning": lightning_slot,
-	"Grass": grass_slot,
-	"Earth": earth_slot
+	"fire": fire_slot,
+	"water": water_slot,
+	"lightning": lightning_slot,
+	"grass": grass_slot,
+	"earth": earth_slot
 }
 
 

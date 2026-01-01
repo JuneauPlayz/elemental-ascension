@@ -51,8 +51,6 @@ var tutorial_no_ally_skill = false
 var skills_castable = true
 
 @onready var end_turn: Button = $"../EndTurn"
-@onready var targeting_label: Label = $TargetingLabel
-@onready var targeting_skill_info: Control = $TargetingSkillInfo
 @onready var keystones : KeystoneHandler
 @onready var victory_screen: Control = $"../VictoryScreen"
 @onready var win: Button = $"../Win"
@@ -142,6 +140,7 @@ func combat_ready():
 	combat_currency.update()
 	run.hide_gold()
 	run.hide_xp()
+	start_combat()
 	
 
 
@@ -521,9 +520,12 @@ func _on_spell_select_ui_new_select(ally) -> void:
 	if skill.target_type != "single_enemy" and skill.target_type != "single_ally":
 		await ally_skill_use_wrapper(skill, null, ally)
 	else:
+		run.UIManager.freeze_info()
 		var target = await choose_target(skill)
 		if target:
 			target_selected.emit()
+			run.UIManager.unfreeze_info()
+			run.UIManager.hide_display()
 			ally.using_skill = true
 			await ally_skill_use_wrapper(skill, target, ally)
 	
@@ -644,11 +646,8 @@ func choose_target(skill : Skill):
 		var target
 		targeting = true
 		targeting_skill = skill
-		toggle_targeting_ui(skill)
 		hide_skills()
 		Input.set_custom_mouse_cursor(TARGET_CURSOR, 0, Vector2(32,32))
-		targeting_skill_info.visible = true
-		targeting_label.visible = true
 		if (not skill.friendly):
 			for enemy in enemies:
 				enemy.enable_targeting_area()
@@ -665,7 +664,6 @@ func choose_target(skill : Skill):
 				ally.disable_targeting_area()
 		show_skills()
 		show_ui()
-		toggle_targeting_ui(skill)
 		Input.set_custom_mouse_cursor(DEFAULT_CURSOR, 0)
 		targeting = false
 		return target
@@ -730,13 +728,6 @@ func _input(event):
 		if (input_allowed):
 			_on_end_turn_pressed()
 			
-	
-func toggle_targeting_ui(skill):
-	targeting_skill_info.skill = skill
-	targeting_skill_info.update_skill_info()
-	targeting_skill_info.visible = !targeting_skill_info.visible
-	targeting_label.visible = !targeting_label.visible
-	
 
 	
 	

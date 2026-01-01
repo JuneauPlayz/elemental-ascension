@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d086qw0hvodmm"]
+
+[ext_resource type="Script" uid="uid://cqlp1pmegf8yi" path="res://universal_info_manager.gd" id="1_cvsrb"]
+
+[node name="UniversalInfoManager" type="Control" unique_id=78698777]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cvsrb")
+
+[node name="Displays" type="HBoxContainer" parent="." unique_id=1488719117]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

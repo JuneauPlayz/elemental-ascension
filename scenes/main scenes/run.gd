@@ -7,7 +7,6 @@ extends Node
 @onready var ally_4_spot: Node2D = %"Ally 4 Spot"
 @onready var keystone_handler_spot: Node2D = $KeystoneHandlerSpot
 @onready var reaction_panel: Control = $ReactionGuide/ReactionPanel
-@onready var keystone_info: Control = %KeystoneInfo
 @onready var gold_text: RichTextLabel = $GoldText
 @onready var xp_bar: ProgressBar = $XPBar
 @onready var current_level: Label = $XPBar/CurrentLevel
@@ -660,7 +659,6 @@ func reset() -> void:
 		ally_4_spot = %"Ally 4 Spot"
 		keystone_handler_spot = $KeystoneHandlerSpot
 		reaction_panel = $ReactionGuide/ReactionPanel
-		keystone_info = %KeystoneInfo
 
 		# Reset scenes
 		combat_scene = null
@@ -860,9 +858,6 @@ func reset() -> void:
 
 		# Reset reaction panel visibility
 		reaction_panel.visible = false
-
-		# Reset keystone info visibility
-		keystone_info.visible = false
 
 		# Reset loading screen visibility
 		loading.visible = false

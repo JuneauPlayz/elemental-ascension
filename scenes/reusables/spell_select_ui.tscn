@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://tlvpop5rp1x6"]
+[gd_scene format=3 uid="uid://tlvpop5rp1x6"]
 
 [ext_resource type="Script" uid="uid://4ll72j38iaw" path="res://scripts/spell_select_ui.gd" id="1_6jhhb"]
-[ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="2_ae65f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvmj8"]
 content_margin_left = 10.0
@@ -57,21 +56,22 @@ bg_color = Color(0.247059, 0.380392, 0.631373, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4ccb"]
 bg_color = Color(0.254902, 0.309804, 0.286275, 0.870588)
 
-[node name="SpellSelectUi" type="Control"]
+[node name="SpellSelectUi" type="Control" unique_id=1677864281]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 18.0
 offset_bottom = 18.0
 script = ExtResource("1_6jhhb")
+char = null
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1805309928]
 layout_mode = 0
 offset_right = 286.0
 offset_bottom = 191.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_tvmj8")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=175406160]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -80,14 +80,14 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=166991687]
 layout_mode = 2
 
-[node name="BA1Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="BA1Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=419102977]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="ba_1" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BA1Panel"]
+[node name="ba_1" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BA1Panel" unique_id=873660410]
 custom_minimum_size = Vector2(261, 48)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -99,17 +99,17 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_1dgm8")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_rghh4")
 text = "test"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1777520975]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_c8eds")
 
-[node name="SP1Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SP1Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=37138772]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="S1" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/SP1Panel"]
+[node name="S1" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/SP1Panel" unique_id=2112331367]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -120,18 +120,18 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ni84r")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_667es")
 text = "test"
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2103744594]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 11
 theme_override_styles/separator = SubResource("StyleBoxFlat_edv3q")
 
-[node name="SP2Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SP2Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1452224377]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="S2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/SP2Panel"]
+[node name="S2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/SP2Panel" unique_id=1684034373]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -142,18 +142,18 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_q85v1")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_pfass")
 text = "test"
 
-[node name="VSeparator3" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator3" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=676611022]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 11
 theme_override_styles/separator = SubResource("StyleBoxFlat_edv3q")
 
-[node name="ULTPanel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ULTPanel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=13688033]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ULT" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ULTPanel"]
+[node name="ULT" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ULTPanel" unique_id=1011090621]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -163,62 +163,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_s2255")
 theme_override_styles/hover = SubResource("StyleBoxFlat_i2ev1")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_v4ccb")
 text = "test"
-
-[node name="SkillInfo" parent="." instance=ExtResource("2_ae65f")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 272.0
-offset_top = 25.0
-offset_right = 533.0
-offset_bottom = 48.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(1.8, 1.8)
-
-[node name="SkillInfo2" parent="." instance=ExtResource("2_ae65f")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 274.0
-offset_top = 56.0
-offset_right = 535.0
-offset_bottom = 79.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(1.8, 1.8)
-
-[node name="SkillInfo3" parent="." instance=ExtResource("2_ae65f")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 273.0
-offset_top = 87.0
-offset_right = 534.0
-offset_bottom = 110.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(1.8, 1.8)
-
-[node name="SkillInfo4" parent="." instance=ExtResource("2_ae65f")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 273.0
-offset_top = 119.0
-offset_right = 534.0
-offset_bottom = 142.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(1.8, 1.8)
 
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/BA1Panel/ba_1" to="." method="_on_ba_1_mouse_exited"]

@@ -6,11 +6,12 @@ extends Node
 @onready var next_level: Label = $"../XPBar/NextLevel"
 @onready var xp_number: Label = $"../XPBar/XPNumber"
 @onready var xp_gain_position: Node2D = $"../XPBar/XPGainPosition"
-@onready var keystone_info: Control = %KeystoneInfo
 @onready var reaction_guide: Button = $"../ReactionGuide"
 @onready var reaction_panel: Control = $"../ReactionGuide/ReactionPanel"
 @onready var loading: Node2D = $"../Loading"
+@onready var universal_info_manager: Control = $"../UniversalInfoManager"
 
+var freeze = false
 var reaction_guide_open = false
 
 signal reaction_guide_button_pressed
@@ -44,8 +45,6 @@ func toggle_reaction_panel():
 		#for ally in allies:
 			#ally.spell_select_ui.visible = false
 
-func toggle_keystone_tooltip():
-	keystone_info.visible = !keystone_info.visible
 
 func loading_screen(time):
 	loading.visible = true
@@ -55,6 +54,18 @@ func loading_screen(time):
 func reset():
 	reaction_guide_open = false
 
+func display(object):
+	universal_info_manager.new_display(object)
+	
+func hide_display():
+	if not freeze:
+		universal_info_manager.hide_display()
+
+func freeze_info():
+	freeze = true
+
+func unfreeze_info():
+	freeze = false
 
 func _on_reaction_guide_pressed() -> void:
 	toggle_reaction_panel()

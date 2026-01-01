@@ -29,12 +29,9 @@ func flash() -> void:
 func _on_icon_mouse_entered() -> void:
 	var run = get_tree().get_first_node_in_group("run")
 	if keystone in run.keystones:
-		run.keystone_info.update_keystone_info(keystone)
-		run.toggle_keystone_tooltip()
+		run.UIManager.display(keystone)
 
 
 func _on_icon_mouse_exited() -> void:
 	var run = get_tree().get_first_node_in_group("run")
-	if keystone in run.keystones:
-		run.keystone_info.update_keystone_info(keystone)
-		run.toggle_keystone_tooltip()
+	run.UIManager.hide_display()

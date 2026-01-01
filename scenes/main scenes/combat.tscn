@@ -5,8 +5,6 @@
 [ext_resource type="FontFile" uid="uid://mmnf6x0iyi0y" path="res://assets/Gravity-Book.otf" id="3_cmui4"]
 [ext_resource type="PackedScene" uid="uid://dr6jeis04n42b" path="res://scenes/keystone handler/keystone_handler.tscn" id="3_n3xuk"]
 [ext_resource type="Script" uid="uid://d0udq0kgc2102" path="res://scripts/combat_manager.gd" id="4_ucgqt"]
-[ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="5_2x1un"]
-[ext_resource type="FontFile" uid="uid://ca0ii6rndnaqf" path="res://assets/pokemon_pixel_font.ttf" id="5_wtw4i"]
 [ext_resource type="PackedScene" uid="uid://rtk527cyr7kb" path="res://scenes/reusables/combat_currency.tscn" id="6_b6b3n"]
 [ext_resource type="PackedScene" uid="uid://cb1kmohoelulf" path="res://scenes/reusables/enemy_combat_currency.tscn" id="6_uo10a"]
 [ext_resource type="PackedScene" uid="uid://ydkggenx6prk" path="res://scenes/reusables/result_screen.tscn" id="8_xw3f4"]
@@ -22,17 +20,6 @@
 font = ExtResource("3_cmui4")
 font_size = 60
 outline_size = 16
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_g8qlp"]
-font = ExtResource("5_wtw4i")
-font_size = 61
-outline_size = 9
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_rfbdu"]
-font_size = 61
-outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bsuy1"]
@@ -181,8 +168,6 @@ script = ExtResource("1_3ou8c")
 [node name="CombatManager" type="Node" parent="." unique_id=1493339723]
 unique_name_in_owner = true
 script = ExtResource("4_ucgqt")
-allies = null
-enemies = null
 
 [node name="TurnText" type="Label" parent="CombatManager" unique_id=379666610]
 visible = false
@@ -194,40 +179,10 @@ text = "Turn 1"
 label_settings = SubResource("LabelSettings_mo5rj")
 horizontal_alignment = 1
 
-[node name="TargetingLabel" type="Label" parent="CombatManager" unique_id=764208361]
-visible = false
-offset_left = 39.0
-offset_top = 736.0
-offset_right = 440.0
-offset_bottom = 904.0
-text = "Choosing target for :
-
-(click on the sprite)"
-label_settings = SubResource("LabelSettings_g8qlp")
-
-[node name="TargetingControls" type="Label" parent="CombatManager/TargetingLabel" unique_id=1414453406]
-layout_mode = 0
-offset_left = 706.0
-offset_top = -14.0
-offset_right = 1046.0
-offset_bottom = 211.0
-text = "1  or Z for Enemy 1
-2  or X for Enemy 2
-3  or C for Enemy 3
-4  or V for Enemy 4"
-label_settings = SubResource("LabelSettings_rfbdu")
-
 [node name="CombatCurrency" parent="CombatManager" unique_id=17423082 instance=ExtResource("6_b6b3n")]
 offset_right = -735.71436
 offset_bottom = -980.0
 scale = Vector2(0.7, 0.7)
-
-[node name="TargetingSkillInfo" parent="CombatManager" unique_id=315414247 instance=ExtResource("5_2x1un")]
-visible = false
-offset_left = 491.0
-offset_top = 678.0
-offset_right = 491.0
-offset_bottom = 678.0
 
 [node name="EnemyCombatCurrency" parent="CombatManager" unique_id=1215750766 instance=ExtResource("6_uo10a")]
 offset_left = 1949.0

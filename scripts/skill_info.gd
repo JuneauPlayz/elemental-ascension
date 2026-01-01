@@ -1,129 +1,183 @@
 extends Control
 
-@export var skill : Skill
+@export var skill: Skill
+
 @onready var skill_name: RichTextLabel = %SkillName
-@onready var element: RichTextLabel = %Element
-@onready var description: Label = %Description
-@onready var target_label: Label = %Target
-@onready var cost_label: Label = %Cost
 @onready var tags: RichTextLabel = %Tags
+@onready var target_label: Label = %Target
+@onready var description: Label = %Description
+@onready var costs: HBoxContainer = %Costs
 
+const EARTH_SYMBOL = preload("uid://dgkpabaj1kl5r")
+const FIRE_SYMBOL = preload("uid://ega8yf10nrw")
+const GRASS_SYMBOL = preload("uid://6wem028prmhu")
+const LIGHTNING_SYMBOL = preload("uid://c2a810t6sstxx")
+const WATER_SYMBOL = preload("uid://b7ctbguy8vt4q")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_clear_costs()
 	description.text = ""
 
-func update_skill_info():
+func update_skill_info() -> void:
+	if skill == null:
+		return
+
+	_clear_costs()
 	description.text = ""
-	var target = ""
+
+
 	skill_name.text = skill.name
-	var element_text = ""
-	tags.text = " Tags : "
-	cost_label.text = ""
-	match skill.element:
-		"fire":
-			element_text = " [color=coral]Fire[/color]"
-		"water":
-			element_text = " [color=dark_cyan]Water[/color]"
-		"lightning":
-			element_text = " [color=yellow]Lightning[/color]"
-		"grass":
-			element_text = " [color=web_green]Grass[/color]"
-		"earth":
-			element_text = " [color=saddle_brown]Earth[/color]"
-		
-	element.text = "[center]" + element_text + "[/center]"
-	match skill.target_type:
-		"single_enemy":
-			target = "Any Enemy"
-		"single_ally":
-			target = "Any Ally"
-		"all_allies":
-			target = "All Allies"
-		"all_enemies":
-			target = "All Enemies"
-		"all_units":
-			target = "All Units"
-		"front_ally":
-			target = "Front Ally"
-		"front_2_allies":
-			target = "Two Closest Allies"
-		"front_enemy":
-			target = "Front Enemy"
-		"front_2_enemies":
-			target = "Two Closest Enemies"
-		"back_ally":
-			target = "Back Ally"
-		"back_2_allies":
-			target = "Two Farthest Allies"
-		"back_enemy":
-			target = "Back Enemy"
-		"back_2_enemies":
-			target = "Back 2 Enemies"
-		"random_enemy":
-			target = "Random Enemy"
-		"random_ally":
-			target = "Random Ally"
-		"random_middle_ally":
-			target = "Random Middle Ally"
-	target_label.text = " " + target
-	if skill.damaging == true:
-		description.text += "Damage " + str(skill.damage) 
-	if skill.shielding == true:
-		description.text += "Shield " + str(skill.damage)
-	if skill.healing == true:
-		description.text += "Heal " + str(skill.damage)
-	if skill.buff == true:
-		description.text += "Buff " + str(skill.buff_value)
+
+	if target_label != null:
+		target_label.text = _get_target_text(skill.target_type)
+
+
+	_build_description()
+
+
+	_build_costs()
+
+
+	_build_tags()
+
+
+
+func _clear_costs() -> void:
+	for child in costs.get_children():
+		child.queue_free()
+
+func _get_target_text(t: String) -> String:
+	match t:
+		"single_enemy": return "Any Enemy"
+		"single_ally": return "Any Ally"
+		"all_allies": return "All Allies"
+		"all_enemies": return "All Enemies"
+		"all_units": return "All Units"
+		"front_ally": return "Front Ally"
+		"front_2_allies": return "Two Closest Allies"
+		"front_enemy": return "Front Enemy"
+		"front_2_enemies": return "Two Closest Enemies"
+		"back_ally": return "Back Ally"
+		"back_2_allies": return "Two Farthest Allies"
+		"back_enemy": return "Back Enemy"
+		"back_2_enemies": return "Back Two Enemies"
+		"random_enemy": return "Random Enemy"
+		"random_ally": return "Random Ally"
+		"random_middle_ally": return "Random Middle Ally"
+		_: return ""
+
+func _build_description() -> void:
+	var lines: Array[String] = []
+	var target := _get_target_text(skill.target_type)
+	var elem := skill.element.capitalize()
+
+	if skill.damaging:
+		lines.append(
+			"Deal %d %s Damage to %s"
+			% [skill.damage, elem, target]
+		)
+
+	if skill.healing:
+		lines.append(
+			"Heal %d health as %s to %s"
+			% [skill.damage, elem, target]
+		)
+
+	if skill.shielding:
+		lines.append(
+			"Grant %d shield to %s"
+			% [skill.damage, target]
+		)
+
+	if skill.buff:
+		lines.append(
+			"Apply buff (%d) to %s"
+			% [skill.buff_value, target]
+		)
+
 	if skill.summon != null:
-		description.text += "Summon " + skill.summon.name
-	if description.text == "" and skill.element != "none" and not skill.buff:
-		description.text = "Apply " + skill.element
-	if skill.blast == true:
-		description.text += "\nBlast " + str(skill.blast_damage)
-	if skill.double_hit == true:
-		description.text += "\nDouble Hit " + str(skill.damage2) + " " + str(skill.element2)
-	if skill.lifesteal == true:
-		description.text += "\nLifesteal"
-	if skill.status_effects != []:
-		for x in skill.status_effects:
-			if x.name == "Bleed":
-				description.text += "\nBleed"
-			if x.name == "Burn":
-				description.text += "\nBurn"
-			if x.name == "Bubble":
-				description.text += "\nBubble"
-			if x.name == "Muck":
-				description.text += "\nMuck"
-			if x.name == "Nitro":
-				description.text += "\nNitro"
-			if x.name == "Sow":
-				description.text += "\nSow"
+		lines.append(
+			"Summon %s"
+			% skill.summon.name
+		)
+
+	if skill.blast:
+		lines.append(
+			"Blast for %d Damage"
+			% skill.blast_damage
+		)
+
+	if skill.double_hit:
+		lines.append(
+			"Then deal %d %s Damage"
+			% [skill.damage2, skill.element2.capitalize()]
+		)
+
+	if skill.lifesteal:
+		lines.append("Gain lifesteal")
+
+	if not skill.status_effects.is_empty():
+		for s in skill.status_effects:
+			lines.append("Apply " + s.name)
+
+	description.text = "\n".join(lines)
+
+
+func _build_costs() -> void:
+	var has_cost := false
+
 	if skill.cost > 0:
-		cost_label.visible = true
-		cost_label.text += "Cost: " +  str(skill.cost) + " " + skill.token_type + " tokens"
-		if skill.cost2 > 0:
-			cost_label.text += "\n    " + str(skill.cost2) + " " + skill.token_type2 + " tokens"
-	else:
-		cost_label.visible = false
-	
-	if skill.tags == []:
+		has_cost = true
+		_add_cost(skill.cost, skill.token_type)
+
+	if skill.cost2 > 0:
+		has_cost = true
+		_add_cost(skill.cost2, skill.token_type2)
+
+	costs.visible = has_cost
+
+func _add_cost(amount: int, token: String) -> void:
+	var label := Label.new()
+	label.text = str(amount)
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	costs.add_child(label)
+
+	var icon := TextureRect.new()
+	icon.texture = _get_token_texture(token)
+	icon.custom_minimum_size = Vector2(25, 25)
+	icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	costs.add_child(icon)
+
+func _get_token_texture(token: String) -> Texture2D:
+	match token:
+		"fire": return FIRE_SYMBOL
+		"water": return WATER_SYMBOL
+		"lightning": return LIGHTNING_SYMBOL
+		"grass": return GRASS_SYMBOL
+		"earth": return EARTH_SYMBOL
+		_: return null
+
+func _build_tags() -> void:
+	if skill.tags.is_empty():
 		tags.visible = false
-	else:
-		tags.visible = true
-		for tag in skill.tags:
-			var added_text = tag
-			match tag:
-				"Fire":
-					added_text = " [color=coral]Fire[/color]"
-				"Water":
-					added_text = " [color=dark_cyan]Water[/color]"
-				"Lightning":
-					added_text = " [color=yellow]Lightning[/color]"
-				"Grass":
-					added_text = " [color=web_green]Grass[/color]"
-				"Earth":
-					added_text = " [color=saddle_brown]Earth[/color]"
-			if tag != "" or null:
-				tags.text += added_text + ",  "
-		tags.text = tags.text.substr(0, tags.text.length()-3)
+		return
+
+	tags.visible = true
+	var parts: Array[String] = []
+
+	for tag in skill.tags:
+		if tag == "":
+			continue
+
+		var t = tag
+		match tag:
+			"Fire": t = "[color=coral]Fire[/color]"
+			"Water": t = "[color=dark_cyan]Water[/color]"
+			"Lightning": t = "[color=yellow]Lightning[/color]"
+			"Grass": t = "[color=web_green]Grass[/color]"
+			"Earth": t = "[color=saddle_brown]Earth[/color]"
+
+		parts.append(t)
+
+	tags.text = " / ".join(parts)
