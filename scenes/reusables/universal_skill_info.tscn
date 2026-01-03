@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dg1loamhcyprq" path="res://scripts/skill_info.gd" id="1_yn667"]
 [ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="2_laq2n"]
+[ext_resource type="Texture2D" uid="uid://bxhwb1uh5ngpx" path="res://assets/white target symbol.png" id="2_qnkhi"]
 [ext_resource type="Texture2D" uid="uid://b7ctbguy8vt4q" path="res://assets/Water_symbol.png" id="3_qnkhi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dymp5"]
@@ -19,6 +20,10 @@ corner_radius_top_left = 7
 corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
+
+[sub_resource type="LabelSettings" id="LabelSettings_qnkhi"]
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_807co"]
 font_size = 18
@@ -78,19 +83,41 @@ text = "Fire/Single Target"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Target" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=106983288]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 25)
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=354226833]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 3
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2016270247]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_qnkhi")
+expand_mode = 3
+
+[node name="Target" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=106983288]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/outline_size = 20
 bbcode_enabled = true
-text = "Any Enemy"
+text = " Any Enemy"
 fit_content = true
+vertical_alignment = 1
 
 [node name="Costs" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1117991134]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
+
+[node name="CostLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Costs" unique_id=1312093505]
+unique_name_in_owner = true
+layout_mode = 2
+text = " Cost: "
+label_settings = SubResource("LabelSettings_qnkhi")
 
 [node name="Cost" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Costs" unique_id=1663223213]
 unique_name_in_owner = true

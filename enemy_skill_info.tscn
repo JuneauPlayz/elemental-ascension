@@ -29,7 +29,7 @@ outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 
 [node name="EnemySkillInfo" type="PanelContainer" unique_id=1389801023]
-custom_minimum_size = Vector2(220, 150)
+custom_minimum_size = Vector2(225, 150)
 offset_right = 91.0
 offset_bottom = 74.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_k7lth")
@@ -71,6 +71,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "Two Back Enemies"
 fit_content = true

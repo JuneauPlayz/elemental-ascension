@@ -69,16 +69,17 @@ _data = {
 }
 
 [node name="KeystoneUI" type="Control" unique_id=1367128366]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 3
 anchors_preset = 0
 offset_left = -1.0
 offset_right = 63.0
 offset_bottom = 64.0
+mouse_filter = 1
 script = ExtResource("1_ayvix")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1976414775]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0

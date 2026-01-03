@@ -58,7 +58,7 @@ position = Vector2(799, 306)
 
 [node name="KeystoneHandlerSpot" type="Node2D" parent="." unique_id=1793237023]
 z_index = 3
-position = Vector2(960, 33.905)
+position = Vector2(960, 500)
 scale = Vector2(0.86, 0.86)
 
 [node name="ReactionGuide" type="Button" parent="." unique_id=387121775]

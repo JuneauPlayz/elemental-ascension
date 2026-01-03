@@ -7,6 +7,7 @@ extends Control
 @onready var target_label: RichTextLabel = %Target
 @onready var description: RichTextLabel = %Description
 @onready var costs: HBoxContainer = %Costs
+@onready var cost_label: Label = %CostLabel
 
 const EARTH_SYMBOL = preload("uid://dgkpabaj1kl5r")
 const FIRE_SYMBOL = preload("uid://ega8yf10nrw")
@@ -114,7 +115,7 @@ func _build_description() -> void:
 	for s in skill.status_effects:
 		lines.append("Apply " + s.name)
 
-	description.text = " " + "\n".join(lines)
+	description.text = " " + " \n".join(lines)
 
 # --------------------------------------------------
 # Costs
@@ -122,7 +123,8 @@ func _build_description() -> void:
 
 func _clear_costs() -> void:
 	for c in costs.get_children():
-		c.queue_free()
+		if c != cost_label:
+			c.queue_free()
 
 func _build_costs() -> void:
 	var has_cost := false
@@ -185,6 +187,7 @@ func _build_tags() -> void:
 			"Lightning": parts.append("[color=yellow]Lightning[/color]")
 			"Grass": parts.append("[color=web_green]Grass[/color]")
 			"Earth": parts.append("[color=saddle_brown]Earth[/color]")
+			"": pass
 			_: parts.append(tag)
 
 	tags.text = " " + " / ".join(parts)

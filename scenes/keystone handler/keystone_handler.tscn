@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjgfu2ffpwcds" path="res://scenes/keystone handler/keystone_handler.gd" id="1_wgfm0"]
 [ext_resource type="Script" uid="uid://beu4qcjiyynah" path="res://scenes/keystone handler/keystone_control.gd" id="2_cogcy"]
+[ext_resource type="Script" uid="uid://4eb43uwdg710" path="res://addons/tnowe_extra_controls/elements/draggable.gd" id="3_c3s6o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60phm"]
 bg_color = Color(0.19607843, 0.2, 0.23137255, 1)
@@ -31,6 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 1
 script = ExtResource("1_wgfm0")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=19879452]
@@ -40,12 +42,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -144.0
-offset_top = -29.0
-offset_right = 145.0
-offset_bottom = 27.0
+offset_left = -149.0
+offset_top = -30.0
+offset_right = 149.0
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_60phm")
 
 [node name="KeystonesControl" type="Control" parent="PanelContainer" unique_id=1558943582]
@@ -54,40 +57,88 @@ custom_minimum_size = Vector2(270, 50)
 layout_mode = 2
 script = ExtResource("2_cogcy")
 
-[node name="KeystonesContainer" type="HBoxContainer" parent="PanelContainer/KeystonesControl" unique_id=351848703]
+[node name="KeystonesContainer" type="GridContainer" parent="PanelContainer/KeystonesControl" unique_id=2131901250]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(280, 50)
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 0
-offset_right = 282.0
+offset_right = 300.0
 offset_bottom = 50.0
-theme_override_constants/separation = 8
+theme_override_constants/h_separation = 10
+columns = 5
 
-[node name="FireSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=548525588]
+[node name="FireDrag" type="Container" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=2136902759]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+script = ExtResource("3_c3s6o")
+can_drag_vertical = false
+metadata/_custom_type_script = "uid://4eb43uwdg710"
+
+[node name="FireSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer/FireDrag" unique_id=548525588]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.9999996, 0.62483245, 0.42566702, 1)
 
-[node name="WaterSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=1060050275]
-unique_name_in_owner = true
+[node name="WaterDrag" type="Container" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=80250111]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+script = ExtResource("3_c3s6o")
+can_drag_vertical = false
+metadata/_custom_type_script = "uid://4eb43uwdg710"
+
+[node name="WaterSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer/WaterDrag" unique_id=1060050275]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 1
 color = Color(0, 0.7642523, 0.76487833, 1)
 
-[node name="LightningSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=256558067]
-unique_name_in_owner = true
+[node name="LightningDrag" type="Container" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=776166326]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+script = ExtResource("3_c3s6o")
+can_drag_vertical = false
+metadata/_custom_type_script = "uid://4eb43uwdg710"
+
+[node name="LightningSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer/LightningDrag" unique_id=256558067]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 1
 color = Color(1, 1, 0.60887164, 1)
 
-[node name="GrassSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=1111886946]
-unique_name_in_owner = true
+[node name="GrassDrag" type="Container" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=1073632323]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+script = ExtResource("3_c3s6o")
+can_drag_vertical = false
+metadata/_custom_type_script = "uid://4eb43uwdg710"
+
+[node name="GrassSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer/GrassDrag" unique_id=1111886946]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 1
 color = Color(0.5261259, 0.7718854, 0.51340413, 1)
 
-[node name="EarthSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=1179625387]
-unique_name_in_owner = true
+[node name="EarthDrag" type="Container" parent="PanelContainer/KeystonesControl/KeystonesContainer" unique_id=1504425306]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+script = ExtResource("3_c3s6o")
+can_drag_vertical = false
+metadata/_custom_type_script = "uid://4eb43uwdg710"
+
+[node name="EarthSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer/EarthDrag" unique_id=1179625387]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 1
 color = Color(0.7736383, 0.55324656, 0.41922274, 1)
+
+[connection signal="drag_ended" from="PanelContainer/KeystonesControl/KeystonesContainer/FireDrag" to="." method="_on_fire_drag_drag_ended"]
+[connection signal="drag_started" from="PanelContainer/KeystonesControl/KeystonesContainer/FireDrag" to="." method="_on_fire_drag_drag_started"]
+[connection signal="drag_ended" from="PanelContainer/KeystonesControl/KeystonesContainer/WaterDrag" to="." method="_on_water_drag_drag_ended"]
+[connection signal="drag_started" from="PanelContainer/KeystonesControl/KeystonesContainer/WaterDrag" to="." method="_on_water_drag_drag_started"]
+[connection signal="drag_ended" from="PanelContainer/KeystonesControl/KeystonesContainer/LightningDrag" to="." method="_on_lightning_drag_drag_ended"]
+[connection signal="drag_started" from="PanelContainer/KeystonesControl/KeystonesContainer/LightningDrag" to="." method="_on_lightning_drag_drag_started"]
+[connection signal="drag_ended" from="PanelContainer/KeystonesControl/KeystonesContainer/GrassDrag" to="." method="_on_grass_drag_drag_ended"]
+[connection signal="drag_started" from="PanelContainer/KeystonesControl/KeystonesContainer/GrassDrag" to="." method="_on_grass_drag_drag_started"]
+[connection signal="drag_ended" from="PanelContainer/KeystonesControl/KeystonesContainer/EarthDrag" to="." method="_on_earth_drag_drag_ended"]
+[connection signal="drag_started" from="PanelContainer/KeystonesControl/KeystonesContainer/EarthDrag" to="." method="_on_earth_drag_drag_started"]
