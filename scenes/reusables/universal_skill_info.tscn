@@ -20,11 +20,6 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="LabelSettings" id="LabelSettings_5vcrp"]
-font_size = 18
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_807co"]
 font_size = 18
 outline_size = 6
@@ -34,12 +29,12 @@ outline_color = Color(0, 0, 0, 1)
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 197.59999
 offset_bottom = 162.0
+scale = Vector2(1.2, 1.2)
 mouse_filter = 2
 script = ExtResource("1_yn667")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=743124004]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dymp5")
@@ -83,12 +78,14 @@ text = "Fire/Single Target"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Target" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=272232663]
+[node name="Target" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=106983288]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_constants/outline_size = 20
+bbcode_enabled = true
 text = "Any Enemy"
-label_settings = SubResource("LabelSettings_5vcrp")
+fit_content = true
 
 [node name="Costs" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1117991134]
 unique_name_in_owner = true
@@ -98,6 +95,7 @@ theme_override_constants/separation = 0
 [node name="Cost" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Costs" unique_id=1663223213]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/outline_size = 5
 text = "2  "
 label_settings = SubResource("LabelSettings_807co")
 
@@ -119,8 +117,12 @@ layout_mode = 2
 texture = ExtResource("3_qnkhi")
 expand_mode = 3
 
-[node name="Description" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=6498448]
+[node name="Description" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=423875984]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 25)
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 9
+bbcode_enabled = true
 text = "Deals 5 Fire Damage"
-label_settings = SubResource("LabelSettings_807co")
+fit_content = true

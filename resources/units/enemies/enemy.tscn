@@ -2,14 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cbx1ktct7lanb" path="res://scripts/enemy.gd" id="1_ml356"]
 [ext_resource type="Texture2D" uid="uid://b6ifsg6s13c55" path="res://assets/waterswordsman.jpg" id="2_7vn7i"]
+[ext_resource type="PackedScene" uid="uid://bgg3ql7uo0cgf" path="res://enemy_skill_info.tscn" id="4_7vn7i"]
 [ext_resource type="PackedScene" uid="uid://5spa5amgsxfm" path="res://scenes/reusables/hp_bar.tscn" id="4_8i2d0"]
-[ext_resource type="Texture2D" uid="uid://dkf53etd24pjd" path="res://assets/white circle.png" id="4_nfeyx"]
-[ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="5_gim1t"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_hiluv"]
-font_size = 34
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysnwy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -52,65 +46,6 @@ metadata/_edit_use_anchors_ = true
 [node name="DamageNumberOrigin" type="Node2D" parent="." unique_id=243829846]
 position = Vector2(115, 596)
 
-[node name="CountdownLabel" type="Label" parent="." unique_id=1599403169]
-anchors_preset = -1
-anchor_left = -25.2
-anchor_top = -2.21667
-anchor_right = -23.975
-anchor_bottom = -1.86667
-offset_left = 34.93976
-offset_top = -56.626507
-offset_right = 237.93976
-offset_bottom = -14.626507
-text = "Countdown : "
-label_settings = SubResource("LabelSettings_hiluv")
-metadata/_edit_use_anchors_ = true
-
-[node name="WhiteCircle" type="Sprite2D" parent="CountdownLabel" unique_id=114643886]
-self_modulate = Color(0, 0, 0, 0.39215687)
-z_index = -1
-position = Vector2(139.75905, 466.2649)
-scale = Vector2(0.226, 0.06)
-texture = ExtResource("4_nfeyx")
-
-[node name="ShowNextSkill" type="Control" parent="." unique_id=2119234267]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -322.89157
-offset_top = 12.0482
-offset_right = -282.89157
-offset_bottom = 52.04816
-metadata/_edit_use_anchors_ = true
-
-[node name="NextSkillLabel" type="Label" parent="ShowNextSkill" unique_id=1302077984]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -25.79411
-anchor_top = -1.7648622
-anchor_right = -23.61911
-anchor_bottom = -1.2898619
-offset_left = 1393.0
-offset_top = 46.0
-offset_right = 1470.0
-offset_bottom = 69.0
-text = "Next Skill :"
-label_settings = SubResource("LabelSettings_hiluv")
-metadata/_edit_use_anchors_ = true
-
-[node name="SkillInfo" parent="ShowNextSkill" unique_id=1160735708 instance=ExtResource("5_gim1t")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -28.454214
-anchor_top = -0.33222917
-anchor_right = -27.454214
-anchor_bottom = 0.6677708
-offset_left = 1496.0
-offset_top = 41.0
-offset_right = 1496.0
-offset_bottom = 41.0
-scale = Vector2(1, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="TargetingArea" type="Button" parent="." unique_id=2122151116]
 visible = false
 offset_left = 45.0
@@ -123,5 +58,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_xp1kw")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_76n2e")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_6w0c8")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ebmkq")
+
+[node name="EnemySkillInfo" parent="." unique_id=1389801023 instance=ExtResource("4_7vn7i")]
+offset_left = 67.46988
+offset_top = 33.73494
+offset_right = 287.4699
+offset_bottom = 183.73494
 
 [connection signal="pressed" from="TargetingArea" to="." method="_on_targeting_area_pressed"]

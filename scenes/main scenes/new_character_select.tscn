@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://q57bj44h63ue" path="res://assets/kent/water.png" id="5_p148i"]
 [ext_resource type="Texture2D" uid="uid://d15hejgg3dtq5" path="res://assets/kent/grass.png" id="6_mtqjm"]
 [ext_resource type="Texture2D" uid="uid://dqp1t1w47b7y5" path="res://assets/kent/lightning.png" id="7_fdldd"]
-[ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="8_hnda8"]
 [ext_resource type="Texture2D" uid="uid://fcq4kfuudrbx" path="res://assets/kent/rock.webp" id="8_mtqjm"]
+[ext_resource type="PackedScene" uid="uid://ddskj68e5o6q7" path="res://scenes/reusables/universal_skill_info.tscn" id="9_mtqjm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tbrfe"]
 font_size = 42
@@ -199,20 +199,6 @@ offset_bottom = 141.0
 text = "Base HP: "
 label_settings = SubResource("LabelSettings_p148i")
 
-[node name="SkillInfo1" parent="CharacterInfo" unique_id=1974004518 instance=ExtResource("8_hnda8")]
-layout_mode = 1
-offset_left = 4.0
-offset_top = 218.0
-offset_right = 4.0
-offset_bottom = 218.0
-
-[node name="SkillInfo2" parent="CharacterInfo" unique_id=1756335060 instance=ExtResource("8_hnda8")]
-layout_mode = 1
-offset_left = 8.0
-offset_top = 416.0
-offset_right = 8.0
-offset_bottom = 416.0
-
 [node name="Label" type="Label" parent="CharacterInfo" unique_id=1570810860]
 layout_mode = 0
 offset_left = 12.0
@@ -221,6 +207,20 @@ offset_right = 305.0
 offset_bottom = 206.0
 text = "Starting Skills"
 label_settings = SubResource("LabelSettings_vlp3o")
+
+[node name="SkillInfo1" parent="CharacterInfo" unique_id=448195146 instance=ExtResource("9_mtqjm")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 221.0
+offset_right = 207.59999
+offset_bottom = 383.0
+
+[node name="SkillInfo2" parent="CharacterInfo" unique_id=1023804199 instance=ExtResource("9_mtqjm")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 414.0
+offset_right = 206.59999
+offset_bottom = 576.0
 
 [node name="Begin Run" type="Button" parent="." unique_id=617417535]
 offset_left = 691.0

@@ -24,12 +24,8 @@ var current_skill : Skill
 var animation = false
 
 @export var reaction_primed = 0
-
-@onready var skill_info: Control = $ShowNextSkill/SkillInfo
 @onready var sprite_spot: TextureRect = $SpriteSpot
-@onready var show_next_skill: Control = $ShowNextSkill
-@onready var countdown_label: Label = $CountdownLabel
-@onready var next_skill_label: Label = $ShowNextSkill/NextSkillLabel
+@onready var enemy_skill_info: PanelContainer = $EnemySkillInfo
 
 var sow_just_applied = false
 
@@ -89,9 +85,8 @@ func _ready() -> void:
 			skill4.damage *= 2
 		max_health = roundi(max_health * 2.5)
 		health = max_health
-	skill_info.skill = current_skill
-	set_countdown()
-	skill_info.update_skill_info()
+	enemy_skill_info.skill = current_skill
+	enemy_skill_info.update_skill_info(countdown)
 	
 
 	hp_bar = get_child(1)
@@ -101,8 +96,8 @@ func _ready() -> void:
 	self.target_chosen.connect(combat_manager.target_signal)
 
 func change_skills():
-	skill_info.skill = current_skill
-	skill_info.update_skill_info()
+	enemy_skill_info.skill = current_skill
+	enemy_skill_info.update_skill_info(countdown)
 	var num_skills = 1
 	if skill2 != null:
 		num_skills = 2
@@ -137,16 +132,16 @@ func change_skills():
 			4:
 				new_skill = skill4
 	current_skill = new_skill
-	skill_info.skill = new_skill
-	skill_info.update_skill_info()
+	enemy_skill_info.skill = current_skill
+	enemy_skill_info.update_skill_info(countdown)
 	skill_used = false
 	set_countdown()
 
 func hide_next_skill_info():
-	show_next_skill.visible = false
+	enemy_skill_info.visible = false
 	
 func show_next_skill_info():
-	show_next_skill.visible = true
+	enemy_skill_info.visible = true
 	
 func attack_animation():
 	animation = true
@@ -185,7 +180,7 @@ func decrease_countdown(num):
 	if countdown <= 0 and skill_used == false and can_attack:
 		skill_used = true
 		combat_manager.enemy_skill_use(self)
-	update_countdown_label()
+	enemy_skill_info.update_skill_info(countdown)
 
 func set_countdown():
 	match current_skill:
@@ -197,19 +192,8 @@ func set_countdown():
 			countdown = skill3_cd
 		skill4:
 			countdown = skill4_cd
-	update_countdown_label()
-
-func update_countdown_label():
-	if can_attack:
-		countdown_label.visible = true
-		show_next_skill.visible = true
-		if countdown > 0:
-			countdown_label.text = "Countdown: " + str(countdown)
-		elif countdown <= 0:
-			countdown_label.text = "Skill Used"
-	else:
-		countdown_label.visible = false
-		show_next_skill.visible = false
+	enemy_skill_info.update_skill_info(countdown)
+	
 
 
 func update_skills():
@@ -217,7 +201,7 @@ func update_skills():
 	update_skill_damage(skill2)
 	update_skill_damage(skill3)
 	update_skill_damage(skill4)
-	skill_info.update_skill_info()
+	enemy_skill_info.update_skill_info()
 
 func update_skill_damage(skill):
 	if skill != null:

@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bgg3ql7uo0cgf"]
+
+[ext_resource type="Script" uid="uid://fn0rqxxsckwv" path="res://enemy_skill_info.gd" id="1_dvqvf"]
+[ext_resource type="Texture2D" uid="uid://botq8vrkbpfdc" path="res://assets/white hourglass.png" id="1_fcqul"]
+[ext_resource type="Texture2D" uid="uid://bxhwb1uh5ngpx" path="res://assets/white target symbol.png" id="2_dvqvf"]
+[ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="3_sn0vg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7lth"]
+bg_color = Color(0.19607843, 0.2, 0.23137255, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_3diyw"]
+font_size = 28
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcqul"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dvqvf"]
+font_size = 20
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[node name="EnemySkillInfo" type="PanelContainer" unique_id=1389801023]
+custom_minimum_size = Vector2(220, 150)
+offset_right = 91.0
+offset_bottom = 74.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k7lth")
+script = ExtResource("1_dvqvf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=626249984]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=354464976]
+layout_mode = 2
+theme_override_constants/separation = -10
+alignment = 1
+
+[node name="hourglass" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=73611829]
+custom_minimum_size = Vector2(60, 45)
+layout_mode = 2
+texture = ExtResource("1_fcqul")
+expand_mode = 2
+
+[node name="Countdown" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1941231520]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_3diyw")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=274791605]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="target symbol" type="TextureRect" parent="VBoxContainer/HBoxContainer2" unique_id=2043304425]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+texture = ExtResource("2_dvqvf")
+expand_mode = 3
+
+[node name="Target" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2" unique_id=1762558671]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/outline_size = 7
+bbcode_enabled = true
+text = "Two Back Enemies"
+fit_content = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=1408505669]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer3" unique_id=854865798]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_fcqul")
+
+[node name="ElementSymbol" type="TextureRect" parent="VBoxContainer/HBoxContainer3" unique_id=233983053]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("3_sn0vg")
+expand_mode = 3
+
+[node name="Action" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=2085008446]
+unique_name_in_owner = true
+layout_mode = 2
+text = "20 Damage"
+label_settings = SubResource("LabelSettings_dvqvf")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
