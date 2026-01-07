@@ -9,7 +9,7 @@ class_name Unit
 @export var damage_reduction : float = 0.0
 
 @export var status : Array = []
-@export var current_element : String = "none"
+@export var current_element : String = "neutral"
 @export var res : UnitRes
 @export var connected = false
 @export var left : Unit
@@ -21,6 +21,13 @@ var run
 
 var position : int
 @export var title : String
+
+var item_handler
+
+var items : Array[Item]
+var weapon : Item
+var armor : Item
+var accessory : Item
 
 # Damage and stat-related variables
 var fire_skill_damage_bonus: float = 0.0
@@ -37,8 +44,8 @@ var grass_skill_damage_mult: float = 1.0
 var earth_skill_damage_mult: float = 1.0
 var all_skill_damage_mult: float = 1.0
 
-var physical_skill_damage_bonus: float = 0.0
-var physical_skill_damage_mult: float = 1.0
+var neutral_skill_damage_bonus: float = 0.0
+var neutral_skill_damage_mult: float = 1.0
 
 var healing_skill_bonus: float = 0.0
 var healing_skill_mult: float = 1.0
@@ -102,7 +109,7 @@ func receive_skill(skill, unit, value_multiplier):
 				self.take_damage(value2, skill.element2, true)
 	else:
 		self.take_damage(value, skill.element, true)
-		if skill.element != "none":
+		if skill.element != "neutral":
 			self.current_element = skill.element
 		if skill.double_hit == true:
 			await get_tree().create_timer(0.1).timeout
@@ -115,12 +122,12 @@ func receive_skill(skill, unit, value_multiplier):
 	# Blast logic
 	if skill.blast == true:
 		if hasLeft():
-			if left.current_element == "none":
+			if left.current_element == "neutral":
 				left.take_damage(skill.blast_damage, skill.element, true)
 			else:
 				await combat_manager.ReactionManager.reaction(left.current_element, skill.element, left, skill.blast_damage, false, unit)
 		if hasRight():
-			if right.current_element == "none":
+			if right.current_element == "neutral":
 				right.take_damage(skill.blast_damage, skill.element, true)
 			else:
 				await combat_manager.ReactionManager.reaction(right.current_element, skill.element, right, skill.blast_damage, false, unit)
@@ -175,7 +182,7 @@ func receive_damage(damage: int, element: String, unit) -> void:
 		await reaction_ended
 	else:
 		self.take_damage(damage, element, true)
-		if element != "none":
+		if element != "neutral":
 			self.current_element = element
 
 	if not copy:
@@ -232,9 +239,9 @@ func take_damage(damage : int, element : String, change_element : bool):
 			"earth":
 				damage_left += run.earth_damage_bonus
 				damage_left *= run.earth_damage_mult
-			"none":
-				damage_left += run.physical_damage_bonus
-				damage_left += run.physical_damage_mult
+			"neutral":
+				damage_left += run.neutral_damage_bonus
+				damage_left += run.neutral_damage_mult
 		damage_left *= run.all_damage_mult
 
 	# calc damage reduction
@@ -535,3 +542,21 @@ func set_all_skill_damage_mult(num):
 	
 func update_skills():
 	pass
+	
+func change_weapon(item):
+	if weapon != null:
+		items.erase(weapon)
+	item_handler.update_weapon_slot(item)
+	weapon = item
+
+func change_armor(item):
+	if armor != null:
+		items.erase(armor)
+	item_handler.update_armor_slot(item)
+	armor = item
+
+func change_accessory(item):
+	if accessory != null:
+		items.erase(accessory)
+	item_handler.update_accessory_slot(item)
+	accessory = item

@@ -9,6 +9,5 @@ damage = 10
 element = "earth"
 damaging = true
 target_type = "single_enemy"
-ultimate = true
 tag1 = "Earth"
 target_tag = "Single Target"

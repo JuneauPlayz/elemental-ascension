@@ -38,7 +38,7 @@ func _on_work_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	for ally in run.allies:
-		ally.take_damage(30,"none",true)
+		ally.take_damage(30,"neutral",true)
 	run.increase_xp(50)
 	next_combat.visible = true
 	event_popup.visible = false

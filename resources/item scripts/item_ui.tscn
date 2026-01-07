@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://olntasmek5qp"]
+
+[ext_resource type="Script" uid="uid://bevgqyg58oqbo" path="res://resources/item scripts/item_ui.gd" id="1_ry5p3"]
+[ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="2_6de18"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6de18"]
+bg_color = Color(0.09550605, 0.09789226, 0.117027394, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="Animation" id="Animation_55se6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Icon:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_75n21"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_8yjh5"]
+resource_name = "flash"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Icon:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [null, SubResource("CanvasItemMaterial_75n21"), null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6de18"]
+_data = {
+&"RESET": SubResource("Animation_55se6"),
+&"flash": SubResource("Animation_8yjh5")
+}
+
+[node name="item_ui" type="Control" unique_id=537574756]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ry5p3")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1633389585]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6de18")
+
+[node name="Icon" type="TextureRect" parent="PanelContainer" unique_id=2077778373]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_6de18")
+expand_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PanelContainer" unique_id=180842174]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_6de18")
+
+[connection signal="mouse_entered" from="PanelContainer/Icon" to="." method="_on_icon_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/Icon" to="." method="_on_icon_mouse_exited"]

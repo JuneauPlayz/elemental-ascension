@@ -13,6 +13,7 @@ script = ExtResource("1_cvsrb")
 
 [node name="Displays" type="HBoxContainer" parent="." unique_id=1488719117]
 unique_name_in_owner = true
+z_index = 5
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0

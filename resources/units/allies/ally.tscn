@@ -5,9 +5,9 @@
 [ext_resource type="Resource" uid="uid://d3hsiqbosdsp6" path="res://resources/Skills/water/Waterfall.tres" id="3_oopdj"]
 [ext_resource type="PackedScene" uid="uid://5spa5amgsxfm" path="res://scenes/reusables/hp_bar.tscn" id="3_urihg"]
 [ext_resource type="Resource" uid="uid://bya4jpai0ygj5" path="res://resources/Skills/earth/Rock Shield.tres" id="4_7yskb"]
-[ext_resource type="PackedScene" uid="uid://kn2ixd2foerq" path="res://core.tscn" id="6_ww2sg"]
+[ext_resource type="Texture2D" uid="uid://bmymytp4nutcm" path="res://assets/kent/fire.webp" id="6_qfy0u"]
+[ext_resource type="PackedScene" uid="uid://cjfgxla5bha23" path="res://resources/item scripts/item_handler.tscn" id="7_qfy0u"]
 [ext_resource type="Script" uid="uid://dgg1h20h2f62p" path="res://scripts/level_up_reward.gd" id="8_4ut3l"]
-[ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="9_6y37o"]
 [ext_resource type="Texture2D" uid="uid://dkf53etd24pjd" path="res://assets/white circle.png" id="10_qfy0u"]
 [ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/keystone_info.tscn" id="10_ttrjn"]
 
@@ -77,6 +77,15 @@ position = Vector2(85, 185)
 script = ExtResource("1_fu3qc")
 skill_1 = ExtResource("3_oopdj")
 skill_2 = ExtResource("4_7yskb")
+health = null
+max_health = null
+shield = null
+damage_reduction = null
+status = null
+current_element = null
+connected = null
+id = null
+title = null
 
 [node name="SpellSelectUi" parent="." unique_id=416312703 instance=ExtResource("2_pcgfv")]
 offset_left = -96.36363
@@ -84,6 +93,7 @@ offset_top = 259.09094
 offset_right = -96.36363
 offset_bottom = 259.09094
 scale = Vector2(0.705, 0.705)
+char = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="HP Bar" parent="." unique_id=152225163 instance=ExtResource("3_urihg")]
@@ -100,10 +110,14 @@ position = Vector2(-27, 42)
 [node name="SpriteSpot" type="Sprite2D" parent="." unique_id=338411399]
 position = Vector2(1.8181801, -27.727234)
 scale = Vector2(0.135, 0.135)
+texture = ExtResource("6_qfy0u")
 
-[node name="Core" parent="." unique_id=1195833404 instance=ExtResource("6_ww2sg")]
-visible = false
-position = Vector2(-151.818, -130.909)
+[node name="ItemHandler" parent="." unique_id=764881385 instance=ExtResource("7_qfy0u")]
+offset_left = -73.0
+offset_top = -260.0
+offset_right = -73.0
+offset_bottom = -260.0
+scale = Vector2(0.75, 0.75)
 
 [node name="LevelUpReward" type="Control" parent="." unique_id=298648237]
 visible = false
@@ -173,32 +187,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ni84r")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_667es")
 text = "Option 2
 "
-
-[node name="SkillInfo" parent="LevelUpReward" unique_id=1393946105 instance=ExtResource("9_6y37o")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -78.7881
-offset_top = 185.455
-offset_right = 182.212
-offset_bottom = 208.455
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="SkillInfo2" parent="LevelUpReward" unique_id=583268351 instance=ExtResource("9_6y37o")]
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -80.0002
-offset_top = 267.879
-offset_right = 181.0
-offset_bottom = 290.879
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="Avaliable" type="Label" parent="LevelUpReward" unique_id=2014964552]
 layout_mode = 0

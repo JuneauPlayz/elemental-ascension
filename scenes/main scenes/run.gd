@@ -29,7 +29,9 @@ const BOSS_REWARD = preload("res://boss_reward.tscn")
 @onready var UIManager: Node = $UIManager
 @onready var SceneManager: Node = $SceneManager
 @onready var SkillsManager: Node = $SkillsManager
+@onready var current_scene_holder: Node = $CurrentScene
 
+var current_scene
 var combat_manager
 var combat = false
 var combat_scene
@@ -84,6 +86,10 @@ var boss_level = 0
 
 var keystone_handler
 var keystones: Array = []
+
+var items: Array = []
+var obtainable_items = []
+
 var occupied_element_slots: Array[String] = []
 var obtainable_keystones = []
 var skills = []
@@ -105,8 +111,8 @@ var grass_skill_damage_bonus = 0
 var grass_skill_damage_mult = 1
 var earth_skill_damage_bonus = 0
 var earth_skill_damage_mult = 1
-var physical_skill_damage_bonus = 0
-var physical_skill_damage_mult = 1
+var neutral_skill_damage_bonus = 0
+var neutral_skill_damage_mult = 1
 var healing_skill_bonus = 0
 var healing_skill_mult = 1
 var shielding_skill_bonus = 0
@@ -124,8 +130,8 @@ var earth_damage_bonus = 0
 var earth_damage_mult = 1
 var grass_damage_bonus = 0
 var grass_damage_mult = 1
-var physical_damage_bonus = 0
-var physical_damage_mult = 1
+var neutral_damage_bonus = 0
+var neutral_damage_mult = 1
 var all_damage_bonus = 0
 var all_damage_mult = 1
 
@@ -373,6 +379,15 @@ func special_scene_ended():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for child in ally_1_spot.get_children():
+		child.queue_free()
+	for child in ally_2_spot.get_children():
+		child.queue_free()
+	for child in ally_3_spot.get_children():
+		child.queue_free()
+	for child in ally_4_spot.get_children():
+		child.queue_free()
+
 	if GC.ally1 != null:
 		var ally1s = GC.ALLY.instantiate()
 		ally1 = ally1s
@@ -433,6 +448,14 @@ func _ready() -> void:
 	for filename in keystones:
 		var keystone = load(filename)
 		obtainable_keystones.append(keystone)
+		
+	dir = DirAccess.open("res://resources/items")
+	var items = []
+	get_all_files_from_directory("res://resources/items", "", items)
+	for filename in items:
+		var item = load(filename)
+		obtainable_items.append(item)
+	
 	var element = ""
 	
 	for i in range(1,6):
@@ -448,7 +471,7 @@ func _ready() -> void:
 			5:
 				element = "earth"
 			6:
-				element = "physical"
+				element = "neutral"
 		dir = DirAccess.open("res://resources/Skills/" + element)
 		var skills = []
 		get_all_files_from_directory("res://resources/Skills/" + element, "", skills)
@@ -477,8 +500,7 @@ func get_all_files_from_directory(path : String, file_ext:= "", files := []):
 	return files
 
 func load_combat(enemy1, enemy2, enemy3, enemy4):
-	combat_scene = COMBAT.instantiate()
-	self.add_child(combat_scene)
+	combat_scene = new_scene(COMBAT)
 	combat_manager = combat_scene.get_child(0)
 	combat_manager.xp_reward = 50
 	combat_manager.ally1 = ally1
@@ -497,7 +519,7 @@ func get_combat_manager():
 		return combat_manager
 
 func load_shop(type):
-	shop_scene = SHOP.instantiate()
+	shop_scene = new_scene(SHOP)
 	if type != "none":
 		match type:
 			"fire":
@@ -513,26 +535,21 @@ func load_shop(type):
 				
 	for ally in allies:
 		ally._ready()
-	self.add_child(shop_scene) 
 	
 func load_level_up():
-	level_up_scene = LEVEL_UP.instantiate()
-	self.add_child(level_up_scene)
+	level_up_scene = new_scene(LEVEL_UP)
 
 func load_event(event):
-	event_scene = event.instantiate()
-	self.add_child(event_scene)
+	event_scene = new_scene(event)
 
 func load_choose_fight(level, fight_type):
-	choose_fight_scene = NEXT_FIGHT_CHOICE.instantiate()
+	choose_fight_scene = new_scene(NEXT_FIGHT_CHOICE)
 	choose_fight_scene.level = level
 	choose_fight_scene.type = fight_type
-	self.add_child(choose_fight_scene)
 
 func load_choose_reward(reward_type):
-	choose_reward_scene = BOSS_REWARD.instantiate()
+	choose_reward_scene = new_scene(BOSS_REWARD)
 	choose_reward_scene.reward_type = reward_type
-	self.add_child(choose_reward_scene)
 	
 func add_gold(count):
 	gold += ((count + bonus_gold) * gold_mult)
@@ -617,7 +634,7 @@ func loading_screen(time):
 func increase_xp(count):
 	xp += ((count + xp_bonus) * xp_mult)
 	UIManager.set_xp(xp, current_xp_goal)
-	DamageNumbers.display_number_plus(count, xp_gain_position.global_position, "none", " XP!")
+	DamageNumbers.display_number_plus(count, xp_gain_position.global_position, "neutral", " XP!")
 
 func move_allies(x,y):
 	if ally1 != null:
@@ -722,8 +739,8 @@ func reset() -> void:
 		earth_damage_mult = 1
 		grass_damage_bonus = 0
 		grass_damage_mult = 1
-		physical_damage_bonus = 0
-		physical_damage_mult = 1
+		neutral_damage_bonus = 0
+		neutral_damage_mult = 1
 		all_damage_bonus = 0
 		all_damage_mult = 1
 
@@ -883,8 +900,8 @@ func update_damage(skill):
 					skill.damage = (skill.starting_damage + grass_skill_damage_bonus + all_skill_damage_bonus) * grass_skill_damage_mult * all_skill_damage_mult
 				"earth":
 					skill.damage = (skill.starting_damage + earth_skill_damage_bonus + all_skill_damage_bonus) * earth_skill_damage_mult * all_skill_damage_mult
-				"none":
-					skill.damage = (skill.starting_damage + physical_skill_damage_bonus + all_skill_damage_bonus) * physical_skill_damage_mult * all_skill_damage_mult
+				"neutral":
+					skill.damage = (skill.starting_damage + neutral_skill_damage_bonus + all_skill_damage_bonus) * neutral_skill_damage_mult * all_skill_damage_mult
 		elif skill.healing:
 			skill.damage = (skill.starting_damage + healing_skill_bonus) * healing_skill_mult
 		elif skill.shielding:
@@ -920,7 +937,16 @@ func hide_xp():
 func show_xp():
 	xp_bar.visible = true
 
+func new_scene(scene):
+	if current_scene != null:
+		current_scene.queue_free()
+	for child in current_scene_holder.get_children():
+		child.queue_free()
+	var new_scene = scene.instantiate()
+	current_scene_holder.add_child(new_scene)
+	return new_scene
 
 func _on_ui_manager_reaction_guide_button_pressed() -> void:
 	if combat_manager != null:
 		combat_manager.reaction_guide_opened()
+		

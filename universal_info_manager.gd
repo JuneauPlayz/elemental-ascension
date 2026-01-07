@@ -6,6 +6,7 @@ var main_display
 
 const UNIVERSAL_SKILL_INFO = preload("uid://ddskj68e5o6q7")
 const KEYSTONE_INFO = preload("uid://ppg1wk60cwxc")
+const ITEM_INFO = preload("uid://cnrypk36m6tp7")
 
 func new_display(display):
 	for child in displays.get_children():
@@ -19,6 +20,10 @@ func new_display(display):
 		main_display = KEYSTONE_INFO.instantiate()
 		displays.add_child(main_display)
 		main_display.update_keystone_info(display)
+	elif display is Item:
+		main_display = ITEM_INFO.instantiate()
+		displays.add_child(main_display)
+		main_display.update_item_info(display)
 
 func hide_display():
 	for child in displays.get_children():

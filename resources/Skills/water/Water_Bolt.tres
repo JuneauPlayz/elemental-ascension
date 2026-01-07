@@ -10,6 +10,5 @@ element = "water"
 damaging = true
 target_type = "single_enemy"
 purchaseable = false
-ultimate = true
 tag1 = "Water"
 target_tag = "Single Target"

@@ -5,7 +5,9 @@
 [ext_resource type="FontFile" uid="uid://mmnf6x0iyi0y" path="res://assets/Gravity-Book.otf" id="3_cmui4"]
 [ext_resource type="PackedScene" uid="uid://dr6jeis04n42b" path="res://scenes/keystone handler/keystone_handler.tscn" id="3_n3xuk"]
 [ext_resource type="Script" uid="uid://d0udq0kgc2102" path="res://scripts/combat_manager.gd" id="4_ucgqt"]
+[ext_resource type="PackedScene" uid="uid://didsupfyw66ha" path="res://resources/units/enemies/enemy.tscn" id="6_28jgk"]
 [ext_resource type="PackedScene" uid="uid://rtk527cyr7kb" path="res://scenes/reusables/combat_currency.tscn" id="6_b6b3n"]
+[ext_resource type="Script" uid="uid://bv63lmsjf16qm" path="res://scenes/main scenes/trigger_manager.gd" id="6_mec8r"]
 [ext_resource type="PackedScene" uid="uid://cb1kmohoelulf" path="res://scenes/reusables/enemy_combat_currency.tscn" id="6_uo10a"]
 [ext_resource type="PackedScene" uid="uid://ydkggenx6prk" path="res://scenes/reusables/result_screen.tscn" id="8_xw3f4"]
 [ext_resource type="Texture2D" uid="uid://dnp2y4b3r2d8a" path="res://assets/chloe/chloe_bg.png" id="9_0uf4x"]
@@ -191,27 +193,38 @@ offset_right = 302.0
 offset_bottom = -717.0
 scale = Vector2(0.7, 0.7)
 
+[node name="TriggerManager" type="Node" parent="." unique_id=575156603]
+script = ExtResource("6_mec8r")
+
 [node name="Enemy 1 Spot" type="Node2D" parent="." unique_id=1737601659]
 unique_name_in_owner = true
-position = Vector2(1020, 242)
+position = Vector2(997, 297)
+
+[node name="Enemy" parent="Enemy 1 Spot" unique_id=1001236855 instance=ExtResource("6_28jgk")]
 
 [node name="Enemy 2 Spot" type="Node2D" parent="." unique_id=1451768666]
 unique_name_in_owner = true
-position = Vector2(1243, 242)
+position = Vector2(1220, 297)
+
+[node name="Enemy" parent="Enemy 2 Spot" unique_id=478311457 instance=ExtResource("6_28jgk")]
 
 [node name="Enemy 3 Spot" type="Node2D" parent="." unique_id=168345751]
 unique_name_in_owner = true
-position = Vector2(1468, 242)
+position = Vector2(1445, 297)
+
+[node name="Enemy" parent="Enemy 3 Spot" unique_id=1636989067 instance=ExtResource("6_28jgk")]
 
 [node name="Enemy 4 Spot" type="Node2D" parent="." unique_id=297108078]
 unique_name_in_owner = true
-position = Vector2(1691, 242)
+position = Vector2(1668, 297)
+
+[node name="Enemy" parent="Enemy 4 Spot" unique_id=174636503 instance=ExtResource("6_28jgk")]
 
 [node name="EndTurn" type="Button" parent="." unique_id=345906638]
-offset_left = 1521.0
-offset_top = 800.0
-offset_right = 1681.0
-offset_bottom = 837.0
+offset_left = 1524.0
+offset_top = 884.0
+offset_right = 1877.0
+offset_bottom = 961.0
 theme_override_font_sizes/font_size = 56
 text = "End Turn   (A)"
 
@@ -1530,6 +1543,11 @@ expand_mode = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CharacterUltAnimation" unique_id=1900951727]
 libraries/ = SubResource("AnimationLibrary_qrs2m")
 
+[connection signal="ally_earth_skill_used" from="CombatManager" to="TriggerManager" method="_on_combat_manager_ally_earth_skill_used"]
+[connection signal="ally_fire_skill_used" from="CombatManager" to="TriggerManager" method="_on_combat_manager_ally_fire_skill_used"]
+[connection signal="ally_grass_skill_used" from="CombatManager" to="TriggerManager" method="_on_combat_manager_ally_grass_skill_used"]
+[connection signal="ally_lightning_skill_used" from="CombatManager" to="TriggerManager" method="_on_combat_manager_ally_lightning_skill_used"]
+[connection signal="ally_water_skill_used" from="CombatManager" to="TriggerManager" method="_on_combat_manager_ally_water_skill_used"]
 [connection signal="pressed" from="EndTurn" to="CombatManager" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup1" method="_on_button_pressed"]

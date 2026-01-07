@@ -23,7 +23,7 @@ var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DAR
 
 func _ready():
 	update_statuses([])
-	update_element("none")
+	update_element("neutral")
 
 func set_hp(newhp):
 	hp = newhp
@@ -61,7 +61,7 @@ func update_element(element):
 		"":
 			current_element.text = " Element : None"
 			element_symbol.texture = WHITE_CIRCLE
-		"none":
+		"neutral":
 			current_element.text = " Element : "
 			element_symbol.texture = WHITE_CIRCLE
 		"fire":

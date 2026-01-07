@@ -122,7 +122,7 @@ func _ready() -> void:
 			5:
 				element = "earth"
 			6:
-				element = "physical"
+				element = "neutral"
 			7:
 				element = "boss_skills"
 		dir = DirAccess.open("res://resources/Skills/" + element)
@@ -219,4 +219,4 @@ func _on_add_keystone_pressed() -> void:
 		keystones.append(keystones_dict[keystone_name])
 	keystone_name = ""
 	keystones_p.select(0)
-	DamageNumbers.display_text(keystones_p.global_position + Vector2(350,150), "none", "Added!", 32)
+	DamageNumbers.display_text(keystones_p.global_position + Vector2(350,150), "neutral", "Added!", 32)

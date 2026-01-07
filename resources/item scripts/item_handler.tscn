@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://cjfgxla5bha23"]
+
+[ext_resource type="PackedScene" uid="uid://olntasmek5qp" path="res://resources/item scripts/item_ui.tscn" id="1_fcvjx"]
+[ext_resource type="Script" uid="uid://fq4vos71lrvu" path="res://resources/item scripts/item_handler.gd" id="1_odkxy"]
+[ext_resource type="Texture2D" uid="uid://cad3l42gc2231" path="res://assets/weaponsymbol.png" id="3_apvcv"]
+[ext_resource type="Texture2D" uid="uid://bs43rhudn3hxr" path="res://assets/armorsymbol.png" id="4_75awh"]
+[ext_resource type="Texture2D" uid="uid://ivfeoeveb1pn" path="res://assets/accessorysymbol.png" id="5_pcasr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcvjx"]
+bg_color = Color(0.19607843, 0.2, 0.23137255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odkxy"]
+bg_color = Color(0.09320182, 0.09985284, 0.11774104, 0.43300003)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dducn"]
+bg_color = Color(0.09411765, 0.09803922, 0.11764706, 0.43137255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yh8tv"]
+bg_color = Color(0.09411765, 0.09803922, 0.11764706, 0.43137255)
+
+[node name="ItemHandler" type="Control" unique_id=764881385]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_odkxy")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1825110204]
+custom_minimum_size = Vector2(204, 84)
+layout_mode = 0
+offset_right = 164.0
+offset_bottom = 55.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_fcvjx")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=54333934]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Items" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1724677809]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="WeaponSlot" type="PanelContainer" parent="PanelContainer/MarginContainer/Items" unique_id=228855375]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_odkxy")
+
+[node name="WeaponUI" parent="PanelContainer/MarginContainer/Items/WeaponSlot" unique_id=537574756 instance=ExtResource("1_fcvjx")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="WeaponSymbol" type="TextureRect" parent="PanelContainer/MarginContainer/Items/WeaponSlot" unique_id=1862033994]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_apvcv")
+expand_mode = 3
+
+[node name="ArmorSlot" type="PanelContainer" parent="PanelContainer/MarginContainer/Items" unique_id=173458431]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_dducn")
+
+[node name="ArmorUI" parent="PanelContainer/MarginContainer/Items/ArmorSlot" unique_id=663929089 instance=ExtResource("1_fcvjx")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ArmorSymbol" type="TextureRect" parent="PanelContainer/MarginContainer/Items/ArmorSlot" unique_id=242738748]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_75awh")
+expand_mode = 3
+
+[node name="AccessorySlot" type="PanelContainer" parent="PanelContainer/MarginContainer/Items" unique_id=1006968768]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_yh8tv")
+
+[node name="AccessoryUI" parent="PanelContainer/MarginContainer/Items/AccessorySlot" unique_id=1193884941 instance=ExtResource("1_fcvjx")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="AccessorySymbol" type="TextureRect" parent="PanelContainer/MarginContainer/Items/AccessorySlot" unique_id=1276984123]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_pcasr")
+expand_mode = 3

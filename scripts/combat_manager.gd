@@ -105,6 +105,12 @@ signal hit
 signal signal_received
 signal reaction_finished
 
+signal ally_fire_skill_used
+signal ally_water_skill_used
+signal ally_lightning_skill_used
+signal ally_grass_skill_used
+signal ally_earth_skill_used
+
 var run
 
 @onready var ReactionManager: Node = $"../ReactionManager"
@@ -132,7 +138,6 @@ func combat_ready():
 		allies.append(ally4)
 	for i in range(len(allies)):
 		allies[i].position = i+1
-		allies[i].update_core()
 	# setting left and right for units
 	set_unit_pos()
 	# keystone stuff
@@ -140,6 +145,7 @@ func combat_ready():
 	combat_currency.update()
 	run.hide_gold()
 	run.hide_xp()
+	load_triggers()
 	start_combat()
 	
 
@@ -155,9 +161,9 @@ func start_combat():
 		popup.visible = false
 	for enemy in enemies:
 		enemy.change_skills()
-		enemy.change_element("none")
+		enemy.change_element("neutral")
 	for ally in allies:
-		ally.change_element("none")
+		ally.change_element("neutral")
 	while (!combat_finished):
 		start_ally_turn()
 		if tutorial == true:
@@ -1122,7 +1128,7 @@ func discharge(unit, caster):
 
 	if run.discharge_destruction:
 		for enemy in enemies:
-			enemy.take_damage(5 * run.discharge_mult, "none", false)
+			enemy.take_damage(5 * run.discharge_mult, "neutral", false)
 
 
 func sow(unit, caster):

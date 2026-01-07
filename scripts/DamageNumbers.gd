@@ -1,5 +1,5 @@
 extends Node
-var element_dict = {"none": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.YELLOW, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
+var element_dict = {"neutral": Color.WHITE, "fire": Color.CORAL, "water": Color.DARK_CYAN, "lightning": Color.YELLOW, "earth": Color.SADDLE_BROWN, "grass": Color.WEB_GREEN}
 func display_number(value: int, position: Vector2, element : String, reaction : String):
 	var rng = RandomNumberGenerator.new()
 	var random_num = Vector2(rng.randf_range(-25,25), rng.randf_range(-25,25))

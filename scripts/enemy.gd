@@ -44,6 +44,8 @@ func _ready() -> void:
 	hp_bar = $"HP Bar"
 	targeting_area = $TargetingArea
 	self.died.connect(combat_manager.reaction_signal)
+	if res == null:
+		return
 	health = res.starting_health
 	max_health = res.starting_health
 	shield = 0
@@ -218,8 +220,8 @@ func update_skill_damage(skill):
 					skill.damage = (skill.starting_damage + grass_skill_damage_bonus + all_skill_damage_bonus) * grass_skill_damage_mult * all_skill_damage_mult
 				"earth":
 					skill.damage = (skill.starting_damage + earth_skill_damage_bonus + all_skill_damage_bonus) * earth_skill_damage_mult * all_skill_damage_mult
-				"none":
-					skill.damage = (skill.starting_damage + physical_skill_damage_bonus + all_skill_damage_bonus) * physical_skill_damage_mult * all_skill_damage_mult
+				"neutral":
+					skill.damage = (skill.starting_damage + neutral_skill_damage_bonus + all_skill_damage_bonus) * neutral_skill_damage_mult * all_skill_damage_mult
 		elif skill.healing:
 			skill.damage = (skill.starting_damage + healing_skill_bonus) * healing_skill_mult
 		elif skill.shielding:

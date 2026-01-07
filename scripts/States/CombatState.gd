@@ -9,9 +9,9 @@ func Enter(rarity):
 	
 func Exit():
 	for ally in run.allies:
-		ally.receive_healing(1000,"none",true)
+		ally.receive_healing(1000,"neutral",true)
 		ally.visible = true
-		ally.current_element = "none"
+		ally.current_element = "neutral"
 		ally.hp_bar.update_element(ally.current_element)
 		ally.status = []
 		ally.hp_bar.update_statuses(ally.status)

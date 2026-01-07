@@ -15,7 +15,7 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0, 0, 0, 1)
+border_color = Color(0.7784456, 0.7784455, 0.77844566, 1)
 corner_radius_top_left = 7
 corner_radius_top_right = 7
 corner_radius_bottom_right = 7
@@ -34,7 +34,6 @@ outline_color = Color(0, 0, 0, 1)
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 197.59999
 offset_bottom = 162.0
-scale = Vector2(1.2, 1.2)
 mouse_filter = 2
 script = ExtResource("1_yn667")
 

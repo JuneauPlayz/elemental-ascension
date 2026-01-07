@@ -71,8 +71,8 @@ extends Control
 @onready var healing_mult: RichTextLabel = $PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2/HealingMult
 @onready var shielding_bonus: RichTextLabel = $PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2/ShieldingBonus
 @onready var shielding_mult: RichTextLabel = $PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2/ShieldingMult
-@onready var physical_damage_bonus: RichTextLabel = $PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2/PhysicalDamageBonus
-@onready var physical_damage_mult: RichTextLabel = $PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2/PhysicalDamageMult
+@onready var neutral_damage_bonus: RichTextLabel = $PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2/NeutralDamageBonus
+@onready var neutral_damage_mult: RichTextLabel = $PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2/NeutralDamageMult
 @onready var all_damage_bonus: RichTextLabel = $PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2/AllDamageBonus
 @onready var all_damage_mult: RichTextLabel = $PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2/AllDamageMult
 @onready var bonus_gold: RichTextLabel = $PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2/BonusGold
@@ -287,9 +287,9 @@ func update_mult_labels() -> void:
 	shielding_bonus_2.text = shielding_bonus.text
 	shielding_mult_2.text = shielding_mult.text
 
-	# Physical Damage
-	physical_damage_bonus.text = " Physical Damage Bonus  :  " + str(run.physical_damage_bonus)
-	physical_damage_mult.text = " Physical Damage Multiplier  :  " + str(run.physical_damage_mult)
+	# neutral Damage
+	neutral_damage_bonus.text = " neutral Damage Bonus  :  " + str(run.neutral_damage_bonus)
+	neutral_damage_mult.text = " neutral Damage Multiplier  :  " + str(run.neutral_damage_mult)
 
 	# All Damage
 	all_damage_bonus.text = " All Damage Bonus  :  " + str(run.all_damage_bonus)

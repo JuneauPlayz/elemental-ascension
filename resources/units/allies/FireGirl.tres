@@ -3,6 +3,7 @@
 [ext_resource type="Resource" uid="uid://be75ghoc14028" path="res://resources/core/FireStart.tres" id="1_2dwqq"]
 [ext_resource type="Script" uid="uid://c8vhu7w0epnis" path="res://scripts/AllyRes.gd" id="3_gxy4f"]
 [ext_resource type="Resource" uid="uid://b70k44ljti3df" path="res://resources/Skills/fire/Wildfire.tres" id="6_6p7mw"]
+[ext_resource type="Resource" uid="uid://bbrexjlrmrl8g" path="res://resources/items/Flameblade.tres" id="6_10ngb"]
 [ext_resource type="Resource" uid="uid://c3yogn8m318q2" path="res://resources/Skills/fire/Fire_Bolt.tres" id="7_2dwqq"]
 [ext_resource type="Resource" uid="uid://fa2xrxusorfa" path="res://resources/Skills/fire/Blast Burn.tres" id="7_10ngb"]
 [ext_resource type="Resource" uid="uid://drjm7bxw8bu8w" path="res://resources/Skills/fire/Fire Snipe.tres" id="8_ycwrn"]
@@ -10,6 +11,7 @@
 
 [resource]
 script = ExtResource("3_gxy4f")
+starting_item = ExtResource("6_10ngb")
 ult_1 = ExtResource("6_6p7mw")
 ult_2 = ExtResource("7_10ngb")
 name = "Fire girl"

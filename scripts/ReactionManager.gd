@@ -36,13 +36,15 @@ var active_reactions = 0
 func _ready():
 	await get_tree().create_timer(0.15).timeout
 	run = get_tree().get_first_node_in_group("run")
+	if run.combat_manager == null:
+		return
 	self.reaction_finished.connect(run.combat_manager.reaction_signal)
 
 func reaction(elem1, elem2, unit, value, friendly, caster):
 	if unit == null:
 		reaction_finished_signal()
 		return false
-	if elem1 == "none" or elem2 == "none" or elem1 == elem2:
+	if elem1 == "neutral" or elem2 == "neutral" or elem1 == elem2:
 		reaction_finished_signal()
 		return false
 
@@ -99,7 +101,7 @@ func vaporize(elem1,elem2,unit,value,friendly,caster):
 		res_value = roundi(value * run.vaporize_mult)
 	elif caster is Enemy:
 		res_value = roundi(value * vaporize_mult)
-	unit.current_element = "none"
+	unit.current_element = "neutral"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Vaporize!", 38)
 	if not friendly:
 		unit.take_damage(res_value, elem2, false)
@@ -115,17 +117,17 @@ func detonate(elem1,elem2,unit,value,friendly,caster):
 		res_value = roundi(value * detonate_main_mult)
 		side_value = roundi(value * detonate_side_mult)
 
-	unit.current_element = "none"
+	unit.current_element = "neutral"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Detonate!", 38)
 
 	if unit.hasLeft():
-		if unit.left.current_element == "none":
+		if unit.left.current_element == "neutral":
 			unit.left.take_damage(side_value, elem2, true)
 		else:
 			await reaction(unit.left.current_element, elem2, unit.left, side_value, false, caster)
 
 	if unit.hasRight():
-		if unit.right.current_element == "none":
+		if unit.right.current_element == "neutral":
 			unit.right.take_damage(side_value, elem2, true)
 		else:
 			await reaction(unit.right.current_element, elem2, unit.right, side_value, false, caster)
@@ -140,7 +142,7 @@ func erupt(elem1,elem2,unit,value,friendly,caster):
 		res_value = roundi(value * run.erupt_mult)
 	elif caster is Enemy:
 		res_value = roundi(value * erupt_mult)
-	unit.current_element = "none"
+	unit.current_element = "neutral"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Erupted!", 38)
 	if not friendly:
 		unit.take_damage(res_value, elem2, false)
@@ -153,7 +155,7 @@ func burn(elem1,elem2,unit,value,friendly,caster):
 	new_burn.turns_remaining = run.burn_length
 	if unit is Enemy:
 		new_burn.damage = run.burn_damage
-	unit.current_element = "none"
+	unit.current_element = "neutral"
 	unit.apply_status(new_burn)
 	unit.hp_bar.update_statuses(unit.status)
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Burn!", 38)
@@ -170,7 +172,7 @@ func shock(elem1,elem2,unit,value,friendly,caster):
 		res_value = roundi(value * run.shock_mult)
 	elif caster is Enemy:
 		res_value = roundi(value * shock_mult)
-	unit.current_element = "none"
+	unit.current_element = "neutral"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Shock!", 38)
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)
@@ -189,7 +191,7 @@ func bloom(elem1,elem2,unit,value,friendly,caster):
 	var bloom_stack = BLOOM.duplicate()
 	unit.apply_status(bloom_stack)
 	unit.hp_bar.update_statuses(unit.status)
-	unit.current_element = "none"
+	unit.current_element = "neutral"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Bloom!", 38)
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)
@@ -203,7 +205,7 @@ func nitro(elem1,elem2,unit,value,friendly,caster):
 	unit.apply_status(nitro_effect)
 	unit.check_statuses()
 	unit.hp_bar.update_statuses(unit.status)
-	unit.current_element = "none"
+	unit.current_element = "neutral"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Nitro!", 38)
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)
@@ -221,19 +223,19 @@ func discharge(elem1,elem2,unit,value,friendly,caster):
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Discharge!", 38)
 	if not friendly:
 		unit.take_damage(split, elem2, false)
-		unit.current_element = "none"
+		unit.current_element = "neutral"
 	else:
 		unit.receive_shielding(roundi(value), elem2, false)
 	for enemy in combat.enemies:
 		if enemy != null and enemy != unit:
-			enemy.take_damage(split, "none", true)
+			enemy.take_damage(split, "neutral", true)
 	await get_tree().process_frame
 
 func sow(elem1,elem2,unit,value,friendly,caster):
 	var sow_effect = SOW.duplicate()
 	unit.apply_status(sow_effect)
 	unit.hp_bar.update_statuses(unit.status)
-	unit.current_element = "none"
+	unit.current_element = "neutral"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Sow!", 38)
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)
@@ -248,7 +250,7 @@ func muck(elem1,elem2,unit,value,friendly,caster):
 	var muck_effect = MUCK.duplicate()
 	unit.apply_status(muck_effect)
 	unit.hp_bar.update_statuses(unit.status)
-	unit.current_element = "none"
+	unit.current_element = "neutral"
 	DamageNumbers.display_text(unit.damage_number_origin.global_position, elem2, " Muck!", 38)
 	if not friendly:
 		unit.take_damage(roundi(value), elem2, false)

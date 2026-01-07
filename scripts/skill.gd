@@ -3,7 +3,7 @@ class_name Skill
 @export var name: String
 @export_category("Necessary")
 @export var damage : int = 5
-@export_enum("none", "water", "fire", "lightning", "earth", "grass") var element : String
+@export_enum("neutral", "water", "fire", "lightning", "earth", "grass") var element : String
 @export var damaging = false
 @export var healing = false
 @export var shielding = false
@@ -28,7 +28,7 @@ class_name Skill
 @export_category("Double Hit")
 @export var double_hit = false
 @export var damage2 : int = 0
-@export_enum("none", "water", "fire", "lightning", "earth", "grass") var element2 : String
+@export_enum("neutral", "water", "fire", "lightning", "earth", "grass") var element2 : String
 
 @export_category("Blast")
 @export var blast = false

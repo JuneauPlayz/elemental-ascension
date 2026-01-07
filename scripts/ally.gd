@@ -26,8 +26,7 @@ var ally_num : int
 @onready var level_up_reward: Control = $LevelUpReward
 @onready var swap_tutorial: Label = $LevelUpReward/SwapTutorial
 @onready var confirm_swap: Button = $LevelUpReward/ConfirmSwap
-
-@onready var core: Node2D = $Core
+@onready var item_handler: Control = $ItemHandler
 
 var combat = true
 
@@ -64,7 +63,7 @@ func _ready() -> void:
 		spell_select_ui.new_select.connect(run.combat_manager._on_spell_select_ui_new_select)
 		self.target_chosen.connect(run.combat_manager.target_signal)
 		hp_bar.update_statuses(status)
-	current_element = "none"
+	current_element = "neutral"
 	hp_bar = $"HP Bar"
 	targeting_area = $TargetingArea
 	if run_starting:
@@ -83,6 +82,15 @@ func _ready() -> void:
 		if skill_4 != null:
 			run.add_skill(skill_4)
 		title = res.name
+		
+		if res.starting_item != null:
+			match res.starting_item.type:
+				"Weapon":
+					change_weapon(res.starting_item)
+				"Armor":
+					change_armor(res.starting_item)
+				"Accessory":
+					change_accessory(res.starting_item)
 		ult_choice_1 = res.ult_1
 		if ult_choice_1 != null:
 			ult_choice_1.update()
@@ -106,12 +114,11 @@ func _ready() -> void:
 		keystone_choice_4 = res.keystone_4
 		if keystone_choice_4 != null:
 			keystone_choice_4.update()
+		sprite_spot.texture = null
 		sprite_spot.texture = load(res.sprite.resource_path)
 		sprite_spot.scale = Vector2(res.sprite_scale,res.sprite_scale)
 		run_starting = false
 		update_skills()
-		core.change_main_stat(res.core_main_stat)
-		core.add_substat(res.core_main_stat)
 	else:
 		health = health
 		max_health = max_health
@@ -279,86 +286,8 @@ func attack_animation():
 	tween.tween_property(
 		sprite_spot, "position:x", sprite_spot.position.x, 0.05
 	).set_ease(Tween.EASE_OUT).set_delay(0.25)
-	
-func update_core():
-	return
-	var main_stat = core.main_stat
-	var name = main_stat.element + "_" + main_stat.type
-	
-	# Temporary variables to accumulate totals
-	var total_fire_skill_damage_bonus = 0.0
-	var total_water_skill_damage_bonus = 0.0
-	var total_lightning_skill_damage_bonus = 0.0
-	var total_grass_skill_damage_bonus = 0.0
-	var total_earth_skill_damage_bonus = 0.0
-	
-	var total_fire_token_bonus = 0.0
-	var total_water_token_bonus = 0.0
-	var total_lightning_token_bonus = 0.0
-	var total_grass_token_bonus = 0.0
-	var total_earth_token_bonus = 0.0
-	
-	# Add main_stat amount to the corresponding total
-	match name:
-		"fire_skill_damage_bonus":
-			total_fire_skill_damage_bonus += main_stat.amount
-		"water_skill_damage_bonus":
-			total_water_skill_damage_bonus += main_stat.amount
-		"lightning_skill_damage_bonus":
-			total_lightning_skill_damage_bonus += main_stat.amount
-		"grass_skill_damage_bonus":
-			total_grass_skill_damage_bonus += main_stat.amount
-		"earth_skill_damage_bonus":
-			total_earth_skill_damage_bonus += main_stat.amount
-		"fire_token_bonus":
-			total_fire_token_bonus += main_stat.amount
-		"water_token_bonus":
-			total_water_token_bonus += main_stat.amount
-		"lightning_token_bonus":
-			total_lightning_token_bonus += main_stat.amount
-		"grass_token_bonus":
-			total_grass_token_bonus += main_stat.amount
-		"earth_token_bonus":
-			total_earth_token_bonus += main_stat.amount
-	
-	# Add substat amounts to the corresponding totals
-	for stat in core.substats:
-		var substat_name = stat.element + "_" + stat.type
-		match substat_name:
-			"fire_skill_damage_bonus":
-				total_fire_skill_damage_bonus += stat.amount
-			"water_skill_damage_bonus":
-				total_water_skill_damage_bonus += stat.amount
-			"lightning_skill_damage_bonus":
-				total_lightning_skill_damage_bonus += stat.amount
-			"grass_skill_damage_bonus":
-				total_grass_skill_damage_bonus += stat.amount
-			"earth_skill_damage_bonus":
-				total_earth_skill_damage_bonus += stat.amount
-			"fire_token_bonus":
-				total_fire_token_bonus += stat.amount
-			"water_token_bonus":
-				total_water_token_bonus += stat.amount
-			"lightning_token_bonus":
-				total_lightning_token_bonus += stat.amount
-			"grass_token_bonus":
-				total_grass_token_bonus += stat.amount
-			"earth_token_bonus":
-				total_earth_token_bonus += stat.amount
-	
-	# Set the final bonus variables using run.get(name)
-	fire_skill_damage_bonus = run.get("fire_skill_damage_bonus") + total_fire_skill_damage_bonus
-	water_skill_damage_bonus = run.get("water_skill_damage_bonus") + total_water_skill_damage_bonus
-	lightning_skill_damage_bonus = run.get("lightning_skill_damage_bonus") + total_lightning_skill_damage_bonus
-	grass_skill_damage_bonus = run.get("grass_skill_damage_bonus") + total_grass_skill_damage_bonus
-	earth_skill_damage_bonus = run.get("earth_skill_damage_bonus") + total_earth_skill_damage_bonus
-	
-	fire_token_bonus = run.get("fire_token_bonus") + total_fire_token_bonus
-	water_token_bonus = run.get("water_token_bonus") + total_water_token_bonus
-	lightning_token_bonus = run.get("lightning_token_bonus") + total_lightning_token_bonus
-	grass_token_bonus = run.get("grass_token_bonus") + total_grass_token_bonus
-	earth_token_bonus = run.get("earth_token_bonus") + total_earth_token_bonus
-				
+
+
 func update_skill_damage(skill):
 	if skill != null:
 		skill.update()
@@ -374,8 +303,8 @@ func update_skill_damage(skill):
 					skill.damage = (skill.starting_damage + grass_skill_damage_bonus + all_skill_damage_bonus) * grass_skill_damage_mult * all_skill_damage_mult
 				"earth":
 					skill.damage = (skill.starting_damage + earth_skill_damage_bonus + all_skill_damage_bonus) * earth_skill_damage_mult * all_skill_damage_mult
-				"none":
-					skill.damage = (skill.starting_damage + physical_skill_damage_bonus + all_skill_damage_bonus) * physical_skill_damage_mult * all_skill_damage_mult
+				"neutral":
+					skill.damage = (skill.starting_damage + neutral_skill_damage_bonus + all_skill_damage_bonus) * neutral_skill_damage_mult * all_skill_damage_mult
 		elif skill.healing:
 			skill.damage = (skill.starting_damage + healing_skill_bonus) * healing_skill_mult
 		elif skill.shielding:

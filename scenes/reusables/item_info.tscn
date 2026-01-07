@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cnrypk36m6tp7"]
+
+[ext_resource type="Script" uid="uid://c4qqxqebd8rhg" path="res://scripts/item_info.gd" id="1_j60gw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dymp5"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.19607843, 0.2, 0.23137255, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.78039217, 0.78039217, 0.78039217, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="LabelSettings" id="LabelSettings_si34o"]
+font_size = 20
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pwxp3"]
+font_size = 18
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ItemInfo" type="Control" unique_id=1155356350]
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1719.0
+offset_bottom = -930.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_j60gw")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1052517534]
+layout_mode = 0
+offset_right = 202.0
+offset_bottom = 121.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dymp5")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1060180895]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=141305426]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ItemName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1436821152]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Name"
+label_settings = SubResource("LabelSettings_si34o")
+
+[node name="Tags" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1952879908]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 39)
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = " Fire"
+
+[node name="Description" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=15315512]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Description"
+label_settings = SubResource("LabelSettings_pwxp3")

@@ -88,6 +88,7 @@ can_drag_vertical = false
 metadata/_custom_type_script = "uid://4eb43uwdg710"
 
 [node name="WaterSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer/WaterDrag" unique_id=1060050275]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -101,6 +102,7 @@ can_drag_vertical = false
 metadata/_custom_type_script = "uid://4eb43uwdg710"
 
 [node name="LightningSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer/LightningDrag" unique_id=256558067]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -114,6 +116,7 @@ can_drag_vertical = false
 metadata/_custom_type_script = "uid://4eb43uwdg710"
 
 [node name="GrassSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer/GrassDrag" unique_id=1111886946]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
@@ -127,6 +130,7 @@ can_drag_vertical = false
 metadata/_custom_type_script = "uid://4eb43uwdg710"
 
 [node name="EarthSlot" type="ColorRect" parent="PanelContainer/KeystonesControl/KeystonesContainer/EarthDrag" unique_id=1179625387]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1

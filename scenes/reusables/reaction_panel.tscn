@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cokl4xcoeufdp"]
+[gd_scene format=3 uid="uid://cokl4xcoeufdp"]
 
 [ext_resource type="Script" uid="uid://dcvxhs1moex51" path="res://scenes/reusables/reaction_panel.gd" id="1_vmy8d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evy26"]
-bg_color = Color(0.449653, 0.548845, 0.58154, 1)
+bg_color = Color(0.19607843, 0.2, 0.23137255, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -23,7 +23,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrk3w"]
 content_margin_top = 5.0
-bg_color = Color(0.207843, 0.0745098, 0.0901961, 0.717647)
+bg_color = Color(1, 1, 1, 0.7176471)
 expand_margin_left = 14.0
 expand_margin_right = 14.0
 
@@ -41,7 +41,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5ene"]
 content_margin_top = 5.0
-bg_color = Color(0.207843, 0.0745098, 0.0901961, 0.717647)
+bg_color = Color(1, 1, 1, 0.7176471)
 expand_margin_left = 14.0
 expand_margin_right = 14.0
 
@@ -77,7 +77,7 @@ font_size = 34
 outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 
-[node name="ReactionPanel" type="Control"]
+[node name="ReactionPanel" type="Control" unique_id=626094329]
 z_index = 6
 layout_mode = 3
 anchors_preset = 15
@@ -89,7 +89,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vmy8d")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=378372917]
 layout_mode = 0
 offset_left = 98.0
 offset_top = 76.0
@@ -97,7 +97,7 @@ offset_right = 1724.0
 offset_bottom = 949.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_evy26")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1089048121]
 layout_mode = 2
 mouse_filter = 0
 theme_override_constants/margin_left = 14
@@ -105,30 +105,30 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 6
 
-[node name="FirePage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="FirePage" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1992779212]
 layout_mode = 2
 mouse_filter = 0
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/FirePage" unique_id=1157808767]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_gqkyi")
 horizontal_alignment = 1
 
-[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage" unique_id=1763460983]
 layout_mode = 2
 theme_override_constants/separation = 150
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage" unique_id=748746403]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_xrk3w")
 
-[node name="Vaporize" type="HBoxContainer" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="Vaporize" type="HBoxContainer" parent="PanelContainer/MarginContainer/FirePage" unique_id=749027691]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Vaporize" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage/Vaporize"]
+[node name="Vaporize" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage/Vaporize" unique_id=1589205678]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -138,30 +138,30 @@ bbcode_enabled = true
 text = " Vaporize = [color=coral]Fire[/color] + [color=dark_cyan]Water[/color]"
 scroll_active = false
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Vaporize"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Vaporize" unique_id=1741333072]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireVaporizeMult" type="Label" parent="PanelContainer/MarginContainer/FirePage/Vaporize"]
+[node name="FireVaporizeMult" type="Label" parent="PanelContainer/MarginContainer/FirePage/Vaporize" unique_id=1251481542]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Vaporize Multiplier: 2x"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Vaporize"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Vaporize" unique_id=311860068]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="VaporizeDescription" type="Label" parent="PanelContainer/MarginContainer/FirePage/Vaporize"]
+[node name="VaporizeDescription" type="Label" parent="PanelContainer/MarginContainer/FirePage/Vaporize" unique_id=514953364]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 text = "Multiplies the second element's damage by Vaporize Multiplier"
 label_settings = SubResource("LabelSettings_xkdt6")
 horizontal_alignment = 2
 
-[node name="FireVaporizeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="FireVaporizeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage" unique_id=494629183]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -172,16 +172,16 @@ text = "        +1  [color=coral]Fire[/color] Token  +1  [color=dark_cyan]Water[
 "
 scroll_active = false
 
-[node name="VSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="VSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage" unique_id=501233968]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Detonate" type="HBoxContainer" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="Detonate" type="HBoxContainer" parent="PanelContainer/MarginContainer/FirePage" unique_id=5780324]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Detonate" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage/Detonate"]
+[node name="Detonate" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage/Detonate" unique_id=1075431980]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -190,31 +190,31 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Detonate = [color=coral]Fire[/color] + [color=yellow]Lightning[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Detonate"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Detonate" unique_id=2072317059]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireDetonateMult" type="Label" parent="PanelContainer/MarginContainer/FirePage/Detonate"]
+[node name="FireDetonateMult" type="Label" parent="PanelContainer/MarginContainer/FirePage/Detonate" unique_id=1593607133]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Detonate Multiplier: 1.5x
 Side Multiplier: 0.5x"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Detonate"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Detonate" unique_id=748444389]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="DetonateDescription" type="Label" parent="PanelContainer/MarginContainer/FirePage/Detonate"]
+[node name="DetonateDescription" type="Label" parent="PanelContainer/MarginContainer/FirePage/Detonate" unique_id=1267036222]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Detonate Multiplier
 Deals (Side Multiplier x Second Element's Damage) to the left and right units"
 label_settings = SubResource("LabelSettings_xkdt6")
 
-[node name="FireDetonateTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="FireDetonateTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage" unique_id=364684958]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -224,16 +224,16 @@ bbcode_enabled = true
 text = "       +1  [color=coral]Fire[/color] Token  +1  [color=yellow]Lightning[/color] Token"
 scroll_active = false
 
-[node name="VSeparator4" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="VSeparator4" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage" unique_id=2092299480]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Burn" type="HBoxContainer" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="Burn" type="HBoxContainer" parent="PanelContainer/MarginContainer/FirePage" unique_id=188700215]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Burn" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage/Burn"]
+[node name="Burn" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage/Burn" unique_id=1539807455]
 custom_minimum_size = Vector2(500, 55)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -242,31 +242,31 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Burn = [color=coral]Fire[/color] + [color=web_green]Grass[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Burn"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Burn" unique_id=1590842315]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireBurnDamage" type="Label" parent="PanelContainer/MarginContainer/FirePage/Burn"]
+[node name="FireBurnDamage" type="Label" parent="PanelContainer/MarginContainer/FirePage/Burn" unique_id=1759191908]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Burn Damage: 10
 Burn Length: 2 turns"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Burn"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Burn" unique_id=1912920466]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="ShockDescription" type="Label" parent="PanelContainer/MarginContainer/FirePage/Burn"]
+[node name="ShockDescription" type="Label" parent="PanelContainer/MarginContainer/FirePage/Burn" unique_id=1417070483]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Burn debuff to the unit, causing them to take Burn Damage before their 
 turn and reduces the unit's healing received by 50% for Burn Length turns"
 label_settings = SubResource("LabelSettings_xkdt6")
 
-[node name="FireBurnTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="FireBurnTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage" unique_id=308856368]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -276,16 +276,16 @@ bbcode_enabled = true
 text = "        +1  [color=coral]Fire[/color] Token  +1  [color=web_green]Grass[/color] Token"
 scroll_active = false
 
-[node name="VSeparator3" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="VSeparator3" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage" unique_id=1276063065]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Erupt" type="HBoxContainer" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="Erupt" type="HBoxContainer" parent="PanelContainer/MarginContainer/FirePage" unique_id=1254400497]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Erupt" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage/Erupt"]
+[node name="Erupt" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage/Erupt" unique_id=1573552549]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -294,30 +294,30 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Erupt = [color=coral]Fire[/color] + [color=saddle_brown]Earth[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Erupt"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Erupt" unique_id=560777620]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireEruptMult" type="Label" parent="PanelContainer/MarginContainer/FirePage/Erupt"]
+[node name="FireEruptMult" type="Label" parent="PanelContainer/MarginContainer/FirePage/Erupt" unique_id=1601552395]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Erupt Multiplier: x3"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Erupt"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/FirePage/Erupt" unique_id=635778041]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/FirePage/Erupt"]
+[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/FirePage/Erupt" unique_id=2032004681]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Erupt Multiplier against SHIELDS"
 label_settings = SubResource("LabelSettings_xkdt6")
 horizontal_alignment = 2
 
-[node name="FireEruptTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="FireEruptTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage" unique_id=465819762]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -327,17 +327,17 @@ bbcode_enabled = true
 text = "      +1  [color=coral]Fire[/color] Token  +1  [color=saddle_brown]Earth[/color] Token"
 scroll_active = false
 
-[node name="VSeparator5" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="VSeparator5" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage" unique_id=430362314]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/FirePage" unique_id=1626635282]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="FireDamageBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="FireDamageBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage" unique_id=1548834086]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -346,7 +346,7 @@ bbcode_enabled = true
 text = " [color=coral]Fire Damage Bonus[/color]  :  0"
 horizontal_alignment = 1
 
-[node name="FireDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage"]
+[node name="FireDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/FirePage" unique_id=2037738008]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -355,31 +355,31 @@ bbcode_enabled = true
 text = " [color=coral]Fire Damage Mult[/color]  :  1x"
 horizontal_alignment = 1
 
-[node name="WaterPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="WaterPage" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=172565012]
 visible = false
 layout_mode = 2
 mouse_filter = 0
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/WaterPage" unique_id=209243423]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_gqkyi")
 horizontal_alignment = 1
 
-[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage" unique_id=1821848371]
 layout_mode = 2
 theme_override_constants/separation = 150
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage" unique_id=1713713917]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_xrk3w")
 
-[node name="Vaporize2" type="HBoxContainer" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="Vaporize2" type="HBoxContainer" parent="PanelContainer/MarginContainer/WaterPage" unique_id=1531279873]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Vaporize" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage/Vaporize2"]
+[node name="Vaporize" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage/Vaporize2" unique_id=2110020400]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -389,30 +389,30 @@ bbcode_enabled = true
 text = " Vaporize = [color=dark_cyan]Water[/color] + [color=coral]Fire[/color]"
 scroll_active = false
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Vaporize2"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Vaporize2" unique_id=1884094153]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="WaterVaporizeMult" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Vaporize2"]
+[node name="WaterVaporizeMult" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Vaporize2" unique_id=686438444]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Vaporize Multiplier: 2x"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Vaporize2"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Vaporize2" unique_id=1597697913]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="VaporizeDescription" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Vaporize2"]
+[node name="VaporizeDescription" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Vaporize2" unique_id=1902509375]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Vaporize Multiplier"
 label_settings = SubResource("LabelSettings_kh4rx")
 horizontal_alignment = 2
 
-[node name="WaterVaporizeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="WaterVaporizeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage" unique_id=780195324]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -422,16 +422,16 @@ bbcode_enabled = true
 text = "          +1  [color=dark_cyan]Water[/color] Token  +1  [color=coral]Fire[/color] Token "
 scroll_active = false
 
-[node name="VSeparator7" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="VSeparator7" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage" unique_id=601825097]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Shock" type="HBoxContainer" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="Shock" type="HBoxContainer" parent="PanelContainer/MarginContainer/WaterPage" unique_id=1909130651]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Shock" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage/Shock"]
+[node name="Shock" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage/Shock" unique_id=1887931481]
 custom_minimum_size = Vector2(500, 55)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -440,30 +440,30 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Shock = [color=dark_cyan]Water[/color] + [color=yellow]Lightning[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Shock"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Shock" unique_id=828632223]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="WaterShockMult" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Shock"]
+[node name="WaterShockMult" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Shock" unique_id=511089540]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Shock Multiplier: 0.25x"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Shock"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Shock" unique_id=866828373]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="ShockDescription" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Shock"]
+[node name="ShockDescription" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Shock" unique_id=898295178]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "After shocking, deals 3 bonus instances of lightning damage. 
  (Shock Multiplier x Second Element's Damage)"
 label_settings = SubResource("LabelSettings_kh4rx")
 
-[node name="WaterShockTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="WaterShockTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage" unique_id=584697145]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -473,16 +473,16 @@ bbcode_enabled = true
 text = "        +1  [color=dark_cyan]Water[/color] Token  +1  [color=yellow]Lightning[/color] Token"
 scroll_active = false
 
-[node name="VSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="VSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage" unique_id=834663899]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Bloom" type="HBoxContainer" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="Bloom" type="HBoxContainer" parent="PanelContainer/MarginContainer/WaterPage" unique_id=1102920212]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Bloom" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage/Bloom"]
+[node name="Bloom" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage/Bloom" unique_id=1160479835]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -491,31 +491,31 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Bloom = [color=dark_cyan]Water[/color] + [color=web_green]Grass[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Bloom"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Bloom" unique_id=210636911]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="WaterBloomHealing" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Bloom"]
+[node name="WaterBloomHealing" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Bloom" unique_id=852017802]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Bloom Healing: 5
 Bubble Mult = 0.5x"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Bloom"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Bloom" unique_id=330955378]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Bloom"]
+[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Bloom" unique_id=1578321170]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "On Bloom, adds the Bubble buff to the unit. After the unit is attacked, the bubble
  will pop, multiplying the attack's damage by Bubble Mult and healing the unit for Bloom Healing"
 label_settings = SubResource("LabelSettings_kh4rx")
 
-[node name="WaterBloomTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="WaterBloomTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage" unique_id=1576912943]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -526,16 +526,16 @@ text = "      +1  [color=dark_cyan]Water[/color] Token  +1  [color=web_green]Gra
 "
 scroll_active = false
 
-[node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage" unique_id=1121997034]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Muck" type="HBoxContainer" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="Muck" type="HBoxContainer" parent="PanelContainer/MarginContainer/WaterPage" unique_id=429901245]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Muck" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage/Muck"]
+[node name="Muck" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage/Muck" unique_id=1083668405]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -544,30 +544,30 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Muck = [color=dark_cyan]Water[/color] + [color=saddle_brown]Earth[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Muck"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Muck" unique_id=872439787]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="WaterMuckMult" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Muck"]
+[node name="WaterMuckMult" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Muck" unique_id=767121776]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Muck Multipler: 0.75x"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Muck"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/WaterPage/Muck" unique_id=353176779]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="DetonateDescription" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Muck"]
+[node name="DetonateDescription" type="Label" parent="PanelContainer/MarginContainer/WaterPage/Muck" unique_id=331773832]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Muck debuff to the unit, causing their next skill's damage to be multiplied
 by Muck Multiplier"
 label_settings = SubResource("LabelSettings_kh4rx")
 
-[node name="WaterMuckTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="WaterMuckTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage" unique_id=922377898]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -577,17 +577,17 @@ bbcode_enabled = true
 text = "      +1  [color=dark_cyan]Water[/color] Token  +1  [color=saddle_brown]Earth[/color] Token"
 scroll_active = false
 
-[node name="VSeparator3" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="VSeparator3" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage" unique_id=231967834]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="VSeparator8" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="VSeparator8" type="HSeparator" parent="PanelContainer/MarginContainer/WaterPage" unique_id=504307384]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="WaterDamageBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="WaterDamageBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage" unique_id=1110015594]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -596,7 +596,7 @@ bbcode_enabled = true
 text = " [color=dark_cyan]Water Damage Bonus[/color] : 0"
 horizontal_alignment = 1
 
-[node name="WaterDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage"]
+[node name="WaterDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/WaterPage" unique_id=307258633]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -605,31 +605,31 @@ bbcode_enabled = true
 text = " [color=dark_cyan]Water Damage Mult[/color] : 1x"
 horizontal_alignment = 1
 
-[node name="LightningPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="LightningPage" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=843685274]
 visible = false
 layout_mode = 2
 mouse_filter = 0
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/LightningPage" unique_id=838760094]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_gqkyi")
 horizontal_alignment = 1
 
-[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage" unique_id=1671323797]
 layout_mode = 2
 theme_override_constants/separation = 150
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage" unique_id=814971822]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_xrk3w")
 
-[node name="Detonate2" type="HBoxContainer" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="Detonate2" type="HBoxContainer" parent="PanelContainer/MarginContainer/LightningPage" unique_id=1180380374]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Detonate" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage/Detonate2"]
+[node name="Detonate" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage/Detonate2" unique_id=28205385]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -638,31 +638,31 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Detonate = [color=yellow]Lightning[/color] + [color=coral]Fire[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Detonate2"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Detonate2" unique_id=491851603]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="LightningDetonateMult" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Detonate2"]
+[node name="LightningDetonateMult" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Detonate2" unique_id=1354226120]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Detonate Multiplier: 1.5x
 Side Multiplier: 0.5x"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Detonate2"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Detonate2" unique_id=1203876730]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="DetonateDescription" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Detonate2"]
+[node name="DetonateDescription" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Detonate2" unique_id=685123429]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Detonate Multiplier
 Deals (Side Multiplier x Second Element's Damage) to the left and right units"
 label_settings = SubResource("LabelSettings_y170n")
 
-[node name="LightningDetonateTokens2" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="LightningDetonateTokens2" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage" unique_id=2122432905]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -672,16 +672,16 @@ bbcode_enabled = true
 text = "      +1  [color=yellow]Lightning[/color] Token  +1  [color=coral]Fire[/color] Token"
 scroll_active = false
 
-[node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage" unique_id=569062928]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Shock" type="HBoxContainer" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="Shock" type="HBoxContainer" parent="PanelContainer/MarginContainer/LightningPage" unique_id=680120988]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Shock" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage/Shock"]
+[node name="Shock" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage/Shock" unique_id=1436707171]
 custom_minimum_size = Vector2(500, 55)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -690,30 +690,30 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Shock = [color=yellow]Lightning[/color] + [color=dark_cyan]Water[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Shock"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Shock" unique_id=981453229]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="LightningShockMult" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Shock"]
+[node name="LightningShockMult" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Shock" unique_id=338288174]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Shock Multiplier: 0.25x"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Shock"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Shock" unique_id=452598786]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="ShockDescription" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Shock"]
+[node name="ShockDescription" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Shock" unique_id=1875078540]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "After shocking, deals 3 bonus instances of lightning damage. 
  (Shock Multiplier x Second Element's Damage)"
 label_settings = SubResource("LabelSettings_y170n")
 
-[node name="LightningShockTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="LightningShockTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage" unique_id=1424712812]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -723,16 +723,16 @@ bbcode_enabled = true
 text = "        +1  [color=yellow]Lightning[/color] Token  +1  [color=dark_cyan]Water[/color] Token  "
 scroll_active = false
 
-[node name="VSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="VSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage" unique_id=82164275]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Nitro" type="HBoxContainer" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="Nitro" type="HBoxContainer" parent="PanelContainer/MarginContainer/LightningPage" unique_id=1874750198]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Nitro" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage/Nitro"]
+[node name="Nitro" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage/Nitro" unique_id=1216322276]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -742,30 +742,30 @@ bbcode_enabled = true
 text = " Nitro = [color=yellow]Lightning[/color] + [color=web_green]Grass[/color]"
 scroll_active = false
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Nitro"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Nitro" unique_id=1974763883]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="LightningNitroMult" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Nitro"]
+[node name="LightningNitroMult" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Nitro" unique_id=1260623057]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Nitro Multiplier: 1.5x "
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Nitro"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Nitro" unique_id=1286958249]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Nitro"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Nitro" unique_id=470726040]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Nitro debuff to the unit, causing the next instance of damage taken
  by them to be multiplied by Nitro Multipler (Applied the next turn)"
 label_settings = SubResource("LabelSettings_y170n")
 
-[node name="LightningNitroTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="LightningNitroTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage" unique_id=654598935]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -776,16 +776,16 @@ text = "        +1  [color=yellow]Lightning[/color] Token  +1  [color=web_green]
 "
 scroll_active = false
 
-[node name="VSeparator4" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="VSeparator4" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage" unique_id=103960244]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Discharge" type="HBoxContainer" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="Discharge" type="HBoxContainer" parent="PanelContainer/MarginContainer/LightningPage" unique_id=1389970555]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Discharge" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage/Discharge"]
+[node name="Discharge" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage/Discharge" unique_id=1744744507]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -794,30 +794,30 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Discharge = [color=yellow]Lightning[/color] + [color=saddle_brown]Earth[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Discharge"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Discharge" unique_id=1117565534]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="LightningDischargeMult" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Discharge"]
+[node name="LightningDischargeMult" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Discharge" unique_id=1981242202]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Discharge Multiplier: x1"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Discharge"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/LightningPage/Discharge" unique_id=490235931]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Discharge"]
+[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/LightningPage/Discharge" unique_id=1043728640]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Discharge, then the resulting
 damage is split between the unit's team"
 label_settings = SubResource("LabelSettings_y170n")
 
-[node name="LightningDischargeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="LightningDischargeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage" unique_id=224943721]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -827,17 +827,17 @@ bbcode_enabled = true
 text = "      +1  [color=yellow]Lightning[/color] Token  +1  [color=saddle_brown]Earth[/color] Token  "
 scroll_active = false
 
-[node name="VSeparator5" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="VSeparator5" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage" unique_id=703530747]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="VSeparator9" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="VSeparator9" type="HSeparator" parent="PanelContainer/MarginContainer/LightningPage" unique_id=1512891105]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="LightningDamageBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="LightningDamageBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage" unique_id=1069866379]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -846,7 +846,7 @@ bbcode_enabled = true
 text = " [color=yellow]Lightning Damage Bonus[/color] : 0"
 horizontal_alignment = 1
 
-[node name="LightningDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage"]
+[node name="LightningDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/LightningPage" unique_id=1502398600]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -855,31 +855,31 @@ bbcode_enabled = true
 text = " [color=yellow]Lightning Damage Mult[/color] : 1x"
 horizontal_alignment = 1
 
-[node name="GrassPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="GrassPage" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1885274236]
 visible = false
 layout_mode = 2
 mouse_filter = 0
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/GrassPage" unique_id=815657656]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_gqkyi")
 horizontal_alignment = 1
 
-[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage" unique_id=1666727356]
 layout_mode = 2
 theme_override_constants/separation = 150
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage" unique_id=2047437631]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_xrk3w")
 
-[node name="Burn2" type="HBoxContainer" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="Burn2" type="HBoxContainer" parent="PanelContainer/MarginContainer/GrassPage" unique_id=852639664]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Burn" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/Burn2"]
+[node name="Burn" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/Burn2" unique_id=1772314696]
 custom_minimum_size = Vector2(500, 55)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -888,31 +888,31 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Burn = [color=web_green]Grass[/color] + [color=coral]Fire[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Burn2"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Burn2" unique_id=1860789067]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="GrassBurnDamage" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Burn2"]
+[node name="GrassBurnDamage" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Burn2" unique_id=2071121968]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Burn Damage: 10
 Burn Length: 2 turns"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Burn2"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Burn2" unique_id=877389132]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="ShockDescription" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Burn2"]
+[node name="ShockDescription" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Burn2" unique_id=1547786283]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Burn debuff to the unit, causing them to take Burn Damage before their 
 turn and reduces the unit's healing received by 50% for Burn Length turns"
 label_settings = SubResource("LabelSettings_upps1")
 
-[node name="GrassBurnTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="GrassBurnTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage" unique_id=2016915490]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -922,16 +922,16 @@ bbcode_enabled = true
 text = "        +1  [color=web_green]Grass[/color] Token  +1  [color=coral]Fire[/color] Token"
 scroll_active = false
 
-[node name="VSeparator7" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="VSeparator7" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage" unique_id=2086083486]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Bloom2" type="HBoxContainer" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="Bloom2" type="HBoxContainer" parent="PanelContainer/MarginContainer/GrassPage" unique_id=891823075]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Bloom" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/Bloom2"]
+[node name="Bloom" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/Bloom2" unique_id=936835404]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -940,31 +940,31 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Bloom = [color=web_green]Grass[/color] + [color=dark_cyan]Water[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Bloom2"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Bloom2" unique_id=1383062679]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="GrassBloomHealing" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Bloom2"]
+[node name="GrassBloomHealing" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Bloom2" unique_id=2122537116]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Bloom Healing: 5
 Bubble Mult = 0.5x"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Bloom2"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Bloom2" unique_id=1871549997]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Bloom2"]
+[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Bloom2" unique_id=741763393]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "On Bloom, adds the Bubble buff to the unit. After the unit is attacked, the bubble
  will pop, multiplying the attack's damage by Bubble Mult and healing the unit for Bloom Healing"
 label_settings = SubResource("LabelSettings_upps1")
 
-[node name="GrassBloomTokens2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="GrassBloomTokens2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage" unique_id=72036984]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -975,16 +975,16 @@ text = "      +1  [color=web_green]Grass[/color] Token  +1  [color=dark_cyan]Wat
 "
 scroll_active = false
 
-[node name="VSeparator8" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="VSeparator8" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage" unique_id=633379266]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Nitro" type="HBoxContainer" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="Nitro" type="HBoxContainer" parent="PanelContainer/MarginContainer/GrassPage" unique_id=1162018475]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Nitro" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/Nitro"]
+[node name="Nitro" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/Nitro" unique_id=136150186]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -994,30 +994,30 @@ bbcode_enabled = true
 text = " Nitro = [color=web_green]Grass[/color] + [color=yellow]Lightning[/color]"
 scroll_active = false
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Nitro"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Nitro" unique_id=1556213450]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="GrassNitroMult" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Nitro"]
+[node name="GrassNitroMult" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Nitro" unique_id=1458259437]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Nitro Multiplier: 1.5x "
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Nitro"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Nitro" unique_id=196494466]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Nitro"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Nitro" unique_id=1008828880]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Nitro debuff to the unit, causing the next instance of damage taken
  by them to be multiplied by Nitro Multipler (Applied the next turn)"
 label_settings = SubResource("LabelSettings_upps1")
 
-[node name="GrassNitroTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="GrassNitroTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage" unique_id=1584501583]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1028,16 +1028,16 @@ text = "        +1  [color=web_green]Grass[/color] Token  +1  [color=purple]Ligh
 "
 scroll_active = false
 
-[node name="VSeparator4" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="VSeparator4" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage" unique_id=452944299]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Sow" type="HBoxContainer" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="Sow" type="HBoxContainer" parent="PanelContainer/MarginContainer/GrassPage" unique_id=1029024478]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Sow" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/Sow"]
+[node name="Sow" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/Sow" unique_id=1509388812]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1046,31 +1046,31 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Sow = [color=web_green]Grass[/color] + [color=saddle_brown]Earth[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Sow"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Sow" unique_id=1536536914]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="GrassSowShielding" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Sow"]
+[node name="GrassSowShielding" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Sow" unique_id=74305289]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Sow Shielding: 5
 Sow Healing: 5"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Sow"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/GrassPage/Sow" unique_id=1140730270]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Sow"]
+[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/GrassPage/Sow" unique_id=290454077]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Sow debuff to the unit. If another unit hits this unit with a skill,
 the attacker will heal Sow Healing and gain Sow Shielding shield."
 label_settings = SubResource("LabelSettings_upps1")
 
-[node name="GrassSowTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="GrassSowTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage" unique_id=1465686530]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1081,24 +1081,24 @@ text = "      +1  [color=saddle_brown]Earth[/color] Token  +1  [color=web_green]
 "
 scroll_active = false
 
-[node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage" unique_id=1694928191]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="VSeparator10" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="VSeparator10" type="HSeparator" parent="PanelContainer/MarginContainer/GrassPage" unique_id=200317968]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/GrassPage"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/GrassPage" unique_id=198095178]
 layout_mode = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer" unique_id=1151512287]
 layout_mode = 2
 
-[node name="GrassDamageBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer/VBoxContainer"]
+[node name="GrassDamageBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer/VBoxContainer" unique_id=2088673097]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1107,7 +1107,7 @@ bbcode_enabled = true
 text = " [color=web_green]Grass Damage Bonus[/color] : 0"
 horizontal_alignment = 1
 
-[node name="GrassDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer/VBoxContainer"]
+[node name="GrassDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer/VBoxContainer" unique_id=198072510]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1116,10 +1116,10 @@ bbcode_enabled = true
 text = " [color=web_green]Grass Damage Mult[/color] : 1x"
 horizontal_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer" unique_id=1146589072]
 layout_mode = 2
 
-[node name="HealingBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer/VBoxContainer2"]
+[node name="HealingBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer/VBoxContainer2" unique_id=1640346189]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1128,7 +1128,7 @@ bbcode_enabled = true
 text = " [color=web_green]Healing Bonus[/color] : 0"
 horizontal_alignment = 1
 
-[node name="HealingMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer/VBoxContainer2"]
+[node name="HealingMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/GrassPage/HBoxContainer/VBoxContainer2" unique_id=1903384581]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1137,31 +1137,31 @@ bbcode_enabled = true
 text = " [color=web_green]Healing Mult[/color] : 0"
 horizontal_alignment = 1
 
-[node name="EarthPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="EarthPage" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=221455607]
 visible = false
 layout_mode = 2
 mouse_filter = 0
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/EarthPage" unique_id=400583701]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_gqkyi")
 horizontal_alignment = 1
 
-[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage" unique_id=1540432003]
 layout_mode = 2
 theme_override_constants/separation = 150
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage" unique_id=796979396]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_xrk3w")
 
-[node name="Erupt2" type="HBoxContainer" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="Erupt2" type="HBoxContainer" parent="PanelContainer/MarginContainer/EarthPage" unique_id=1907430427]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Erupt" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/Erupt2"]
+[node name="Erupt" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/Erupt2" unique_id=765814212]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1170,30 +1170,30 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Erupt = [color=saddle_brown]Earth[/color] + [color=coral]Fire[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Erupt2"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Erupt2" unique_id=303723191]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="EarthEruptMult" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Erupt2"]
+[node name="EarthEruptMult" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Erupt2" unique_id=213777260]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Erupt Multiplier: x3"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Erupt2"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Erupt2" unique_id=672836149]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Erupt2"]
+[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Erupt2" unique_id=1033883340]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Erupt Multiplier against SHIELDS"
 label_settings = SubResource("LabelSettings_ofxuh")
 horizontal_alignment = 2
 
-[node name="EarthEruptTokens2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="EarthEruptTokens2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage" unique_id=179087823]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1203,16 +1203,16 @@ bbcode_enabled = true
 text = "      +1  [color=saddle_brown]Earth[/color] Token  +1  [color=coral]Fire[/color] Token"
 scroll_active = false
 
-[node name="VSeparator7" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="VSeparator7" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage" unique_id=181322271]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Muck" type="HBoxContainer" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="Muck" type="HBoxContainer" parent="PanelContainer/MarginContainer/EarthPage" unique_id=1323382104]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Muck" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/Muck"]
+[node name="Muck" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/Muck" unique_id=478346560]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1221,30 +1221,30 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Muck = [color=saddle_brown]Earth[/color] + [color=dark_cyan]Water[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Muck"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Muck" unique_id=1184669548]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="EarthMuckMult" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Muck"]
+[node name="EarthMuckMult" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Muck" unique_id=770267861]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Muck Multipler: 0.75x"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Muck"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Muck" unique_id=257557403]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="DetonateDescription" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Muck"]
+[node name="DetonateDescription" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Muck" unique_id=665172576]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Muck debuff to the unit, causing their next skill's damage to be multiplied
 by Muck Multiplier"
 label_settings = SubResource("LabelSettings_ofxuh")
 
-[node name="EarthMuckTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="EarthMuckTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage" unique_id=2010634972]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1254,16 +1254,16 @@ bbcode_enabled = true
 text = "      +1  [color=saddle_brown]Earth[/color] Token  +1  [color=dark_cyan]Water[/color] Token"
 scroll_active = false
 
-[node name="VSeparator3" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="VSeparator3" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage" unique_id=1888900690]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Discharge" type="HBoxContainer" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="Discharge" type="HBoxContainer" parent="PanelContainer/MarginContainer/EarthPage" unique_id=1657324170]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Discharge" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/Discharge"]
+[node name="Discharge" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/Discharge" unique_id=183470027]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1272,30 +1272,30 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Discharge = [color=saddle_brown]Earth[/color] + [color=yellow]Lightning[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Discharge"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Discharge" unique_id=832996621]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="EarthDischargeMult" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Discharge"]
+[node name="EarthDischargeMult" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Discharge" unique_id=948180262]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Discharge Multiplier: x1"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Discharge"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Discharge" unique_id=565934407]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Discharge"]
+[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Discharge" unique_id=1635147493]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Multiplies the second element's damage by Discharge, then the resulting
 damage is split between the unit's team"
 label_settings = SubResource("LabelSettings_ofxuh")
 
-[node name="EarthDischargeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="EarthDischargeTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage" unique_id=1505424966]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1305,16 +1305,16 @@ bbcode_enabled = true
 text = "      +1  [color=saddle_brown]Earth[/color] Token  +1  [color=yellow]Lightning[/color] Token"
 scroll_active = false
 
-[node name="VSeparator5" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="VSeparator5" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage" unique_id=1713403171]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="Sow" type="HBoxContainer" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="Sow" type="HBoxContainer" parent="PanelContainer/MarginContainer/EarthPage" unique_id=1611034486]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Sow" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/Sow"]
+[node name="Sow" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/Sow" unique_id=499685233]
 custom_minimum_size = Vector2(500, 48)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1323,31 +1323,31 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Sow = [color=saddle_brown]Earth[/color] + [color=web_green]Grass[/color]"
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Sow"]
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Sow" unique_id=383183933]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="EarthSowShielding" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Sow"]
+[node name="EarthSowShielding" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Sow" unique_id=236005743]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Sow Shielding: 5
 Sow Healing: 5"
 label_settings = SubResource("LabelSettings_pyo7b")
 
-[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Sow"]
+[node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/EarthPage/Sow" unique_id=1078970192]
 layout_mode = 2
 theme_override_constants/separation = 25
 theme_override_styles/separator = SubResource("StyleBoxFlat_0u22f")
 
-[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Sow"]
+[node name="FireCount2" type="Label" parent="PanelContainer/MarginContainer/EarthPage/Sow" unique_id=1185783414]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 text = "Adds the Sow debuff to the unit. If another unit hits this unit with a skill,
 the attacker will heal Sow Healing and gain Sow Shielding shield."
 label_settings = SubResource("LabelSettings_ofxuh")
 
-[node name="EarthSowTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="EarthSowTokens" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage" unique_id=988609295]
 custom_minimum_size = Vector2(100, 36)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1358,24 +1358,24 @@ text = "      +1  [color=saddle_brown]Earth[/color] Token  +1  [color=web_green]
 "
 scroll_active = false
 
-[node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="VSeparator6" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage" unique_id=51159276]
 layout_mode = 2
 theme_override_constants/separation = 6
 theme_override_styles/separator = SubResource("StyleBoxFlat_r5ene")
 
-[node name="VSeparator11" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="VSeparator11" type="HSeparator" parent="PanelContainer/MarginContainer/EarthPage" unique_id=1230784673]
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/EarthPage"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/EarthPage" unique_id=1289084521]
 layout_mode = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer" unique_id=1628334484]
 layout_mode = 2
 
-[node name="EarthDamageBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer/VBoxContainer"]
+[node name="EarthDamageBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer/VBoxContainer" unique_id=1945863459]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1384,7 +1384,7 @@ bbcode_enabled = true
 text = " [color=saddle_brown]Earth Damage Bonus[/color] : 0"
 horizontal_alignment = 1
 
-[node name="EarthDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer/VBoxContainer"]
+[node name="EarthDamageMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer/VBoxContainer" unique_id=1548935458]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1393,10 +1393,10 @@ bbcode_enabled = true
 text = " [color=saddle_brown]Earth Damage Mult[/color] : 1x"
 horizontal_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer" unique_id=597529157]
 layout_mode = 2
 
-[node name="ShieldingBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer/VBoxContainer2"]
+[node name="ShieldingBonus2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer/VBoxContainer2" unique_id=1372464567]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1405,7 +1405,7 @@ bbcode_enabled = true
 text = " [color=saddle_brown]Shielding Bonus[/color] : 0"
 horizontal_alignment = 1
 
-[node name="ShieldingMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer/VBoxContainer2"]
+[node name="ShieldingMult2" type="RichTextLabel" parent="PanelContainer/MarginContainer/EarthPage/HBoxContainer/VBoxContainer2" unique_id=1135635015]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1414,51 +1414,51 @@ bbcode_enabled = true
 text = " [color=saddle_brown]Shielding Mult[/color] : 1x"
 horizontal_alignment = 1
 
-[node name="StatsPage" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="StatsPage" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=803962272]
 visible = false
 layout_mode = 2
 mouse_filter = 0
 theme_override_constants/separation = 5
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/StatsPage"]
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/StatsPage" unique_id=846997310]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_gqkyi")
 horizontal_alignment = 1
 
-[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/StatsPage"]
+[node name="VSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/StatsPage" unique_id=2019068486]
 layout_mode = 2
 theme_override_constants/separation = 150
 theme_override_styles/separator = SubResource("StyleBoxFlat_b1hwg")
 
-[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/StatsPage"]
+[node name="top" type="HSeparator" parent="PanelContainer/MarginContainer/StatsPage" unique_id=233558674]
 layout_mode = 2
 theme_override_constants/separation = 5
 theme_override_styles/separator = SubResource("StyleBoxFlat_xrk3w")
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/StatsPage"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/StatsPage" unique_id=1930828009]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_ku7jd")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer" unique_id=440761323]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = -110
 
-[node name="HBOX" type="HBoxContainer" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer"]
+[node name="HBOX" type="HBoxContainer" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer" unique_id=1970813786]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = -43
 
-[node name="Column1" type="VBoxContainer" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX"]
+[node name="Column1" type="VBoxContainer" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX" unique_id=578100021]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 
-[node name="FireDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
+[node name="FireDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1" unique_id=1851718877]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1466,7 +1466,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=coral]Fire Damage Bonus[/color]  :  0"
 
-[node name="FireDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
+[node name="FireDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1" unique_id=1450384437]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1474,7 +1474,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=coral]Fire Damage Mult[/color]  :  1x"
 
-[node name="WaterDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
+[node name="WaterDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1" unique_id=2096223676]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1482,7 +1482,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=dark_cyan]Water Damage Bonus[/color] : 0"
 
-[node name="WaterDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
+[node name="WaterDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1" unique_id=2034212524]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1490,7 +1490,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=dark_cyan]Water Damage Mult[/color] : 1x"
 
-[node name="LightningDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
+[node name="LightningDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1" unique_id=502629126]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1498,7 +1498,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=yellow]Lightning Damage Bonus[/color] : 0"
 
-[node name="LightningDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
+[node name="LightningDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1" unique_id=1412562619]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1506,7 +1506,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=yellow]Lightning Damage Mult[/color] : 1x"
 
-[node name="GrassDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
+[node name="GrassDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1" unique_id=1303726639]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1514,7 +1514,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=web_green]Grass Damage Bonus[/color] : 0"
 
-[node name="GrassDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
+[node name="GrassDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1" unique_id=459229937]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1522,7 +1522,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=web_green]Grass Damage Mult[/color] : 1x"
 
-[node name="EarthDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
+[node name="EarthDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1" unique_id=452020568]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1530,7 +1530,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=saddle_brown]Earth Damage Bonus[/color] : 0"
 
-[node name="EarthDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1"]
+[node name="EarthDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column1" unique_id=654446733]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1538,11 +1538,11 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=saddle_brown]Earth Damage Mult[/color] : 1x"
 
-[node name="Column2" type="VBoxContainer" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX"]
+[node name="Column2" type="VBoxContainer" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX" unique_id=985788585]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 
-[node name="HealingBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2"]
+[node name="HealingBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2" unique_id=970925538]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1550,7 +1550,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=web_green]Healing Bonus[/color] : 0"
 
-[node name="HealingMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2"]
+[node name="HealingMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2" unique_id=997569966]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1558,7 +1558,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=web_green]Healing Mult[/color] : 0"
 
-[node name="ShieldingBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2"]
+[node name="ShieldingBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2" unique_id=647962657]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1566,7 +1566,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=saddle_brown]Shielding Bonus[/color] : 0"
 
-[node name="ShieldingMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2"]
+[node name="ShieldingMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2" unique_id=2118504292]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1574,7 +1574,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=saddle_brown]Shielding Mult[/color] : 1x"
 
-[node name="PhysicalDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2"]
+[node name="NeutralDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2" unique_id=178323249]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1582,7 +1582,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Physical Damage Bonus : 0"
 
-[node name="PhysicalDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2"]
+[node name="NeutralDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2" unique_id=798090294]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1590,7 +1590,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " Physical Damage Mult : 1x"
 
-[node name="AllDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2"]
+[node name="AllDamageBonus" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2" unique_id=727410097]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1598,7 +1598,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " All Damage Bonus : 0"
 
-[node name="AllDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2"]
+[node name="AllDamageMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2" unique_id=251007623]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1606,7 +1606,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " All Damage Mult : 0"
 
-[node name="BonusGold" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2"]
+[node name="BonusGold" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2" unique_id=1657423463]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1614,7 +1614,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=yellow]Bonus Gold[/color] : 0"
 
-[node name="GoldMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2"]
+[node name="GoldMult" type="RichTextLabel" parent="PanelContainer/MarginContainer/StatsPage/PanelContainer/MarginContainer/HBOX/Column2" unique_id=558299327]
 custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
 theme_override_constants/outline_size = 9
@@ -1622,7 +1622,7 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = " [color=yellow]Gold Mult[/color] : 0"
 
-[node name="StatsDisclaimer" type="Label" parent="."]
+[node name="StatsDisclaimer" type="Label" parent="." unique_id=66373526]
 visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
@@ -1637,7 +1637,7 @@ Mults when
 damage"
 label_settings = SubResource("LabelSettings_ku7jd")
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=754858816]
 layout_mode = 0
 offset_left = 117.0
 offset_top = 87.0
@@ -1647,7 +1647,7 @@ text = "Reaction Guide"
 label_settings = SubResource("LabelSettings_gqkyi")
 horizontal_alignment = 1
 
-[node name="Hide" type="Button" parent="."]
+[node name="Hide" type="Button" parent="." unique_id=1804850254]
 custom_minimum_size = Vector2(65, 50)
 layout_mode = 0
 offset_left = 1641.0
@@ -1657,7 +1657,7 @@ offset_bottom = 150.0
 theme_override_font_sizes/font_size = 56
 text = "x"
 
-[node name="FirePageButton" type="Button" parent="."]
+[node name="FirePageButton" type="Button" parent="." unique_id=257409298]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
 offset_left = 364.0
@@ -1667,7 +1667,7 @@ offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "Fire"
 
-[node name="WaterPageButton" type="Button" parent="."]
+[node name="WaterPageButton" type="Button" parent="." unique_id=1159014092]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
 offset_left = 555.0
@@ -1677,7 +1677,7 @@ offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "Water"
 
-[node name="LightningPageButton" type="Button" parent="."]
+[node name="LightningPageButton" type="Button" parent="." unique_id=1286162541]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
 offset_left = 743.0
@@ -1687,7 +1687,7 @@ offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "Lightning"
 
-[node name="GrassPageButton" type="Button" parent="."]
+[node name="GrassPageButton" type="Button" parent="." unique_id=649683670]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
 offset_left = 990.0
@@ -1697,7 +1697,7 @@ offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "Grass"
 
-[node name="EarthPageButton" type="Button" parent="."]
+[node name="EarthPageButton" type="Button" parent="." unique_id=1265609982]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
 offset_left = 1183.0
@@ -1707,7 +1707,7 @@ offset_bottom = 261.0
 theme_override_font_sizes/font_size = 52
 text = "Earth"
 
-[node name="MoreStatsButton" type="Button" parent="."]
+[node name="MoreStatsButton" type="Button" parent="." unique_id=1324871225]
 custom_minimum_size = Vector2(175, 0)
 layout_mode = 0
 offset_left = 1420.0

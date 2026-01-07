@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cjfgxla5bha23"]
+
+[ext_resource type="PackedScene" uid="uid://olntasmek5qp" path="res://resources/item scripts/item_ui.tscn" id="1_fcvjx"]
+[ext_resource type="Script" uid="uid://fq4vos71lrvu" path="res://resources/item scripts/item_handler.gd" id="1_odkxy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcvjx"]
+bg_color = Color(0.19607843, 0.2, 0.23137255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[node name="ItemHandler" type="Control" unique_id=764881385]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_odkxy")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1825110204]
+custom_minimum_size = Vector2(204, 84)
+layout_mode = 0
+offset_right = 164.0
+offset_bottom = 55.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fcvjx")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=54333934]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Items" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1724677809]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/Items" unique_id=228855375]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+
+[node name="item_ui" parent="PanelContainer/MarginContainer/Items/PanelContainer" unique_id=537574756 instance=ExtResource("1_fcvjx")]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/Items" unique_id=173458431]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+
+[node name="item_ui2" parent="PanelContainer/MarginContainer/Items/PanelContainer2" unique_id=663929089 instance=ExtResource("1_fcvjx")]
+layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/MarginContainer/Items" unique_id=1006968768]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+
+[node name="item_ui3" parent="PanelContainer/MarginContainer/Items/PanelContainer3" unique_id=1193884941 instance=ExtResource("1_fcvjx")]
+layout_mode = 2

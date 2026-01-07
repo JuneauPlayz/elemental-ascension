@@ -1,6 +1,9 @@
 extends UnitRes
 class_name AllyRes
 
+
+@export var starting_item : Item
+
 @export_category("Level Up Reward 1")
 @export var keystone_1: Keystone
 @export var keystone_2: Keystone

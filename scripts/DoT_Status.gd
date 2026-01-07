@@ -7,7 +7,7 @@ class_name Status
 @export var stacks : int
 @export var pre_turn : bool
 @export var damage : int
-@export_enum("none", "water", "fire", "lightning", "earth", "grass") var element : String
+@export_enum("neutral", "water", "fire", "lightning", "earth", "grass") var element : String
 @export var turns_remaining : int
 @export var max_stacks : int
 @export var icon : Texture

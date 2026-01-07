@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bbrexjlrmrl8g"]
+
+[ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="1_odup6"]
+[ext_resource type="Script" uid="uid://dowei2jfdmot6" path="res://resources/item scripts/item.gd" id="2_n721n"]
+
+[resource]
+script = ExtResource("2_n721n")
+item_name = "Flameblade"
+type = "Weapon"
+tags = Array[String](["Weapon", "Fire"])
+icon = ExtResource("1_odup6")
+tooltip = "When this unit uses a fire skill, deal 5 neutral damage to all enemies."
+metadata/_custom_type_script = "uid://dowei2jfdmot6"
