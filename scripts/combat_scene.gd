@@ -30,7 +30,7 @@ const ENEMY = preload("res://resources/units/enemies/enemy.tscn")
 
 
 var run
-var combat_sim
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,36 +57,36 @@ func get_combat_manager():
 
 func load_units():
 	print("loading units")
+	for child in enemy_1_spot.get_children():
+			child.queue_free()
+	for child in enemy_2_spot.get_children():
+			child.queue_free()
+	for child in enemy_3_spot.get_children():
+			child.queue_free()
+	for child in enemy_4_spot.get_children():
+			child.queue_free()
 	if enemy1res != null:
 		var enemy1s = ENEMY.instantiate()
 		enemy1 = enemy1s
 		enemy1s.res = enemy1res.duplicate()
-		for child in enemy_1_spot.get_children():
-			child.queue_free()
 		enemy_1_spot.add_child(enemy1s)
 		combat_manager.enemy1 = enemy1s
 	if enemy2res != null:
 		var enemy2s = ENEMY.instantiate()
 		enemy2 = enemy2s
 		enemy2s.res = enemy2res.duplicate()
-		for child in enemy_2_spot.get_children():
-			child.queue_free()
 		enemy_2_spot.add_child(enemy2s)
 		combat_manager.enemy2 = enemy2s
 	if enemy3res != null:
 		var enemy3s = ENEMY.instantiate()
 		enemy3 = enemy3s
 		enemy3s.res = enemy3res.duplicate()
-		for child in enemy_3_spot.get_children():
-			child.queue_free()
 		enemy_3_spot.add_child(enemy3s)
 		combat_manager.enemy3 = enemy3s
 	if enemy4res != null:
 		var enemy4s = ENEMY.instantiate()
 		enemy4 = enemy4s
 		enemy4s.res = enemy4res.duplicate()
-		for child in enemy_4_spot.get_children():
-			child.queue_free()
 		enemy_4_spot.add_child(enemy4s)
 		combat_manager.enemy4 = enemy4s
 	if (enemy1 != null):

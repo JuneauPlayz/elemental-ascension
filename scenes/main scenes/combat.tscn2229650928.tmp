@@ -194,7 +194,6 @@ offset_bottom = -717.0
 scale = Vector2(0.7, 0.7)
 
 [node name="TriggerManager" type="Node" parent="." unique_id=575156603]
-unique_name_in_owner = true
 script = ExtResource("6_mec8r")
 
 [node name="Enemy 1 Spot" type="Node2D" parent="." unique_id=1737601659]

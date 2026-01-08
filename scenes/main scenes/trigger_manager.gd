@@ -4,11 +4,15 @@ var run
 
 @onready var combat_manager: Node = %CombatManager
 
+var trigger_list : Array[Trigger] = []
+
 var post_fire_skill_triggers : Array[Trigger]
+
+signal triggers_done
 
 func _ready() -> void:
 	var run = get_tree().get_first_node_in_group("run")
-	
+
 func execute_trigger(trigger: Trigger) -> void:
 	if trigger == null:
 		return
@@ -29,6 +33,14 @@ func execute_trigger(trigger: Trigger) -> void:
 			"Shielding":
 				unit.receive_shielding(trigger.value, trigger.element, false)
 
+func execute_triggers():
+	for trigger in trigger_list:
+		execute_trigger(trigger)
+		await get_tree().create_timer(GC.GLOBAL_INTERVAL).timeout
+	reset_triggers()
+
+func reset_triggers():
+	trigger_list = []
 
 func _resolve_trigger_targets(target_type: String) -> Array:
 	var cm = combat_manager
@@ -107,22 +119,25 @@ func _resolve_trigger_targets(target_type: String) -> Array:
 
 	return result
 
-func _on_combat_manager_ally_fire_skill_used() -> void:
+func _on_combat_manager_ally_fire_skill_used(caster, target) -> void:
 	for trigger in post_fire_skill_triggers:
-		execute_trigger(trigger)
+		if trigger.caster != caster:
+			continue
+			
+		trigger_list.append(trigger)
 
 
-func _on_combat_manager_ally_water_skill_used() -> void:
+func _on_combat_manager_ally_water_skill_used(caster, target) -> void:
 	pass # Replace with function body.
 
 
-func _on_combat_manager_ally_lightning_skill_used() -> void:
+func _on_combat_manager_ally_lightning_skill_used(caster, target) -> void:
 	pass # Replace with function body.
 
 
-func _on_combat_manager_ally_grass_skill_used() -> void:
+func _on_combat_manager_ally_grass_skill_used(caster, target) -> void:
 	pass # Replace with function body.
 
 
-func _on_combat_manager_ally_earth_skill_used() -> void:
+func _on_combat_manager_ally_earth_skill_used(caster, target) -> void:
 	pass # Replace with function body.

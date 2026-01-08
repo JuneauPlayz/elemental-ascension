@@ -26,7 +26,6 @@ var ally_num : int
 @onready var level_up_reward: Control = $LevelUpReward
 @onready var swap_tutorial: Label = $LevelUpReward/SwapTutorial
 @onready var confirm_swap: Button = $LevelUpReward/ConfirmSwap
-@onready var item_handler: Control = $ItemHandler
 
 var combat = true
 
@@ -54,6 +53,7 @@ func _ready() -> void:
 	run = get_tree().get_first_node_in_group("run")
 	id = run.id
 	run.id += 1
+	item_handler = $ItemHandler
 	await get_tree().create_timer(0.0001).timeout
 	run = get_tree().get_first_node_in_group("run")
 	# spell select ui first child, hp bar ui second child

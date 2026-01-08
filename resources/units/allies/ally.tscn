@@ -77,15 +77,6 @@ position = Vector2(85, 185)
 script = ExtResource("1_fu3qc")
 skill_1 = ExtResource("3_oopdj")
 skill_2 = ExtResource("4_7yskb")
-health = null
-max_health = null
-shield = null
-damage_reduction = null
-status = null
-current_element = null
-connected = null
-id = null
-title = null
 
 [node name="SpellSelectUi" parent="." unique_id=416312703 instance=ExtResource("2_pcgfv")]
 offset_left = -96.36363

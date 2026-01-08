@@ -14,6 +14,7 @@ const END_TURN_DELAY = 0.5
 const ENEMY = preload("res://resources/units/enemies/enemy.tscn")
 
 
+
 @export var ally1 : Ally
 @export var ally2 : Ally
 @export var ally3 : Ally
@@ -105,15 +106,17 @@ signal hit
 signal signal_received
 signal reaction_finished
 
-signal ally_fire_skill_used
-signal ally_water_skill_used
-signal ally_lightning_skill_used
-signal ally_grass_skill_used
-signal ally_earth_skill_used
+signal ally_fire_skill_used(caster : Unit, target : Array[Unit])
+signal ally_water_skill_used(caster : Unit, target : Array[Unit])
+signal ally_lightning_skill_used(caster : Unit, target : Array[Unit])
+signal ally_grass_skill_used(caster : Unit, target : Array[Unit])
+signal ally_earth_skill_used(caster : Unit, target : Array[Unit])
 
 var run
 
 @onready var ReactionManager: Node = $"../ReactionManager"
+var trigger_manager
+
 
 func combat_ready():
 	run = get_tree().get_first_node_in_group("run")
@@ -219,10 +222,22 @@ func ally_skill_use(skill, target, ally):
 	combat_currency.update()
 
 	await reaction_finished
-
+	
+	match skill.element:
+		"fire":
+			ally_fire_skill_used.emit(ally, target)
+		"water":
+			ally_water_skill_used.emit(ally, target)
+		"lightning":
+			ally_lightning_skill_used.emit(ally, target)
+		"grass":
+			ally_grass_skill_used.emit(ally, target)
+		"earth":
+			ally_earth_skill_used.emit(ally, target)
+	
 	print(str(skill.name) + " landed!")
 	hit.emit()
-
+	await check_triggers()
 	await get_tree().create_timer(0.1).timeout
 	for enemy in enemies:
 		enemy.decrease_countdown(1)
@@ -1508,3 +1523,37 @@ func pop_up_button_pressed():
 
 func _on_character_ult_animation_ult_anim_done() -> void:
 	ult_anim_done.emit()
+
+func check_triggers():
+	if trigger_manager.trigger_list != []:
+		await get_tree().create_timer(GC.GLOBAL_INTERVAL).timeout
+		await trigger_manager.execute_triggers()
+
+func load_triggers() -> void:
+	trigger_manager = %TriggerManager
+
+	trigger_manager.post_fire_skill_triggers.clear()
+
+	for ally in allies:
+		if ally == null:
+			continue
+
+		for item in ally.items:
+			if item == null:
+				continue
+
+			for trigger in item.triggers:
+				if trigger == null:
+					continue
+
+				trigger.caster = ally
+
+				if trigger.action != "Skill":
+					continue
+				if trigger.timing != "Post":
+					continue
+
+				match trigger.trigger_element:
+					"fire":
+						trigger_manager.post_fire_skill_triggers.append(trigger)
+						

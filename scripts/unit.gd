@@ -199,7 +199,7 @@ func increase_skill_damage(value):
 	if self.skill4 != null:
 		self.skill4.damage += value
 	if self is Enemy:
-		self.skill_info.update_skill_info()
+		self.enemy_skill_info.update_skill_info()
 
 
 func take_damage(damage : int, element : String, change_element : bool):
@@ -241,7 +241,7 @@ func take_damage(damage : int, element : String, change_element : bool):
 				damage_left *= run.earth_damage_mult
 			"neutral":
 				damage_left += run.neutral_damage_bonus
-				damage_left += run.neutral_damage_mult
+				damage_left *= run.neutral_damage_mult
 		damage_left *= run.all_damage_mult
 
 	# calc damage reduction
@@ -546,17 +546,28 @@ func update_skills():
 func change_weapon(item):
 	if weapon != null:
 		items.erase(weapon)
+	items.append(item)
 	item_handler.update_weapon_slot(item)
 	weapon = item
+	update_item(item)
 
 func change_armor(item):
 	if armor != null:
 		items.erase(armor)
 	item_handler.update_armor_slot(item)
+	items.append(item)
 	armor = item
+	update_item(item)
 
 func change_accessory(item):
 	if accessory != null:
 		items.erase(accessory)
 	item_handler.update_accessory_slot(item)
+	items.append(item)
 	accessory = item
+	update_item(item)
+
+func update_item(item):
+	for trigger in item.triggers:
+		if trigger.action == "Skill":
+			trigger.caster = self

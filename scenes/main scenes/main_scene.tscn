@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cvuae61vimnfv" path="res://assets/daybg.png" id="2_vck2s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k0nup"]
-font_size = 178
-outline_size = 36
+font_size = 150
+outline_size = 22
 outline_color = Color(0, 0, 0, 1)
 
 [node name="MainScene" type="Node2D" unique_id=637652746]
@@ -19,10 +19,10 @@ texture = ExtResource("2_vck2s")
 
 [node name="Title" type="Label" parent="." unique_id=1288137240]
 offset_left = -8.0
-offset_top = 85.0
+offset_top = 94.0
 offset_right = 1921.0
-offset_bottom = 300.0
-text = "project burg"
+offset_bottom = 309.0
+text = "Elemental Ascension"
 label_settings = SubResource("LabelSettings_k0nup")
 horizontal_alignment = 1
 

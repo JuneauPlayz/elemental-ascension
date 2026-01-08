@@ -9,8 +9,10 @@ script = ExtResource("3_n721n")
 action = "Skill"
 timing = "Post"
 value = 5
-element = "Neutral"
+trigger_element = "fire"
 value_type = "Damage"
+element = "neutral"
+target_type = "all_enemies"
 metadata/_custom_type_script = "uid://dcfgvhbckljfy"
 
 [resource]

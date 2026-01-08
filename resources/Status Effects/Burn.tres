@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://dt8g5a7f2o4ny"]
+[gd_resource type="Resource" script_class="Status" format=3 uid="uid://dt8g5a7f2o4ny"]
 
-[ext_resource type="Texture2D" uid="uid://bmadtlfoetukr" path="res://assets/arsonist.png" id="1_1nygl"]
+[ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="1_1nygl"]
 [ext_resource type="Script" uid="uid://5lu86r10cr8o" path="res://scripts/DoT_Status.gd" id="1_806f8"]
 
 [resource]
@@ -10,6 +10,4 @@ pre_turn = true
 damage = 10
 element = "fire"
 turns_remaining = 2
-event_based = false
-unique_type = ""
 icon = ExtResource("1_1nygl")
