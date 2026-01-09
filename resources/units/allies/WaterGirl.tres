@@ -14,5 +14,6 @@ sprite = ExtResource("5_qpmv7")
 sprite_scale = 0.13
 skill1 = ExtResource("4_7pll6")
 skill2 = ExtResource("5_bwi7l")
+element_types = Array[String](["water"])
 core_main_stat = ExtResource("1_u0ftr")
 metadata/_custom_type_script = "uid://bpkpxp60hx4da"

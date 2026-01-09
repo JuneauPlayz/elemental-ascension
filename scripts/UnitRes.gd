@@ -13,4 +13,5 @@ class_name UnitRes
 @export var skill3: Skill
 @export var skill4: Skill
 
+@export var element_types : Array[String]
 @export var core_main_stat: CoreUpgrade

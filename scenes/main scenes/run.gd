@@ -14,6 +14,7 @@ extends Node
 @onready var xp_number: Label = $XPBar/XPNumber
 @onready var xp_gain_position: Node2D = $XPBar/XPGainPosition
 @onready var reaction_guide_button: Button = $ReactionGuide
+@onready var affinity_bar: Control = $AffinityBar
 
 
 const KEYSTONE_HANDLER = preload("res://scenes/keystone handler/keystone_handler.tscn")
@@ -264,9 +265,25 @@ var sow_grass_token_mult = 1
 var sow_earth_token_bonus = 0
 var sow_grass_token_bonus = 0
 
+# affinities
+var total_affinity = 0
+
+var fire_affinity = 0
+var water_affinity = 0
+var lightning_affinity = 0
+var grass_affinity = 0
+var earth_affinity = 0
+
+var fire_affinity_pct = 0.0
+var water_affinity_pct = 0.0
+var lightning_affinity_pct = 0.0
+var grass_affinity_pct = 0.0
+var earth_affinity_pct = 0.0
+
 var current_fight = null
 var end = false
 var current_boss = null
+
 
 # event based keystones
 var ghostfire = false
@@ -399,6 +416,8 @@ func _ready() -> void:
 		skills.append(GC.ally1.skill3)
 		skills.append(GC.ally1.skill4)
 		allies.append(ally1)
+		ally1.element_types = ally1s.res.element_types
+		add_unit_affinity(ally1)
 		ally_1_spot_og_pos = ally_1_spot.global_position
 	if GC.ally2 != null:
 		var ally2s = GC.ALLY.instantiate()
@@ -411,6 +430,8 @@ func _ready() -> void:
 		skills.append(GC.ally2.skill3)
 		skills.append(GC.ally2.skill4)
 		allies.append(ally2)
+		ally2.element_types = ally2s.res.element_types
+		add_unit_affinity(ally2)
 		ally_2_spot_og_pos = ally_2_spot.global_position
 	if GC.ally3 != null:
 		var ally3s = GC.ALLY.instantiate()
@@ -423,6 +444,8 @@ func _ready() -> void:
 		skills.append(GC.ally3.skill3)
 		skills.append(GC.ally3.skill4)
 		allies.append(ally3)
+		ally3.element_types = ally3s.res.element_types
+		add_unit_affinity(ally3)
 		ally_3_spot_og_pos = ally_3_spot.global_position
 	if GC.ally4 != null:
 		var ally4s = GC.ALLY.instantiate()
@@ -435,6 +458,8 @@ func _ready() -> void:
 		skills.append(GC.ally4.skill3)
 		skills.append(GC.ally4.skill4)
 		allies.append(ally4)
+		ally4.element_types = ally4s.res.element_types
+		add_unit_affinity(ally4)
 		ally_4_spot_og_pos = ally_4_spot.global_position
 	front_ally = allies[allies.size()-1]
 	back_ally = allies[0]
@@ -936,7 +961,45 @@ func hide_xp():
 
 func show_xp():
 	xp_bar.visible = true
+	
+func add_affinity(type, amt):
+	match type:
+		"fire":
+			fire_affinity += amt
+		"water":
+			water_affinity += amt
+		"lightning":
+			lightning_affinity += amt
+		"grass":
+			grass_affinity += amt
+		"earth":
+			earth_affinity += amt
+	update_affinities()
 
+func update_affinities():
+	total_affinity = fire_affinity + water_affinity + lightning_affinity + grass_affinity + earth_affinity
+	fire_affinity_pct = (float(fire_affinity) / total_affinity) * 100
+	water_affinity_pct = (float(water_affinity) / total_affinity) * 100
+	lightning_affinity_pct = (float(lightning_affinity) / total_affinity) * 100
+	grass_affinity_pct = (float(grass_affinity) / total_affinity) * 100
+	earth_affinity_pct = (float(earth_affinity) / total_affinity) * 100
+	affinity_bar.set_affinities(fire_affinity_pct, water_affinity_pct, lightning_affinity_pct, grass_affinity_pct, earth_affinity_pct)
+
+func add_unit_affinity(unit):
+	var amt = 2/(unit.element_types.size())
+	for element in unit.element_types:
+		match element:
+			"fire":
+				add_affinity("fire", amt)
+			"water":
+				add_affinity("water", amt)
+			"lightning":
+				add_affinity("lightning", amt)
+			"grass":
+				add_affinity("grass", amt)
+			"earth":
+				add_affinity("earth", amt)
+			
 func new_scene(scene):
 	if current_scene != null:
 		current_scene.queue_free()

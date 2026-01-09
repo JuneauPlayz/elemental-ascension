@@ -15,6 +15,7 @@ class_name Unit
 @export var left : Unit
 @export var right : Unit
 @export var id : int
+var element_types = []
 var targetable = true
 
 var run

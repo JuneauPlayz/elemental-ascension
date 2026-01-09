@@ -21,4 +21,5 @@ sprite_scale = 0.135
 cutin_portrait = ExtResource("9_f53gx")
 skill1 = ExtResource("7_2dwqq")
 skill2 = ExtResource("8_ycwrn")
+element_types = Array[String](["fire"])
 core_main_stat = ExtResource("1_2dwqq")

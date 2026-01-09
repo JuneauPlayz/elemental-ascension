@@ -15,4 +15,5 @@ sprite_scale = 0.135
 cutin_portrait = ExtResource("2_r6xyp")
 skill1 = ExtResource("7_6bgcc")
 skill2 = ExtResource("8_k8kw7")
+element_types = Array[String](["lightning"])
 core_main_stat = ExtResource("1_g82qp")

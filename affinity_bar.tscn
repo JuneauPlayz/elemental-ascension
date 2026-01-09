@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://dppkrmhc8wtqi"]
+
+[ext_resource type="Script" uid="uid://cesrxfmk5sua2" path="res://affinity_bar.gd" id="1_2p44p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7n35"]
+bg_color = Color(0.44019872, 0.44700485, 0.5004794, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2p44p"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[node name="AffinityBar" type="Control" unique_id=1753556423]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1670.0
+offset_bottom = -1065.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2p44p")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1286629555]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 15.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x7n35")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2071266790]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=883161738]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1474526651]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2p44p")
+
+[node name="FireAffinity" type="ColorRect" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=925778338]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(1, 0.62352943, 0.42745098, 1)
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=382499950]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2p44p")
+
+[node name="WaterAffinity" type="ColorRect" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer2" unique_id=1013688668]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0, 0.7647059, 0.7647059, 1)
+
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=435899287]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2p44p")
+
+[node name="LightningAffinity" type="ColorRect" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer3" unique_id=1592275097]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(1, 1, 0.60784316, 1)
+
+[node name="PanelContainer4" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1259610332]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2p44p")
+
+[node name="GrassAffinity" type="ColorRect" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer4" unique_id=1390155337]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0.5254902, 0.77254903, 0.5137255, 1)
+
+[node name="PanelContainer5" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=957435319]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2p44p")
+
+[node name="EarthAffinity" type="ColorRect" parent="PanelContainer/MarginContainer/HBoxContainer/PanelContainer5" unique_id=64008646]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0.77254903, 0.5529412, 0.41960785, 1)

@@ -15,4 +15,5 @@ sprite_scale = 0.135
 cutin_portrait = ExtResource("2_vesmu")
 skill1 = ExtResource("3_w2hqt")
 skill2 = ExtResource("4_j0yij")
+element_types = Array[String](["grass"])
 core_main_stat = ExtResource("1_vesmu")
