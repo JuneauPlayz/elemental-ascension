@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b37yhcwrqieem" path="res://scripts/shop.gd" id="1_1no3t"]
 [ext_resource type="Texture2D" uid="uid://brhs8ke2bqbhj" path="res://assets/cafe shop background.png" id="2_cw3t7"]
-[ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/keystone_info.tscn" id="3_4vncm"]
+[ext_resource type="PackedScene" uid="uid://i473wibgqlvt" path="res://scenes/reusables/shop_sellable.tscn" id="3_odpiy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k3r7d"]
 resource_local_to_scene = true
@@ -20,16 +20,22 @@ font_size = 28
 outline_size = 9
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Shop" type="Node2D" groups=["shop"]]
+[node name="Shop" type="Node2D" unique_id=1608882706 groups=["shop"]]
 position = Vector2(0, 2)
 script = ExtResource("1_1no3t")
 
-[node name="ShopBG" type="Sprite2D" parent="."]
+[node name="ShopBG" type="Sprite2D" parent="." unique_id=1103048242]
+visible = false
 self_modulate = Color(1, 1, 1, 0.623529)
 position = Vector2(1025, 577)
 texture = ExtResource("2_cw3t7")
 
-[node name="Title" type="Label" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1482253034]
+offset_right = 1937.0
+offset_bottom = 1113.0
+color = Color(0.6285978, 0.6352789, 0.6867849, 1)
+
+[node name="Title" type="Label" parent="." unique_id=1137885290]
 offset_left = 1.0
 offset_top = 3.0
 offset_right = 1920.0
@@ -38,85 +44,66 @@ text = "The Shop"
 label_settings = SubResource("LabelSettings_k3r7d")
 horizontal_alignment = 1
 
-[node name="RelicsLabel" type="Label" parent="."]
+[node name="ItemsLabel" type="Label" parent="." unique_id=1599927219]
 offset_left = 993.0
 offset_top = 149.0
 offset_right = 1175.0
 offset_bottom = 225.0
-text = "Relics:"
+text = "Items"
 label_settings = SubResource("LabelSettings_1chno")
 horizontal_alignment = 1
 
-[node name="SkillsLabel" type="Label" parent="."]
+[node name="SkillsLabel" type="Label" parent="." unique_id=295719589]
 offset_left = 994.0
-offset_top = 440.0
-offset_right = 1155.0
-offset_bottom = 516.0
+offset_top = 479.0
+offset_right = 1193.0
+offset_bottom = 567.5
 text = "Skills:"
 label_settings = SubResource("LabelSettings_1chno")
 horizontal_alignment = 1
 
-[node name="RelicHandlerSpot" type="Node2D" parent="."]
-position = Vector2(216, 27)
-
-[node name="RelicInfo" parent="RelicHandlerSpot" instance=ExtResource("3_4vncm")]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(50, 50)
-offset_left = 73.0
-offset_top = 59.0
-offset_right = 123.0
-offset_bottom = 109.0
-scale = Vector2(0.7, 0.7)
-
-[node name="Ally 1 Spot" type="Node2D" parent="."]
-position = Vector2(45, 160)
-
-[node name="Ally 2 Spot" type="Node2D" parent="."]
-position = Vector2(295, 160)
-
-[node name="Ally 3 Spot" type="Node2D" parent="."]
-position = Vector2(545, 160)
-
-[node name="Ally 4 Spot" type="Node2D" parent="."]
-position = Vector2(795, 160)
-
-[node name="Relic1Spot" type="Node2D" parent="."]
+[node name="Item1Spot" type="Node2D" parent="." unique_id=1313598329]
 position = Vector2(1044, 250)
 
-[node name="Relic2Spot" type="Node2D" parent="."]
+[node name="ShopSellable" parent="Item1Spot" unique_id=685287349 instance=ExtResource("3_odpiy")]
+
+[node name="Item2Spot" type="Node2D" parent="." unique_id=1792187321]
 position = Vector2(1310, 246)
 
-[node name="Relic3Spot" type="Node2D" parent="."]
+[node name="ShopSellable" parent="Item2Spot" unique_id=1945816624 instance=ExtResource("3_odpiy")]
+
+[node name="Item3Spot" type="Node2D" parent="." unique_id=90873320]
 position = Vector2(1550, 246)
 
-[node name="Spell1Spot" type="Node2D" parent="."]
+[node name="ShopSellable" parent="Item3Spot" unique_id=1594564791 instance=ExtResource("3_odpiy")]
+
+[node name="Skill1Spot" type="Node2D" parent="." unique_id=330789088]
 position = Vector2(1044, 518)
 
-[node name="Spell2Spot" type="Node2D" parent="."]
+[node name="Skill2Spot" type="Node2D" parent="." unique_id=1477683586]
 position = Vector2(1310, 514)
 
-[node name="Spell3Spot" type="Node2D" parent="."]
+[node name="Skill3Spot" type="Node2D" parent="." unique_id=305171080]
 position = Vector2(1550, 514)
 
-[node name="NextCombat" type="Button" parent="."]
-offset_left = 1505.0
-offset_top = 862.0
-offset_right = 1783.0
-offset_bottom = 934.0
+[node name="NextCombat" type="Button" parent="." unique_id=199447329]
+offset_left = 1405.0
+offset_top = 878.0
+offset_right = 1845.0
+offset_bottom = 975.0
 theme_override_font_sizes/font_size = 72
 text = "Next Combat"
 
-[node name="Refresh" type="Button" parent="NextCombat"]
+[node name="Refresh" type="Button" parent="NextCombat" unique_id=1508360737]
 layout_mode = 0
-offset_left = -347.0
-offset_top = -846.0
-offset_right = 38.0
-offset_bottom = -792.0
+offset_left = -70.0
+offset_top = -773.0
+offset_right = 338.0
+offset_bottom = -702.0
 theme_override_font_sizes/font_size = 51
-text = "Refresh Options (1 Gold)"
+text = "Refresh (1 Gold)"
 
-[node name="ConfirmSwap" type="Button" parent="."]
+[node name="ConfirmSwap" type="Button" parent="." unique_id=813553707]
 visible = false
 offset_left = 1284.0
 offset_top = 193.0
@@ -125,7 +112,7 @@ offset_bottom = 257.0
 theme_override_font_sizes/font_size = 64
 text = "Confirm Swap"
 
-[node name="SwapTutorial" type="Label" parent="ConfirmSwap"]
+[node name="SwapTutorial" type="Label" parent="ConfirmSwap" unique_id=2103449822]
 layout_mode = 0
 offset_left = -61.0
 offset_top = -62.0

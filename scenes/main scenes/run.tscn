@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://uwucmrhjdo26" path="res://scenes/main scenes/UIManager.gd" id="13_84fnp"]
 [ext_resource type="Script" uid="uid://d4m2rer4xpdld" path="res://scenes/main scenes/scene_manager.gd" id="14_yw6xj"]
 [ext_resource type="PackedScene" uid="uid://d086qw0hvodmm" path="res://scenes/reusables/universal_info_manager.tscn" id="15_84fnp"]
-[ext_resource type="PackedScene" uid="uid://do6gwn47eylu7" path="res://scenes/main scenes/combat.tscn" id="15_yw6xj"]
+[ext_resource type="PackedScene" uid="uid://2fhbkw2l8y0t" path="res://scenes/main scenes/shop.tscn" id="16_xl86y"]
 [ext_resource type="PackedScene" uid="uid://dppkrmhc8wtqi" path="res://affinity_bar.tscn" id="17_xl86y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dcmsy"]
@@ -223,13 +223,13 @@ mouse_filter = 2
 
 [node name="CurrentScene" type="Node" parent="." unique_id=1952694104]
 
-[node name="Combat" parent="CurrentScene" unique_id=86718550 instance=ExtResource("15_yw6xj")]
+[node name="Shop" parent="CurrentScene" unique_id=1608882706 instance=ExtResource("16_xl86y")]
 
 [node name="AffinityBar" parent="." unique_id=1753556423 instance=ExtResource("17_xl86y")]
-offset_left = 1668.0
-offset_top = 81.0
-offset_right = 1668.0
-offset_bottom = 81.0
+offset_left = 27.0
+offset_top = 20.0
+offset_right = -1643.0
+offset_bottom = -1045.0
 
 [connection signal="pressed" from="ReactionGuide" to="." method="_on_reaction_guide_pressed"]
 [connection signal="pressed" from="ReactionGuide" to="UIManager" method="_on_reaction_guide_pressed"]

@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var keystone_handler_spot: Node2D = $KeystoneHandlerSpot
-const KEYSTONE_HANDLER = preload("res://scenes/keystone handler/keystone_handler.tscn")
 
 const SHOP_ITEM = preload("res://scenes/reusables/shop_item.tscn")
 
@@ -14,20 +12,20 @@ var allies = []
 
 
 
-@onready var keystone_1_spot: Node2D = $Keystone1Spot
-@onready var keystone_2_spot: Node2D = $Keystone2Spot
-@onready var keystone_3_spot: Node2D = $Keystone3Spot
+@onready var item_1_spot: Node2D = $item1Spot
+@onready var item_2_spot: Node2D = $item2Spot
+@onready var item_3_spot: Node2D = $item3Spot
 
-@onready var spell_1_spot: Node2D = $Spell1Spot
-@onready var spell_2_spot: Node2D = $Spell2Spot
-@onready var spell_3_spot: Node2D = $Spell3Spot
+@onready var skill_1_spot: Node2D = $Skill1Spot
+@onready var skill_2_spot: Node2D = $Skill2Spot
+@onready var skill_3_spot: Node2D = $Skill3Spot
 
 @onready var refresh_button: Button = $NextCombat/Refresh
 
-var keystone_list = []
+var item_list = []
 var spell_list = []
 
-var shop_keystones = []
+var shop_items = []
 var shop_skills = []
 
 var type = "none"
@@ -51,9 +49,9 @@ func _ready() -> void:
 	run = get_tree().get_first_node_in_group("run")
 	shop_ended.connect(run.special_scene_ended)
 	special_shop_ended.connect(run.special_scene_ended)
-	keystone_list.append(keystone_1_spot)
-	keystone_list.append(keystone_2_spot)
-	keystone_list.append(keystone_3_spot)
+	item_list.append(item_1_spot)
+	item_list.append(item_2_spot)
+	item_list.append(item_3_spot)
 	
 	spell_list.append(spell_1_spot)
 	spell_list.append(spell_2_spot)
@@ -78,24 +76,24 @@ func _ready() -> void:
 		
 func load_items(type):
 	if type == "none":
-		for spot in keystone_list:
+		for spot in item_list:
 			var reroll_count = 0
 			if spot.get_child_count() == 1:
 				spot.get_child(0).queue_free()
 			var item = SHOP_ITEM.instantiate()
 			spot.add_child(item)
-			item.item = run.get_random_keystone()
+			item.item = run.get_random_item()
 			item.price = get_price(item.item)
-			if run.obtainable_keystones.size() > 2 and run.gold >= 3:
-				if item.price > run.gold or item.item in shop_keystones:
-					while (item.item in shop_keystones or item.price > run.gold or item.item in run.keystones) and reroll_count < 100:
-						item.item = run.get_random_keystone()
+			if run.obtainable_items.size() > 2 and run.gold >= 3:
+				if item.price > run.gold or item.item in shop_items:
+					while (item.item in shop_items or item.price > run.gold or item.item in run.items) and reroll_count < 100:
+						item.item = run.get_random_item()
 						item.price = get_price(item.item)
 						reroll_count += 1
 				item.update_item()
-				shop_keystones.append(item.item)
+				shop_items.append(item.item)
 			if reroll_count > 100:
-					shop_keystones = []
+					shop_items = []
 			
 		for spot in spell_list:
 			var reroll_count = 0
@@ -105,7 +103,7 @@ func load_items(type):
 			spot.add_child(item)
 			item.item = run.get_random_skill()
 			item.price = get_price(item.item)
-			if run.obtainable_keystones.size() > 2 and run.gold >= 3:
+			if run.obtainable_items.size() > 2 and run.gold >= 3:
 				if item.price > run.gold or item.item in shop_skills:
 					while (item.item in shop_skills or item.price > run.gold or item.item in run.skills) and reroll_count < 100:
 						item.item = run.get_random_skill()
@@ -118,25 +116,25 @@ func load_items(type):
 				shop_skills = []
 		refresh_button.visible = true
 	else:
-		for spot in keystone_list:
+		for spot in item_list:
 			var reroll_count = 0
 			if spot.get_child_count() == 1:
 				spot.get_child(0).queue_free()
 			var item = SHOP_ITEM.instantiate()
 			spot.add_child(item)
-			item.item = run.get_random_keystone()
+			item.item = run.get_random_item()
 			item.price = get_price(item.item)
-			if run.obtainable_keystones.size() > 2 and run.gold >= 3:
-				if item.price > run.gold or item.item in shop_keystones or type not in item.item.tags:
-					while (item.item in shop_keystones or item.price > run.gold or type not in item.item.tags or item.item in run.keystones) and reroll_count < 100:
-						item.item = run.get_random_keystone()
+			if run.obtainable_items.size() > 2 and run.gold >= 3:
+				if item.price > run.gold or item.item in shop_items or type not in item.item.tags:
+					while (item.item in shop_items or item.price > run.gold or type not in item.item.tags or item.item in run.items) and reroll_count < 100:
+						item.item = run.get_random_item()
 						item.price = get_price(item.item)
 						item.item.update()
 						reroll_count += 1
 				item.update_item()
-				shop_keystones.append(item.item)
+				shop_items.append(item.item)
 			if reroll_count > 100:
-				shop_keystones = []
+				shop_items = []
 			
 		for spot in spell_list:
 			var reroll_count = 0
@@ -146,7 +144,7 @@ func load_items(type):
 			spot.add_child(item)
 			item.item = run.get_random_skill()
 			item.price = get_price(item.item)
-			if run.obtainable_keystones.size() > 2 and run.gold >= 3:
+			if run.obtainable_items.size() > 2 and run.gold >= 3:
 				if item.price > run.gold or item.item in shop_skills or type not in item.item.tags:
 					while (item.item in shop_skills or item.price > run.gold or type not in item.item.tags or item.item in run.skills) and reroll_count < 100:
 						item.item = run.get_random_skill()
@@ -170,9 +168,9 @@ func get_price(resource):
 			return 9
 
 func item_bought(item, shop_item) -> void:
-	if item is Keystone:
-		run.keystone_handler.purchase_keystone(item)
-		run.keystones.append(item)
+	if item is item:
+		run.item_handler.purchase_item(item)
+		run.items.append(item)
 		shop_item.queue_free()
 	elif item is Skill:
 		new_skill = item
@@ -183,7 +181,7 @@ func buying_new_skill(shop_item):
 	new_skill_ally = null
 	for ally in allies:
 		ally.spell_select_ui.reset()
-	for spot in keystone_list:
+	for spot in item_list:
 		if (spot.get_child_count() > 0 and not spot.get_child(0) == shop_item):
 			spot.visible = false
 	for spot in spell_list:
@@ -195,7 +193,7 @@ func buying_new_skill(shop_item):
 	shop_item.hide_buy()
 	next_combat.visible = false
 	await swap_done
-	for spot in keystone_list:
+	for spot in item_list:
 		spot.visible = true
 	for spot in spell_list:
 		spot.visible = true

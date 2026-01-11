@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://i473wibgqlvt"]
+
+[ext_resource type="Script" uid="uid://cmriwuxpet7jj" path="res://scripts/shop_item.gd" id="1_7l4rg"]
+[ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="2_mjcxy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev8a0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjcxy"]
+bg_color = Color(0.19607843, 0.2, 0.23137255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7l4rg"]
+bg_color = Color(0.19607843, 0.2, 0.23137255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[node name="ShopSellable" type="Control" unique_id=685287349 groups=["shopitem"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+mouse_filter = 2
+script = ExtResource("1_7l4rg")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1297314115]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ev8a0")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1066787498]
+layout_mode = 2
+theme_override_constants/margin_left = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1850590269]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1933015395]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/LabelContainer" unique_id=1979239969]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mjcxy")
+
+[node name="Label" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/LabelContainer/PanelContainer" unique_id=917741092]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[color=coral]Fire Bolt[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRectContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=549734067]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TextureRectContainer" unique_id=378325716]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7l4rg")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/TextureRectContainer/PanelContainer" unique_id=1921281735]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("2_mjcxy")
+expand_mode = 3
+
+[node name="Buy" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1288652540]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Buy (Price)"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Buy" to="." method="_on_buy_pressed"]
