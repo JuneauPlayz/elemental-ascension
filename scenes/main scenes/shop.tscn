@@ -54,10 +54,10 @@ label_settings = SubResource("LabelSettings_1chno")
 horizontal_alignment = 1
 
 [node name="SkillsLabel" type="Label" parent="." unique_id=295719589]
-offset_left = 994.0
-offset_top = 479.0
-offset_right = 1193.0
-offset_bottom = 567.5
+offset_left = 995.0
+offset_top = 556.0
+offset_right = 1194.0
+offset_bottom = 644.5
 text = "Skills:"
 label_settings = SubResource("LabelSettings_1chno")
 horizontal_alignment = 1
