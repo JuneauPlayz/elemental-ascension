@@ -1553,7 +1553,7 @@ func load_triggers() -> void:
 				if trigger.timing != "Post":
 					continue
 
-				match trigger.trigger_element:
+				match trigger.trigger_type:
 					"fire":
 						trigger_manager.post_fire_skill_triggers.append(trigger)
 						

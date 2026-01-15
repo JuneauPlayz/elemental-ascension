@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Keystone" format=3 uid="uid://c38dqy2xt8t8e"]
+
+[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/keystone handler/keystone.gd" id="1_qmn7m"]
+[ext_resource type="Script" uid="uid://dcfgvhbckljfy" path="res://scripts/trigger.gd" id="2_t17pq"]
+
+[resource]
+script = ExtResource("1_qmn7m")
+name = "Basic Water Keystone"
+metadata/_custom_type_script = "uid://bwy6w48crbb54"

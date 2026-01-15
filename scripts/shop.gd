@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const SHOP_ITEM = preload("res://scenes/reusables/shop_item.tscn")
+const SHOP_ITEM = preload("res://scenes/reusables/shop_sellable.tscn")
 
 var ally1 : Ally
 var ally2 : Ally
@@ -10,20 +10,23 @@ var ally4 : Ally
 
 var allies = []
 
+@onready var items_label: Label = $ItemsLabel
+@onready var skills_label: Label = $SkillsLabel
 
 
-@onready var item_1_spot: Node2D = $item1Spot
-@onready var item_2_spot: Node2D = $item2Spot
-@onready var item_3_spot: Node2D = $item3Spot
+@onready var item_1_spot: Node2D = %Item1Spot
+@onready var item_2_spot: Node2D = %Item2Spot
+@onready var item_3_spot: Node2D = %Item3Spot
 
-@onready var skill_1_spot: Node2D = $Skill1Spot
-@onready var skill_2_spot: Node2D = $Skill2Spot
-@onready var skill_3_spot: Node2D = $Skill3Spot
+@onready var skill_1_spot: Node2D = %Skill1Spot
+@onready var skill_2_spot: Node2D = %Skill2Spot
+@onready var skill_3_spot: Node2D = %Skill3Spot
 
 @onready var refresh_button: Button = $NextCombat/Refresh
+@onready var swap_tutorial: Label = $ConfirmSwap/SwapTutorial
 
 var item_list = []
-var spell_list = []
+var skill_list = []
 
 var shop_items = []
 var shop_skills = []
@@ -38,6 +41,11 @@ var refresh_price = 1
 var run
 var new_skill : Skill
 var new_skill_ally : Ally
+var picking_new_skill : bool = false
+
+var new_item : Item
+var new_item_ally : Ally
+var picking_new_item : bool = false
 
 signal swap_done
 signal shop_ended
@@ -48,14 +56,14 @@ func _ready() -> void:
 
 	run = get_tree().get_first_node_in_group("run")
 	shop_ended.connect(run.special_scene_ended)
-	special_shop_ended.connect(run.special_scene_ended)
+	special_shop_ended.connect(run.special_scene_ended) 
 	item_list.append(item_1_spot)
 	item_list.append(item_2_spot)
 	item_list.append(item_3_spot)
 	
-	spell_list.append(spell_1_spot)
-	spell_list.append(spell_2_spot)
-	spell_list.append(spell_3_spot)
+	skill_list.append(skill_1_spot)
+	skill_list.append(skill_2_spot)
+	skill_list.append(skill_3_spot)
 	
 	refresh_price = 1
 	refresh_button.text = "Refresh Options (" + str(refresh_price) + " Gold)"
@@ -95,7 +103,7 @@ func load_items(type):
 			if reroll_count > 100:
 					shop_items = []
 			
-		for spot in spell_list:
+		for spot in skill_list:
 			var reroll_count = 0
 			if spot.get_child_count() == 1:
 				spot.get_child(0).queue_free()
@@ -111,7 +119,6 @@ func load_items(type):
 						reroll_count += 1
 				item.update_item()
 				shop_skills.append(item.item)
-			item.skill_info.z_index -= 1
 			if reroll_count > 100:
 				shop_skills = []
 		refresh_button.visible = true
@@ -129,14 +136,13 @@ func load_items(type):
 					while (item.item in shop_items or item.price > run.gold or type not in item.item.tags or item.item in run.items) and reroll_count < 100:
 						item.item = run.get_random_item()
 						item.price = get_price(item.item)
-						item.item.update()
 						reroll_count += 1
 				item.update_item()
 				shop_items.append(item.item)
 			if reroll_count > 100:
 				shop_items = []
 			
-		for spot in spell_list:
+		for spot in skill_list:
 			var reroll_count = 0
 			if spot.get_child_count() == 1:
 				spot.get_child(0).queue_free()
@@ -149,11 +155,9 @@ func load_items(type):
 					while (item.item in shop_skills or item.price > run.gold or type not in item.item.tags or item.item in run.skills) and reroll_count < 100:
 						item.item = run.get_random_skill()
 						item.price = get_price(item.item)
-						item.item.update()
 						reroll_count += 1
 				item.update_item()
 				shop_skills.append(item.item)
-			item.skill_info.z_index -= 1
 			if reroll_count > 100:
 				shop_skills	 = []
 		refresh_button.visible = false
@@ -168,9 +172,9 @@ func get_price(resource):
 			return 9
 
 func item_bought(item, shop_item) -> void:
-	if item is item:
-		run.item_handler.purchase_item(item)
+	if item is Item:
 		run.items.append(item)
+		buying_new_item(shop_item)
 		shop_item.queue_free()
 	elif item is Skill:
 		new_skill = item
@@ -178,13 +182,16 @@ func item_bought(item, shop_item) -> void:
 		shop_item.queue_free()
 
 func buying_new_skill(shop_item):
+	swap_tutorial.text = "Click on an empty slot or 
+current spell to replace"
+	hide_shop_UI()
 	new_skill_ally = null
 	for ally in allies:
 		ally.spell_select_ui.reset()
 	for spot in item_list:
 		if (spot.get_child_count() > 0 and not spot.get_child(0) == shop_item):
 			spot.visible = false
-	for spot in spell_list:
+	for spot in skill_list:
 		if (spot.get_child_count() > 0 and not spot.get_child(0) == shop_item):
 			spot.visible = false
 	shop_item.get_parent().visible = true
@@ -192,15 +199,62 @@ func buying_new_skill(shop_item):
 	confirm_swap.visible = true
 	shop_item.hide_buy()
 	next_combat.visible = false
+	picking_new_skill = true
 	await swap_done
-	for spot in item_list:
+	for spot in skill_list:
 		spot.visible = true
-	for spot in spell_list:
+	for spot in skill_list:
 		spot.visible = true
 	confirm_swap.visible = false
+	new_skill = null
+	new_skill_ally = null
+	picking_new_skill = false
 	if (not run.UIManager.reaction_guide_open):
 		next_combat.visible = true
 
+func buying_new_item(shop_item):
+	new_item = shop_item.item
+	swap_tutorial.text = "Click on an ally that will
+	receive the new item."
+	hide_shop_UI()
+	var new_item_ally = null
+	for spot in item_list:
+		if (spot.get_child_count() > 0 and not spot.get_child(0) == shop_item):
+			spot.visible = false
+	for spot in skill_list:
+		if (spot.get_child_count() > 0 and not spot.get_child(0) == shop_item):
+			spot.visible = false
+	shop_item.get_parent().visible = true
+	shop_item.visible = true
+	confirm_swap.visible = true
+	shop_item.hide_buy()
+	next_combat.visible = false
+	for ally in run.allies:
+		ally.enable_targeting_area()
+	picking_new_item = true
+	await swap_done
+	for spot in skill_list:
+		spot.visible = true
+	for spot in skill_list:
+		spot.visible = true
+	confirm_swap.visible = false
+	for ally in run.allies:
+		ally.disable_targeting_area()
+		ally.reset_item_handler_colors()
+	new_item_ally = null
+	new_item = null
+	picking_new_item = false
+
+	if (not run.UIManager.reaction_guide_open):
+		next_combat.visible = true
+
+func hide_shop_UI():
+	items_label.visible = false
+	skills_label.visible = false
+
+func show_shop_UI():
+	items_label.visible = true
+	skills_label.visible = true
 
 func _on_next_combat_pressed() -> void:
 	AudioPlayer.play_FX("click",-10)
@@ -211,11 +265,25 @@ func _on_next_combat_pressed() -> void:
 	
 func _on_confirm_swap_pressed() -> void:
 	AudioPlayer.play_FX("click",-10)
-	if (new_skill_ally):
+	if (new_skill_ally and picking_new_skill):
 		new_skill_ally.skill_swap_2 = new_skill
 		new_skill_ally._on_confirm_swap_pressed()
 		swap_done.emit()
-
+	elif (new_item_ally and picking_new_item):
+		match new_item.type:
+			"Weapon":
+				new_item_ally.change_weapon(new_item)
+			"Armor":
+				new_item_ally.change_armor(new_item)
+			"Accessory":
+				new_item_ally.change_accessory(new_item)
+		swap_done.emit()
+	for ally in allies:
+		ally.spell_select_ui.reset()
+	for spot in item_list:
+		spot.visible = true
+	for spot in skill_list:
+		spot.visible = true
 
 func _on_refresh_pressed() -> void:
 	if (run.gold >= refresh_price):

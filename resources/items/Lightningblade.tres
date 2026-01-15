@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bxwu5p0n7f0bc"]
+
+[ext_resource type="Texture2D" uid="uid://c2a810t6sstxx" path="res://assets/Lightning_Symbol.png" id="1_2wv8f"]
+[ext_resource type="Script" uid="uid://dowei2jfdmot6" path="res://resources/item scripts/item.gd" id="2_d8mhl"]
+[ext_resource type="Script" uid="uid://dcfgvhbckljfy" path="res://scripts/trigger.gd" id="3_h2ojb"]
+
+[sub_resource type="Resource" id="Resource_w4bdr"]
+script = ExtResource("3_h2ojb")
+action = "Skill"
+timing = "Post"
+value = 5
+value_type = "Damage"
+element = "neutral"
+target_type = "all_enemies"
+metadata/_custom_type_script = "uid://dcfgvhbckljfy"
+
+[resource]
+script = ExtResource("2_d8mhl")
+name = "Lightningblade"
+type = "Weapon"
+triggers = Array[ExtResource("3_h2ojb")]([SubResource("Resource_w4bdr")])
+tags = Array[String](["Weapon", "Fire"])
+icon = ExtResource("1_2wv8f")
+tooltip = "When this unit uses a fire skill, deal 5 neutral damage to all enemies."
+metadata/_custom_type_script = "uid://dowei2jfdmot6"

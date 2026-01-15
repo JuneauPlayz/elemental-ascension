@@ -16,11 +16,32 @@ border_width_bottom = 5
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odkxy"]
 bg_color = Color(0.09320182, 0.09985284, 0.11774104, 0.43300003)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apvcv"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75awh"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcasr"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dducn"]
 bg_color = Color(0.09411765, 0.09803922, 0.11764706, 0.43137255)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f8ep"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cta6b"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yh8tv"]
 bg_color = Color(0.09411765, 0.09803922, 0.11764706, 0.43137255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2qfi"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ppp20"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
 
 [node name="ItemHandler" type="Control" unique_id=764881385]
 layout_mode = 3
@@ -69,6 +90,12 @@ layout_mode = 2
 texture = ExtResource("3_apvcv")
 expand_mode = 3
 
+[node name="SelectWeapon" type="Button" parent="PanelContainer/MarginContainer/Items/WeaponSlot" unique_id=1950335430]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_apvcv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_75awh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pcasr")
+
 [node name="ArmorSlot" type="PanelContainer" parent="PanelContainer/MarginContainer/Items" unique_id=173458431]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(54, 54)
@@ -87,6 +114,12 @@ layout_mode = 2
 texture = ExtResource("4_75awh")
 expand_mode = 3
 
+[node name="SelectArmor" type="Button" parent="PanelContainer/MarginContainer/Items/ArmorSlot" unique_id=222327011]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_apvcv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2f8ep")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cta6b")
+
 [node name="AccessorySlot" type="PanelContainer" parent="PanelContainer/MarginContainer/Items" unique_id=1006968768]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(54, 54)
@@ -104,3 +137,19 @@ unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("5_pcasr")
 expand_mode = 3
+
+[node name="SelectAccessory" type="Button" parent="PanelContainer/MarginContainer/Items/AccessorySlot" unique_id=1638662410]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_apvcv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m2qfi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ppp20")
+
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Items/WeaponSlot/SelectWeapon" to="." method="_on_select_weapon_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/Items/WeaponSlot/SelectWeapon" to="." method="_on_select_weapon_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Items/WeaponSlot/SelectWeapon" to="." method="_on_select_weapon_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Items/ArmorSlot/SelectArmor" to="." method="_on_select_armor_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/Items/ArmorSlot/SelectArmor" to="." method="_on_select_armor_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Items/ArmorSlot/SelectArmor" to="." method="_on_select_armor_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Items/AccessorySlot/SelectAccessory" to="." method="_on_select_accessory_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/Items/AccessorySlot/SelectAccessory" to="." method="_on_select_accessory_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Items/AccessorySlot/SelectAccessory" to="." method="_on_select_accessory_pressed"]

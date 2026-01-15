@@ -18,6 +18,7 @@ var skill_swap_1 : Skill
 var skill_swap_1_spot : int
 var skill_swap_2 : Skill
 
+var item_type_selected : String
 var ally_num : int
 
 @onready var sprite_spot: Sprite2D = $SpriteSpot
@@ -191,7 +192,10 @@ func _on_spell_select_ui_new_select(ally) -> void:
 		var choose_reward = get_tree().get_first_node_in_group("choose_reward")
 		choose_reward.new_skill_ally = self
 		
-
+func item_selected(type):
+	if run.shop == true:
+		var shop = get_tree().get_first_node_in_group("shop")
+		shop.new_item_ally = self
 
 func _on_level_up_reward_new_select(skill) -> void:
 	if level_up_reward.choosing_skills:
@@ -211,7 +215,22 @@ func get_spell_select():
 func _on_targeting_area_pressed() -> void:
 	if targetable == true:
 		target_chosen.emit(self)
+	if run.shop == true:
+		run.current_scene.new_item_ally = self
+		item_swap_ui(run.current_scene.new_item.type)
+		
 
+func item_swap_ui(item_type):
+	match item_type:
+		"Weapon":
+			item_handler.update_color(item_handler.weapon_slot, Color.SKY_BLUE)
+			item_handler.update_color(item_handler.weapon_ui.panel_container, Color.SKY_BLUE)
+		"Armor":
+			item_handler.update_color(item_handler.armor_slot, Color.SKY_BLUE)
+			item_handler.update_color(item_handler.armor_ui.panel_container, Color.SKY_BLUE)
+		"Accessory":
+			item_handler.update_color(item_handler.accessory_slot, Color.SKY_BLUE)
+			item_handler.update_color(item_handler.accessory_ui.panel_container, Color.SKY_BLUE)
 
 func _on_confirm_swap_pressed() -> void:
 	AudioPlayer.play_FX("new_click",-10)
@@ -309,3 +328,12 @@ func update_skill_damage(skill):
 			skill.damage = (skill.starting_damage + healing_skill_bonus) * healing_skill_mult
 		elif skill.shielding:
 			skill.damage = (skill.starting_damage + shielding_skill_bonus) * shielding_skill_mult
+
+
+func _on_item_handler_new_select(type) -> void:
+	item_type_selected = type
+	if run.shop == true and run.current_scene.new_item != null:
+		item_swap_ui(run.current_scene.new_item.type)
+	
+func reset_item_handler_colors():
+	item_handler.reset_colors()

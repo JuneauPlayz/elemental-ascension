@@ -3,7 +3,7 @@ extends Resource
 
 
 @export_category("Identity")
-@export var item_name: String
+@export var name: String
 @export_enum("Weapon", "Armor", "Accessory") var type : String
 @export_enum("Common", "Rare", "Epic", "Legendary") var tier: String = "Common"
 @export var triggers : Array[Trigger]

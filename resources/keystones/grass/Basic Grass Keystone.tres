@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Keystone" format=3 uid="uid://csba6fi51rvuk"]
+
+[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/keystone handler/keystone.gd" id="1_8p4oj"]
+[ext_resource type="Script" uid="uid://dcfgvhbckljfy" path="res://scripts/trigger.gd" id="2_nd20r"]
+
+[sub_resource type="Resource" id="Resource_4k4yc"]
+script = ExtResource("2_nd20r")
+action = "Turn"
+timing = "Post"
+value = 5
+value_type = "Healing"
+element = "grass"
+target_type = "all_allies"
+metadata/_custom_type_script = "uid://dcfgvhbckljfy"
+
+[resource]
+script = ExtResource("1_8p4oj")
+name = "Basic Grass Keystone"
+element_slots = Array[String](["grass"])
+triggers = Array[ExtResource("2_nd20r")]([SubResource("Resource_4k4yc")])
+tooltip = "At the end of the turn, all allies heal for 5 neutral healing."
+metadata/_custom_type_script = "uid://bwy6w48crbb54"

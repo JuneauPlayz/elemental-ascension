@@ -26,6 +26,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1703.75
+offset_bottom = -800.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
@@ -54,7 +56,8 @@ custom_minimum_size = Vector2(180, 50)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mjcxy")
 
-[node name="Label" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/LabelContainer/PanelContainer" unique_id=917741092]
+[node name="ItemName" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/LabelContainer/PanelContainer" unique_id=917741092]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
@@ -64,9 +67,9 @@ vertical_alignment = 1
 
 [node name="TextureRectContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=549734067]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 5
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TextureRectContainer" unique_id=378325716]
@@ -74,15 +77,18 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7l4rg")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/TextureRectContainer/PanelContainer" unique_id=1921281735]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 texture = ExtResource("2_mjcxy")
 expand_mode = 3
 
 [node name="Buy" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1288652540]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Buy (Price)"
 
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/TextureRectContainer/PanelContainer/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/TextureRectContainer/PanelContainer/TextureRect" to="." method="_on_texture_rect_mouse_exited"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Buy" to="." method="_on_buy_pressed"]

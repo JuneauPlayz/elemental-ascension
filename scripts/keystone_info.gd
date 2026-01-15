@@ -15,7 +15,7 @@ func _ready() -> void:
 func update_keystone_info(keystone):
 	tags.text = " "
 	if keystone != null:
-		keystone_name.text = keystone.keystone_name
+		keystone_name.text = keystone.name
 		description.text = keystone.tooltip
 		for tag in keystone.tags:
 			var added_text = tag

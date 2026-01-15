@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://do8fbacf2b5lp"]
+
+[ext_resource type="Texture2D" uid="uid://dgkpabaj1kl5r" path="res://assets/Earth_symbol.png" id="1_nsks3"]
+[ext_resource type="Script" uid="uid://dowei2jfdmot6" path="res://resources/item scripts/item.gd" id="2_vh2or"]
+[ext_resource type="Script" uid="uid://dcfgvhbckljfy" path="res://scripts/trigger.gd" id="3_alm40"]
+
+[sub_resource type="Resource" id="Resource_w4bdr"]
+script = ExtResource("3_alm40")
+action = "Skill"
+timing = "Post"
+value = 5
+value_type = "Damage"
+element = "neutral"
+target_type = "all_enemies"
+metadata/_custom_type_script = "uid://dcfgvhbckljfy"
+
+[resource]
+script = ExtResource("2_vh2or")
+name = "Earthblade"
+type = "Weapon"
+triggers = Array[ExtResource("3_alm40")]([SubResource("Resource_w4bdr")])
+tags = Array[String](["Weapon", "Fire"])
+icon = ExtResource("1_nsks3")
+tooltip = "When this unit uses a fire skill, deal 5 neutral damage to all enemies."
+metadata/_custom_type_script = "uid://dowei2jfdmot6"

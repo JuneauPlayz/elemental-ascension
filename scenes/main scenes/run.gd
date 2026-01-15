@@ -467,9 +467,25 @@ func _ready() -> void:
 	for ally in allies:
 		ally.run_starting = true
 	reaction_panel.visible = false
+	
+	var element = ""
+	for i in range(1,6):
+		match i:
+			1:
+				element = "fire"
+			2:
+				element = "water"
+			3:
+				element = "lightning"
+			4:
+				element = "grass"
+			5:
+				element = "earth"
+			6:
+				element = "neutral"
 	var dir = DirAccess.open("res://resources/keystones")
 	var keystones = []
-	get_all_files_from_directory("res://resources/keystones", "", keystones)
+	get_all_files_from_directory("res://resources/keystones/" + element, "", keystones)
 	for filename in keystones:
 		var keystone = load(filename)
 		obtainable_keystones.append(keystone)
@@ -481,7 +497,6 @@ func _ready() -> void:
 		var item = load(filename)
 		obtainable_items.append(item)
 	
-	var element = ""
 	
 	for i in range(1,6):
 		match i:
@@ -608,7 +623,9 @@ func add_reward(reward):
 			"rare":
 				scene_reward = "rare_event"
 
+
 func level_up_allies():
+	return
 	level += 1
 	level_up = true
 	if ally1 != null:
@@ -640,7 +657,19 @@ func get_random_keystone():
 		random_num = rng.randi_range(0,obtainable_keystones.size()-1)
 		keystone = obtainable_keystones[random_num]
 	return keystone
-	
+
+
+func get_random_item():
+	if obtainable_items == []:
+		return null
+	var rng = RandomNumberGenerator.new()
+	var random_num = rng.randi_range(0,obtainable_items.size()-1)
+	var item = obtainable_items[random_num]
+	while item in items:
+		random_num = rng.randi_range(0,obtainable_items.size()-1)
+		item = obtainable_items[random_num]
+	return item
+
 func get_random_skill():
 	var rng = RandomNumberGenerator.new()
 	var random_num = rng.randi_range(0,obtainable_skills.size()-1)
@@ -1006,6 +1035,7 @@ func new_scene(scene):
 	for child in current_scene_holder.get_children():
 		child.queue_free()
 	var new_scene = scene.instantiate()
+	current_scene = new_scene
 	current_scene_holder.add_child(new_scene)
 	return new_scene
 

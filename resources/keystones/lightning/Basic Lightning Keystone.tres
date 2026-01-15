@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Keystone" format=3 uid="uid://dltyijodguerl"]
+
+[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/keystone handler/keystone.gd" id="1_eu7sy"]
+[ext_resource type="Script" uid="uid://dcfgvhbckljfy" path="res://scripts/trigger.gd" id="2_yxul0"]
+
+[resource]
+script = ExtResource("1_eu7sy")
+name = "Basic Lightning Keystone"
+metadata/_custom_type_script = "uid://bwy6w48crbb54"

@@ -246,6 +246,7 @@ scale = Vector2(0.226, 0.06)
 texture = ExtResource("10_qfy0u")
 
 [connection signal="new_select" from="SpellSelectUi" to="." method="_on_spell_select_ui_new_select"]
+[connection signal="new_select" from="ItemHandler" to="." method="_on_item_handler_new_select"]
 [connection signal="new_select" from="LevelUpReward" to="." method="_on_level_up_reward_new_select"]
 [connection signal="mouse_entered" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_ba_1_mouse_entered"]
 [connection signal="mouse_exited" from="LevelUpReward/PanelContainer/MarginContainer/VBoxContainer/BA1Panel/option1" to="LevelUpReward" method="_on_ba_1_mouse_exited"]

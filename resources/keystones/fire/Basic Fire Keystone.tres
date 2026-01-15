@@ -2,11 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/keystone handler/keystone.gd" id="1_s64jg"]
 [ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="1_xln24"]
+[ext_resource type="Script" uid="uid://dcfgvhbckljfy" path="res://scripts/trigger.gd" id="3_t1oub"]
+
+[sub_resource type="Resource" id="Resource_51jyi"]
+script = ExtResource("3_t1oub")
+metadata/_custom_type_script = "uid://dcfgvhbckljfy"
 
 [resource]
 script = ExtResource("1_s64jg")
-keystone_name = "Basic Fire Keystone"
+name = "Basic Fire Keystone"
 element_slots = Array[String](["fire"])
+triggers = Array[ExtResource("3_t1oub")]([SubResource("Resource_51jyi")])
 icon = ExtResource("1_xln24")
 tooltip = "After dealing fire damage, deal 3 neutral damage to the front enemy."
 metadata/_custom_type_script = "uid://bwy6w48crbb54"

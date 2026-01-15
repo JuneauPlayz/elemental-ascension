@@ -2,6 +2,7 @@ class_name ItemUI
 extends Control
 
 @export var item : Item : set = set_item
+@onready var panel_container: PanelContainer = $PanelContainer
 
 @onready var icon : TextureRect = %Icon
 @onready var animation_player : AnimationPlayer = %AnimationPlayer

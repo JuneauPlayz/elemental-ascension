@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Keystone" format=3 uid="uid://brdi7hld0x273"]
+
+[ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/keystone handler/keystone.gd" id="1_7we4x"]
+[ext_resource type="Texture2D" uid="uid://dgkpabaj1kl5r" path="res://assets/Earth_symbol.png" id="1_t4jqo"]
+[ext_resource type="Script" uid="uid://dcfgvhbckljfy" path="res://scripts/trigger.gd" id="2_t4jqo"]
+
+[sub_resource type="Resource" id="Resource_7we4x"]
+script = ExtResource("2_t4jqo")
+action = "Turn"
+timing = "Pre"
+value = 5
+value_type = "Shielding"
+element = "neutral"
+target_type = "all_allies"
+metadata/_custom_type_script = "uid://dcfgvhbckljfy"
+
+[resource]
+script = ExtResource("1_7we4x")
+name = "Basic Earth Keystone"
+element_slots = Array[String](["earth"])
+triggers = Array[ExtResource("2_t4jqo")]([SubResource("Resource_7we4x")])
+icon = ExtResource("1_t4jqo")
+tooltip = "At the start of the turn, all allies gain 5 shield."
+metadata/_custom_type_script = "uid://bwy6w48crbb54"

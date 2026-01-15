@@ -14,7 +14,7 @@ func _ready() -> void:
 func update_item_info(item):
 	tags.text = " "
 	if item != null:
-		item_name.text = item.item_name
+		item_name.text = item.name
 		description.text = item.tooltip
 		for tag in item.tags:
 			var added_text = tag

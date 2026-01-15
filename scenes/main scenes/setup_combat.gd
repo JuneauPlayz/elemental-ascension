@@ -18,7 +18,7 @@ var enemy3 : UnitRes
 var enemy4 : UnitRes
 
 var keystones = []
-var keystone_name : String
+
 
 var allies_dict : Dictionary
 var enemies_dict : Dictionary
@@ -146,8 +146,8 @@ func _ready() -> void:
 	for filename in file_keystones:
 		var keystone = load(filename)
 		p_keystones.append(keystone)
-		keystones_p.add_icon_item(keystone.icon, keystone.keystone_name)
-		keystones_dict[keystone.keystone_name] = keystone
+		keystones_p.add_icon_item(keystone.icon, keystone.name)
+		keystones_dict[keystone.name] = keystone
 	
 			
 func get_all_files_from_directory(path : String, file_ext:= "", files := []):
@@ -211,12 +211,12 @@ func _on_enemy_4_item_selected(index: int) -> void:
 
 
 func _on_keystones_item_selected(index: int) -> void:
-	keystone_name = keystones_p.get_item_text(index)
+	name = keystones_p.get_item_text(index)
 
 
 func _on_add_keystone_pressed() -> void:
-	if keystone_name != "":
-		keystones.append(keystones_dict[keystone_name])
-	keystone_name = ""
+	if name != "":
+		keystones.append(keystones_dict[name])
+	name = ""
 	keystones_p.select(0)
 	DamageNumbers.display_text(keystones_p.global_position + Vector2(350,150), "neutral", "Added!", 32)

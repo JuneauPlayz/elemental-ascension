@@ -138,7 +138,8 @@ func change_skills():
 	enemy_skill_info.update_skill_info(countdown)
 	skill_used = false
 	set_countdown()
-
+	show_next_skill_info()
+	
 func hide_next_skill_info():
 	enemy_skill_info.visible = false
 	

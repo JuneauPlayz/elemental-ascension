@@ -3,7 +3,7 @@ extends Resource
 
 
 @export_category("Identity")
-@export var keystone_name: String
+@export var name: String
 @export_enum("Common", "Rare", "Epic", "Legendary") var tier: String = "Common"
 
 @export_category("Element Slots")
@@ -12,6 +12,7 @@ extends Resource
 #   Fire keystone        -> ["fire"]
 #   Vaporize keystone   -> ["fire", "water"]
 @export var element_slots: Array[String] = []
+@export var triggers : Array[Trigger]
 
 @export_category("Tags")
 @export var tags: Array[String] = []

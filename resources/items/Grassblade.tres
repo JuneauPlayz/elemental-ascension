@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://c50cm78t5xvc1"]
+
+[ext_resource type="Texture2D" uid="uid://6wem028prmhu" path="res://assets/Grass_symbol.png" id="1_g1l4b"]
+[ext_resource type="Script" uid="uid://dowei2jfdmot6" path="res://resources/item scripts/item.gd" id="2_mddla"]
+[ext_resource type="Script" uid="uid://dcfgvhbckljfy" path="res://scripts/trigger.gd" id="3_7c3e5"]
+
+[sub_resource type="Resource" id="Resource_w4bdr"]
+script = ExtResource("3_7c3e5")
+action = "Skill"
+timing = "Post"
+value = 5
+value_type = "Damage"
+element = "neutral"
+target_type = "all_enemies"
+metadata/_custom_type_script = "uid://dcfgvhbckljfy"
+
+[resource]
+script = ExtResource("2_mddla")
+name = "Grassblade"
+type = "Weapon"
+triggers = Array[ExtResource("3_7c3e5")]([SubResource("Resource_w4bdr")])
+tags = Array[String](["Weapon", "Fire"])
+icon = ExtResource("1_g1l4b")
+tooltip = "When this unit uses a fire skill, deal 5 neutral damage to all enemies."
+metadata/_custom_type_script = "uid://dowei2jfdmot6"

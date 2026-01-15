@@ -6,7 +6,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_k3r7d"]
 resource_local_to_scene = true
-font_size = 54
+font_size = 96
 outline_size = 9
 outline_color = Color(0, 0, 0, 1)
 
@@ -33,14 +33,13 @@ texture = ExtResource("2_cw3t7")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1482253034]
 offset_right = 1937.0
 offset_bottom = 1113.0
-mouse_filter = 2
 color = Color(0.6285978, 0.6352789, 0.6867849, 1)
 
 [node name="Title" type="Label" parent="." unique_id=1137885290]
 offset_left = 1.0
-offset_top = 91.0
+offset_top = 3.0
 offset_right = 1920.0
-offset_bottom = 193.0
+offset_bottom = 105.0
 text = "The Shop"
 label_settings = SubResource("LabelSettings_k3r7d")
 horizontal_alignment = 1
@@ -64,67 +63,55 @@ label_settings = SubResource("LabelSettings_1chno")
 horizontal_alignment = 1
 
 [node name="Item1Spot" type="Node2D" parent="." unique_id=1313598329]
-unique_name_in_owner = true
 position = Vector2(1050, 250)
 
 [node name="ShopSellable" parent="Item1Spot" unique_id=685287349 instance=ExtResource("3_odpiy")]
-offset_right = 0.0
-offset_bottom = 0.0
+price = null
 
 [node name="Item2Spot" type="Node2D" parent="." unique_id=1792187321]
-unique_name_in_owner = true
 position = Vector2(1300, 250)
 
 [node name="ShopSellable" parent="Item2Spot" unique_id=1945816624 instance=ExtResource("3_odpiy")]
-offset_right = 0.0
-offset_bottom = 0.0
+price = null
 
 [node name="Item3Spot" type="Node2D" parent="." unique_id=90873320]
-unique_name_in_owner = true
 position = Vector2(1550, 250)
 
 [node name="ShopSellable" parent="Item3Spot" unique_id=1594564791 instance=ExtResource("3_odpiy")]
-offset_right = 0.0
-offset_bottom = 0.0
+price = null
 
 [node name="Skill1Spot" type="Node2D" parent="." unique_id=330789088]
-unique_name_in_owner = true
 position = Vector2(1050, 575)
 
 [node name="ShopSellable2" parent="Skill1Spot" unique_id=421382539 instance=ExtResource("3_odpiy")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+price = null
 
 [node name="Skill2Spot" type="Node2D" parent="." unique_id=1477683586]
-unique_name_in_owner = true
 position = Vector2(1300, 575)
 
 [node name="ShopSellable3" parent="Skill2Spot" unique_id=124771427 instance=ExtResource("3_odpiy")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+price = null
 
 [node name="Skill3Spot" type="Node2D" parent="." unique_id=305171080]
-unique_name_in_owner = true
 position = Vector2(1550, 575)
 
 [node name="ShopSellable3" parent="Skill3Spot" unique_id=1968236479 instance=ExtResource("3_odpiy")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+price = null
 
 [node name="NextCombat" type="Button" parent="." unique_id=199447329]
 offset_left = 1405.0
@@ -154,10 +141,10 @@ text = "Confirm Swap"
 
 [node name="SwapTutorial" type="Label" parent="ConfirmSwap" unique_id=2103449822]
 layout_mode = 0
-offset_left = 50.0
-offset_top = -92.0
-offset_right = 412.0
-offset_bottom = -20.166664
+offset_left = -61.0
+offset_top = -62.0
+offset_right = 301.0
+offset_bottom = -7.0
 text = "Click on an empty slot or 
 current spell to replace"
 label_settings = SubResource("LabelSettings_03k4o")

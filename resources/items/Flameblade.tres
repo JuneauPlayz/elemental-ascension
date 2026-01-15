@@ -9,7 +9,6 @@ script = ExtResource("3_n721n")
 action = "Skill"
 timing = "Post"
 value = 5
-trigger_element = "fire"
 value_type = "Damage"
 element = "neutral"
 target_type = "all_enemies"
@@ -17,7 +16,7 @@ metadata/_custom_type_script = "uid://dcfgvhbckljfy"
 
 [resource]
 script = ExtResource("2_n721n")
-item_name = "Flameblade"
+name = "Flameblade"
 type = "Weapon"
 triggers = Array[ExtResource("3_n721n")]([SubResource("Resource_w4bdr")])
 tags = Array[String](["Weapon", "Fire"])
