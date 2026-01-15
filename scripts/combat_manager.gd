@@ -96,6 +96,7 @@ signal target_chosen
 signal skill_selected
 signal end_turn_pressed
 signal ult_anim_done
+signal skill_used
 
 var combat_finished = false
 var first_turn = true
@@ -263,7 +264,7 @@ func check_enemy_skills():
 func enemy_skill_use_wrapper(enemy):
 	use_skill(enemy.current_skill, null, enemy, true, false)
 	await reaction_finished
-
+	skill_used.emit(enemy)
 
 
 func check_post_skill(skill):

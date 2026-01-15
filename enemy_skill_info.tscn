@@ -28,21 +28,33 @@ const WATER_SYMBOL = preload(\"uid://b7ctbguy8vt4q\")
 @onready var target: RichTextLabel = %Target
 @onready var action: Label = %Action
 @onready var element_symbol: TextureRect = %ElementSymbol
+@onready var skill_used: Label = $SkillUsed
+@onready var v_box_container: VBoxContainer = $VBoxContainer
 
 var skill: Skill
 var run
 
+signal skill_done
+var combat_manager
+
 func _ready() -> void:
 	run = get_tree().get_first_node_in_group(\"run\")
-
+	await get_tree().process_frame
+	combat_manager = run.combat_manager
+	combat_manager.skill_used.connect(skill_finished)
+	
 func update_skill_info(countdown: int) -> void:
 	if skill == null:
 		return
 
-	if countdown >= 0:
+	if countdown > 0:
 		countdown_label.text = str(countdown)
+		v_box_container.visible = true
+		skill_used.visible = false
 	else:
-		visible = false
+		await skill_done
+		v_box_container.visible = false
+		skill_used.visible = true
 		return
 
 	var action_type := \"Effect\"
@@ -96,6 +108,10 @@ func _get_target_text(t: String) -> String:
 		\"random_middle_ally\": return \"Random Middle Ally\"
 		_: return \"\"
 
+func skill_finished(unit):
+	if unit == get_parent():
+		skill_done.emit()
+
 func _on_mouse_entered() -> void:
 	run.UIManager.display(skill)
 
@@ -114,6 +130,9 @@ outline_color = Color(0, 0, 0, 1)
 font_size = 20
 outline_size = 7
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fcqul"]
+font_size = 28
 
 [node name="EnemySkillInfo" type="PanelContainer" unique_id=1389801023]
 custom_minimum_size = Vector2(225, 150)
@@ -184,6 +203,15 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "20 Damage"
 label_settings = SubResource("LabelSettings_dvqvf")
+
+[node name="SkillUsed" type="Label" parent="." unique_id=153102555]
+visible = false
+layout_mode = 2
+text = "Skill Used
+ This Turn"
+label_settings = SubResource("LabelSettings_fcqul")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

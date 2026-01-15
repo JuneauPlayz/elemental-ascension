@@ -553,6 +553,7 @@ func load_combat(enemy1, enemy2, enemy3, enemy4):
 	combat_scene.enemy2res = enemy2
 	combat_scene.enemy3res = enemy3
 	combat_scene.enemy4res = enemy4
+	UIManager.hide_affinity_bar()
 	
 func get_combat_manager():
 	if combat:
@@ -575,7 +576,8 @@ func load_shop(type):
 				
 	for ally in allies:
 		ally._ready()
-	
+	UIManager.show_affinity_bar()
+
 func load_level_up():
 	level_up_scene = new_scene(LEVEL_UP)
 
@@ -586,6 +588,7 @@ func load_choose_fight(level, fight_type):
 	choose_fight_scene = new_scene(NEXT_FIGHT_CHOICE)
 	choose_fight_scene.level = level
 	choose_fight_scene.type = fight_type
+	UIManager.show_affinity_bar()
 
 func load_choose_reward(reward_type):
 	choose_reward_scene = new_scene(BOSS_REWARD)

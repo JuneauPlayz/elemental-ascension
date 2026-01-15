@@ -10,6 +10,7 @@ extends Node
 @onready var reaction_panel: Control = $"../ReactionGuide/ReactionPanel"
 @onready var loading: Node2D = $"../Loading"
 @onready var universal_info_manager: Control = $"../UniversalInfoManager"
+@onready var affinity_bar: Control = $"../AffinityBar"
 
 var freeze = false
 var reaction_guide_open = false
@@ -66,6 +67,12 @@ func freeze_info():
 
 func unfreeze_info():
 	freeze = false
+
+func hide_affinity_bar():
+	affinity_bar.visible = false
+
+func show_affinity_bar():
+	affinity_bar.visible = true
 
 func _on_reaction_guide_pressed() -> void:
 	toggle_reaction_panel()
