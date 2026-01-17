@@ -3,15 +3,30 @@
 [ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="1_odup6"]
 [ext_resource type="Script" uid="uid://dowei2jfdmot6" path="res://resources/item scripts/item.gd" id="2_n721n"]
 [ext_resource type="Script" uid="uid://dcfgvhbckljfy" path="res://scripts/trigger.gd" id="3_n721n"]
+[ext_resource type="Script" uid="uid://bo56h71fehhnx" path="res://scripts/TriggerCondition.gd" id="4_aewhr"]
+[ext_resource type="Script" uid="uid://12jdsn4f1x74" path="res://scripts/TriggerEffect.gd" id="5_fbb10"]
+[ext_resource type="Script" uid="uid://5lu86r10cr8o" path="res://scripts/StatusEffect.gd" id="6_fbb10"]
+
+[sub_resource type="Resource" id="Resource_i816m"]
+script = ExtResource("4_aewhr")
+timing = 1
+condition_type = 0
+element = 0
+reaction = null
+metadata/_custom_type_script = "uid://bo56h71fehhnx"
+
+[sub_resource type="Resource" id="Resource_tuj4r"]
+script = ExtResource("5_fbb10")
+value_type = "Damage"
+value = 5
+element = "neutral"
+target_type = "all_enemies"
+metadata/_custom_type_script = "uid://12jdsn4f1x74"
 
 [sub_resource type="Resource" id="Resource_w4bdr"]
 script = ExtResource("3_n721n")
-action = "Skill"
-timing = "Post"
-value = 5
-value_type = "Damage"
-element = "neutral"
-target_type = "all_enemies"
+conditions = Array[ExtResource("4_aewhr")]([SubResource("Resource_i816m")])
+effects = Array[ExtResource("5_fbb10")]([SubResource("Resource_tuj4r")])
 metadata/_custom_type_script = "uid://dcfgvhbckljfy"
 
 [resource]

@@ -9,6 +9,7 @@ script = ExtResource("3_h2ojb")
 action = "Skill"
 timing = "Post"
 value = 5
+trigger_type = "lightning"
 value_type = "Damage"
 element = "neutral"
 target_type = "all_enemies"

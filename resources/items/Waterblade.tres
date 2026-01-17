@@ -9,6 +9,7 @@ script = ExtResource("3_tsl5x")
 action = "Skill"
 timing = "Post"
 value = 5
+trigger_type = "water"
 value_type = "Damage"
 element = "neutral"
 target_type = "all_enemies"

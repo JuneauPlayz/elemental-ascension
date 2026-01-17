@@ -570,5 +570,6 @@ func change_accessory(item):
 
 func update_item(item):
 	for trigger in item.triggers:
-		if trigger.action == "Skill":
-			trigger.caster = self
+		for condition in trigger.conditions:
+			if condition.condition_type == "Skill":
+				trigger.caster = self

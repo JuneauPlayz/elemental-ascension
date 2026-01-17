@@ -3,9 +3,29 @@
 [ext_resource type="Script" uid="uid://bwy6w48crbb54" path="res://scenes/keystone handler/keystone.gd" id="1_s64jg"]
 [ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="1_xln24"]
 [ext_resource type="Script" uid="uid://dcfgvhbckljfy" path="res://scripts/trigger.gd" id="3_t1oub"]
+[ext_resource type="Script" uid="uid://bo56h71fehhnx" path="res://scripts/TriggerCondition.gd" id="4_2v5e8"]
+[ext_resource type="Script" uid="uid://12jdsn4f1x74" path="res://scripts/TriggerEffect.gd" id="5_monov"]
+[ext_resource type="Script" uid="uid://5lu86r10cr8o" path="res://scripts/StatusEffect.gd" id="6_ld2bb"]
+[ext_resource type="Resource" uid="uid://csp82m0yafyor" path="res://resources/Status Effects/Fire Blessing.tres" id="7_rg1qv"]
+
+[sub_resource type="Resource" id="Resource_agn6a"]
+script = ExtResource("4_2v5e8")
+timing = "Post"
+condition_type = "Skill"
+element = "fire"
+metadata/_custom_type_script = "uid://bo56h71fehhnx"
+
+[sub_resource type="Resource" id="Resource_g6kvy"]
+script = ExtResource("5_monov")
+value_type = "Status"
+value = 1
+statuses = Array[ExtResource("6_ld2bb")]([ExtResource("7_rg1qv")])
+metadata/_custom_type_script = "uid://12jdsn4f1x74"
 
 [sub_resource type="Resource" id="Resource_51jyi"]
 script = ExtResource("3_t1oub")
+conditions = Array[ExtResource("4_2v5e8")]([SubResource("Resource_agn6a")])
+effects = Array[ExtResource("5_monov")]([SubResource("Resource_g6kvy")])
 metadata/_custom_type_script = "uid://dcfgvhbckljfy"
 
 [resource]
@@ -14,5 +34,5 @@ name = "Basic Fire Keystone"
 element_slots = Array[String](["fire"])
 triggers = Array[ExtResource("3_t1oub")]([SubResource("Resource_51jyi")])
 icon = ExtResource("1_xln24")
-tooltip = "After dealing fire damage, deal 3 neutral damage to the front enemy."
+tooltip = "After an ally uses a Fire skill, your Fire allies gain 1 Fire Blessing."
 metadata/_custom_type_script = "uid://bwy6w48crbb54"

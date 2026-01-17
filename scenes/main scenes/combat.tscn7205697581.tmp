@@ -1544,11 +1544,6 @@ expand_mode = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CharacterUltAnimation" unique_id=1900951727]
 libraries/ = SubResource("AnimationLibrary_qrs2m")
 
-[connection signal="damage_dealt" from="CombatManager" to="TriggerManager" method="_on_damage_dealt"]
-[connection signal="reaction_triggered" from="CombatManager" to="TriggerManager" method="_on_reaction_triggered"]
-[connection signal="skill_used" from="CombatManager" to="TriggerManager" method="_on_skill_used"]
-[connection signal="turn_ended" from="CombatManager" to="TriggerManager" method="_on_turn_ended"]
-[connection signal="turn_started" from="CombatManager" to="TriggerManager" method="_on_turn_started"]
 [connection signal="pressed" from="EndTurn" to="CombatManager" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Tutorial/Tutorial1/Popup1/PanelContainer/MarginContainer/VBoxContainer/Button" to="Tutorial/Tutorial1/Popup1" method="_on_button_pressed"]

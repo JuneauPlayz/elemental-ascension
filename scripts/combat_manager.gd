@@ -3,6 +3,7 @@ extends Node
 @onready var turn_text: Label = $TurnText
 @onready var combat_currency: Control = $CombatCurrency
 @onready var enemy_combat_currency: Control = $EnemyCombatCurrency
+@onready var trigger_manager: TriggerManager = %TriggerManager
 
 
 const AFTER_SKILL_DELAY = 0.35
@@ -96,27 +97,27 @@ signal target_chosen
 signal skill_selected
 signal end_turn_pressed
 signal ult_anim_done
-signal skill_used
+
 
 var combat_finished = false
 var first_turn = true
 var victorious = false
 var xp_reward
+
 signal combat_ended
 signal hit
 signal signal_received
 signal reaction_finished
 
-signal ally_fire_skill_used(caster : Unit, target : Array[Unit])
-signal ally_water_skill_used(caster : Unit, target : Array[Unit])
-signal ally_lightning_skill_used(caster : Unit, target : Array[Unit])
-signal ally_grass_skill_used(caster : Unit, target : Array[Unit])
-signal ally_earth_skill_used(caster : Unit, target : Array[Unit])
+signal skill_used(caster : Unit, skill : Skill, target : Array[Unit])
+signal damage_dealt(value : int, element : String)
+signal reaction_triggered(value : int, reaction : String)
+signal turn_started
+signal turn_ended
 
 var run
 
 @onready var ReactionManager: Node = $"../ReactionManager"
-var trigger_manager
 
 
 func combat_ready():
@@ -186,6 +187,7 @@ func start_ally_turn():
 	show_ui()
 	turn_text.text = "Ally Turn"
 	input_allowed = true
+	turn_started.emit()
 	ally_pre_status()
 	enemy_pre_status()
 	lose_shields()
@@ -218,27 +220,21 @@ func ally_skill_use_wrapper(skill, target, ally):
 
 func ally_skill_use(skill, target, ally):
 	input_allowed = false
+	var targets = []
+	if target == null:
+		targets = resolve_targets(skill.target_type)
+	else:
+		targets = [target]
 	use_skill(skill, target, ally, true, true)
 	check_post_skill(skill)
 	combat_currency.update()
 
 	await reaction_finished
 	
-	match skill.element:
-		"fire":
-			ally_fire_skill_used.emit(ally, target)
-		"water":
-			ally_water_skill_used.emit(ally, target)
-		"lightning":
-			ally_lightning_skill_used.emit(ally, target)
-		"grass":
-			ally_grass_skill_used.emit(ally, target)
-		"earth":
-			ally_earth_skill_used.emit(ally, target)
-	
+	skill_used.emit(ally, skill, targets)
+	emit_signal("skill_used", ally, skill, targets)
 	print(str(skill.name) + " landed!")
 	hit.emit()
-	await check_triggers()
 	await get_tree().create_timer(0.1).timeout
 	for enemy in enemies:
 		enemy.decrease_countdown(1)
@@ -264,7 +260,7 @@ func check_enemy_skills():
 func enemy_skill_use_wrapper(enemy):
 	use_skill(enemy.current_skill, null, enemy, true, false)
 	await reaction_finished
-	skill_used.emit(enemy)
+	skill_used.emit(enemy, enemy.current_skill, resolve_targets(enemy.current_skill.target_type))
 
 
 func check_post_skill(skill):
@@ -352,126 +348,36 @@ func reset_combat():
 	reset_tokens()
 	victory_screen.visible = false
 	
-func use_skill(skill,target,unit,event,spend_tokens):
+func use_skill(skill, target, unit, event, spend_tokens):
 	skill.update()
-	if skill.ultimate == true:
+
+	if skill.ultimate:
 		character_ult_animation.play_ultimate(unit.sprite_spot.texture, skill.name)
 		await ult_anim_done
-		
-	if skill.summon != null:
-		var new_summon = ENEMY.instantiate()
-		new_summon.res = skill.summon.duplicate()
-		if enemy3 == null:
-			get_parent().enemy_3_spot.add_child(new_summon)
-			enemy3 = new_summon
-			enemies.push_front(enemy3)
-		elif enemy2 == null:
-			get_parent().enemy_2_spot.add_child(new_summon)
-			enemy2 = new_summon
-			enemies.push_front(enemy2)
-		elif enemy1 == null:
-			get_parent().enemy_1_spot.add_child(new_summon)
-			enemy1 = new_summon
-			enemies.push_front(enemy1)
-		else:
-			return
-		return
-	var value_multiplier = 1
-	# token spending
+
+	var value_multiplier := 1
+
 	if event:
-		check_event_keystones(skill,unit,value_multiplier,target)
-	if (skill.cost > 0 or skill.cost2 > 0) and spend_tokens == true:
-			spend_skill_cost(skill)
-	if target != null and not skill.friendly:
-		target.receive_skill(skill,unit,value_multiplier)
+		check_event_keystones(skill, unit, value_multiplier, target)
+
+	if (skill.cost > 0 or skill.cost2 > 0) and spend_tokens:
+		spend_skill_cost(skill)
+
+	var targets: Array
+
+	# Explicit target always wins
+	if target != null:
+		targets = [target]
 	else:
-		if (skill.target_type == "front_ally" and front_ally != null):
-			front_ally.receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "front_2_allies" and front_ally != null):
-			front_ally.receive_skill(skill,unit,value_multiplier)
-			if front_ally_2 != null:
-				front_ally_2.receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "front_enemy" and front_enemy != null):
-			front_enemy.receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "front_2_enemies" and front_enemy != null):
-			front_enemy.receive_skill(skill,unit,value_multiplier)
-			if front_enemy_2 != null:
-				front_enemy_2.receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "back_ally" and back_ally != null):
-			back_ally.receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "back_2_allies" and back_ally != null):
-			back_ally.receive_skill(skill,unit,value_multiplier)
-			if back_ally_2 != null:
-				back_ally_2.receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "back_enemy" and back_enemy != null):
-			back_enemy.receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "back_2_enemies" and back_enemy != null):
-			back_enemy.receive_skill(skill,unit,value_multiplier)
-			if back_enemy_2 != null:
-				back_enemy_2.receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "random_middle_ally" and middle_allies != []):
-			var rng = RandomNumberGenerator.new()
-			var random_num = rng.randi_range(1,middle_allies.size())
-			match random_num:
-				1:
-					middle_allies[0].receive_skill(skill,unit,value_multiplier)
-				2:
-					middle_allies[1].receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "single_ally" and target != null):
-			target.receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "random_enemy" and enemies.size() > 0):
-			var rng = RandomNumberGenerator.new()
-			var random_num = rng.randi_range(1,enemies.size())
-			match random_num:
-				1:
-					enemies[0].receive_skill(skill,unit,value_multiplier)
-				2:
-					enemies[1].receive_skill(skill,unit,value_multiplier)
-				3:
-					enemies[2].receive_skill(skill,unit,value_multiplier)
-				4:
-					enemies[3].receive_skill(skill,unit,value_multiplier)
-		elif (skill.target_type == "random_ally"):
-			var rng = RandomNumberGenerator.new()
-			var random_num = rng.randi_range(1,allies.size())
-			if allies == []:
-				return
-			match random_num:
-				1:
-					allies[0].receive_skill(skill,unit,value_multiplier)
-				2:
-					allies[1].receive_skill(skill,unit,value_multiplier)
-				3:
-					allies[2].receive_skill(skill,unit,value_multiplier)
-				4:
-					allies[3].receive_skill(skill,unit,value_multiplier)
-		elif (target == null):
-			if (skill.target_type == "all_allies" and allies.size() > 0):
-				var temp_allies = allies.duplicate()
-				for ally in temp_allies:
-					if ally in allies:
-						ally.receive_skill(skill,unit,value_multiplier)
-						set_unit_pos()
-						#print(ally.title + " taking " + str(skill.damage) + " damage from " + unit.title)
-			elif (skill.target_type == "all_enemies" and allies.size() > 0):
-				var temp_enemies = enemies.duplicate()
-				for enemy in temp_enemies:
-					if enemy in enemies:
-						enemy.receive_skill(skill,unit,value_multiplier)
-						set_unit_pos()
-			elif (skill.target_type == "all_units" and allies.size() > 0 and enemies.size() > 0):
-				var temp_enemies = enemies.duplicate()
-				for enemy in temp_enemies:
-					if enemy in enemies:
-						enemy.receive_skill(skill,unit,value_multiplier)
-						set_unit_pos()
-				var temp_allies = allies.duplicate()
-				for ally in temp_allies:
-					if ally in allies:
-						ally.receive_skill(skill,unit,value_multiplier)
-						set_unit_pos()
-	if (skill.lifesteal):
+		targets = resolve_targets(skill.target_type)
+
+	for t in targets:
+		if t != null:
+			t.receive_skill(skill, unit, value_multiplier)
+
+	if skill.lifesteal:
 		unit.receive_healing(roundi(skill.damage * skill.lifesteal_rate), "grass", false)
+
 	
 func spend_skill_cost(skill):
 	var tokens1 = 0
@@ -629,6 +535,7 @@ func end_turn_process():
 		set_unit_pos()
 		ally_post_status()
 		enemy_post_status()
+		turn_ended.emit()
 		input_allowed = true
 		ally_turn_done.emit()
 		for enemy in enemies:
@@ -932,6 +839,7 @@ func vaporize(unit, caster, element):
 		),
 		caster
 	)
+	reaction_triggered.emit(1, "vaporize")
 
 	add_token("water",
 		compute_token_amount(
@@ -1525,16 +1433,84 @@ func pop_up_button_pressed():
 func _on_character_ult_animation_ult_anim_done() -> void:
 	ult_anim_done.emit()
 
-func check_triggers():
-	if trigger_manager.trigger_list != []:
-		await get_tree().create_timer(GC.GLOBAL_INTERVAL).timeout
-		await trigger_manager.execute_triggers()
+func resolve_targets(target_type: String) -> Array:
+	var result: Array = []
+
+	match target_type:
+		"single_enemy", "front_enemy":
+			if front_enemy != null:
+				result.append(front_enemy)
+
+		"single_ally", "front_ally":
+			if front_ally != null:
+				result.append(front_ally)
+
+		"all_enemies":
+			result = enemies.duplicate()
+
+		"all_allies":
+			result = allies.duplicate()
+
+		"all_units":
+			result = allies.duplicate()
+			result.append_array(enemies)
+
+		"front_2_enemies":
+			if front_enemy != null:
+				result.append(front_enemy)
+			if front_enemy_2 != null:
+				result.append(front_enemy_2)
+
+		"back_enemy":
+			if back_enemy != null:
+				result.append(back_enemy)
+
+		"back_2_enemies":
+			if back_enemy != null:
+				result.append(back_enemy)
+			if back_enemy_2 != null:
+				result.append(back_enemy_2)
+
+		"front_2_allies":
+			if front_ally != null:
+				result.append(front_ally)
+			if front_ally_2 != null:
+				result.append(front_ally_2)
+
+		"back_ally":
+			if back_ally != null:
+				result.append(back_ally)
+
+		"back_2_allies":
+			if back_ally != null:
+				result.append(back_ally)
+			if back_ally_2 != null:
+				result.append(back_ally_2)
+
+		"random_enemy":
+			if enemies.size() > 0:
+				result.append(enemies.pick_random())
+
+		"random_ally":
+			if allies.size() > 0:
+				result.append(allies.pick_random())
+
+		"random_middle_ally":
+			if middle_allies.size() > 0:
+				result.append(middle_allies.pick_random())
+
+	return result.filter(func(u): return u != null)
 
 func load_triggers() -> void:
-	trigger_manager = %TriggerManager
+	var trigger_manager := %TriggerManager
+	
+	for keystone in run.keystones:
+		for trigger in keystone.triggers:
+				if trigger == null or trigger.conditions == null:
+					continue
 
-	trigger_manager.post_fire_skill_triggers.clear()
-
+				trigger_manager.triggers.append(trigger)
+				
 	for ally in allies:
 		if ally == null:
 			continue
@@ -1544,17 +1520,8 @@ func load_triggers() -> void:
 				continue
 
 			for trigger in item.triggers:
-				if trigger == null:
+				if trigger == null or trigger.conditions == null:
 					continue
 
 				trigger.caster = ally
-
-				if trigger.action != "Skill":
-					continue
-				if trigger.timing != "Post":
-					continue
-
-				match trigger.trigger_type:
-					"fire":
-						trigger_manager.post_fire_skill_triggers.append(trigger)
-						
+				trigger_manager.triggers.append(trigger)

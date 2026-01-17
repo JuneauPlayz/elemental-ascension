@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Status" format=3 uid="uid://csp82m0yafyor"]
+
+[ext_resource type="Texture2D" uid="uid://ega8yf10nrw" path="res://assets/Fire_symbol.png" id="1_etyod"]
+[ext_resource type="Script" uid="uid://5lu86r10cr8o" path="res://scripts/StatusEffect.gd" id="1_mpj0w"]
+
+[resource]
+script = ExtResource("1_mpj0w")
+name = "Fire Blessing"
+type = "event_based"
+stack = true
+element = "fire"
+effect_type = "blessing"
+max_stacks = 9999
+icon = ExtResource("1_etyod")
+metadata/_custom_type_script = "uid://5lu86r10cr8o"

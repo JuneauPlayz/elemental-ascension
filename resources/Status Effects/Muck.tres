@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://bdml5ghtlnrag"]
+[gd_resource type="Resource" script_class="Status" format=3 uid="uid://bdml5ghtlnrag"]
 
-[ext_resource type="Script" uid="uid://5lu86r10cr8o" path="res://scripts/DoT_Status.gd" id="1_gilju"]
+[ext_resource type="Script" uid="uid://5lu86r10cr8o" path="res://scripts/StatusEffect.gd" id="1_gilju"]
 [ext_resource type="Texture2D" uid="uid://bi3fgvovjypok" path="res://assets/muck orb.png" id="1_jykow"]
 
 [resource]

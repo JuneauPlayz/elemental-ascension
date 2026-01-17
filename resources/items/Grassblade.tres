@@ -9,6 +9,7 @@ script = ExtResource("3_7c3e5")
 action = "Skill"
 timing = "Post"
 value = 5
+trigger_type = "grass"
 value_type = "Damage"
 element = "neutral"
 target_type = "all_enemies"

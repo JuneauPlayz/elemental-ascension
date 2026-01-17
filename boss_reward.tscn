@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dti37hgd31qgr" path="res://boss_reward.gd" id="1_wstjn"]
 [ext_resource type="PackedScene" uid="uid://ppg1wk60cwxc" path="res://scenes/reusables/keystone_info.tscn" id="2_oc45t"]
-[ext_resource type="PackedScene" uid="uid://sdwnoh61gawa" path="res://scenes/reusables/skill_info.tscn" id="3_hd3cb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1jcw1"]
 bg_color = Color(0.526194, 0.632642, 0.547312, 1)
@@ -25,10 +24,10 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="BossReward" type="Node2D" groups=["choose_reward"]]
+[node name="BossReward" type="Node2D" unique_id=894872149 groups=["choose_reward"]]
 script = ExtResource("1_wstjn")
 
-[node name="Rewards" type="VBoxContainer" parent="."]
+[node name="Rewards" type="VBoxContainer" parent="." unique_id=690616017]
 offset_left = 1086.0
 offset_top = 5.0
 offset_right = 1821.0
@@ -38,14 +37,14 @@ mouse_filter = 2
 theme_override_constants/separation = 75
 alignment = 1
 
-[node name="Reward1" type="PanelContainer" parent="Rewards"]
+[node name="Reward1" type="PanelContainer" parent="Rewards" unique_id=517496678]
 self_modulate = Color(1, 1, 1, 0.666667)
 custom_minimum_size = Vector2(100, 250)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1jcw1")
 
-[node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward1"]
+[node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward1" unique_id=1346180690]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 30
@@ -53,23 +52,20 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward1/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward1/MarginContainer" unique_id=1206144895]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 500
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward1/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward1/MarginContainer/HBoxContainer" unique_id=1206469769]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RelicInfo" parent="Rewards/Reward1/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_oc45t")]
+[node name="RelicInfo" parent="Rewards/Reward1/MarginContainer/HBoxContainer/VBoxContainer" unique_id=88337977 instance=ExtResource("2_oc45t")]
 visible = false
 layout_mode = 2
 
-[node name="SkillInfo" parent="Rewards/Reward1/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_hd3cb")]
-layout_mode = 2
-
-[node name="Choose" type="Button" parent="Rewards/Reward1/MarginContainer/HBoxContainer"]
+[node name="Choose" type="Button" parent="Rewards/Reward1/MarginContainer/HBoxContainer" unique_id=139037986]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -77,14 +73,14 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 61
 text = "Choose"
 
-[node name="Reward2" type="PanelContainer" parent="Rewards"]
+[node name="Reward2" type="PanelContainer" parent="Rewards" unique_id=1278751737]
 self_modulate = Color(1, 1, 1, 0.666667)
 custom_minimum_size = Vector2(100, 250)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ac5hj")
 
-[node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward2"]
+[node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward2" unique_id=261941299]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 30
@@ -92,23 +88,20 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward2/MarginContainer" unique_id=1950293511]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 500
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward2/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward2/MarginContainer/HBoxContainer" unique_id=1923282553]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RelicInfo" parent="Rewards/Reward2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_oc45t")]
+[node name="RelicInfo" parent="Rewards/Reward2/MarginContainer/HBoxContainer/VBoxContainer" unique_id=279138592 instance=ExtResource("2_oc45t")]
 visible = false
 layout_mode = 2
 
-[node name="SkillInfo" parent="Rewards/Reward2/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_hd3cb")]
-layout_mode = 2
-
-[node name="Choose" type="Button" parent="Rewards/Reward2/MarginContainer/HBoxContainer"]
+[node name="Choose" type="Button" parent="Rewards/Reward2/MarginContainer/HBoxContainer" unique_id=75449725]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -116,14 +109,14 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 61
 text = "Choose"
 
-[node name="Reward3" type="PanelContainer" parent="Rewards"]
+[node name="Reward3" type="PanelContainer" parent="Rewards" unique_id=479979023]
 self_modulate = Color(1, 1, 1, 0.666667)
 custom_minimum_size = Vector2(100, 250)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ny5kq")
 
-[node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward3"]
+[node name="MarginContainer" type="MarginContainer" parent="Rewards/Reward3" unique_id=1313950109]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 30
@@ -131,23 +124,20 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward3/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Rewards/Reward3/MarginContainer" unique_id=939926795]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 500
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward3/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Rewards/Reward3/MarginContainer/HBoxContainer" unique_id=1421750688]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RelicInfo" parent="Rewards/Reward3/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_oc45t")]
+[node name="RelicInfo" parent="Rewards/Reward3/MarginContainer/HBoxContainer/VBoxContainer" unique_id=652740827 instance=ExtResource("2_oc45t")]
 visible = false
 layout_mode = 2
 
-[node name="SkillInfo" parent="Rewards/Reward3/MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("3_hd3cb")]
-layout_mode = 2
-
-[node name="Choose" type="Button" parent="Rewards/Reward3/MarginContainer/HBoxContainer"]
+[node name="Choose" type="Button" parent="Rewards/Reward3/MarginContainer/HBoxContainer" unique_id=1986544698]
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -155,7 +145,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 61
 text = "Choose"
 
-[node name="SkipReward" type="Button" parent="."]
+[node name="SkipReward" type="Button" parent="." unique_id=2078723656]
 visible = false
 offset_left = 1087.0
 offset_top = 971.0
@@ -164,7 +154,7 @@ offset_bottom = 1066.0
 theme_override_font_sizes/font_size = 81
 text = "Skip Reward"
 
-[node name="Continue" type="Button" parent="."]
+[node name="Continue" type="Button" parent="." unique_id=633275739]
 visible = false
 offset_left = 1361.0
 offset_top = 377.0
@@ -173,7 +163,7 @@ offset_bottom = 573.0
 theme_override_font_sizes/font_size = 81
 text = "Continue"
 
-[node name="ConfirmSwap" type="Button" parent="."]
+[node name="ConfirmSwap" type="Button" parent="." unique_id=653848497]
 visible = false
 offset_left = 1348.0
 offset_top = 496.0
@@ -182,14 +172,7 @@ offset_bottom = 589.0
 theme_override_font_sizes/font_size = 61
 text = "Confirm Swap"
 
-[node name="ChoiceSkillInfo" parent="." instance=ExtResource("3_hd3cb")]
-visible = false
-offset_left = 1078.0
-offset_top = 439.0
-offset_right = 1078.0
-offset_bottom = 439.0
-
-[node name="Title" type="RichTextLabel" parent="."]
+[node name="Title" type="RichTextLabel" parent="." unique_id=1453187371]
 offset_left = 2.0
 offset_top = 9.0
 offset_right = 1921.0
@@ -201,7 +184,7 @@ text = "[color=red]Boss[/color] Reward"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=299210019]
 z_index = -5
 offset_right = 1929.0
 offset_bottom = 1085.0

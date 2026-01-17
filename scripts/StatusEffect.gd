@@ -4,10 +4,12 @@ class_name Status
 @export var name : String
 @export_enum("countdown", "event_based") var type : String
 @export var stack : bool
-@export var stacks : int
 @export var pre_turn : bool
 @export var damage : int
 @export_enum("neutral", "water", "fire", "lightning", "earth", "grass") var element : String
+@export_enum("blessing", "affliction") var effect_type : String
 @export var turns_remaining : int
 @export var max_stacks : int
 @export var icon : Texture
+
+var stacks : int
