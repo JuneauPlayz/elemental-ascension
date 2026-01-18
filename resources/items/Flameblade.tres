@@ -9,9 +9,6 @@
 
 [sub_resource type="Resource" id="Resource_i816m"]
 script = ExtResource("4_aewhr")
-timing = 1
-condition_type = 0
-element = 0
 reaction = null
 metadata/_custom_type_script = "uid://bo56h71fehhnx"
 

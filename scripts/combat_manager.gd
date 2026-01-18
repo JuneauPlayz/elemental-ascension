@@ -220,11 +220,11 @@ func ally_skill_use_wrapper(skill, target, ally):
 
 func ally_skill_use(skill, target, ally):
 	input_allowed = false
-	var targets = []
+	var targets : Array[Unit] = []
 	if target == null:
 		targets = resolve_targets(skill.target_type)
 	else:
-		targets = [target]
+		targets.append(target)
 	use_skill(skill, target, ally, true, true)
 	check_post_skill(skill)
 	combat_currency.update()
